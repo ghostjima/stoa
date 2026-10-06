@@ -281,7 +281,7 @@
 /* The labels are words, in the sans face; the values stay in the numeric
    face. */
 .stoa-statbar dt { color: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-sans); }
-.stoa-statbar dd { margin: 0; font-variant-numeric: tabular-nums; }
+.stoa-statbar dd { margin: 0; font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 
 .stoa-field { display: grid; gap: var(--stoa-space-1); }
 .stoa-field__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
@@ -590,7 +590,13 @@
   flex: none; white-space: nowrap; border-radius: var(--stoa-radius-full);
   padding-inline: var(--stoa-space-3);
 }
-.stoa-filter-chip__count { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+/* The count's line height is a number, not "normal": with "normal" a line
+   takes the tallest face drawn in it, and Arabic-Indic digits are drawn in
+   Noto Sans Arabic, whose ascent and descent are much larger than Plex
+   Mono's, so the chip grew when that font arrived. A number sizes the line
+   from the first face of the stack alone, whatever face draws the digits.
+   The same holds for StatBar's values and RecordList's meta. */
+.stoa-filter-chip__count { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 .stoa-filter-chip--small {
   font-size: var(--stoa-font-size-xs);
   min-block-size: var(--stoa-space-6);
@@ -987,7 +993,7 @@
 .stoa-record-list__label { overflow-wrap: anywhere; }
 .stoa-record-list__description { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 .stoa-record-list__row[data-disabled] .stoa-record-list__description { color: inherit; }
-.stoa-record-list__meta { flex: none; font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+.stoa-record-list__meta { flex: none; font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 .stoa-record-list__empty { padding: var(--stoa-space-3); color: var(--stoa-color-text-muted); }
 
 /* DescriptionList: terms and values of a read-only record, in the

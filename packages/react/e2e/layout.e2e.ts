@@ -203,16 +203,17 @@ for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
   });
 }
 
-test("a record list has its rows in the first frame that draws it, on first load and when it comes back", async ({ page }) => {
+test("a record list draws its rows in the first frame it is in, never a frame of its empty state, on first load and when it comes back", async ({ page }) => {
   // Before any script of the page: the first animation frame in which the
-  // list is in the document says how many rows it has.
+  // list is in the document says how many rows it draws, and whether it
+  // says it is empty.
   await page.addInitScript(() => {
     const w = window as unknown as { firstFrameRows: number | null; watchList: () => void };
     w.watchList = () => {
       w.firstFrameRows = null;
       const tick = () => {
         const list = document.querySelector('[role="listbox"]');
-        if (list) w.firstFrameRows = list.querySelectorAll('[role="option"]').length;
+        if (list) w.firstFrameRows = list.querySelector(".stoa-record-list__empty") ? -1 : list.querySelectorAll(".stoa-record-list__row").length;
         else requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -220,11 +221,18 @@ test("a record list has its rows in the first frame that draws it, on first load
     w.watchList();
   });
   const firstFrameRows = () => page.evaluate(() => (window as unknown as { firstFrameRows: number | null }).firstFrameRows);
-  await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));
-  await expect.poll(firstFrameRows).toBe(4);
-  await page.getByRole("option", { name: /RU000A1002/ }).click();
+  // Whether the first frame comes before the rows depends on timing; five
+  // loads make a late frame all but certain to show.
+  for (let load = 0; load < 5; load++) {
+    await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));
+    await expect.poll(firstFrameRows).not.toBeNull();
+    expect(await firstFrameRows(), `load ${load + 1}`).toBe(4);
+  }
+  await page.getByRole("option", { name: /RU000A1001/ }).focus();
+  await page.keyboard.press("Enter");
   await expect(page.getByRole("listbox")).toHaveCount(0);
   await page.evaluate(() => (window as unknown as { watchList: () => void }).watchList());
   await page.getByRole("button", { name: "Back" }).click();
-  await expect.poll(firstFrameRows).toBe(4);
+  await expect.poll(firstFrameRows).not.toBeNull();
+  expect(await firstFrameRows()).toBe(4);
 });

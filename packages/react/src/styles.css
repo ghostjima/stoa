@@ -1018,6 +1018,9 @@
 .stoa-record-list__row[data-disabled] .stoa-record-list__description { color: inherit; }
 .stoa-record-list__meta { flex: none; font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 .stoa-record-list__empty { padding: var(--stoa-space-3); color: var(--stoa-color-text-muted); }
+/* The rows as drawn before React Aria's own arrive (RecordList.tsx): the
+   wrapper leaves the rows in the list's grid. */
+.stoa-record-list__drawn { display: contents; }
 
 /* DescriptionList: terms and values of a read-only record, in the
    density's type size. In columns, every pair shares one grid, so the

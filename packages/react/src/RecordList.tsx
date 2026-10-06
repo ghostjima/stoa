@@ -36,7 +36,8 @@ export type RecordListProps = {
  * name jumps to it. The picked record is the selected option
  * (aria-selected), marked with a bar at its start edge and a heavier
  * name, not by colour alone; it stays picked when it is pressed again.
- * One Tab stop for the whole list.
+ * One Tab stop for the whole list. Its rows are drawn from the first
+ * frame, never after a frame of "No items."
  *
  * A pick may remove the list (on a narrow screen the detail replaces it):
  * a pointer picks on release, once the press is over, so the release does
@@ -79,7 +80,33 @@ export function RecordList({ label, items, value, onChange, emptyText }: RecordL
         onChange(String(first));
       }}
       disabledKeys={items.filter((item) => item.isDisabled).map((item) => item.id)}
-      renderEmptyState={() => <div className="stoa-record-list__empty">{emptyText ?? messages.listEmpty}</div>}
+      renderEmptyState={() =>
+        items.length > 0 ? (
+          // React Aria builds the rows from a first, hidden render, so on a
+          // page's first load the list's first commit has none yet, and the
+          // browser could paint "No items." for a frame before the rows. The
+          // rows are drawn as they will be until then, hidden from assistive
+          // technology, which reads the real ones a commit later.
+          <div className="stoa-record-list__drawn" aria-hidden="true">
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="stoa-record-list__row"
+                data-selected={item.id === value || undefined}
+                data-disabled={item.isDisabled || undefined}
+              >
+                <span className="stoa-record-list__text">
+                  <span className="stoa-record-list__label">{item.label}</span>
+                  {item.description !== undefined && <span className="stoa-record-list__description">{item.description}</span>}
+                </span>
+                {item.meta !== undefined && <span className="stoa-record-list__meta">{item.meta}</span>}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="stoa-record-list__empty">{emptyText ?? messages.listEmpty}</div>
+        )
+      }
     >
       {(item) => (
         <ListBoxItem id={item.id} textValue={item.label} className="stoa-record-list__row">

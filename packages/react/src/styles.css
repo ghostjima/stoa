@@ -471,6 +471,9 @@
   font-family: var(--stoa-font-family-sans);
   outline: none;
 }
+/* While a modal overlay is open the region is inert and waits under the
+   overlay's scrim (z-index 10), covering none of its controls. */
+.stoa-toast-region[inert] { z-index: 9; }
 .stoa-toast-region[data-focus-visible] {
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: var(--stoa-focus-offset);

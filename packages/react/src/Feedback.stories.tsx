@@ -3,7 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { AppHeader } from "./AppHeader";
 import { Callout } from "./Callout";
 import { Button } from "./Controls";
-import { Dialog, Sheet } from "./Dialog";
+import { AlertDialog, Dialog, Sheet } from "./Dialog";
 import { EmptyState } from "./EmptyState";
 import { keepFocusInPlace } from "./focus";
 import { LiveRegion, VisuallyHidden } from "./LiveRegion";
@@ -246,6 +246,76 @@ export const ToastTones: StoryObj = {
       return () => keys.forEach((key) => queue.close(key));
     }, [queue]);
     return <ToastRegion queue={queue} />;
+  },
+};
+
+const LETTER = {
+  en: {
+    toast: "Facts requested from operations.",
+    title: "Send the reply?",
+    body: [
+      "Dear Ms Ivanova,",
+      "We have reviewed your complaint of 2 October 2026, case C-000184.",
+      "The transfer of 15,000 RUB on 30 September 2026, reference 4471-0932, was suspended.",
+      "The operation matched sign 1.4 of the bank's rules on suspicious operations.",
+      "The suspension follows Federal Law 161-FZ, article 8, part 3.4.",
+      "You may provide documents that explain the operation; the bank will review them within two working days.",
+      "The suspension ends no later than 7 October 2026.",
+      "Until then the money stays in your account and is not charged a fee.",
+      "You may also cancel the transfer; the money is then available at once.",
+      "Your complaint was received through the mobile application and registered on 2 October 2026.",
+      "If you disagree with the decision, you may apply to the Bank of Russia.",
+      "The reply is sent to the address in your complaint and cannot be recalled.",
+    ],
+    confirm: "Send the reply",
+    undo: "Undo",
+  },
+  ar: {
+    toast: "طُلبت الوقائع من قسم العمليات.",
+    title: "إرسال الرد؟",
+    body: [
+      "السيدة إيفانوفا المحترمة،",
+      "راجعنا شكواك المؤرخة 2 أكتوبر 2026، الملف C-000184.",
+      "عُلّق التحويل البالغ 15000 روبل في 30 سبتمبر 2026، المرجع 4471-0932.",
+      "طابقت العملية العلامة 1.4 من قواعد البنك بشأن العمليات المشبوهة.",
+      "يستند التعليق إلى القانون الاتحادي 161-FZ، المادة 8، الجزء 3.4.",
+      "يمكنك تقديم مستندات توضح العملية، وسيراجعها البنك خلال يومي عمل.",
+      "ينتهي التعليق في موعد أقصاه 7 أكتوبر 2026.",
+      "حتى ذلك الحين يبقى المال في حسابك دون أي رسوم.",
+      "يمكنك أيضًا إلغاء التحويل، فيصبح المال متاحًا فورًا.",
+      "وردت شكواك عبر تطبيق الهاتف وسُجّلت في 2 أكتوبر 2026.",
+      "إن لم توافقي على القرار، يمكنك التوجه إلى بنك روسيا.",
+      "يُرسل الرد إلى العنوان الوارد في شكواك ولا يمكن استرجاعه.",
+    ],
+    confirm: "إرسال الرد",
+    undo: "تراجع",
+  },
+};
+
+/** A confirmation over a toast, as on a phone: while a modal dialog is
+ * open, the toasts wait under its scrim, out of the way of its buttons,
+ * out of reach of the pointer and the keyboard, and their time stands
+ * still; they come back when it closes. */
+export const ToastUnderAlertDialog: StoryObj = {
+  render: () => {
+    const d = LETTER[useStoaFormat().locale.startsWith("ar") ? "ar" : "en"];
+    const [queue] = useState(() => new ToastQueue());
+    const [open, setOpen] = useState(true);
+    useEffect(() => {
+      const key = queue.add({ text: d.toast, action: { label: d.undo, onAction: () => {} } });
+      return () => queue.close(key);
+    }, [queue, d]);
+    return (
+      <>
+        <Button onPress={() => setOpen(true)}>{d.title}</Button>
+        <AlertDialog title={d.title} confirmLabel={d.confirm} onConfirm={() => {}} isOpen={open} onOpenChange={setOpen}>
+          {d.body.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </AlertDialog>
+        <ToastRegion queue={queue} />
+      </>
+    );
   },
 };
 

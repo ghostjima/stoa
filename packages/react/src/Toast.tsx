@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, useSyncExternalStore, type ReactNode } from "react";
 import {
   Text,
   UNSTABLE_Toast as AriaToast,
@@ -9,6 +9,7 @@ import { TONE_SYMBOL, toneWord, type FeedbackTone } from "./Callout";
 import { Button } from "./Controls";
 import { VisuallyHidden } from "./LiveRegion";
 import { useStoaFormat } from "./locale";
+import { useModalOpen } from "./modalLayer";
 
 /** How long a toast stays, in milliseconds, unless it says otherwise. */
 export const DEFAULT_TOAST_TIMEOUT = 8000;
@@ -96,10 +97,35 @@ export type ToastRegionProps = {
  * aria-modal: a toast is inside this region, named "Notifications" in the
  * locale's words, and is not modal; an AlertDialog is outside it, and the
  * page behind it is hidden while it is open. In a test, look for a toast
- * inside the region (`within(region).getByRole("alertdialog")`). */
+ * inside the region (`within(region).getByRole("alertdialog")`).
+ *
+ * While one of Stoa's modal overlays is open (Dialog, Sheet, AlertDialog),
+ * the toasts wait behind it: the region goes under the overlay's scrim,
+ * where it covers none of the overlay's controls (on a phone a toast and
+ * a dialog's actions share the bottom of the screen), it is inert, so no
+ * pointer, Tab or F6 reaches it, and the toasts' time stands still, so
+ * none closes unseen. When the overlay closes they are back as they were,
+ * their time going on from where it stopped. React Aria alone keeps
+ * toasts above and operable over any modal. */
 export function ToastRegion({ queue, label }: ToastRegionProps) {
   const { messages } = useStoaFormat();
   const [announcement, setAnnouncement] = useState({ count: 0, text: "" });
+  const modalOpen = useModalOpen();
+  const visible = useSyncExternalStore(
+    (listener) => queue.queue.subscribe(listener),
+    () => queue.queue.visibleToasts,
+    () => queue.queue.visibleToasts,
+  );
+
+  // A toast starts its time in its own effect, which runs before this one:
+  // one shown while an overlay is open is stopped as soon as it starts.
+  useEffect(() => {
+    if (modalOpen) queue.queue.pauseAll();
+  }, [modalOpen, visible, queue]);
+  useEffect(() => {
+    if (!modalOpen) return;
+    return () => queue.queue.resumeAll();
+  }, [modalOpen, queue]);
 
   useEffect(() => {
     let seen = new Set(queue.queue.visibleToasts.map((toast) => toast.key));
@@ -119,7 +145,7 @@ export function ToastRegion({ queue, label }: ToastRegionProps) {
       <div role="status" aria-live="polite" className="stoa-visually-hidden">
         <span key={announcement.count}>{announcement.text}</span>
       </div>
-      <AriaToastRegion queue={queue.queue} className="stoa-toast-region" aria-label={label ?? messages.notifications}>
+      <AriaToastRegion queue={queue.queue} className="stoa-toast-region" aria-label={label ?? messages.notifications} inert={modalOpen || undefined}>
         {({ toast }) => (
           <AriaToast toast={toast} className={`stoa-toast stoa-toast--${toast.content.tone}`}>
             <span className={`stoa-tone-symbol stoa-tone-symbol--${toast.content.tone}`} aria-hidden="true">

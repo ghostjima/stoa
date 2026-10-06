@@ -13,7 +13,7 @@ Add to `Ladder` and `Heatmap`:
   visible marker and a text alternative, without redrawing the canvas
   differently in a way that could be mistaken for data;
 - Heatmap height from the density tokens instead of a caller-computed
-  value (the Tyche demo now reads the row height itself); keep the prop
+  value (the replay demo now reads the row height itself); keep the prop
   as an override.
 
 Tests cover each state; stories show empty, stale and live.

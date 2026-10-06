@@ -23,7 +23,7 @@ export type GridOrder = {
   price: number;
 };
 
-export const SYMBOLS = ["AAPL", "MSFT", "NVDA", "AMZN", "GOOG", "META", "TSLA", "JPM", "XOM", "KO"];
+export const SYMBOLS = ["ACME", "ZYLO", "QUIX", "VORN", "KELP", "ORBX", "PYRA", "QBX", "XQV", "QZ"];
 export const ORDER_STATUSES: OrderStatus[] = ["new", "working", "filled", "cancelled", "rejected"];
 
 /** `count` orders, numbered from ORD-000001. */
@@ -108,11 +108,11 @@ export const positionValue = (position: Position) => Math.round(position.quantit
 export type WatchItem = { id: string; textValue: string; symbol: string; sector: "technology" | "energy" | "banks" | "retail" | "staples"; last: number };
 
 export const WATCHLIST: Omit<WatchItem, "textValue">[] = [
-  { id: "AAPL", symbol: "AAPL", sector: "technology", last: 222.61 },
-  { id: "XOM", symbol: "XOM", sector: "energy", last: 118.3 },
-  { id: "JPM", symbol: "JPM", sector: "banks", last: 241.05 },
-  { id: "AMZN", symbol: "AMZN", sector: "retail", last: 198.77 },
-  { id: "KO", symbol: "KO", sector: "staples", last: 63.42 },
+  { id: "ACME", symbol: "ACME", sector: "technology", last: 222.61 },
+  { id: "XQV", symbol: "XQV", sector: "energy", last: 118.3 },
+  { id: "QBX", symbol: "QBX", sector: "banks", last: 241.05 },
+  { id: "VORN", symbol: "VORN", sector: "retail", last: 198.77 },
+  { id: "QZ", symbol: "QZ", sector: "staples", last: 63.42 },
 ];
 
 /** The session log's times and levels; the messages are in the words, one
@@ -127,7 +127,7 @@ export const LOG_STAMPS: { time: string; level: "INFO" | "WARN" | "ERROR" }[] = 
 ];
 
 /** The order the overlays screen is about. */
-export const ORDER = { id: "ORD-000214", symbol: "AAPL", side: "buy" as const, limit: 222.6, quantity: 500, filled: 200, venue: "XNAS" };
+export const ORDER = { id: "ORD-000214", symbol: "ACME", side: "buy" as const, limit: 222.6, quantity: 500, filled: 200, venue: "XNAS" };
 
 /** The order as the gateway sent it: code, so in no language. */
 export const ORDER_PAYLOAD = JSON.stringify(

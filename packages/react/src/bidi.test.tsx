@@ -21,14 +21,14 @@ describe("Ltr", () => {
   it("is a left-to-right isolate, in the page's face unless it is mono", () => {
     render(
       <p>
-        الجواب <Ltr>2 + 2 = 4</Ltr> و <Ltr mono lang="en">AAPL</Ltr>
+        الجواب <Ltr>2 + 2 = 4</Ltr> و <Ltr mono lang="en">ACME</Ltr>
       </p>,
     );
     const maths = screen.getByText("2 + 2 = 4");
     expect(maths.tagName).toBe("BDI");
     expect(maths.getAttribute("dir")).toBe("ltr");
     expect(maths.className).toBe("stoa-ltr");
-    const ticker = screen.getByText("AAPL");
+    const ticker = screen.getByText("ACME");
     expect(ticker.getAttribute("dir")).toBe("ltr");
     expect(ticker.getAttribute("lang")).toBe("en");
     expect(ticker.className).toBe("stoa-ltr stoa-ltr--mono");

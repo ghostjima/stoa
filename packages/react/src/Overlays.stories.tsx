@@ -289,8 +289,8 @@ const STEPS: Step[] = [
     explanation: "Two venues quote the same price.",
     actions: (
       <>
-        <Button>IEX</Button>
-        <Button>NYSE</Button>
+        <Button>Venue A</Button>
+        <Button>Venue B</Button>
       </>
     ),
   },
@@ -344,7 +344,7 @@ export const LogMixed: StoryObj = {
     <LogView
       label="Engine log"
       lines={[
-        { time: "10:00:01", level: "INFO", text: "open AAPL" },
+        { time: "10:00:01", level: "INFO", text: "open ACME" },
         { time: "10:00:02", level: "INFO", text: "تم تحميل السجل: 1200 صفقة." },
         { time: "10:00:03", level: "WARN", text: "seek 10:30:00 (slow)" },
         { time: "10:00:04", level: "INFO", text: "الخطوة 3 من 5." },
@@ -442,7 +442,7 @@ export const InlineIsolates: StoryObj = {
           الجواب هو <Ltr>2 + 2 = 4</Ltr> دائمًا.
         </p>
         <p>
-          ارتفع سهم <Ltr mono lang="en">AAPL</Ltr> بنسبة <bdi>-0.42%</bdi> اليوم.
+          ارتفع سهم <Ltr mono lang="en">ACME</Ltr> بنسبة <bdi>-0.42%</bdi> اليوم.
         </p>
         <p>
           المعرف <Ltr mono>ORD-000042</Ltr> محفوظ.
@@ -454,7 +454,7 @@ export const InlineIsolates: StoryObj = {
           The answer is <Ltr>2 + 2 = 4</Ltr>, always.
         </p>
         <p>
-          <Ltr mono>AAPL</Ltr> moved <bdi>-0.42%</bdi> today.
+          <Ltr mono>ACME</Ltr> moved <bdi>-0.42%</bdi> today.
         </p>
         <p>
           Order <Ltr mono>ORD-000042</Ltr> is saved.

@@ -1,7 +1,8 @@
 # C2: Callout
 
-Why: both demos show errors as a bare paragraph without a retry, Tyche's
-data-provider notice and Themis's note on maths are ad-hoc text.
+Why: both demos show errors as a bare paragraph without a retry; the
+replay demo's data-provider notice and the algebra demo's note on maths
+are ad-hoc text.
 
 Build `Callout`:
 - tones: info, positive, warning, negative (the existing status tokens);

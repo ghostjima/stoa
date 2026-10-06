@@ -1,7 +1,7 @@
 # C1: Table
 
-Why: Themis's audit view renders a raw `<table className="stoa-table">`
-using Stoa's internal class.
+Why: the algebra demo's audit view renders a raw
+`<table className="stoa-table">` using Stoa's internal class.
 
 Build `Table` for data grids that are read, not edited:
 - columns: id, header (a node, so it can be translated), alignment

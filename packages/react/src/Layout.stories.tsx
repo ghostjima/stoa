@@ -68,9 +68,9 @@ export const Header: StoryObj = {
     const [lang, setLang] = useState("en");
     return (
       <AppHeader
-        title="Tyche Replay"
-        subtitle="AAPL on IEX"
-        note="Data provided for free by IEX."
+        title="Market Desk"
+        subtitle="ACME on a synthetic feed"
+        note="Synthetic data, delayed 15 minutes."
         actions={
           <>
             <ChoiceGroup

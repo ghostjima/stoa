@@ -20,7 +20,7 @@ function mockClipboard(writeText: (text: string) => Promise<void>) {
 }
 
 describe("LogView", () => {
-  const LINES = ["10:00:01 open AAPL", "10:00:02 seek 10:30", "10:00:03 close"];
+  const LINES = ["10:00:01 open ACME", "10:00:02 seek 10:30", "10:00:03 close"];
 
   it("is a focusable region named by its label, left to right, one line per entry", () => {
     render(<LogView label="Engine log" lines={LINES} />);

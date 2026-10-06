@@ -52,7 +52,7 @@ describe("ScrollArea", () => {
 describe("PageShell header position", () => {
   it("keeps the header out of the scrolling region by default, with main and the footer inside it", () => {
     const { container } = render(
-      <PageShell header={<AppHeader title="Horkos Bonds" />} footer="Sources">
+      <PageShell header={<AppHeader title="Bond Screen" />} footer="Sources">
         <p>Content</p>
       </PageShell>,
     );
@@ -66,7 +66,7 @@ describe("PageShell header position", () => {
 
   it("lets the header scroll away when it is static", () => {
     const { container } = render(
-      <PageShell header={<AppHeader title="Horkos Bonds" />} headerPosition="static">
+      <PageShell header={<AppHeader title="Bond Screen" />} headerPosition="static">
         <p>Content</p>
       </PageShell>,
     );

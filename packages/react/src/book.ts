@@ -5,7 +5,7 @@ export type Level = { price: number; size: number };
 export type Book = { bids: Level[]; asks: Level[] };
 
 /** Parse the flat form `[bids, asks, price, size, ...]` (bids best first,
- * then asks best first), as produced by the tyche engine. */
+ * then asks best first), as a market data engine produces it. */
 export function parseBook(flat: ArrayLike<number> | null): Book {
   if (!flat || flat.length < 2) return { bids: [], asks: [] };
   const nb = flat[0]!;

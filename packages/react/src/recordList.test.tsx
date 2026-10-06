@@ -114,8 +114,8 @@ describe("RecordList", () => {
           <RecordList
             label="الأوامر"
             items={[
-              { id: "1", label: "شراء AAPL", meta: "٥٠٠" },
-              { id: "2", label: "بيع MSFT", meta: "٢٠٠" },
+              { id: "1", label: "شراء ACME", meta: "٥٠٠" },
+              { id: "2", label: "بيع ZYLO", meta: "٢٠٠" },
             ]}
             value="1"
             onChange={onChange}
@@ -124,7 +124,7 @@ describe("RecordList", () => {
       </I18nProvider>,
     );
     expect(screen.getByRole("listbox", { name: "السندات" }).textContent).toBe("لا عناصر.");
-    act(() => option("شراء AAPL").focus());
+    act(() => option("شراء ACME").focus());
     press("ArrowDown");
     press("Enter");
     expect(onChange).toHaveBeenLastCalledWith("2");

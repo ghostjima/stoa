@@ -1,7 +1,7 @@
 # C5: Toolbar and ButtonGroup
 
-Why: Tyche's transport row and Themis's action row are plain flex divs;
-keyboard users tab through every control.
+Why: the replay demo's transport row and the algebra demo's action row
+are plain flex divs; keyboard users tab through every control.
 
 Build:
 - `Toolbar` (React Aria `Toolbar`): `role="toolbar"`, an accessible

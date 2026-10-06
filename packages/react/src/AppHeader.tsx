@@ -4,7 +4,7 @@ export type AppHeaderProps = {
   /** The application's name: the page's only first-level heading. */
   title: ReactNode;
   /** A short line beside the title: what the application does, or what it
-   * shows now ("AAPL on IEX"). */
+   * shows now ("ACME on a synthetic feed"). */
   subtitle?: ReactNode;
   /** Small print at the end of the bar, before the actions: a data source,
    * an attribution, terms. */

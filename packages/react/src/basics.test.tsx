@@ -157,14 +157,14 @@ describe("AppHeader", () => {
   it("is the banner, with the name as the only first-level heading, and its parts in order", () => {
     render(
       <AppHeader
-        title="Tyche Replay"
-        subtitle="AAPL on IEX"
-        note="Data provided by IEX."
+        title="Market Desk"
+        subtitle="ACME on a synthetic feed"
+        note="Synthetic data, delayed 15 minutes."
         actions={<button type="button">Dark</button>}
       />,
     );
     const banner = screen.getByRole("banner");
-    expect(screen.getByRole("heading", { level: 1, name: "Tyche Replay" })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 1, name: "Market Desk" })).toBeTruthy();
     expect([...banner.children].map((child) => child.className)).toEqual([
       "stoa-app-header__title",
       "stoa-app-header__subtitle",
@@ -176,7 +176,7 @@ describe("AppHeader", () => {
   });
 
   it("leaves out the parts it is not given", () => {
-    const { container } = render(<AppHeader title="Themis Steps" />);
+    const { container } = render(<AppHeader title="Workspace" />);
     expect(container.querySelector(".stoa-app-header__subtitle")).toBeNull();
     expect(container.querySelector(".stoa-app-header__note")).toBeNull();
     expect(container.querySelector(".stoa-app-header__actions")).toBeNull();

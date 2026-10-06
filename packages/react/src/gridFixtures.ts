@@ -13,7 +13,7 @@ export type SampleOrder = {
   values: number[];
 };
 
-const SYMBOLS = ["AAPL", "MSFT", "NVDA", "AMZN", "GOOG", "META", "TSLA", "JPM", "XOM", "KO"];
+const SYMBOLS = ["ACME", "ZYLO", "QUIX", "VORN", "KELP", "ORBX", "PYRA", "QBX", "XQV", "QZ"];
 export const STATUS_IDS = ["new", "working", "filled", "cancelled", "rejected"] as const;
 export const NOTE_MAX = 40;
 

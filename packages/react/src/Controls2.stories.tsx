@@ -514,8 +514,8 @@ export const HeaderWithSwitches: StoryObj = {
     return (
       <>
         <AppHeader
-          title="Tyche Replay"
-          subtitle="AAPL on IEX"
+          title="Market Desk"
+          subtitle="ACME on a synthetic feed"
           actions={
             <>
               <ThemeSwitch value={theme.choice} onChange={theme.setChoice} />

@@ -30,7 +30,7 @@ export const CalloutInfo: StoryObj = {
   render: () => (
     <Column>
       <Callout tone="info" title="Delayed data">
-        Quotes from IEX arrive fifteen minutes late.
+        Synthetic quotes arrive fifteen minutes late.
       </Callout>
     </Column>
   ),
@@ -40,7 +40,7 @@ export const CalloutPositive: StoryObj = {
   render: () => (
     <Column>
       <Callout tone="positive" title="Session loaded">
-        2 hours 14 minutes of AAPL, ready to replay.
+        2 hours 14 minutes of ACME, ready to replay.
       </Callout>
     </Column>
   ),
@@ -60,7 +60,7 @@ export const CalloutWarning: StoryObj = {
 export const CalloutNegativeWithRetry: StoryObj = {
   render: () => (
     <Column>
-      <Callout tone="negative" role="alert" title="Could not load AAPL" action={<Button>Retry</Button>}>
+      <Callout tone="negative" role="alert" title="Could not load ACME" action={<Button>Retry</Button>}>
         The download stopped at 38 percent.
       </Callout>
     </Column>
@@ -187,7 +187,7 @@ export const ProgressBytes: StoryObj = {
     const mb = (bytes: number) => `${(bytes / 1e6).toFixed(1)} MB`;
     return (
       <Column>
-        <ProgressBar label="Loading AAPL" value={1.8e6} maxValue={4.8e6} formatValue={mb} />
+        <ProgressBar label="Loading ACME" value={1.8e6} maxValue={4.8e6} formatValue={mb} />
       </Column>
     );
   },
@@ -310,8 +310,8 @@ export const VisuallyHiddenText: StoryObj = {
 export const PageShellFrame: StoryObj = {
   render: () => (
     <PageShell
-      header={<AppHeader title="Tyche Replay" subtitle="AAPL on IEX" actions={<Button>Settings</Button>} />}
-      footer="Data provided for free by IEX."
+      header={<AppHeader title="Market Desk" subtitle="ACME on a synthetic feed" actions={<Button>Settings</Button>} />}
+      footer="Synthetic data, delayed 15 minutes."
     >
       <Panel title="Session">
         <EmptyState title="No session loaded" description="Pick a symbol and a day to start." action={<Button variant="primary">Load a session</Button>} />
@@ -326,13 +326,13 @@ export const PageShellFrame: StoryObj = {
 export const PageShellLongPage: StoryObj = {
   render: () => (
     <PageShell
-      header={<AppHeader title="Tyche Replay" subtitle="AAPL on IEX" actions={<Button>Settings</Button>} />}
-      footer="Data provided for free by IEX."
+      header={<AppHeader title="Market Desk" subtitle="ACME on a synthetic feed" actions={<Button>Settings</Button>} />}
+      footer="Synthetic data, delayed 15 minutes."
     >
       <Column>
         {Array.from({ length: 24 }, (_, i) => (
           <Panel key={i} title={`Session ${i + 1}`}>
-            AAPL on IEX, one trading day replayed from the recorded messages.
+            ACME on a synthetic feed, one trading day replayed from the recorded messages.
           </Panel>
         ))}
       </Column>
@@ -346,12 +346,12 @@ function LongPageWithOverlays() {
     <PageShell
       header={
         <AppHeader
-          title="Tyche Replay"
-          subtitle="AAPL on IEX"
+          title="Market Desk"
+          subtitle="ACME on a synthetic feed"
           actions={
             <>
               <Dialog title="Session details" trigger={<Button>Details</Button>}>
-                <p>AAPL on IEX, 24 September 2026, replayed from the recorded messages.</p>
+                <p>ACME on a synthetic feed, 24 September 2026, replayed from the recorded messages.</p>
               </Dialog>
               <Sheet title="Filters" trigger={<Button>Filters</Button>}>
                 <p>Venues, sides and sizes to show.</p>
@@ -360,12 +360,12 @@ function LongPageWithOverlays() {
           }
         />
       }
-      footer="Data provided for free by IEX."
+      footer="Synthetic data, delayed 15 minutes."
     >
       <Column>
         {Array.from({ length: 24 }, (_, i) => (
           <Panel key={i} title={`Session ${i + 1}`}>
-            AAPL on IEX, one trading day replayed from the recorded messages.
+            ACME on a synthetic feed, one trading day replayed from the recorded messages.
           </Panel>
         ))}
       </Column>

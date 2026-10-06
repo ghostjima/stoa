@@ -44,8 +44,8 @@
 /* Arabic letters join; spacing them apart breaks the word. */
 .stoa-panel__title:lang(ar) { letter-spacing: 0; }
 
-/* AppHeader: one bar for every application, at the sizes of the Themis
-   demo (title at the large size, subtitle and note at the small one). */
+/* AppHeader: one bar for every application (title at the large size,
+   subtitle and note at the small one). */
 .stoa-app-header {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-3);
   padding: var(--stoa-space-3) var(--stoa-space-4);

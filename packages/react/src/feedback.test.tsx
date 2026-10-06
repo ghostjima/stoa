@@ -139,8 +139,8 @@ describe("Skeleton", () => {
 
 describe("ProgressBar", () => {
   it("is a progressbar named by its label, with a percentage shown and announced", () => {
-    const { container } = render(<ProgressBar label="Loading AAPL" value={45} />);
-    const bar = screen.getByRole("progressbar", { name: "Loading AAPL" });
+    const { container } = render(<ProgressBar label="Loading ACME" value={45} />);
+    const bar = screen.getByRole("progressbar", { name: "Loading ACME" });
     expect(bar.getAttribute("aria-valuenow")).toBe("45");
     expect(bar.getAttribute("aria-valuemax")).toBe("100");
     expect(bar.getAttribute("aria-valuetext")).toBe("45%");
@@ -150,8 +150,8 @@ describe("ProgressBar", () => {
 
   it("reads an amount out of a total when it formats the value", () => {
     const mb = (bytes: number) => `${(bytes / 1e6).toFixed(1)} MB`;
-    render(<ProgressBar label="Loading AAPL" value={1.2e6} maxValue={4.8e6} formatValue={mb} />);
-    const bar = screen.getByRole("progressbar", { name: "Loading AAPL" });
+    render(<ProgressBar label="Loading ACME" value={1.2e6} maxValue={4.8e6} formatValue={mb} />);
+    const bar = screen.getByRole("progressbar", { name: "Loading ACME" });
     // Each amount is isolated (FSI ... PDI), so it keeps its own direction
     // inside a sentence of the other direction.
     expect(bar.getAttribute("aria-valuetext")).toBe("⁨1.2 MB⁩ of ⁨4.8 MB⁩");
@@ -263,7 +263,7 @@ describe("Callout", () => {
     const onRetry = vi.fn();
     const { container } = render(
       <Callout tone="negative" action={<Button onPress={onRetry}>Retry</Button>}>
-        Could not load AAPL.
+        Could not load ACME.
       </Callout>,
     );
     expect(container.querySelector(".stoa-callout__title")).toBeNull();
@@ -339,7 +339,7 @@ describe("EmptyState", () => {
 describe("PageShell", () => {
   it("has a banner, one main and a footer, with a skip link first that moves focus to main", () => {
     render(
-      <PageShell header={<AppHeader title="Tyche Replay" actions={<button type="button">Dark</button>} />} footer="Data provided by IEX.">
+      <PageShell header={<AppHeader title="Market Desk" actions={<button type="button">Dark</button>} />} footer="Synthetic data, delayed 15 minutes.">
         <p>Content</p>
       </PageShell>,
     );
@@ -347,7 +347,7 @@ describe("PageShell", () => {
     const main = screen.getByRole("main");
     expect(main.textContent).toBe("Content");
     expect(main.getAttribute("tabindex")).toBe("-1");
-    expect(screen.getByRole("contentinfo").textContent).toBe("Data provided by IEX.");
+    expect(screen.getByRole("contentinfo").textContent).toBe("Synthetic data, delayed 15 minutes.");
 
     const skip = screen.getByRole("link", { name: "Skip to main content" });
     const focusable = document.querySelectorAll("a[href], button");
@@ -360,7 +360,7 @@ describe("PageShell", () => {
 
   it("has no footer landmark without a footer", () => {
     render(
-      <PageShell header={<AppHeader title="Themis Steps" />}>
+      <PageShell header={<AppHeader title="Workspace" />}>
         <p>Content</p>
       </PageShell>,
     );

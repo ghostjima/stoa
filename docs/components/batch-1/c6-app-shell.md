@@ -1,7 +1,8 @@
 # C6: AppHeader, PageShell, VisuallyHidden, LiveRegion
 
-Why: both demos duplicate the same header bar CSS; Themis ships its own
-`.visually-hidden` and live region although Stoa has an internal class.
+Why: both demos duplicate the same header bar CSS; the algebra demo
+ships its own `.visually-hidden` and live region although Stoa has an
+internal class.
 
 Build:
 - `PageShell`: header slot, main region (`<main>` with a skip link

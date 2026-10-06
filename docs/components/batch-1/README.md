@@ -1,7 +1,7 @@
 # Components, batch 1
 
-From the roadmap (`docs/roadmap/README.md`) and an inventory of the Tyche
-and Themis demos: what they hand-roll today. Each brief is one pull
+From the roadmap (`docs/roadmap/README.md`) and an inventory of the replay
+demo and the algebra demo: what they hand-roll today. Each brief is one pull
 request; the six can run in parallel.
 
 All six landed together on `components/batch-1`, merged from the

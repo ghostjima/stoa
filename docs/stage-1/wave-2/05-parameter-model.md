@@ -46,7 +46,7 @@ Hand edits stay possible as the existing override layer on top.
   values differ by up to about 4 percent); mark roles clipped in sRGB.
 - Three presets from the research, as parameter sets plus a paragraph of
   intent each (values are starting points; the model derives the rest):
-  - Tape (dark-first terminal): neutral hue 75, chroma up to 0.012;
+  - A dark-first terminal theme: neutral hue 75, chroma up to 0.012;
     accent amber oklch(0.82 0.15 75); up oklch(0.84 0.12 195), down
     oklch(0.72 0.17 32); fills not borders; radius 0; compact (22 px rows,
     12 px text).
@@ -54,14 +54,14 @@ Hand edits stay possible as the existing override layer on top.
     surface; ink text oklch(0.21 0.014 82); accent deep blue
     oklch(0.40 0.12 255); up oklch(0.50 0.10 165), down oklch(0.40 0.14
     18); rules only; radius 0; regular (28 px rows, 13 px).
-  - Studio (gradebooks): neutral hue 195, chroma up to 0.014; accent
+  - A light classroom theme: neutral hue 195, chroma up to 0.014; accent
     oklch(0.50 0.12 158); above target oklch(0.46 0.14 255), below target
     oklch(0.555 0.15 50); fills; 6 px control radius, 0 on cells;
     comfortable (32 to 36 px rows, 14 px).
   - "Stoa today" stays available as the built tokens with no derivation.
 - Check the presets with the model: the research measured, for example,
-  Tape text 14.88:1 and control boundary 3.32:1; reproduce and report
-  what the model yields, do not copy these numbers.
+  the terminal theme's text 14.88:1 and control boundary 3.32:1;
+  reproduce and report what the model yields, do not copy these numbers.
 
 ## Scope
 

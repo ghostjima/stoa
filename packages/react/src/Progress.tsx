@@ -48,7 +48,7 @@ export function SkeletonBlock({ blockSize }: { blockSize: string }) {
 }
 
 export type ProgressBarProps = {
-  /** What is in progress ("Loading AAPL"). Required: it names the bar. */
+  /** What is in progress ("Loading ACME"). Required: it names the bar. */
   label: string;
   /** Progress so far, from 0 to `maxValue`. */
   value?: number;

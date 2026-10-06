@@ -18,6 +18,10 @@ export type DeadlineUnit = "workingDays" | "days" | "hours";
  * дней". */
 export type PluralCategory = "zero" | "one" | "two" | "few" | "many" | "other";
 
+/** How much a finding matters, most severe first: an error to fix, a
+ * warning for a person to weigh, a note. */
+export type FindingSeverity = "error" | "warning" | "info";
+
 export type StoaMessages = {
   time: string;
   side: string;
@@ -186,6 +190,51 @@ export type StoaMessages = {
   gridSelected: (count: string) => string;
   /** DataGridSelectionBar: the button that unselects every row. */
   gridClearSelection: string;
+  // Timeline.
+  /** Timeline: what an empty timeline says, unless the caller gives its
+   * own words. */
+  timelineEmpty: string;
+  /** Timeline: read before an emphasised entry (a deadline still to
+   * come), whose start bar and symbol are drawn, not read. */
+  timelineEmphasis: string;
+  // DetailHeader.
+  /** DetailHeader: the button that goes back to where the record was
+   * opened from, unless the caller names it. */
+  back: string;
+  // Letter.
+  /** Letter: the line above the grounds the letter cites. */
+  letterGrounds: string;
+  // FindingsList.
+  /** FindingsList: a finding's severity as a word, beside its symbol. */
+  findingSeverity: Record<FindingSeverity, string>;
+  /** FindingsList: the heading of a severity's group, with how many
+   * findings it holds, already in the locale's digits. */
+  findingGroup: (severity: FindingSeverity, count: string) => string;
+  /** FindingsList: the word before a finding's source. */
+  findingSource: string;
+  /** FindingsList: what an empty list says, unless the caller gives its
+   * own words. */
+  findingsNone: string;
+  // TextDiff.
+  /** TextDiff: read at the start and at the end of an insertion and of a
+   * deletion, which are drawn underlined and struck through. */
+  diffInserted: string;
+  diffInsertedEnd: string;
+  diffDeleted: string;
+  diffDeletedEnd: string;
+  /** TextDiff: the summary. `percent` is the share of changed characters
+   * (deleted plus inserted, over the characters of both texts), the
+   * counts are in the locale's digits. */
+  diffSummary: (percent: string, deleted: string, inserted: string, total: string) => string;
+  /** TextDiff: the summary of two texts that are the same. */
+  diffNone: string;
+  /** TextDiff: the summary row of the list of changes, with their count. */
+  diffChanges: (count: string) => string;
+  /** TextDiff: what each item of the list of changes did. */
+  diffKind: Record<"replaced" | "deleted" | "inserted", string>;
+  /** TextDiff: a change of spaces or line breaks only, which has no
+   * letters to show. */
+  diffWhitespace: string;
 };
 
 const EN: StoaMessages = {
@@ -290,6 +339,29 @@ const EN: StoaMessages = {
   gridSelection: "Selection",
   gridSelected: (count) => `${count} selected`,
   gridClearSelection: "Clear selection",
+  // Timeline.
+  timelineEmpty: "Nothing has happened yet.",
+  timelineEmphasis: "Important:",
+  // DetailHeader.
+  back: "Back",
+  // Letter.
+  letterGrounds: "Grounds cited",
+  // FindingsList.
+  findingSeverity: { error: "Error", warning: "Warning", info: "Note" },
+  findingGroup: (severity, count) => `${{ error: "Errors", warning: "Warnings", info: "Notes" }[severity]}: ${count}`,
+  findingSource: "Source",
+  findingsNone: "No findings.",
+  // TextDiff.
+  diffInserted: "inserted:",
+  diffInsertedEnd: "end of insertion",
+  diffDeleted: "deleted:",
+  diffDeletedEnd: "end of deletion",
+  diffSummary: (percent, deleted, inserted, total) =>
+    `${isolate(percent)} of the characters changed: ${deleted} deleted and ${inserted} inserted, out of ${total} in the two texts together.`,
+  diffNone: "No changes: the texts are the same.",
+  diffChanges: (count) => `Changes: ${count}`,
+  diffKind: { replaced: "Replaced", deleted: "Deleted", inserted: "Inserted" },
+  diffWhitespace: "spaces or line breaks",
 };
 
 const AR: StoaMessages = {
@@ -394,6 +466,31 @@ const AR: StoaMessages = {
   gridSelection: "التحديد",
   gridSelected: (count) => `المحدد: ${count}`,
   gridClearSelection: "إلغاء التحديد",
+  // Timeline.
+  timelineEmpty: "لم يحدث شيء بعد.",
+  timelineEmphasis: "مهم:",
+  // DetailHeader.
+  back: "رجوع",
+  // Letter.
+  letterGrounds: "الأسس المستند إليها",
+  // FindingsList.
+  findingSeverity: { error: "خطأ", warning: "تحذير", info: "ملاحظة" },
+  findingGroup: (severity, count) => `${{ error: "الأخطاء", warning: "التحذيرات", info: "الملاحظات" }[severity]}: ${count}`,
+  findingSource: "المصدر",
+  findingsNone: "لا توجد ملاحظات.",
+  // TextDiff.
+  diffInserted: "مضاف:",
+  diffInsertedEnd: "نهاية الإضافة",
+  diffDeleted: "محذوف:",
+  diffDeletedEnd: "نهاية الحذف",
+  // Labels and colons, as for deadlines: a count before its noun would
+  // need the noun's number to agree with it.
+  diffSummary: (percent, deleted, inserted, total) =>
+    `نسبة الأحرف المتغيرة: ${isolate(percent)}؛ المحذوفة: ${deleted}؛ المضافة: ${inserted}؛ مجموع أحرف النصين: ${total}.`,
+  diffNone: "لا تغييرات: النصان متطابقان.",
+  diffChanges: (count) => `التغييرات: ${count}`,
+  diffKind: { replaced: "استبدال", deleted: "حذف", inserted: "إضافة" },
+  diffWhitespace: "مسافات أو فواصل أسطر",
 };
 
 /** A Russian unit in the form its count asks for: "1 рабочий день",
@@ -511,6 +608,29 @@ const RU: StoaMessages = {
   gridSelection: "Выбор",
   gridSelected: (count) => `Выбрано: ${count}`,
   gridClearSelection: "Снять выбор",
+  // Timeline.
+  timelineEmpty: "Пока ничего не произошло.",
+  timelineEmphasis: "Важно:",
+  // DetailHeader.
+  back: "Назад",
+  // Letter.
+  letterGrounds: "Приведённые основания",
+  // FindingsList.
+  findingSeverity: { error: "Ошибка", warning: "Предупреждение", info: "Примечание" },
+  findingGroup: (severity, count) => `${{ error: "Ошибки", warning: "Предупреждения", info: "Примечания" }[severity]}: ${count}`,
+  findingSource: "Источник",
+  findingsNone: "Замечаний нет.",
+  // TextDiff.
+  diffInserted: "вставлено:",
+  diffInsertedEnd: "конец вставки",
+  diffDeleted: "удалено:",
+  diffDeletedEnd: "конец удаления",
+  diffSummary: (percent, deleted, inserted, total) =>
+    `Изменено ${isolate(percent)} символов: удалено ${deleted}, вставлено ${inserted}, из ${total} в обоих текстах вместе.`,
+  diffNone: "Изменений нет: тексты совпадают.",
+  diffChanges: (count) => `Изменения: ${count}`,
+  diffKind: { replaced: "Заменено", deleted: "Удалено", inserted: "Вставлено" },
+  diffWhitespace: "пробелы или переносы строк",
 };
 
 /** A value set into a sentence, as a first-strong isolate (FSI ... PDI):

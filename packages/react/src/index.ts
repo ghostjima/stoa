@@ -161,3 +161,20 @@ export {
   type DataGridColumnChooserProps,
   type DataGridSelectionBarProps,
 } from "./DataGridTools";
+// A record and its letters: the timeline, the header of an open record,
+// a letter, a check's findings and the diff of two versions of a text.
+export { focusWhenReady, type FocusTarget } from "./focus";
+export { Timeline, timelineDays, type TimelineEntry, type TimelineProps } from "./Timeline";
+export { DetailHeader, type DetailBack, type DetailHeaderProps, type DetailIdentifier } from "./DetailHeader";
+export { Letter, letterText, type LetterGround, type LetterProps } from "./Letter";
+export {
+  DEFAULT_FINDING_SEVERITY,
+  FINDING_SEVERITIES,
+  FindingsList,
+  groupFindings,
+  type FindingItem,
+  type FindingSeverity,
+  type FindingsListProps,
+} from "./FindingsList";
+export { TextDiff, changedPercent, diffChanges, diffSummary, type DiffChange, type TextDiffProps } from "./TextDiff";
+export { DIFF_MAX_CELLS, characterCount, diffStats, diffTokens, diffWords, type DiffPart, type DiffStats } from "./diff";

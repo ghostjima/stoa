@@ -57,6 +57,20 @@ follow as the products need them.
     state changes) and DerivationTable (how a figure was worked out:
     step, formula, value, and source with its revision; copied as plain
     text).
+  - Records and letters: Timeline (what happened to a record, oldest
+    first, grouped by day under a heading per day, an emphasised entry
+    told by a bar, a symbol and a word), DetailHeader (Back, the title
+    as a heading that can take the focus on open, identifiers left to
+    right, the status and actions; Back moves the focus to a target the
+    caller names), Letter (a letter a sentence a line as a quotation in
+    its own language, the grounds it cites, copied as plain text),
+    FindingsList (a check's findings grouped by severity, most severe
+    first, with counts, each with a symbol and a word; a finding without
+    a severity is a warning) and TextDiff (a word-level diff of two
+    texts, deletions struck through and insertions underlined, read with
+    words, as a list of changes too, and the share of changed
+    characters: deleted plus inserted characters over the characters of
+    both texts, in Unicode code points with spaces included).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
     VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.
@@ -167,6 +181,22 @@ it, the focus moves to the next tab stop where it was, or the one before.
 Where the action has an obvious next place (the grid's active cell after
 a bulk change, the step that follows a skipped one), focus that place
 directly instead.
+
+For an action that leads to another view, where the next place is drawn
+only after the change (Back from a record to the list it was opened
+from), call `focusWhenReady` with that place, an element, its id or a
+function that finds it, before the state change. It takes the focus as
+soon as it is there; until then the focus waits on the tab stop where the
+control was, never on the body. DetailHeader's Back does this with its
+`focusAfter`:
+
+```tsx
+<DetailHeader
+  title={title}
+  focusOnOpen
+  back={{ onBack: closeRecord, focusAfter: () => grid.querySelector<HTMLElement>('[role="grid"] [tabindex="0"]') }}
+/>
+```
 
 ## Fonts
 

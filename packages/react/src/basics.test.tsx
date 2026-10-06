@@ -151,6 +151,21 @@ describe("the ladder's text alternative", () => {
     expect(caption()).toContain("best bid 98.00");
     vi.useRealTimers();
   });
+
+  it("describes the first book at once, also in the first seconds after the page's time origin", () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "performance"] });
+    vi.setSystemTime(0);
+    // 300 ms after the time origin: a ladder drawn right after a page load.
+    vi.advanceTimersByTime(300);
+    const context = new Proxy({ measureText: () => ({ width: 0 }) } as Record<string, unknown>, {
+      get: (target, key) => (key in target ? target[key as string] : () => {}),
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const { container } = render(<Ladder label="Book" data={[1, 1, 99, 100, 99.1, 50]} announceEvery={5000} />);
+    expect(container.querySelector("figcaption")?.textContent).toContain("best bid 99.00");
+    vi.useRealTimers();
+  });
 });
 
 describe("AppHeader", () => {

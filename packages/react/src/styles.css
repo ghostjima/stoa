@@ -1325,6 +1325,13 @@
 .stoa-derivation__source { display: grid; }
 .stoa-derivation__source a { color: var(--stoa-color-accent); }
 .stoa-derivation__revision { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+/* Stacked on a narrow screen: the caption as the table's, then each step's
+   name over its fields, a rule between steps. */
+.stoa-derivation__caption { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); }
+.stoa-derivation__steps { display: grid; margin: 0; padding: 0; list-style: none; }
+.stoa-derivation__step { display: grid; gap: var(--stoa-space-1); padding-block: var(--stoa-space-2); border-block-start: 1px solid var(--stoa-color-border); }
+.stoa-derivation__step:first-child { border-block-start: 0; padding-block-start: 0; }
+.stoa-derivation__label { font-weight: var(--stoa-font-weight-medium); }
 
 /* DataGridSelectionBar: the count and the actions on the selected rows,
    just before the grid, in a frame on the surface it sits on, so its

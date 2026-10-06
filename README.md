@@ -55,8 +55,8 @@ follow as the products need them.
     working days, days or hours counted by the application, a warning
     and an overdue state in words and a symbol, read out only when the
     state changes) and DerivationTable (how a figure was worked out:
-    step, formula, value, and source with its revision; copied as plain
-    text).
+    step, formula, value, and source with its revision; stacked on a
+    narrow screen, a label beside each value; copied as plain text).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
     VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.

@@ -1,8 +1,10 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "./Controls";
+import { DescriptionList, type DescriptionItem } from "./DescriptionList";
 import { Ltr } from "./Ltr";
 import { Table, type TableColumn } from "./Table";
 import { useStoaFormat, type StoaMessages } from "./locale";
+import { useBreakpoint } from "./media";
 
 /** How long the result of a copy stays on screen, in ms. */
 const COPY_STATUS_MS = 2000;
@@ -69,9 +71,15 @@ export function derivationText(caption: string, steps: DerivationStep[], message
  *
  * Right to left, the formula stays one left-to-right run in the numeric
  * face, and each value takes the direction of its own first letter.
+ *
+ * On a narrow screen (up to the narrow breakpoint, 40rem) four columns do
+ * not fit: the steps are stacked instead, a list named by the caption,
+ * each step its name and then its formula, value and source, each a label
+ * beside its value (a description list). The copy is the same text.
  */
 export function DerivationTable({ caption, hideCaption = false, steps, copyable = true }: DerivationTableProps) {
   const { messages } = useStoaFormat();
+  const narrow = useBreakpoint() === "narrow";
   const captionId = useId();
   const [status, setStatus] = useState<"copied" | "failed" | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -89,25 +97,27 @@ export function DerivationTable({ caption, hideCaption = false, steps, copyable 
     timer.current = setTimeout(() => setStatus(null), COPY_STATUS_MS);
   };
 
+  const formula = (step: DerivationStep) => (step.formula ? <Ltr mono>{step.formula}</Ltr> : null);
+  const source = (step: DerivationStep) =>
+    step.source ? (
+      <span className="stoa-derivation__source">
+        {step.source.href ? <a href={step.source.href}>{step.source.name}</a> : <span>{step.source.name}</span>}
+        {step.source.revision && <span className="stoa-derivation__revision">{messages.derivationRevision(step.source.revision)}</span>}
+      </span>
+    ) : null;
+
   const columns: TableColumn<DerivationStep>[] = [
     { id: "label", header: messages.derivationStep, cell: (step) => step.label },
-    {
-      id: "formula",
-      header: messages.derivationFormula,
-      cell: (step) => (step.formula ? <Ltr mono>{step.formula}</Ltr> : null),
-    },
+    { id: "formula", header: messages.derivationFormula, cell: formula },
     { id: "value", header: messages.derivationValue, numeric: true, cell: (step) => step.value },
-    {
-      id: "source",
-      header: messages.derivationSource,
-      cell: (step) =>
-        step.source ? (
-          <span className="stoa-derivation__source">
-            {step.source.href ? <a href={step.source.href}>{step.source.name}</a> : <span>{step.source.name}</span>}
-            {step.source.revision && <span className="stoa-derivation__revision">{messages.derivationRevision(step.source.revision)}</span>}
-          </span>
-        ) : null,
-    },
+    { id: "source", header: messages.derivationSource, cell: source },
+  ];
+
+  /** A step's fields, stacked: only the ones it has. */
+  const fields = (step: DerivationStep): DescriptionItem[] => [
+    ...(step.formula ? [{ id: "formula", term: messages.derivationFormula, description: formula(step) }] : []),
+    { id: "value", term: messages.derivationValue, description: step.value, numeric: true },
+    ...(step.source ? [{ id: "source", term: messages.derivationSource, description: source(step) }] : []),
   ];
 
   return (
@@ -122,10 +132,28 @@ export function DerivationTable({ caption, hideCaption = false, steps, copyable 
           </Button>
         </div>
       )}
-      <span id={captionId} hidden>
-        {caption}
-      </span>
-      <Table<DerivationStep> caption={caption} hideCaption={hideCaption} columns={columns} rows={steps} rowKey={(step) => step.id} rowHeader="label" emptyText="" />
+      {narrow ? (
+        <>
+          <p id={captionId} className={hideCaption ? "stoa-visually-hidden" : "stoa-derivation__caption"}>
+            {caption}
+          </p>
+          <ol className="stoa-derivation__steps" aria-labelledby={captionId}>
+            {steps.map((step) => (
+              <li key={step.id} className="stoa-derivation__step">
+                <span className="stoa-derivation__label">{step.label}</span>
+                <DescriptionList items={fields(step)} />
+              </li>
+            ))}
+          </ol>
+        </>
+      ) : (
+        <>
+          <span id={captionId} hidden>
+            {caption}
+          </span>
+          <Table<DerivationStep> caption={caption} hideCaption={hideCaption} columns={columns} rows={steps} rowKey={(step) => step.id} rowHeader="label" emptyText="" />
+        </>
+      )}
     </div>
   );
 }

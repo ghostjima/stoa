@@ -202,3 +202,29 @@ for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
     expect(layout.amountLines.every((n) => n === 1)).toBe(true);
   });
 }
+
+test("a record list has its rows in the first frame that draws it, on first load and when it comes back", async ({ page }) => {
+  // Before any script of the page: the first animation frame in which the
+  // list is in the document says how many rows it has.
+  await page.addInitScript(() => {
+    const w = window as unknown as { firstFrameRows: number | null; watchList: () => void };
+    w.watchList = () => {
+      w.firstFrameRows = null;
+      const tick = () => {
+        const list = document.querySelector('[role="listbox"]');
+        if (list) w.firstFrameRows = list.querySelectorAll('[role="option"]').length;
+        else requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    w.watchList();
+  });
+  const firstFrameRows = () => page.evaluate(() => (window as unknown as { firstFrameRows: number | null }).firstFrameRows);
+  await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));
+  await expect.poll(firstFrameRows).toBe(4);
+  await page.getByRole("option", { name: /RU000A1002/ }).click();
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await page.evaluate(() => (window as unknown as { watchList: () => void }).watchList());
+  await page.getByRole("button", { name: "Back" }).click();
+  await expect.poll(firstFrameRows).toBe(4);
+});

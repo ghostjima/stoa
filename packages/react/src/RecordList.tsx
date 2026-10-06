@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { ListBox, ListBoxItem, Text } from "react-aria-components";
+import { keepFocusInPlace } from "./focus";
 import { useStoaFormat } from "./locale";
 
 export type RecordListItem = {
@@ -35,21 +36,47 @@ export type RecordListProps = {
  * name jumps to it. The picked record is the selected option
  * (aria-selected), marked with a bar at its start edge and a heavier
  * name, not by colour alone; it stays picked when it is pressed again.
- * One Tab stop for the whole list. */
+ * One Tab stop for the whole list.
+ *
+ * A pick may remove the list (on a narrow screen the detail replaces it):
+ * a pointer picks on release, once the press is over, so the release does
+ * not land on whatever took the list's place; Enter's own default action
+ * is cancelled, so it does not press the control that takes the focus;
+ * and if the list leaves the document with the focus in it, the focus
+ * goes to the tab stop that stands where it was, never to the page's
+ * body. */
 export function RecordList({ label, items, value, onChange, emptyText }: RecordListProps) {
   const { messages } = useStoaFormat();
+  const list = useRef<HTMLDivElement>(null);
+  // A pick from the keyboard happens on Enter's key down. React Aria
+  // leaves Enter's default action in place on macOS, and that action
+  // clicks whatever button has the focus once the event is over: the one
+  // the focus moved to, when the pick removed the list.
+  useEffect(() => {
+    const el = list.current;
+    if (!el) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") e.preventDefault();
+    };
+    el.addEventListener("keydown", onKeyDown);
+    return () => el.removeEventListener("keydown", onKeyDown);
+  }, []);
   return (
     <ListBox
+      ref={list}
       aria-label={label}
       className="stoa-record-list"
       items={items}
       selectionMode="single"
       disallowEmptySelection
       selectedKeys={value === null ? [] : [value]}
+      shouldSelectOnPressUp
       onSelectionChange={(keys) => {
         if (keys === "all") return;
         const [first] = keys;
-        if (first !== undefined) onChange(String(first));
+        if (first === undefined) return;
+        if (list.current) keepFocusInPlace(list.current);
+        onChange(String(first));
       }}
       disabledKeys={items.filter((item) => item.isDisabled).map((item) => item.id)}
       renderEmptyState={() => <div className="stoa-record-list__empty">{emptyText ?? messages.listEmpty}</div>}

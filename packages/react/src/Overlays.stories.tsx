@@ -623,6 +623,34 @@ export const RecordListWithDetail: StoryObj = {
   },
 };
 
+/** On a narrow screen the detail replaces the list: picking a record, by
+ * a click or from the keyboard, removes the list, and the focus goes to
+ * the Back button that takes its place, not to the page's body. Back
+ * shows the list again. */
+export const RecordListReplacedByDetail: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const [picked, setPicked] = useState<string | null>(null);
+    const record = RECORDS.find((item) => item.id === picked);
+    return (
+      <div style={{ maxInlineSize: "calc(var(--stoa-space-12) * 6)" }}>
+        {record ? (
+          <Panel title={record.label}>
+            <div style={{ display: "grid", gap: "var(--stoa-space-3)", justifyItems: "start" }}>
+              <Button onPress={() => setPicked(null)}>{arabic ? "رجوع" : "Back"}</Button>
+              <DescriptionList items={[{ term: arabic ? "المصدر" : "Issuer", description: record.description }]} />
+            </div>
+          </Panel>
+        ) : (
+          <Panel title={arabic ? "السندات" : "Bonds"}>
+            <RecordList label={arabic ? "السندات" : "Bonds"} items={RECORDS} value={picked} onChange={setPicked} />
+          </Panel>
+        )}
+      </div>
+    );
+  },
+};
+
 /** No record picked yet. */
 export const RecordListNothingPicked: StoryObj = {
   render: () => {

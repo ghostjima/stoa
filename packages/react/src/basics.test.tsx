@@ -1,8 +1,9 @@
 // @vitest-environment jsdom
 // Button, Panel and StatBar, and the empty states of the data views.
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { createRef } from "react";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { AppHeader, Button, Heatmap, I18nProvider, Ladder, Panel, StatBar, TradeTable } from "./index";
+import { AppHeader, Button, Heatmap, I18nProvider, Ladder, Panel, StatBar, TradeTable, type HeatmapHandle } from "./index";
 
 afterEach(() => {
   cleanup();
@@ -128,6 +129,42 @@ describe("canvas views reserve their height before they draw", () => {
   });
 });
 
+describe("a canvas whose box changes size with nothing new to draw", () => {
+  it("is redrawn when only its height changes", () => {
+    // jsdom has no layout and no ResizeObserver: the box's size is set by
+    // hand, and the observer is called when the test says the box changed.
+    let boxChanged = () => {};
+    class Observer {
+      constructor(callback: () => void) {
+        boxChanged = callback;
+      }
+      observe() {}
+      disconnect() {}
+    }
+    Object.defineProperty(window, "ResizeObserver", { value: Observer, configurable: true });
+    const context = new Proxy({ measureText: () => ({ width: 0 }) } as Record<string, unknown>, {
+      get: (target, key) => (key in target ? target[key as string] : () => {}),
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const ref = createRef<HeatmapHandle>();
+    const { container, rerender } = render(<Heatmap label="Liquidity" height={240} ref={ref} />);
+    const canvas = container.querySelector("canvas")!;
+    let height = 240;
+    Object.defineProperty(canvas, "clientWidth", { get: () => 400 });
+    Object.defineProperty(canvas, "clientHeight", { get: () => height });
+    // Drawn once through the handle, as a paused replay draws it.
+    act(() => ref.current!.draw({ cells: new Float32Array([1, -1]), columns: 1, rows: 2, top: 100, tick: 0.5 }));
+    expect([canvas.width, canvas.height]).toEqual([400, 240]);
+    // A new height, the same width, and no new data.
+    rerender(<Heatmap label="Liquidity" height={160} ref={ref} />);
+    height = 160;
+    act(() => boxChanged());
+    expect([canvas.width, canvas.height]).toEqual([400, 160]);
+    Reflect.deleteProperty(window, "ResizeObserver");
+  });
+});
+
 describe("the ladder's text alternative", () => {
   it("follows the book at most every announceEvery ms, and ends on the latest book", () => {
     vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "performance"] });
@@ -149,6 +186,21 @@ describe("the ladder's text alternative", () => {
 
     act(() => vi.advanceTimersByTime(4000));
     expect(caption()).toContain("best bid 98.00");
+    vi.useRealTimers();
+  });
+
+  it("describes the first book at once, also in the first seconds after the page's time origin", () => {
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "performance"] });
+    vi.setSystemTime(0);
+    // 300 ms after the time origin: a ladder drawn right after a page load.
+    vi.advanceTimersByTime(300);
+    const context = new Proxy({ measureText: () => ({ width: 0 }) } as Record<string, unknown>, {
+      get: (target, key) => (key in target ? target[key as string] : () => {}),
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const { container } = render(<Ladder label="Book" data={[1, 1, 99, 100, 99.1, 50]} announceEvery={5000} />);
+    expect(container.querySelector("figcaption")?.textContent).toContain("best bid 99.00");
     vi.useRealTimers();
   });
 });

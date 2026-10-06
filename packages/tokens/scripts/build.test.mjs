@@ -60,3 +60,11 @@ test("Arabic fallback faces are scaled to IBM Plex Sans Arabic and named in both
     assert.ok(plex >= 0 && value.indexOf("'IBM Plex Sans Arabic Tahoma Fallback'") > plex, `${stack}: the fallbacks come after Plex Sans Arabic`);
   }
 });
+
+test("breakpoints are tokens in rem, in the CSS and the ES module, narrow below wide", async () => {
+  assert.match(css, /--stoa-breakpoint-narrow: 40rem;/);
+  assert.match(css, /--stoa-breakpoint-wide: 64rem;/);
+  const js = await readFile(new URL("../dist/tokens.js", import.meta.url), "utf8");
+  assert.match(js, /export const BreakpointNarrow = "40rem";/);
+  assert.match(js, /export const BreakpointWide = "64rem";/);
+});

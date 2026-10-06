@@ -114,3 +114,44 @@ for (const [globals, stop] of [
     await expect(page.getByRole("button", { name: /Search|بحث/ })).toHaveAttribute("aria-keyshortcuts", /^(Control|Meta)\+K$/);
   });
 }
+
+for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
+  test(`on a phone, tabs that do not fit stay on one row that scrolls, its hidden end fades, and the arrows reach every tab (${globals})`, async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 700 });
+    await page.goto(`/iframe.html?id=controls-form--tab-list-narrow&viewMode=story&globals=${globals}`);
+    const list = page.getByRole("tablist");
+    const tabs = list.getByRole("tab");
+    await expect(tabs).toHaveCount(6);
+    const tops = await tabs.evaluateAll((els) => new Set(els.map((el) => Math.round(el.getBoundingClientRect().top))).size);
+    expect(tops).toBe(1);
+    await expect(list).toHaveAttribute("data-hidden-edges", "end");
+    expect(await list.evaluate((el) => getComputedStyle(el).maskImage)).toContain("gradient");
+    // The page itself does not scroll sideways.
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+    await tabs.first().click();
+    const toEnd = globals.includes("rtl") ? "ArrowLeft" : "ArrowRight";
+    for (let i = 0; i < 5; i++) await page.keyboard.press(toEnd);
+    await expect(tabs.last()).toBeFocused();
+    await expect(tabs.last()).toHaveAttribute("aria-selected", "true");
+    // The last tab is inside the row's box, and the row now hides its start.
+    const inside = await tabs.last().evaluate((tab) => {
+      const box = tab.parentElement!.getBoundingClientRect();
+      const own = tab.getBoundingClientRect();
+      return own.left >= box.left - 1 && own.right <= box.right + 1;
+    });
+    expect(inside).toBe(true);
+    await expect(list).toHaveAttribute("data-hidden-edges", "start");
+  });
+}
+
+test("on a wider screen, tabs that do not fit wrap onto another row, as before", async ({ page }) => {
+  await page.goto("/iframe.html?id=controls-form--tab-list-narrow&viewMode=story");
+  await expect(page.getByRole("tab")).toHaveCount(6);
+  await page.locator("#storybook-root").evaluate((el) => {
+    (el as HTMLElement).style.inlineSize = "280px";
+  });
+  const list = page.getByRole("tablist");
+  const rows = await list.getByRole("tab").evaluateAll((els) => new Set(els.map((el) => Math.round(el.getBoundingClientRect().top))).size);
+  expect(rows).toBeGreaterThan(1);
+  expect(await list.evaluate((el) => getComputedStyle(el).overflowX)).toBe("visible");
+});

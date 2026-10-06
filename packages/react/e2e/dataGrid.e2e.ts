@@ -156,18 +156,37 @@ for (const [name, column, editor] of [
 test("the column chooser works from the keyboard: hide a column, move one, and the focus returns to its button", async ({ page }) => {
   const grid = await openGrid(page, "column-chooser", "Orders");
   const header = (name: string) => grid.getByRole("columnheader", { name, exact: true });
+  /** The focused element's role (or tag) and name. */
+  const focusedControl = () =>
+    page.evaluate(() => {
+      const el = document.activeElement;
+      return `${el?.getAttribute("role") ?? el?.tagName.toLowerCase()}:${el?.getAttribute("aria-label") ?? el?.closest("label")?.textContent ?? ""}`;
+    });
   await expect(header("Note")).toHaveCount(0);
   const open = page.getByRole("button", { name: "Columns", exact: true });
   await open.focus();
   await page.keyboard.press("Enter");
   const sheet = page.getByRole("dialog", { name: "Columns" });
   await expect(sheet).toBeVisible();
-  // Hide Status with its check box.
-  await sheet.getByRole("checkbox", { name: "Status" }).focus();
+  // The sheet takes the focus as it opens; from there, Tab reaches the
+  // list (after the close button), which is one tab stop.
+  await expect.poll(() => page.evaluate(() => document.activeElement?.closest('[role="dialog"]') != null)).toBe(true);
+  for (let i = 0; i < 4 && (await focusedControl()) !== "row:Order"; i++) await page.keyboard.press("Tab");
+  await expect.poll(focusedControl).toBe("row:Order");
+  // Down to Status, right to its check box, Space hides it.
+  for (let i = 0; i < 4; i++) await page.keyboard.press("ArrowDown");
+  await expect.poll(focusedControl).toBe("row:Status");
+  await page.keyboard.press("ArrowRight");
+  await expect.poll(focusedControl).toBe("input:Status");
   await page.keyboard.press("Space");
   await expect(sheet.getByRole("checkbox", { name: "Status" })).not.toBeChecked();
-  // Move Symbol up: it was third, after Order and Account.
-  await sheet.getByRole("button", { name: "Move up: Symbol" }).focus();
+  // Up to Symbol, right past its check box to Move up, Enter moves it.
+  await page.keyboard.press("ArrowUp");
+  await page.keyboard.press("ArrowUp");
+  await expect.poll(focusedControl).toBe("row:Symbol");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await expect.poll(focusedControl).toBe("button:Move up: Symbol");
   await page.keyboard.press("Enter");
   await expect(sheet.getByRole("status")).toHaveText("Symbol moved to position 2 of 30.");
   await page.keyboard.press("Escape");

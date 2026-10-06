@@ -110,6 +110,19 @@ describe("TextField: ref, invalid state and search", () => {
     expect(input.closest(".stoa-field")?.hasAttribute("data-invalid")).toBe(true);
   });
 
+  it("announces its error politely: the region stays in the document while the error comes and goes", () => {
+    const { rerender } = render(<TextField label="View name" value="" onChange={() => {}} />);
+    const region = document.querySelector(".stoa-field__error-region");
+    expect(region?.getAttribute("aria-live")).toBe("polite");
+    expect(region?.textContent).toBe("");
+    rerender(<TextField label="View name" value="" onChange={() => {}} isInvalid errorMessage="A view needs a name." />);
+    expect(document.querySelector(".stoa-field__error-region")).toBe(region);
+    expect(screen.getByText("A view needs a name.").parentElement).toBe(region);
+    rerender(<TextField label="View name" value="Desk" onChange={() => {}} />);
+    expect(document.querySelector(".stoa-field__error-region")).toBe(region);
+    expect(region?.textContent).toBe("");
+  });
+
   it("is a search box with type search", () => {
     render(<TextField type="search" label="Find an issue" value="" onChange={() => {}} />);
     const box = screen.getByRole("searchbox", { name: "Find an issue" });

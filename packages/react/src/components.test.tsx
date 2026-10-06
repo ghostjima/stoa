@@ -296,6 +296,46 @@ describe("NumberField", () => {
     expect(onChange).toHaveBeenLastCalledWith(50000);
   });
 
+  it("is marked invalid by the caller, with its error read as its description and announced politely", () => {
+    const { rerender } = render(<NumberField label="Bonds" value={1200} onChange={() => {}} />);
+    const input = screen.getByRole("textbox", { name: "Bonds" });
+    expect(input.getAttribute("aria-invalid")).toBeNull();
+    // The polite region is in the document before the error, so the error
+    // is announced when it appears in it.
+    const region = document.querySelector(".stoa-field__error-region");
+    expect(region?.getAttribute("aria-live")).toBe("polite");
+    expect(region?.textContent).toBe("");
+    rerender(<NumberField label="Bonds" value={1200} onChange={() => {}} isInvalid errorMessage="Up to 1,000 bonds." />);
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+    const error = screen.getByText("Up to 1,000 bonds.");
+    expect(error.className).toBe("stoa-field__error");
+    expect(error.parentElement).toBe(region);
+    expect(document.getElementById(input.getAttribute("aria-describedby") ?? "")).toBe(error);
+    expect(input.closest(".stoa-number")?.hasAttribute("data-invalid")).toBe(true);
+    rerender(<NumberField label="Bonds" value={900} onChange={() => {}} isInvalid={false} errorMessage="Up to 1,000 bonds." />);
+    expect(input.getAttribute("aria-invalid")).toBeNull();
+    expect(screen.queryByText("Up to 1,000 bonds.")).toBeNull();
+  });
+
+  it("keeps the caller's invalid state with keepTypedValue, and a value off the step is still not an error", () => {
+    const { rerender } = render(<NumberField label="amount" value={500} step={10000} keepTypedValue onChange={() => {}} />);
+    const input = screen.getByRole("textbox", { name: "amount" });
+    expect(input.getAttribute("aria-invalid")).toBeNull();
+    rerender(<NumberField label="amount" value={500} step={10000} keepTypedValue onChange={() => {}} isInvalid errorMessage="Too small." />);
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+    expect(screen.getByText("Too small.")).toBeTruthy();
+  });
+
+  it("reads its error in Russian under a Russian locale", () => {
+    render(
+      <I18nProvider locale="ru-RU">
+        <NumberField label="Облигации" value={1200} onChange={() => {}} isInvalid errorMessage="Не больше 1 000 облигаций." />
+      </I18nProvider>,
+    );
+    const input = screen.getByRole("textbox", { name: "Облигации" });
+    expect(document.getElementById(input.getAttribute("aria-describedby") ?? "")?.textContent).toBe("Не больше 1 000 облигаций.");
+  });
+
   it("reports nothing for an emptied field", () => {
     const onChange = vi.fn();
     render(<NumberField label="gap" value={4} onChange={onChange} />);

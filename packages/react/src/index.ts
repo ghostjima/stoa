@@ -119,6 +119,8 @@ export { RecordList, type RecordListItem, type RecordListProps } from "./RecordL
 export { type StatBarItem } from "./Panel";
 // Table and charts.
 export { Table, type TableColumn, type TableProps } from "./Table";
+export { Countdown, DeadlineCell, deadlineState, deadlineText, type CountdownProps, type DeadlineState, type DeadlineUnit } from "./Countdown";
+export { DerivationTable, derivationText, type DerivationSource, type DerivationStep, type DerivationTableProps } from "./DerivationTable";
 export { LineChart, type ChartPoint, type ChartTone, type LineChartProps, type LineSeries } from "./LineChart";
 export { EventStrip, type EventKind, type EventStripProps, type StripEvent } from "./EventStrip";
 export { niceTicks, formatDate, type Ticks } from "./chartScale";

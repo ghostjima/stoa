@@ -1242,3 +1242,27 @@
   from { opacity: 1; }
   to { opacity: 0.5; }
 }
+
+/* Countdown and DeadlineCell: the time left in words, the state in a
+   symbol before them (an exclamation mark when close, a cross once
+   passed), in the state's colour on a plate of the surface colour, so the
+   symbol keeps a measured contrast on any row fill (a hovered list row, a
+   selected one). The words keep the text colour, and an overdue deadline
+   is set in the heavier weight as well. */
+.stoa-countdown { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); white-space: nowrap; }
+.stoa-countdown__symbol {
+  padding-inline: var(--stoa-space-0-5); border-radius: var(--stoa-radius-full); background: var(--stoa-color-surface);
+  font-family: var(--stoa-font-family-sans); font-weight: var(--stoa-font-weight-semibold);
+}
+.stoa-countdown--warning .stoa-countdown__symbol { color: var(--stoa-color-warning); }
+.stoa-countdown--overdue .stoa-countdown__symbol { color: var(--stoa-color-down); }
+.stoa-countdown--overdue .stoa-countdown__text { font-weight: var(--stoa-font-weight-semibold); }
+
+/* DerivationTable: the Copy button and its status above the table; the
+   source's revision under its name, muted. */
+.stoa-derivation { display: grid; gap: var(--stoa-space-2); min-inline-size: 0; }
+.stoa-derivation__bar { display: flex; align-items: center; justify-content: flex-end; gap: var(--stoa-space-2); }
+.stoa-derivation__status { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-derivation__source { display: grid; }
+.stoa-derivation__source a { color: var(--stoa-color-accent); }
+.stoa-derivation__revision { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }

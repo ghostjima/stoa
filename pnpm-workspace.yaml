@@ -5,3 +5,9 @@ packages:
 # esbuild's install script only verifies its platform binary; allowed.
 allowBuilds:
   esbuild: true
+
+# source-map-js below 1.2.2 has a denial-of-service advisory (indexed
+# source-map section offsets). It comes in through css-tree and postcss,
+# both build and test tools; the floor stays until they require 1.2.2.
+overrides:
+  source-map-js: "^1.2.2"

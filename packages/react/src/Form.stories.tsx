@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { NumberField } from "./Controls";
 import { StatusBadge, Tabs, TextField } from "./Form";
+import { Ltr } from "./Ltr";
+import { useStoaFormat } from "./locale";
 import { Panel } from "./Panel";
 
 const meta: Meta = { title: "Controls/Form" };
@@ -37,6 +39,38 @@ export const TextFieldFaces: StoryObj = {
       <div style={{ display: "grid", gap: "var(--stoa-space-3)", maxInlineSize: 320 }}>
         <TextField label="Issuer" value={issuer} onChange={setIssuer} dir="auto" />
         <TextField label="Amount" value={amount} onChange={setAmount} dir="ltr" mono />
+      </div>
+    );
+  },
+};
+
+/** A description made of nodes: the tick keeps its own direction in a
+ * right-to-left page, and the whole line is read as the input's
+ * description. */
+export const TextFieldNodeDescription: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const [limit, setLimit] = useState("98.40");
+    return (
+      <div style={{ display: "grid", gap: "var(--stoa-space-3)", maxInlineSize: 320 }}>
+        <TextField
+          label={arabic ? "السعر المحدد، ٪ من القيمة الاسمية" : "Limit price, % of face value"}
+          value={limit}
+          onChange={setLimit}
+          dir="ltr"
+          mono
+          description={
+            arabic ? (
+              <>
+                الخطوة <Ltr mono>0.01</Ltr>، <strong>بدون</strong> الفائدة المتراكمة
+              </>
+            ) : (
+              <>
+                Tick <Ltr mono>0.01</Ltr>, <strong>without</strong> accrued interest
+              </>
+            )
+          }
+        />
       </div>
     );
   },

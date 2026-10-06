@@ -25,7 +25,12 @@ export type TextFieldProps = {
   value: string;
   onChange: (v: string) => void;
   onEnter?: () => void;
-  description?: string;
+  /** A line under the input that says what it takes ("Tick 0.01"), read
+   * as the input's description. Text or nodes: a value in it can keep its
+   * own direction (`Ltr`), a word its emphasis. Its text is what assistive
+   * technology reads, so it holds no controls: a link or a button in it
+   * would be read as plain words. */
+  description?: ReactNode;
   placeholder?: string;
   /** Direction of the typed text; maths stays left to right in an RTL page. */
   dir?: "ltr" | "rtl" | "auto";
@@ -101,7 +106,7 @@ export function TextField({
           }
         }}
       />
-      {description && (
+      {description !== undefined && description !== null && description !== false && description !== "" && (
         <Text slot="description" className="stoa-field__description">
           {description}
         </Text>

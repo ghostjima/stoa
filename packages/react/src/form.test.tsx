@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
 afterEach(cleanup);
-import { I18nProvider, StatusBadge, Tabs, TextField } from "./index";
+import { I18nProvider, Ltr, StatusBadge, Tabs, TextField } from "./index";
 
 describe("StatusBadge", () => {
   it("carries a symbol and a word, not only a colour", () => {
@@ -35,6 +35,36 @@ describe("TextField", () => {
     const ids = screen.getByLabelText("Colour").getAttribute("aria-describedby")?.split(" ") ?? [];
     expect(ids).toContain("field-notes");
     expect(ids.map((id) => document.getElementById(id)?.textContent)).toContain("--stoa-color-text");
+  });
+});
+
+describe("TextField: a description made of nodes", () => {
+  it("shows it under the input and reads its text as the input's description, before the error", () => {
+    render(
+      <TextField
+        label="Limit price"
+        value=""
+        onChange={() => {}}
+        description={
+          <>
+            Tick <Ltr mono>0.01</Ltr>, <strong>RUB</strong>
+          </>
+        }
+        isInvalid
+        errorMessage="A price is needed."
+      />,
+    );
+    const input = screen.getByRole("textbox", { name: "Limit price" });
+    const described = (input.getAttribute("aria-describedby") ?? "").split(" ").map((id) => document.getElementById(id));
+    expect(described.map((el) => el?.textContent)).toEqual(["Tick 0.01, RUB", "A price is needed."]);
+    expect(described[0]?.className).toBe("stoa-field__description");
+    expect(described[0]?.querySelector("strong")?.textContent).toBe("RUB");
+  });
+
+  it("draws no empty description line for an empty one", () => {
+    const { container } = render(<TextField label="Limit price" value="" onChange={() => {}} description="" />);
+    expect(container.querySelector(".stoa-field__description")).toBeNull();
+    expect(screen.getByRole("textbox").getAttribute("aria-describedby")).toBeNull();
   });
 });
 

@@ -69,27 +69,27 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1163
+            "line": 1176
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1170
+            "line": 1183
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1172
+            "line": 1185
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1177
+            "line": 1190
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1211
+            "line": 1224
           },
           {
             "component": "EventStrip",
@@ -314,12 +314,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -437,6 +440,12 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1166,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1104,
@@ -522,6 +531,16 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -594,6 +613,12 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1166,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1104,
@@ -679,6 +704,16 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -999,43 +1034,43 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1163,
+            "line": 1176,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1170,
+            "line": 1183,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1172,
+            "line": 1185,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1177,
+            "line": 1190,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1187,
+            "line": 1200,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1202,
+            "line": 1215,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1211,
+            "line": 1224,
             "via": "--stoa-color-accent"
           },
           {
@@ -1443,12 +1478,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -1586,13 +1624,13 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1187,
+            "line": 1200,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1202,
+            "line": 1215,
             "via": "--stoa-color-focus"
           },
           {
@@ -1787,12 +1825,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -1957,31 +1998,31 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1163,
+            "line": 1176,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1170,
+            "line": 1183,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1172,
+            "line": 1185,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1177,
+            "line": 1190,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1211,
+            "line": 1224,
             "via": "--stoa-color-accent"
           },
           {
@@ -2239,12 +2280,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -2395,7 +2439,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1217
+            "line": 1230
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1264
           },
           {
             "component": "FilterChip",
@@ -2535,12 +2584,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -2687,22 +2739,22 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1160
+            "line": 1173
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1185
+            "line": 1198
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1195
+            "line": 1208
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1225
+            "line": 1238
           },
           {
             "component": "EventStrip",
@@ -2860,12 +2912,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -2999,12 +3054,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1190
+            "line": 1165
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1218
+            "line": 1203
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1231
           },
           {
             "component": "LineChart",
@@ -3102,12 +3162,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -3289,12 +3352,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1187
+            "line": 1200
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1202
+            "line": 1215
           },
           {
             "component": "Disclosure",
@@ -3463,12 +3526,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -3631,19 +3697,25 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1186,
+            "line": 1161,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1194,
+            "line": 1199,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1216,
+            "line": 1207,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1229,
             "via": "--stoa-color-surface"
           },
           {
@@ -3841,12 +3913,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -4097,13 +4172,13 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1157,
+            "line": 1170,
             "via": "--stoa-color-surface-sunken"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1186,
+            "line": 1199,
             "via": "--stoa-color-text"
           },
           {
@@ -4469,12 +4544,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -4685,19 +4763,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1168,
+            "line": 1181,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1210,
+            "line": 1223,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1238,
+            "line": 1251,
             "via": "--stoa-color-surface-hover"
           },
           {
@@ -4795,12 +4873,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -4937,7 +5018,13 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1217,
+            "line": 1230,
+            "via": "--stoa-color-border"
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1264,
             "via": "--stoa-color-border"
           },
           {
@@ -5093,12 +5180,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -5338,13 +5428,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1158,
+            "line": 1167,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1171,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1247,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -5638,12 +5734,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -5822,25 +5921,25 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1160,
+            "line": 1173,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1185,
+            "line": 1198,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1195,
+            "line": 1208,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1225,
+            "line": 1238,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -6062,12 +6161,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -6285,25 +6387,25 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1160,
+            "line": 1173,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1185,
+            "line": 1198,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1195,
+            "line": 1208,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1225,
+            "line": 1238,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -6525,12 +6627,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -6717,13 +6822,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1158,
+            "line": 1167,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1171,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1247,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7017,12 +7128,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -7238,7 +7352,13 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1217,
+            "line": 1230,
+            "via": "--stoa-color-border"
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1264,
             "via": "--stoa-color-border"
           },
           {
@@ -7394,12 +7514,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -7541,19 +7664,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1168,
+            "line": 1181,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1210,
+            "line": 1223,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1238,
+            "line": 1251,
             "via": "--stoa-color-surface-hover"
           },
           {
@@ -7651,12 +7774,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -7913,25 +8039,31 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1186,
+            "line": 1161,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1186,
+            "line": 1199,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1199,
             "via": "--stoa-color-text"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1194,
+            "line": 1207,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1216,
+            "line": 1229,
             "via": "--stoa-color-surface"
           },
           {
@@ -8399,12 +8531,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -8567,13 +8702,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1190,
+            "line": 1165,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1218,
+            "line": 1203,
+            "via": "--stoa-color-down"
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1231,
             "via": "--stoa-color-down"
           },
           {
@@ -8693,12 +8834,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -8860,13 +9004,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1190,
+            "line": 1165,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1218,
+            "line": 1203,
+            "via": "--stoa-color-down"
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1231,
             "via": "--stoa-color-down"
           },
           {
@@ -8986,12 +9136,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -9283,17 +9436,22 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1186
+            "line": 1161
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1194
+            "line": 1199
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1216
+            "line": 1207
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1229
           },
           {
             "component": "FilterChip",
@@ -9468,12 +9626,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -9616,17 +9777,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1168
+            "line": 1181
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1210
+            "line": 1223
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1238
+            "line": 1251
           },
           {
             "component": "FilterChip",
@@ -9713,12 +9874,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -9837,7 +10001,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1157
+            "line": 1170
           },
           {
             "component": "FilterChip",
@@ -9909,12 +10073,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -10017,6 +10184,12 @@
             "via": "--stoa-color-up"
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1164,
+            "via": "--stoa-color-up"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 36,
@@ -10121,6 +10294,16 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
@@ -10212,6 +10395,12 @@
             "via": "--stoa-color-up"
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1164,
+            "via": "--stoa-color-up"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 36,
@@ -10316,6 +10505,16 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
@@ -10537,7 +10736,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1186
+            "line": 1199
           },
           {
             "component": "Disclosure",
@@ -10817,12 +11016,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -11020,12 +11222,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1158
+            "line": 1167
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1171
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1247
           },
           {
             "component": "DescriptionList",
@@ -11280,12 +11487,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -11600,6 +11810,11 @@
             "line": 470
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1164
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1080
@@ -11685,6 +11900,16 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -11821,6 +12046,11 @@
             "line": 471
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1166
+          },
+          {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1104
@@ -11899,6 +12129,16 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -11963,12 +12203,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1181
+            "line": 1194
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1184
+            "line": 1197
           },
           {
             "component": "Table",
@@ -11982,12 +12222,15 @@
           }
         ],
         "stories": [
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -12096,12 +12339,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -12204,12 +12450,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1230
+            "line": 1243
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1236
+            "line": 1249
           },
           {
             "component": "Heatmap",
@@ -12235,12 +12481,15 @@
           }
         ],
         "stories": [
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -12572,37 +12821,37 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1170
+            "line": 1183
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1177
+            "line": 1190
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1187
+            "line": 1200
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1188
+            "line": 1201
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1202
+            "line": 1215
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1203
+            "line": 1216
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1207
+            "line": 1220
           },
           {
             "component": "Disclosure",
@@ -12806,12 +13055,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -13063,12 +13315,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -13166,12 +13421,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1197
+            "line": 1162
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1219
+            "line": 1210
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1232
           },
           {
             "component": "Heatmap",
@@ -13267,12 +13527,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Heatmap > Empty",
           "Data/Heatmap > Liquidity",
@@ -13814,12 +14077,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -14091,6 +14357,11 @@
             "line": 416
           },
           {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1266
+          },
+          {
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 431
@@ -14150,6 +14421,16 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -14302,7 +14583,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1220
+            "line": 1233
           },
           {
             "component": "Disclosure",
@@ -14505,12 +14786,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -14622,12 +14906,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1159
+            "line": 1172
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1212
+            "line": 1225
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1266
           },
           {
             "component": "Disclosure",
@@ -14720,12 +15009,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -14928,7 +15220,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1176
+            "line": 1162
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1189
           },
           {
             "component": "RecordList",
@@ -14968,12 +15265,15 @@
           "Controls/Inputs > TagsSmall",
           "Controls/Inputs > ThemeSwitchStates",
           "Controls/Inputs > ToolbarTransport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -15396,16 +15696,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1239
+            "line": 1252
           }
         ],
         "stories": [
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues"
         ]
       },
@@ -15575,7 +15878,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1239
+            "line": 1252
           },
           {
             "component": "Disclosure",
@@ -15667,12 +15970,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -15773,6 +16079,11 @@
             "line": 907
           },
           {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1161
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 590
@@ -15857,6 +16168,16 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
+          "Data/DataGrid > Editable",
+          "Data/DataGrid > Empty",
+          "Data/DataGrid > FiftyThousandRows",
+          "Data/DataGrid > LiveRows",
+          "Data/DataGrid > Loading",
+          "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
+          "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -15957,6 +16278,11 @@
             "line": 1118
           },
           {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1264
+          },
+          {
             "component": "Panel",
             "file": "packages/react/src/styles.css",
             "line": 32
@@ -16001,12 +16327,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -16171,17 +16500,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1196
+            "line": 1209
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1225
+            "line": 1238
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1237
+            "line": 1250
           },
           {
             "component": "Disclosure",
@@ -16375,12 +16704,15 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -16497,7 +16829,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1178
+            "line": 1160
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1191
           },
           {
             "component": "Kbd",
@@ -16567,12 +16904,15 @@
           "Controls/Inputs > TagsSmall",
           "Controls/Inputs > ThemeSwitchStates",
           "Controls/Inputs > ToolbarTransport",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues"
         ]
       },
@@ -16660,22 +17000,32 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1156
+            "line": 1160
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1200
+            "line": 1169
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1206
+            "line": 1213
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1215
+            "line": 1219
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1228
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1263
           },
           {
             "component": "DescriptionList",
@@ -17013,12 +17363,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
@@ -17305,12 +17658,22 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1215
+            "line": 1228
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1231
+            "line": 1244
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1263
+          },
+          {
+            "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1266
           },
           {
             "component": "DescriptionList",
@@ -17538,12 +17901,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",
@@ -17685,12 +18051,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1206
+            "line": 1219
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1232
+            "line": 1245
           },
           {
             "component": "FilterChip",
@@ -17833,12 +18199,15 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/DataGrid > CellTone",
+          "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
           "Data/DataGrid > FiftyThousandRows",
           "Data/DataGrid > LiveRows",
           "Data/DataGrid > Loading",
           "Data/DataGrid > RightToLeft",
+          "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
           "Data/Table > Basic",
           "Data/Table > Compact",

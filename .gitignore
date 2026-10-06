@@ -1,0 +1,12 @@
+*.log
+.DS_Store
+dist
+node_modules
+playwright-report
+storybook-static
+test-results
+# Local only: agent instructions and internal material. The shared rules
+# are in CONTRIBUTING.md.
+CLAUDE.md
+AGENTS.md
+/docs/inside/

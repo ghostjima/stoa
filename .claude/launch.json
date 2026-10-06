@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "stoa-playground",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "apps/playground", "exec", "vite", "--host", "127.0.0.1", "--port", "5186", "--strictPort"],
+      "port": 5186
+    },
+    {
+      "name": "stoa-storybook",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "storybook", "dev", "-p", "6008", "--ci", "--no-open"],
+      "port": 6008
+    }
+  ]
+}

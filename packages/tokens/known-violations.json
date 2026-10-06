@@ -1,0 +1,14 @@
+{
+  "$comment": [
+    "Failures of the enforced rules in src/checks.mjs that are known and accepted for now, so CI stays",
+    "green while they are fixed. scripts/checks.test.mjs fails on any enforced failure missing from this list, on",
+    "any entry here that now passes, on any entry whose id no longer exists, and on any entry whose",
+    "measured value has moved by more than `tolerance`. The file cannot go stale in either direction.",
+    "Empty: stoa-default passes every enforced rule. Nothing here is a reported-only measurement:",
+    "those are in dist/verify.json and never fail a test."
+  ],
+  "measuredOn": "a51f3645b883942f67169b5865387634e7e6325a",
+  "measuredOnNote": "The list was emptied on the commit after this one, which changes the token values that failed.",
+  "tolerance": 0.02,
+  "violations": []
+}

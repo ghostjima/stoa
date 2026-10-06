@@ -1,0 +1,145 @@
+/* The type panel's own chrome. It lives beside the panel rather than in
+   app.css so that the other briefs in this wave do not edit the same file.
+   The panel uses Stoa's tokens from the document root, like the rest of the
+   tool; the specimens inside the preview frames use the role variables the
+   panel contributes to each frame. */
+
+.pg-type {
+  display: grid;
+  gap: var(--stoa-space-2);
+}
+
+.pg-type__inspector,
+.pg-type__roles {
+  min-inline-size: 0;
+}
+
+/* Six roles, each with a dozen fields, would fill the sidebar; a choice
+   group of families would overflow it. */
+.pg-type .stoa-choice-group {
+  flex-wrap: wrap;
+}
+
+.pg-type__drop {
+  display: grid;
+  gap: var(--stoa-space-1);
+  padding: var(--stoa-space-3);
+  border: 1px dashed var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-md);
+  background: var(--stoa-color-surface-sunken);
+}
+
+.pg-type__drop--over {
+  border-color: var(--stoa-color-accent);
+  border-style: solid;
+}
+
+.pg-type__file {
+  display: grid;
+  gap: var(--stoa-space-1);
+  font-size: var(--stoa-font-size-xs);
+  color: var(--stoa-color-text-muted);
+}
+
+/* The file input's button drawn as a Stoa button: the browser's default
+   is a grey system control that matches nothing else in the tool. */
+.pg-type__file input[type="file"] {
+  font: inherit;
+  color: var(--stoa-color-text-muted);
+}
+
+.pg-type__file input[type="file"]::file-selector-button {
+  font: inherit;
+  font-size: var(--stoa-font-size-sm);
+  margin-inline-end: var(--stoa-space-2);
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-sm);
+  background: var(--stoa-color-surface);
+  color: var(--stoa-color-text);
+  cursor: pointer;
+  transition: background-color var(--stoa-motion-duration-fast) var(--stoa-motion-easing-standard);
+}
+
+.pg-type__file input[type="file"]:hover::file-selector-button {
+  background: var(--stoa-color-surface-hover);
+}
+
+.pg-type__file input[type="file"]:active::file-selector-button {
+  background: color-mix(in oklch, var(--stoa-color-surface-hover), var(--stoa-color-text) 8%);
+}
+
+.pg-type__file input[type="file"]:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+
+.pg-type__loaded {
+  display: grid;
+  gap: var(--stoa-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pg-type__loaded li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stoa-space-2);
+}
+
+.pg-type__loaded li[data-selected] {
+  border-inline-start: 2px solid var(--stoa-color-accent);
+  padding-inline-start: var(--stoa-space-2);
+}
+
+.pg-type__subtitle {
+  margin: var(--stoa-space-2) 0 0;
+  font-size: var(--stoa-font-size-xs);
+  font-weight: var(--stoa-font-weight-medium);
+}
+
+.pg-type__role {
+  border-block-end: 1px solid var(--stoa-color-border);
+  padding-block-end: var(--stoa-space-2);
+}
+
+/* The role's summary wraps when the family name is long. */
+.pg-type__role > summary {
+  flex-wrap: wrap;
+}
+
+.pg-type__role-name {
+  font-weight: var(--stoa-font-weight-medium);
+}
+
+/* Inside a preview frame: the specimen column takes what is left, and a
+   long specimen is allowed to wrap rather than widen the frame. */
+/* The title between the screen and the specimens: centred, with a dashed
+   rule in the divider colour on each side. */
+.pg-type__specimens-title {
+  display: flex;
+  align-items: center;
+  gap: var(--stoa-space-3);
+  margin: var(--stoa-space-4) 0 var(--stoa-space-2);
+  font-size: var(--stoa-font-size-xs);
+  color: var(--stoa-color-text-muted);
+  text-align: center;
+}
+
+.pg-type__specimens-title::before,
+.pg-type__specimens-title::after {
+  content: "";
+  flex: 1;
+  border-block-start: 1px dashed var(--stoa-color-border);
+}
+
+/* The last role closes the table; no rule under it. */
+.pg-type__specimens tbody tr:last-child > * {
+  border-block-end: 0;
+}
+
+.pg-type__specimens td[data-specimen] {
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,6 @@
+body {
+  background: var(--stoa-color-bg);
+  color: var(--stoa-color-text);
+  font-family: var(--stoa-font-family-sans);
+  font-size: var(--stoa-density-font-size);
+}

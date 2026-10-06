@@ -1,0 +1,25 @@
+{
+  "color": {
+    "$type": "color",
+    "bg": { "$value": "{color.neutral.1000}" },
+    "surface": { "$value": "{color.neutral.950}" },
+    "surface-sunken": { "$value": "oklch(0.11 0.005 250)" },
+    "surface-hover": { "$value": "{color.neutral.900}" },
+    "border": { "$value": "{color.neutral.850}" },
+    "border-strong": { "$value": "{color.neutral.500}" },
+    "text": { "$value": "{color.neutral.100}" },
+    "text-muted": { "$value": "{color.neutral.400}" },
+    "text-subtle": { "$value": "{color.neutral.450}" },
+    "accent": { "$value": "{color.blue.400}" },
+    "focus": { "$value": "{color.blue.400}" },
+    "up": { "$value": "{color.teal.400}" },
+    "down": { "$value": "{color.red.400}" },
+    "bid": { "$value": "{color.teal.400}" },
+    "ask": { "$value": "{color.red.400}" },
+    "up-wash": { "$value": "{color.teal.wash}" },
+    "down-wash": { "$value": "{color.red.wash}" },
+    "warning": { "$value": "{color.amber.500}" },
+    "scrollbar-thumb": { "$value": "{color.neutral.800}" },
+    "scrollbar-track": { "$value": "{color.bg}" }
+  }
+}

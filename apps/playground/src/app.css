@@ -1,0 +1,560 @@
+/* The playground's own chrome. It uses Stoa's tokens from the document
+   root; the preview frames get their own values on their container, so
+   nothing here changes when a token is edited. Scrollbars are Stoa's
+   own (styles.css): thin, in the scrollbar tokens of the box's theme, so
+   a dark frame draws a dark one. */
+
+body {
+  margin: 0;
+  background: var(--stoa-color-bg);
+  color: var(--stoa-color-text);
+  font-family: var(--stoa-font-family-sans);
+  font-size: var(--stoa-font-size-sm);
+  line-height: var(--stoa-font-line-height-normal);
+}
+
+code {
+  font-family: var(--stoa-font-family-mono);
+  font-size: var(--stoa-font-size-2xs);
+}
+
+.pg-app {
+  /* The block size of the bar at the top of each column: the playground's
+     name over the side panel, a frame's view and colour-vision controls
+     over each preview. The two line up across the page. */
+  --pg-bar: 40px;
+  display: grid;
+  /* The side panel takes a fixed share of wide screens and never forces the
+     page wider than the window; its content wraps or scrolls inside it. */
+  grid-template-columns: clamp(360px, 25vw, 480px) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--stoa-space-4);
+}
+
+/* The page scrolls in PageShell's region under the header, and the side
+   panel sticks inside that region: its block size is the region's
+   (measured into --pg-region, src/region.ts) less the main region's
+   padding above and below it. Before the first measurement it falls back
+   to the window's height. */
+.pg-side {
+  min-inline-size: 0;
+  position: sticky;
+  inset-block-start: var(--stoa-space-4);
+  display: grid;
+  gap: var(--stoa-space-3);
+  max-block-size: calc(var(--pg-region, 100dvh) - var(--stoa-space-8));
+  overflow-y: auto;
+  /* The scrollbar keeps its own lane and a gap from the panels, whether
+     or not the content is long enough to scroll. */
+  scrollbar-gutter: stable;
+  padding-inline-end: var(--stoa-space-3);
+}
+
+/* Six tabs in one row down to the panel's narrowest width (360 px): the
+   selected tab is marked by its underline, so the tabs can touch. */
+.pg-side .stoa-tabs__list {
+  column-gap: 0;
+}
+
+.pg-side .stoa-tabs__tab {
+  padding-inline: calc(var(--stoa-space-1) * 1.5);
+}
+
+.pg-note {
+  margin: var(--stoa-space-1) 0 0;
+  color: var(--stoa-color-text-muted);
+  font-size: var(--stoa-font-size-2xs);
+}
+
+.pg-stack {
+  display: grid;
+  gap: var(--stoa-space-3);
+}
+
+.pg-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stoa-space-2);
+}
+
+.pg-row--between {
+  justify-content: space-between;
+}
+
+.pg-groups {
+  display: grid;
+  gap: var(--stoa-space-4);
+}
+
+.pg-group {
+  display: grid;
+  gap: var(--stoa-space-2);
+}
+
+.pg-group__title {
+  margin: var(--stoa-space-3) 0 0;
+  font-size: var(--stoa-font-size-2xs);
+  font-weight: var(--stoa-font-weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--stoa-color-text-muted);
+}
+
+.pg-token {
+  display: grid;
+  gap: var(--stoa-space-1);
+  padding-block-end: var(--stoa-space-2);
+  border-block-end: 1px solid var(--stoa-color-border);
+}
+
+.pg-token[data-overridden] {
+  border-inline-start: 2px solid var(--stoa-color-warning);
+  padding-inline-start: var(--stoa-space-2);
+}
+
+.pg-token[data-highlighted="true"] {
+  outline: 2px solid var(--stoa-color-focus);
+  outline-offset: 2px;
+  border-radius: var(--stoa-radius-sm);
+}
+
+.pg-token__field {
+  display: grid;
+  align-items: center;
+  gap: var(--stoa-space-2);
+}
+
+/* Only a colour has a swatch beside its field; a plain length keeps the
+   whole width. */
+.pg-token__field--swatch {
+  grid-template-columns: 20px minmax(0, 1fr);
+}
+
+.pg-token__slider {
+  display: grid;
+  gap: var(--stoa-space-1);
+}
+
+.pg-token__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--stoa-space-2);
+}
+
+.pg-token__label {
+  font-size: var(--stoa-font-size-xs);
+  color: var(--stoa-color-text-muted);
+}
+
+.pg-token__override {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stoa-space-2);
+  font-size: var(--stoa-font-size-2xs);
+  color: var(--stoa-color-text-muted);
+}
+
+.pg-swatch {
+  inline-size: 20px;
+  block-size: 20px;
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-sm);
+}
+
+.pg-overrides,
+.pg-verify {
+  display: grid;
+  gap: var(--stoa-space-2);
+}
+
+.pg-overrides__table code {
+  overflow-wrap: anywhere;
+}
+
+.pg-overrides__table tr[data-highlighted="true"] {
+  outline: 2px solid var(--stoa-color-focus);
+  outline-offset: -2px;
+}
+
+.pg-verify__results {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--stoa-space-1) var(--stoa-space-3);
+  margin: 0;
+  font-size: var(--stoa-font-size-2xs);
+}
+
+.pg-verify__results dt {
+  color: var(--stoa-color-text-muted);
+}
+
+.pg-verify__results dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--stoa-space-2);
+  align-items: baseline;
+}
+
+.pg-verify__commit,
+.pg-verify__error {
+  font-size: var(--stoa-font-size-2xs);
+}
+
+.pg-verify__error {
+  color: var(--stoa-color-down);
+}
+
+.pg-output {
+  margin: 0;
+  max-block-size: 220px;
+  overflow: auto;
+  padding: var(--stoa-space-2);
+  background: var(--stoa-color-surface-sunken);
+  border: 1px solid var(--stoa-color-border);
+  border-radius: var(--stoa-radius-sm);
+  font-family: var(--stoa-font-family-mono);
+  font-size: var(--stoa-font-size-2xs);
+  white-space: pre-wrap;
+}
+
+.pg-checks {
+  display: grid;
+  gap: var(--stoa-space-2);
+  font-size: var(--stoa-font-size-2xs);
+}
+
+.pg-check-group table tr[data-status="new"] {
+  background: color-mix(in oklch, var(--stoa-color-down) 12%, transparent);
+}
+
+.pg-check-group table tr[data-status="fixed"] {
+  background: color-mix(in oklch, var(--stoa-color-up) 12%, transparent);
+}
+
+/* The checks reading a token, beside the side panel while its field is
+   edited (RulesTooltip.tsx). Fixed to the window, so it is not clipped
+   by the side panel's scrolling box. */
+.pg-rules-tip {
+  position: fixed;
+  z-index: 10;
+  box-sizing: border-box;
+  max-block-size: calc(100vh - var(--stoa-space-4));
+  overflow-y: auto;
+  padding: var(--stoa-space-2) var(--stoa-space-3);
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-inline-start: 2px solid var(--stoa-color-accent);
+  border-radius: var(--stoa-radius-md);
+  color: var(--stoa-color-text);
+  font-size: var(--stoa-font-size-2xs);
+  pointer-events: none;
+}
+
+.pg-rules-tip__title {
+  margin: 0 0 var(--stoa-space-1);
+  font-size: var(--stoa-font-size-xs);
+  font-weight: var(--stoa-font-weight-medium);
+}
+
+.pg-rules-tip__list {
+  margin: 0;
+  padding-inline-start: var(--stoa-space-4);
+  color: var(--stoa-color-text-muted);
+}
+
+/* Kept out of layout: only its filter defs are read, by the frames'
+   `filter: url(#...)`. */
+.pg-cvd-defs {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+  overflow: hidden;
+}
+
+/* Previews. The grid holds two frames at a size a real screen would use,
+   so the cost of a re-theme is the real cost. */
+.pg-frames {
+  display: grid;
+  /* The two frames side by side where each is wide enough for its header
+     on one row (view, language in three, reduced motion and colour
+     vision take about 580 px), one above the other where they are not:
+     side by side from about 1650 px, stacked below. Never a page wider
+     than the window. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 590px), 1fr));
+  gap: var(--stoa-space-3);
+}
+
+.pg-frame {
+  border: 1px solid var(--stoa-color-border);
+  border-radius: var(--stoa-radius-md);
+  overflow: hidden;
+  min-inline-size: 0;
+}
+
+.pg-frame__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--stoa-space-2);
+  box-sizing: border-box;
+  min-block-size: var(--pg-bar);
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  background: var(--stoa-color-surface-sunken);
+  border-block-end: 1px solid var(--stoa-color-border);
+}
+
+/* The view and the language sit together at the start of the header. */
+.pg-frame__picks {
+  display: flex;
+  align-items: center;
+  gap: var(--stoa-space-2);
+}
+
+.pg-frame__body {
+  padding: var(--stoa-space-2);
+  background: var(--stoa-color-bg);
+  color: var(--stoa-color-text);
+  font-family: var(--stoa-font-family-sans);
+  font-size: var(--stoa-density-font-size);
+  /* The frame's overlay layer is placed against the body, and whatever a
+     screen raises stays inside the frame, under nothing outside it. */
+  position: relative;
+  isolation: isolate;
+}
+
+/* The frame's overlays (dialogs, sheets, toasts) are portalled into the
+   box below, inside the frame body, so they take its theme, direction,
+   density, motion and filter. The layer covers the body and lets the
+   pointer through; the box sticks to the top of the page's scrolling
+   region while the frame scrolls past and is never taller than that
+   region and as tall as the part of the frame in view (measured into
+   --pg-frame-visible, PreviewGrid.tsx), so a dialog opens centred in that
+   part, wholly in the window, even when the frame starts half way down.
+   Its layout containment makes it the containing block of the overlays'
+   fixed positions, so they cover the box and not the window. The
+   z-index is above anything a screen raises (the grid's sticky head,
+   a choice group's raised option). */
+.pg-frame__overlays {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.pg-frame__overlay-box {
+  position: sticky;
+  inset-block-start: 0;
+  block-size: min(100%, var(--pg-frame-visible, var(--pg-region, 100dvh)));
+  contain: layout;
+  overflow: hidden;
+}
+
+.pg-frame__overlay-box > * {
+  pointer-events: auto;
+}
+
+/* A component screen: its error callout, then its panels. */
+.pg-components {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stoa-space-2);
+}
+
+/* Terms and values side by side: the order's details, the preferences
+   chosen, the last announcement. */
+.pg-pairs {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--stoa-space-1) var(--stoa-space-3);
+  margin: 0;
+}
+
+.pg-pairs dt {
+  color: var(--stoa-color-text-muted);
+}
+
+.pg-pairs dd {
+  margin: 0;
+}
+
+.pg-mono {
+  font-family: var(--stoa-font-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The last trade's price, drawn large. */
+.pg-figure {
+  margin: 0;
+  font-family: var(--stoa-font-family-mono);
+  font-size: var(--stoa-font-size-lg);
+  font-variant-numeric: tabular-nums;
+}
+
+/* A watchlist row: the symbol, its sector taking the room, the price. */
+/* Today's orders: the list and the picked order's details side by side,
+   one under the other where the column is narrow. */
+.pg-master-detail {
+  display: grid;
+  gap: var(--stoa-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--stoa-space-12) * 4)), 1fr));
+  align-items: start;
+}
+
+.pg-watch {
+  display: flex;
+  align-items: baseline;
+  gap: var(--stoa-space-2);
+}
+
+.pg-watch__sector {
+  flex: 1;
+  color: var(--stoa-color-text-muted);
+}
+
+/* The bond's figures: the stat bar, and the one metric beside it. */
+.pg-figures {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--stoa-space-3);
+}
+
+/* The grid's search, with the row count at its end. */
+.pg-grid-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--stoa-space-2);
+}
+
+/* A side panel setting whose control names itself only for assistive
+   technology: its label is drawn before it. */
+.pg-setting {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stoa-space-2);
+}
+
+/* The screen's two columns sit side by side while both fit and stack when
+   they do not. A column never gets narrower than its content's narrowest
+   layout (the trades table, at the frame's density), so a table cannot
+   spill out of its column; what does not fit wraps to the next line. */
+.pg-screen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--stoa-space-2);
+  align-items: start;
+}
+
+/* A flex column rather than a grid: a grid sizes its intrinsic minimum
+   from each panel's `min-inline-size: 0`, which would let the column go
+   narrower than the table inside it. */
+.pg-screen__column {
+  flex: 1 1 180px;
+  min-inline-size: min-content;
+  display: flex;
+  flex-direction: column;
+  gap: var(--stoa-space-2);
+}
+
+.pg-form {
+  display: grid;
+  gap: var(--stoa-space-2);
+}
+
+/* The trades summary: a label column as wide as its words, the values
+   after it, not spread across the panel. */
+.pg-summary {
+  inline-size: auto;
+  min-inline-size: 50%;
+}
+
+/* Row headers, not column headers: no rule under each one. */
+.pg-summary th {
+  border-block-end: 0;
+}
+
+/* Nothing in the side panel scrolls sideways: tables take the panel's
+   width and their cells wrap, long identifiers included. */
+.pg-side table {
+  table-layout: fixed;
+}
+
+.pg-side td,
+.pg-side th,
+.pg-side code,
+.pg-side .pg-note {
+  overflow-wrap: anywhere;
+}
+
+/* A check is one row of three cells: what was measured, with the measure
+   under it; the verdict; and its action, every button on the table's end
+   edge. The verdict and the button sit on the first line of the row. */
+.pg-check-group td {
+  vertical-align: top;
+  padding-block: var(--stoa-space-1);
+}
+
+.pg-check-group th:nth-child(2) {
+  inline-size: 30%;
+}
+
+.pg-check-group .pg-check__action {
+  inline-size: calc(var(--stoa-space-12) * 2);
+  text-align: end;
+}
+
+.pg-check__measure {
+  display: block;
+  color: var(--stoa-color-text-muted);
+  font-family: var(--stoa-font-family-mono);
+}
+
+/* Stats: one counter per row, named like a token and valued in figures
+   that do not shift as they change. */
+.pg-stats {
+  display: grid;
+  margin: 0;
+}
+
+.pg-stats__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--stoa-space-2);
+  padding-block: var(--stoa-space-2);
+  border-block-end: 1px solid var(--stoa-color-border);
+}
+
+.pg-stats__row:last-child {
+  border-block-end: 0;
+}
+
+.pg-stats__row dd {
+  margin: 0;
+  font-family: var(--stoa-font-family-mono);
+  font-size: var(--stoa-font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Narrow windows: the side panel stacks above the previews and scrolls with
+   the page. */
+@media (max-width: 900px) {
+  .pg-app {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pg-side {
+    position: static;
+    max-block-size: none;
+    overflow-y: visible;
+  }
+}

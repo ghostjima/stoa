@@ -1,0 +1,40 @@
+{
+  "name": "@ghostjima/stoa-tokens",
+  "version": "0.0.0",
+  "description": "Design tokens of Stoa, a design system for dense data: colour, type, space, density, motion, as CSS variables and TypeScript",
+  "type": "module",
+  "license": "MIT OR Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghostjima/stoa",
+    "directory": "packages/tokens"
+  },
+  "files": [
+    "dist",
+    "src",
+    "tokens",
+    "known-violations.json"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "default": "./dist/tokens.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./checks": "./src/checks.mjs",
+    "./resolve": "./src/resolve.mjs",
+    "./pairs": "./src/pairs.mjs",
+    "./color": "./src/color.mjs"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test scripts/*.test.mjs",
+    "verify": "node scripts/verify.mjs",
+    "typecheck": "true"
+  },
+  "devDependencies": {
+    "culori": "^4.0.2",
+    "style-dictionary": "5.5.5"
+  }
+}

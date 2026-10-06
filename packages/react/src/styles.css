@@ -1,0 +1,1244 @@
+/* Stoa components. Tokens come from @ghostjima/stoa-tokens/tokens.css.
+   Logical properties only, so right-to-left layouts need no overrides. */
+
+.stoa-visually-hidden {
+  position: absolute; inline-size: 1px; block-size: 1px; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; padding: 0;
+}
+
+/* Scrollbars: every scrollbar on a Stoa page alike, thin, a quiet thumb
+   on the page background. Set on every box rather than inherited, so a
+   box under its own data-theme (a preview frame, a dark panel) draws its
+   own theme's colours; :where keeps the rule at zero specificity, so a
+   page can still restyle one scrollbar. */
+:where(:root), :where(:root) * {
+  scrollbar-color: var(--stoa-color-scrollbar-thumb) var(--stoa-color-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* ScrollArea: a box that scrolls with its scrollbar in a reserved lane, so
+   content does not move when it starts or stops overflowing. Its size
+   comes from the parent or a class. */
+.stoa-scroll-area { min-inline-size: 0; min-block-size: 0; overflow: auto; scrollbar-gutter: stable; }
+.stoa-scroll-area:focus { outline: none; }
+.stoa-scroll-area:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+
+.stoa-panel {
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border);
+  border-radius: var(--stoa-radius-md);
+  padding: var(--stoa-space-3);
+  min-inline-size: 0;
+}
+.stoa-panel__title {
+  margin: 0 0 var(--stoa-space-2);
+  font-size: var(--stoa-font-size-xs);
+  font-weight: var(--stoa-font-weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--stoa-color-text-muted);
+}
+/* Arabic letters join; spacing them apart breaks the word. */
+.stoa-panel__title:lang(ar) { letter-spacing: 0; }
+
+/* AppHeader: one bar for every application, at the sizes of the Themis
+   demo (title at the large size, subtitle and note at the small one). */
+.stoa-app-header {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-3);
+  padding: var(--stoa-space-3) var(--stoa-space-4);
+  border-block-end: 1px solid var(--stoa-color-border);
+  background: var(--stoa-color-surface);
+  color: var(--stoa-color-text);
+}
+.stoa-app-header__title { margin: 0; font-size: var(--stoa-font-size-lg); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-app-header__subtitle,
+.stoa-app-header__note { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
+.stoa-app-header__note a { color: inherit; }
+.stoa-app-header__spacer { flex: 1; }
+.stoa-app-header__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-3); align-self: center; }
+
+.stoa-ladder, .stoa-heatmap { margin: 0; }
+.stoa-ladder__canvas, .stoa-heatmap__canvas { display: block; inline-size: 100%; }
+
+.stoa-table { inline-size: 100%; border-collapse: collapse; font-size: var(--stoa-density-font-size); }
+.stoa-table--numeric { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+.stoa-table th {
+  text-align: start; font-weight: var(--stoa-font-weight-regular);
+  color: var(--stoa-color-text-muted); border-block-end: 1px solid var(--stoa-color-border);
+}
+.stoa-table th, .stoa-table td { block-size: var(--stoa-density-row-height); padding-inline: var(--stoa-density-cell-padding-x); }
+.stoa-num { text-align: end; font-variant-numeric: tabular-nums; }
+/* A table with no rows yet says so in one muted, centred row. */
+.stoa-table__empty td { text-align: center; color: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-sans); }
+.stoa-table th.stoa-num { text-align: end; }
+.stoa-up { color: var(--stoa-color-up); }
+.stoa-down { color: var(--stoa-color-down); }
+
+.stoa-button {
+  font: inherit;
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-sm);
+  background: var(--stoa-color-surface);
+  color: var(--stoa-color-text);
+  cursor: pointer;
+  transition: background-color var(--stoa-motion-duration-fast) var(--stoa-motion-easing-standard);
+}
+/* States are set per variant: a hover rule shared by every variant would
+   outrank the primary fill (equal specificity, later rule) and put the
+   primary text on a near-white surface. Hover and press move the fill
+   toward the text colour, so they darken in light themes and lighten in
+   dark ones without new tokens. */
+.stoa-button[data-hovered], .stoa-choice[data-hovered]:not([data-selected]) { background: var(--stoa-color-surface-hover); }
+.stoa-button[data-pressed], .stoa-choice[data-pressed]:not([data-selected]) {
+  background: color-mix(in oklch, var(--stoa-color-surface-hover), var(--stoa-color-text) 8%);
+}
+.stoa-button--primary, .stoa-choice[data-selected] {
+  background: var(--stoa-color-accent); border-color: var(--stoa-color-accent); color: var(--stoa-color-surface);
+}
+.stoa-button--primary[data-hovered], .stoa-choice[data-selected][data-hovered] {
+  background: color-mix(in oklch, var(--stoa-color-accent), var(--stoa-color-text) 14%);
+  border-color: color-mix(in oklch, var(--stoa-color-accent), var(--stoa-color-text) 14%);
+}
+.stoa-button--primary[data-pressed], .stoa-choice[data-selected][data-pressed] {
+  background: color-mix(in oklch, var(--stoa-color-accent), var(--stoa-color-text) 26%);
+  border-color: color-mix(in oklch, var(--stoa-color-accent), var(--stoa-color-text) 26%);
+}
+/* Disabled reads as unavailable in every variant: no fill, subtle text,
+   no pointer. WCAG 1.4.3 exempts inactive controls, so the subtle text
+   is a choice, not a contrast failure. */
+.stoa-button[data-disabled], .stoa-button--primary[data-disabled], .stoa-choice[data-disabled] {
+  background: var(--stoa-color-surface-sunken);
+  border-color: var(--stoa-color-border);
+  color: var(--stoa-color-text-subtle);
+  cursor: not-allowed;
+}
+/* A button's shortcut: its keys after the label, at the inline end. */
+.stoa-button__shortcut { margin-inline-start: var(--stoa-space-2); }
+.stoa-button[data-focus-visible], .stoa-slider__thumb[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+/* A choice group is one segmented control: the options touch and share
+   their borders, and only the outer corners are rounded. A group too wide
+   for its container wraps; the negative margins overlap neighbouring
+   borders in both directions, and the padding gives the first row and
+   column back the pixel they lend. The chosen, hovered and focused option
+   is raised so its border and ring sit over its neighbours'. */
+.stoa-choice-group {
+  display: inline-flex; flex-wrap: wrap; max-inline-size: 100%;
+  padding-block-start: 1px; padding-inline-start: 1px;
+}
+.stoa-choice-group > .stoa-choice {
+  position: relative; border-radius: 0;
+  margin-block-start: -1px; margin-inline-start: -1px;
+}
+.stoa-choice-group > .stoa-choice:first-child {
+  border-start-start-radius: var(--stoa-radius-sm); border-end-start-radius: var(--stoa-radius-sm);
+}
+.stoa-choice-group > .stoa-choice:last-child {
+  border-start-end-radius: var(--stoa-radius-sm); border-end-end-radius: var(--stoa-radius-sm);
+}
+.stoa-choice-group > .stoa-choice[data-hovered], .stoa-choice-group > .stoa-choice[data-selected] { z-index: 1; }
+.stoa-choice-group > .stoa-choice[data-focus-visible] { z-index: 2; }
+
+/* A group of buttons with a visible label above it and a description
+   under it. */
+.stoa-group-field { display: grid; gap: var(--stoa-space-1); justify-items: start; min-inline-size: 0; }
+
+/* The small size, for toolbars and headers. */
+.stoa-button--small,
+.stoa-choice-group--small > .stoa-choice,
+.stoa-toggle--small,
+.stoa-select--small .stoa-select__button {
+  font-size: var(--stoa-font-size-xs);
+  min-block-size: var(--stoa-space-6);
+  padding: calc(var(--stoa-space-1) / 2) calc(var(--stoa-space-1) * 1.5);
+}
+.stoa-select__popover.stoa-select__popover--small { font-size: var(--stoa-font-size-xs); }
+
+/* Tooltip: the term it explains is a button drawn as text with a dotted
+   underline; the tooltip is a small raised note above it. */
+.stoa-tooltip-term {
+  display: inline; padding: 0; margin: 0;
+  font: inherit; color: inherit; background: none; border: 0;
+  text-decoration: underline dotted; text-underline-offset: 0.2em;
+  cursor: help;
+}
+.stoa-tooltip-term[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+  border-radius: var(--stoa-radius-sm);
+}
+.stoa-tooltip {
+  max-inline-size: calc(var(--stoa-space-12) * 6);
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-sm);
+  font-family: var(--stoa-font-family-sans); font-size: var(--stoa-font-size-xs);
+  line-height: var(--stoa-font-line-height-normal);
+}
+/* The arrow: React Aria places its square at the edge of the tooltip
+   nearest the term, against the tooltip's padding box, so the triangle
+   covers the border where they meet. data-placement is the side the
+   tooltip opened on, resolved to a physical side ("start" is the right
+   in a right-to-left page), so the turns that face the term are physical
+   too. */
+.stoa-tooltip__arrow svg {
+  display: block; inline-size: var(--stoa-space-3); block-size: var(--stoa-space-3); overflow: visible;
+  fill: var(--stoa-color-surface); stroke: var(--stoa-color-border-strong); stroke-width: 1px;
+}
+.stoa-tooltip__arrow[data-placement="bottom"] svg { transform: rotate(180deg); }
+.stoa-tooltip__arrow[data-placement="left"] svg { transform: rotate(-90deg); }
+.stoa-tooltip__arrow[data-placement="right"] svg { transform: rotate(90deg); }
+.stoa-tooltip[data-entering] { animation: stoa-fade-in var(--stoa-motion-duration-fast) var(--stoa-motion-easing-enter); }
+
+.stoa-select { display: inline-grid; gap: var(--stoa-space-1); }
+.stoa-select__button { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--stoa-space-2); text-align: start; }
+.stoa-select__chevron { color: var(--stoa-color-text-muted); }
+.stoa-select[data-open] .stoa-select__chevron { transform: rotate(180deg); }
+/* The list is portalled to the document, so it takes the document's
+   tokens, not those of the element that opened it. `--trigger-width` is
+   not a Stoa token: React Aria sets it on the popover to the button's
+   width. */
+.stoa-select__popover {
+  min-inline-size: var(--trigger-width);
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-sm);
+  font-family: var(--stoa-font-family-sans);
+  font-size: var(--stoa-font-size-sm);
+  color: var(--stoa-color-text);
+}
+.stoa-select__list { padding: var(--stoa-space-1) 0; outline: none; max-block-size: inherit; overflow-y: auto; }
+.stoa-select__option {
+  padding: var(--stoa-space-1) var(--stoa-space-3); cursor: pointer; outline: none;
+  border-inline-start: 2px solid transparent;
+}
+.stoa-select__option[data-focused] { background: var(--stoa-color-surface-hover); }
+.stoa-select__option[data-selected] { font-weight: var(--stoa-font-weight-medium); border-inline-start-color: var(--stoa-color-accent); }
+.stoa-select__option[data-focus-visible] { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: calc(-1 * var(--stoa-focus-width)); }
+
+.stoa-chevron { flex: none; }
+
+/* Disclosure: the summary row reads like a panel's own heading level, with
+   the Select's chevron before it. Closed, the chevron points to the end
+   of the line (right in left-to-right text, left in right-to-left). */
+.stoa-disclosure__summary {
+  display: flex; align-items: center; gap: var(--stoa-space-2);
+  padding-block: var(--stoa-space-1);
+  font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium);
+  color: var(--stoa-color-text);
+  list-style: none; cursor: pointer;
+}
+.stoa-disclosure__summary::-webkit-details-marker { display: none; }
+.stoa-disclosure__summary:hover .stoa-disclosure__chevron { color: var(--stoa-color-text); }
+.stoa-disclosure__summary:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+  border-radius: var(--stoa-radius-sm);
+}
+.stoa-disclosure__chevron {
+  color: var(--stoa-color-text-muted);
+  transition: transform var(--stoa-motion-duration-fast) var(--stoa-motion-easing-standard);
+}
+.stoa-disclosure:not([open]) > .stoa-disclosure__summary .stoa-disclosure__chevron { transform: rotate(-90deg); }
+.stoa-disclosure:not([open]) > .stoa-disclosure__summary .stoa-disclosure__chevron:dir(rtl) { transform: rotate(90deg); }
+.stoa-disclosure__content { padding-block-start: var(--stoa-space-1); }
+
+.stoa-slider { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--stoa-space-3); flex: 1; min-inline-size: 200px; }
+.stoa-slider__output { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; min-inline-size: 12ch; }
+.stoa-slider__track { position: relative; block-size: 20px; }
+.stoa-slider__track::before {
+  content: ""; position: absolute; inset-inline: 0; inset-block-start: 50%;
+  block-size: 4px; transform: translateY(-50%); background: var(--stoa-color-border-strong); border-radius: var(--stoa-radius-full);
+}
+.stoa-slider__thumb {
+  inline-size: 14px; block-size: 14px; inset-block-start: 50%;
+  border-radius: var(--stoa-radius-full); background: var(--stoa-color-accent);
+}
+
+/* Without its output, the track takes the whole row. */
+.stoa-slider--bare { grid-template-columns: minmax(0, 1fr); }
+/* A shown label takes a line of its own above the output and the track. */
+.stoa-slider__label { grid-column: 1 / -1; }
+
+.stoa-number { display: inline-grid; gap: var(--stoa-space-1); }
+.stoa-number__group { display: inline-flex; align-items: center; gap: var(--stoa-space-1); }
+.stoa-number__input { inline-size: 7ch; text-align: end; font-variant-numeric: tabular-nums; }
+.stoa-number__unit { font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-number--small .stoa-number__input {
+  font-size: var(--stoa-font-size-xs);
+  min-block-size: var(--stoa-space-6);
+  padding: calc(var(--stoa-space-1) / 2) calc(var(--stoa-space-1) * 1.5);
+}
+
+.stoa-statbar { display: flex; flex-wrap: wrap; gap: var(--stoa-space-4); margin: 0; font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-2xs); }
+.stoa-statbar__item { display: flex; gap: var(--stoa-space-1); }
+/* The labels are words, in the sans face; the values stay in the numeric
+   face. */
+.stoa-statbar dt { color: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-sans); }
+.stoa-statbar dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.stoa-field { display: grid; gap: var(--stoa-space-1); }
+.stoa-field__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+/* An input takes the width of its field and never sets it: without the
+   zero minimum, its default 20-character size would hold a narrow column
+   open. */
+.stoa-field__input {
+  min-inline-size: 0;
+  font: inherit; font-family: var(--stoa-font-family-sans);
+  padding: var(--stoa-space-2); border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-sm); background: var(--stoa-color-surface); color: var(--stoa-color-text);
+}
+/* Numbers, code and maths: the monospace face, with tabular figures so
+   digits line up from one value to the next. */
+.stoa-field__input--mono { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+.stoa-field__input[data-focused] { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: 0; }
+.stoa-field__description { font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted); }
+.stoa-field__input[data-invalid] { border-color: var(--stoa-color-down); }
+.stoa-field__error { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-down); }
+
+.stoa-badge { display: inline-flex; gap: var(--stoa-space-1); align-items: baseline; font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium); }
+.stoa-badge--positive { color: var(--stoa-color-up); }
+.stoa-badge--negative { color: var(--stoa-color-down); }
+.stoa-badge--warning { color: var(--stoa-color-text); }
+.stoa-badge--warning > span:first-child { color: var(--stoa-color-warning); }
+.stoa-badge--neutral { color: var(--stoa-color-text-muted); }
+
+.stoa-tabs__list {
+  display: flex; flex-wrap: wrap; gap: var(--stoa-space-1);
+  border-block-end: 1px solid var(--stoa-color-border);
+}
+.stoa-tabs__tab {
+  padding: var(--stoa-space-2) var(--stoa-space-3); cursor: pointer; color: var(--stoa-color-text-muted);
+  border-block-end: 2px solid transparent; outline: none;
+}
+.stoa-tabs__tab[data-hovered]:not([data-selected]) { color: var(--stoa-color-text); }
+.stoa-tabs__tab[data-selected] { color: var(--stoa-color-text); border-block-end-color: var(--stoa-color-accent); }
+.stoa-tabs__tab[data-focus-visible] { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: -2px; }
+.stoa-tabs__panel { padding-block: var(--stoa-space-4); outline: none; }
+/* A panel with nothing focusable inside takes focus itself (React Aria
+   gives it tabindex 0), so it shows the ring like any other stop. */
+.stoa-tabs__panel[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+  border-radius: var(--stoa-radius-sm);
+}
+/* Panels kept mounted while inactive are inert; they keep their state
+   (a running worker, a filled form) but take no space. */
+.stoa-tabs__panel[inert] { display: none; }
+
+/* ==== Feedback and layout ==== */
+
+/* A live region drawn on the page, for a value that also reads out. */
+.stoa-live-region { font-variant-numeric: tabular-nums; }
+
+/* Skeleton: lines one text line apart at the current size, and blocks.
+   The pulse runs on the flash duration; under reduced motion every
+   duration token is zero and the shapes stand still. */
+.stoa-skeleton__shapes { display: grid; gap: var(--stoa-space-3); }
+.stoa-skeleton__lines { display: grid; row-gap: calc(1em * (var(--stoa-font-line-height-normal) - 1)); }
+.stoa-skeleton__line, .stoa-skeleton__block {
+  display: block;
+  background: var(--stoa-color-border);
+  border-radius: var(--stoa-radius-sm);
+  animation: stoa-skeleton-pulse calc(var(--stoa-motion-duration-flash) * 2) var(--stoa-motion-easing-standard) infinite alternate;
+}
+.stoa-skeleton__line { block-size: 1em; }
+.stoa-skeleton__line:last-child:not(:first-child) { inline-size: 60%; }
+@keyframes stoa-skeleton-pulse { to { opacity: 0.4; } }
+
+/* ProgressBar: label and value text above a track. The track is outlined
+   in border-strong and filled in the accent, both checked against the
+   surface. Indeterminate, a segment slides from start to end; under
+   reduced motion it stands in the middle. */
+.stoa-progress {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline;
+  gap: var(--stoa-space-1) var(--stoa-space-2);
+}
+.stoa-progress__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+/* The value text is words ("1.8 MB of 4.8 MB"), so it is in the sans face;
+   its figures stay tabular. */
+.stoa-progress__value { font-family: var(--stoa-font-family-sans); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums; color: var(--stoa-color-text); }
+.stoa-progress__track {
+  grid-column: 1 / -1; position: relative; display: block; overflow: hidden;
+  block-size: var(--stoa-space-2);
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-full);
+}
+.stoa-progress__fill {
+  position: absolute; inset-block: 0; inset-inline-start: 0;
+  background: var(--stoa-color-accent);
+  transition: inline-size var(--stoa-motion-duration-base) var(--stoa-motion-easing-standard);
+}
+.stoa-progress--indeterminate .stoa-progress__fill {
+  inline-size: 40%; inset-inline-start: 30%;
+  animation: stoa-progress-slide calc(var(--stoa-motion-duration-flash) * 2) var(--stoa-motion-easing-standard) infinite;
+}
+@keyframes stoa-progress-slide {
+  from { inset-inline-start: -40%; }
+  to { inset-inline-start: 100%; }
+}
+
+/* The tone symbol of a callout or a toast, in the tone's colour: each
+   colour is checked as text on surface and on bg in pairs.mjs (info uses
+   the accent). */
+.stoa-tone-symbol {
+  inline-size: var(--stoa-space-4); flex: none;
+  text-align: center; font-weight: var(--stoa-font-weight-semibold);
+}
+.stoa-tone-symbol--info { color: var(--stoa-color-accent); }
+.stoa-tone-symbol--positive { color: var(--stoa-color-up); }
+.stoa-tone-symbol--warning { color: var(--stoa-color-warning); }
+.stoa-tone-symbol--negative { color: var(--stoa-color-down); }
+
+/* A close button: a small square Stoa button, still 24 px (WCAG 2.5.8). */
+.stoa-dismiss {
+  flex: none; display: inline-grid; place-items: center;
+  min-inline-size: var(--stoa-space-6); min-block-size: var(--stoa-space-6);
+  padding: 0; line-height: var(--stoa-font-line-height-tight);
+}
+
+/* Callout: on the surface, with a thick start border in the tone's colour
+   beside the symbol. No tinted fill, so its text stays on a checked pair. */
+.stoa-callout {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start;
+  gap: var(--stoa-space-2);
+  padding: var(--stoa-space-2) var(--stoa-space-3);
+  background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  border: 1px solid var(--stoa-color-border); border-inline-start-width: var(--stoa-space-1);
+  border-radius: var(--stoa-radius-md);
+  font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-normal);
+}
+.stoa-callout__body { min-inline-size: 0; }
+.stoa-callout__title { margin: 0; font-weight: var(--stoa-font-weight-semibold); }
+.stoa-callout__text > :first-child { margin-block-start: 0; }
+.stoa-callout__text > :last-child { margin-block-end: 0; }
+.stoa-callout__action { display: flex; flex-wrap: wrap; gap: var(--stoa-space-2); margin-block-start: var(--stoa-space-2); }
+
+/* EmptyState: centred in the space the content will take. */
+.stoa-empty-state {
+  display: grid; justify-items: center; gap: var(--stoa-space-2);
+  padding: var(--stoa-space-8) var(--stoa-space-4);
+  text-align: center;
+}
+.stoa-empty-state__title { margin: 0; font-size: var(--stoa-font-size-md); font-weight: var(--stoa-font-weight-medium); color: var(--stoa-color-text); }
+.stoa-empty-state__description { margin: 0; font-size: var(--stoa-font-size-sm); color: var(--stoa-color-text-muted); }
+.stoa-empty-state__action { margin-block-start: var(--stoa-space-2); }
+
+/* Toasts: a column at the end corner of the viewport, newest first. The
+   region is portalled to the body, so it takes the document's tokens. */
+.stoa-toast-region {
+  position: fixed; z-index: 100;
+  inset-block-end: var(--stoa-space-4); inset-inline-end: var(--stoa-space-4);
+  display: flex; flex-direction: column; gap: var(--stoa-space-2);
+  max-inline-size: calc(100% - 2 * var(--stoa-space-4));
+  font-family: var(--stoa-font-family-sans);
+  outline: none;
+}
+.stoa-toast-region[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-toast {
+  display: flex; align-items: center; gap: var(--stoa-space-2);
+  inline-size: calc(var(--stoa-space-12) * 8); max-inline-size: 100%;
+  padding: var(--stoa-space-2) var(--stoa-space-3);
+  background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  border: 1px solid var(--stoa-color-border-strong); border-inline-start-width: var(--stoa-space-1);
+  border-radius: var(--stoa-radius-md);
+  font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-normal);
+  animation: stoa-toast-in var(--stoa-motion-duration-base) var(--stoa-motion-easing-enter);
+}
+.stoa-toast[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-toast__body { flex: 1; min-inline-size: 0; display: grid; gap: var(--stoa-space-1); }
+.stoa-toast__description { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-xs); }
+.stoa-toast__action { flex: none; }
+@keyframes stoa-toast-in { from { opacity: 0; } }
+
+/* The start border of a callout or a toast in the tone's colour. After both
+   components' rules, whose `border` shorthand would reset the colour. */
+.stoa-callout--info, .stoa-toast--info { border-inline-start-color: var(--stoa-color-accent); }
+.stoa-callout--positive, .stoa-toast--positive { border-inline-start-color: var(--stoa-color-up); }
+.stoa-callout--warning, .stoa-toast--warning { border-inline-start-color: var(--stoa-color-warning); }
+.stoa-callout--negative, .stoa-toast--negative { border-inline-start-color: var(--stoa-color-down); }
+
+/* PageShell: header, main and footer in a column; the skip link sits over
+   the header's start corner while it has focus, and is hidden otherwise. */
+.stoa-page-shell {
+  position: relative; display: flex; flex-direction: column; min-block-size: 100%;
+  background: var(--stoa-color-bg); color: var(--stoa-color-text);
+}
+/* The region under the header: main and the footer. With a fixed header
+   the shell is the height of the window and this region scrolls, so the
+   header never moves, the scrollbar starts below it, and the scrollbar's
+   lane is reserved whether or not the page overflows. */
+/* Positioned, so that a visually hidden live region or a popover anchored
+   inside the page is placed and clipped in this region, not in the shell,
+   where it would make the document itself scroll. */
+.stoa-page-shell__scroll { position: relative; flex: 1; display: flex; flex-direction: column; min-block-size: 0; }
+.stoa-page-shell--fixed-header { block-size: 100dvh; min-block-size: 0; }
+.stoa-page-shell--fixed-header > .stoa-page-shell__scroll { overflow-y: auto; scrollbar-gutter: stable; }
+/* A modal overlay is open: the region holds still behind it, keeping its
+   scrollbar lane, so nothing under the overlay moves. */
+.stoa-page-shell--fixed-header > .stoa-page-shell__scroll[data-scroll-locked] { overflow-y: hidden; }
+/* A Tab stop only on a page with nothing else to focus; the ring sits
+   inside the region, under the header's edge. */
+.stoa-page-shell__scroll:focus { outline: none; }
+.stoa-page-shell__scroll:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-page-shell__main { flex: 1; padding: var(--stoa-space-4); }
+/* Focus lands here from the skip link; the ring shows that it did. */
+.stoa-page-shell__main:focus { outline: none; }
+.stoa-page-shell__main:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-page-shell__footer {
+  padding: var(--stoa-space-3) var(--stoa-space-4);
+  border-block-start: 1px solid var(--stoa-color-border);
+  font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted);
+}
+.stoa-page-shell__footer a { color: inherit; }
+.stoa-skip-link {
+  position: absolute; z-index: 1;
+  inset-block-start: var(--stoa-space-2); inset-inline-start: var(--stoa-space-2);
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-sm);
+  font-size: var(--stoa-font-size-sm);
+}
+.stoa-skip-link:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-skip-link:not(:focus) {
+  inline-size: 1px; block-size: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+/* ==== Controls ==== */
+
+/* Button variants. Each sets its own hover, press and disabled rules after
+   the shared ones, for the reason given above the primary rules: a shared
+   state rule of equal specificity would otherwise win over the fill.
+   Secondary sits on the sunken surface with no border; ghost has neither
+   fill nor border until hovered, and borrows the default press; danger is
+   the primary pattern on the falling colour. */
+.stoa-button--secondary { background: var(--stoa-color-surface-sunken); border-color: transparent; }
+.stoa-button--ghost { background: transparent; border-color: transparent; }
+.stoa-button--danger { background: var(--stoa-color-down); border-color: var(--stoa-color-down); color: var(--stoa-color-surface); }
+.stoa-button--secondary[data-hovered], .stoa-button--ghost[data-hovered] { background: var(--stoa-color-surface-hover); }
+.stoa-button--secondary[data-pressed], .stoa-button--ghost[data-pressed] {
+  background: color-mix(in oklch, var(--stoa-color-surface-hover), var(--stoa-color-text) 8%);
+}
+.stoa-button--danger[data-hovered] {
+  background: color-mix(in oklch, var(--stoa-color-down), var(--stoa-color-text) 14%);
+  border-color: color-mix(in oklch, var(--stoa-color-down), var(--stoa-color-text) 14%);
+}
+.stoa-button--danger[data-pressed] {
+  background: color-mix(in oklch, var(--stoa-color-down), var(--stoa-color-text) 26%);
+  border-color: color-mix(in oklch, var(--stoa-color-down), var(--stoa-color-text) 26%);
+}
+.stoa-button--secondary[data-disabled], .stoa-button--ghost[data-disabled], .stoa-button--danger[data-disabled] {
+  background: var(--stoa-color-surface-sunken);
+  border-color: var(--stoa-color-border);
+  color: var(--stoa-color-text-subtle);
+}
+
+/* Tag: a static label. The tone colours border and text; warning keeps the
+   body text colour, as the status badge does, with the warning colour on
+   the border; accent fills the tag. */
+.stoa-tag {
+  display: inline-flex; align-items: center; gap: var(--stoa-space-1);
+  padding: 0 var(--stoa-space-1);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-sm);
+  font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium);
+  line-height: var(--stoa-font-line-height-normal); white-space: nowrap;
+  color: var(--stoa-color-text-muted);
+}
+.stoa-tag--small { font-size: var(--stoa-font-size-2xs); padding-inline: var(--stoa-space-0-5); }
+.stoa-tag--info { color: var(--stoa-color-accent); border-color: var(--stoa-color-accent); }
+.stoa-tag--positive { color: var(--stoa-color-up); border-color: var(--stoa-color-up); }
+.stoa-tag--warning { color: var(--stoa-color-text); border-color: var(--stoa-color-warning); }
+.stoa-tag--negative { color: var(--stoa-color-down); border-color: var(--stoa-color-down); }
+.stoa-tag--accent { color: var(--stoa-color-surface); background: var(--stoa-color-accent); border-color: var(--stoa-color-accent); }
+
+/* Filter chips: rounded toggle buttons with the choice states (the accent
+   fill while on), a check mark while on and an optional count. A row
+   wraps, or scrolls inside itself; the padding keeps the focus ring of an
+   edge chip inside the scrolling box, which would clip it. */
+.stoa-filter-chips {
+  display: flex; flex-wrap: wrap; gap: var(--stoa-space-1);
+  max-inline-size: 100%; min-inline-size: 0;
+}
+.stoa-filter-chips--scroll {
+  flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-inline: contain;
+  padding: calc(var(--stoa-focus-width) + var(--stoa-focus-offset));
+}
+.stoa-filter-chip {
+  display: inline-flex; align-items: center; gap: var(--stoa-space-1);
+  flex: none; white-space: nowrap; border-radius: var(--stoa-radius-full);
+  padding-inline: var(--stoa-space-3);
+}
+.stoa-filter-chip__count { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+.stoa-filter-chip--small {
+  font-size: var(--stoa-font-size-xs);
+  min-block-size: var(--stoa-space-6);
+  padding: calc(var(--stoa-space-1) / 2) var(--stoa-space-2);
+}
+
+/* Switch: a track with a thumb, the label beside it, and a note (the
+   description, or why it is disabled) under them. The thumb moves to the
+   end of the track when on, along the inline axis, so it moves left in a
+   right-to-left page. The percentage margin resolves against the track. */
+.stoa-switch, .stoa-checkbox { display: inline-grid; gap: var(--stoa-space-1); }
+.stoa-switch__button, .stoa-checkbox__button {
+  display: inline-flex; align-items: center; gap: var(--stoa-space-2);
+  min-block-size: var(--stoa-space-6); cursor: pointer; color: var(--stoa-color-text);
+}
+.stoa-switch__track {
+  display: inline-flex; align-items: center; flex: none;
+  inline-size: calc(var(--stoa-space-8) + var(--stoa-space-1));
+  block-size: calc(var(--stoa-space-4) + var(--stoa-space-1));
+  padding: var(--stoa-space-0-5);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-full);
+  background: var(--stoa-color-surface);
+  transition: background-color var(--stoa-motion-duration-fast) var(--stoa-motion-easing-standard);
+}
+.stoa-switch__thumb {
+  flex: none;
+  inline-size: calc(var(--stoa-space-3) + var(--stoa-space-0-5));
+  block-size: calc(var(--stoa-space-3) + var(--stoa-space-0-5));
+  border-radius: var(--stoa-radius-full);
+  background: var(--stoa-color-border-strong);
+  transition: margin-inline-start var(--stoa-motion-duration-fast) var(--stoa-motion-easing-standard);
+}
+.stoa-switch__button[data-hovered] .stoa-switch__track { background: var(--stoa-color-surface-hover); }
+.stoa-switch__button[data-selected] .stoa-switch__track { background: var(--stoa-color-accent); border-color: var(--stoa-color-accent); }
+.stoa-switch__button[data-selected][data-hovered] .stoa-switch__track {
+  background: color-mix(in oklch, var(--stoa-color-accent), var(--stoa-color-text) 14%);
+}
+.stoa-switch__button[data-selected] .stoa-switch__thumb {
+  background: var(--stoa-color-surface);
+  margin-inline-start: calc(100% - var(--stoa-space-3) - var(--stoa-space-0-5));
+}
+.stoa-switch__button[data-pressed] .stoa-switch__thumb { transform: scale(0.85); }
+.stoa-switch__button[data-focus-visible] .stoa-switch__track,
+.stoa-checkbox__button[data-focus-visible] .stoa-checkbox__box {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-switch__button[data-disabled], .stoa-checkbox__button[data-disabled] { color: var(--stoa-color-text-subtle); cursor: not-allowed; }
+.stoa-switch__button[data-disabled] .stoa-switch__track,
+.stoa-checkbox__button[data-disabled] .stoa-checkbox__box {
+  background: var(--stoa-color-surface-sunken); border-color: var(--stoa-color-border);
+}
+.stoa-switch__button[data-disabled] .stoa-switch__thumb { background: var(--stoa-color-border); }
+.stoa-switch--small .stoa-switch__button { font-size: var(--stoa-font-size-xs); gap: var(--stoa-space-1); }
+.stoa-switch--small .stoa-switch__track {
+  inline-size: calc(var(--stoa-space-6) + var(--stoa-space-1));
+  block-size: var(--stoa-space-4);
+}
+.stoa-switch--small .stoa-switch__thumb { inline-size: calc(var(--stoa-space-2) + var(--stoa-space-0-5)); block-size: calc(var(--stoa-space-2) + var(--stoa-space-0-5)); }
+.stoa-switch--small .stoa-switch__button[data-selected] .stoa-switch__thumb {
+  margin-inline-start: calc(100% - var(--stoa-space-2) - var(--stoa-space-0-5));
+}
+/* The note lines up with the label, past the track or the box. */
+.stoa-switch__note { padding-inline-start: calc(var(--stoa-space-8) + var(--stoa-space-1) + var(--stoa-space-2)); }
+.stoa-switch--small .stoa-switch__note { padding-inline-start: calc(var(--stoa-space-6) + var(--stoa-space-1) + var(--stoa-space-1)); }
+.stoa-checkbox__note { padding-inline-start: calc(var(--stoa-space-4) + var(--stoa-space-2)); }
+
+/* Checkbox: a box with a drawn check mark, or a bar while mixed, in the
+   surface colour on the accent fill. */
+.stoa-checkbox__box {
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: var(--stoa-space-4); block-size: var(--stoa-space-4);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-sm);
+  background: var(--stoa-color-surface); color: var(--stoa-color-surface);
+}
+.stoa-checkbox__mark { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.stoa-checkbox__button[data-hovered] .stoa-checkbox__box { background: var(--stoa-color-surface-hover); }
+.stoa-checkbox__button[data-selected] .stoa-checkbox__box,
+.stoa-checkbox__button[data-indeterminate] .stoa-checkbox__box { background: var(--stoa-color-accent); border-color: var(--stoa-color-accent); }
+.stoa-checkbox__button[data-disabled] .stoa-checkbox__box { color: var(--stoa-color-text-subtle); }
+.stoa-checkbox-group { display: grid; gap: var(--stoa-space-1); }
+.stoa-checkbox-group__items { display: grid; gap: var(--stoa-space-1); }
+
+/* Slider: the label and the value on one line, the track under them, a
+   hint under the track. It shares TimeSlider's rail and thumb, on a track
+   as tall as the minimum target, and fills the rail up to the thumb from
+   the start of the line. */
+.stoa-range { display: grid; gap: var(--stoa-space-1); min-inline-size: 0; }
+.stoa-range__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--stoa-space-3); }
+/* With the label hidden, the value still sits at the end of the line. */
+.stoa-range__output { margin-inline-start: auto; font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums; color: var(--stoa-color-text); }
+.stoa-range__track { block-size: var(--stoa-space-6); }
+.stoa-range__fill {
+  position: absolute; inset-inline-start: 0; inset-block-start: 50%;
+  block-size: var(--stoa-space-1); transform: translateY(-50%);
+  background: var(--stoa-color-accent); border-radius: var(--stoa-radius-full);
+}
+.stoa-range__thumb { border: 2px solid var(--stoa-color-surface); box-sizing: content-box; }
+.stoa-range[data-disabled] .stoa-range__label,
+.stoa-range[data-disabled] .stoa-range__output { color: var(--stoa-color-text-subtle); }
+.stoa-range[data-disabled] .stoa-range__fill,
+.stoa-range[data-disabled] .stoa-range__thumb { background: var(--stoa-color-border-strong); }
+.stoa-range--small .stoa-range__label, .stoa-range--small .stoa-range__output { font-size: var(--stoa-font-size-2xs); }
+
+/* Toolbar: one row of controls that wraps on a narrow screen, with a rule
+   between groups. A button group joins its buttons as the choice group
+   joins its options, with the same overlapping borders. */
+.stoa-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2); min-inline-size: 0; }
+.stoa-toolbar__separator {
+  align-self: stretch; inline-size: 1px; margin: 0 var(--stoa-space-1); border: 0;
+  background: var(--stoa-color-border-strong);
+}
+.stoa-button-group { display: inline-flex; padding-inline-start: 1px; }
+.stoa-button-group > .stoa-button { position: relative; border-radius: 0; margin-inline-start: -1px; }
+.stoa-button-group > .stoa-button:first-child {
+  border-start-start-radius: var(--stoa-radius-sm); border-end-start-radius: var(--stoa-radius-sm);
+}
+.stoa-button-group > .stoa-button:last-child {
+  border-start-end-radius: var(--stoa-radius-sm); border-end-end-radius: var(--stoa-radius-sm);
+}
+.stoa-button-group > .stoa-button[data-hovered] { z-index: 1; }
+.stoa-button-group > .stoa-button[data-focus-visible] { z-index: 2; }
+
+/* Kbd: a key cap on the sunken surface, in the numeric face; a
+   combination sets its keys in a row with a muted plus between them. */
+.stoa-kbd {
+  display: inline-block; min-inline-size: 1.6em; padding: 0 var(--stoa-space-1);
+  border: 1px solid var(--stoa-color-border-strong); border-block-end-width: 2px; border-radius: var(--stoa-radius-sm);
+  background: var(--stoa-color-surface-sunken); color: var(--stoa-color-text);
+  font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-2xs); font-weight: var(--stoa-font-weight-medium);
+  line-height: var(--stoa-font-line-height-normal); text-align: center; white-space: nowrap;
+}
+.stoa-kbd-combo { display: inline-flex; align-items: baseline; gap: var(--stoa-space-0-5); font: inherit; }
+.stoa-kbd-combo__plus { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-2xs); }
+/* ==== Overlays, lists and content ==== */
+
+/* Overlays: Dialog, Sheet, AlertDialog. React Aria portals them to the end
+   of the document, so they take the document's tokens. The scrim mixes
+   the darkest neutral into transparency, which darkens the page in both
+   themes; there is no semantic scrim token yet. Widths are multiples of
+   the space scale, as there are no dimension tokens. The z-index lifts the
+   overlay over the raised options of a choice group. */
+.stoa-overlay {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--stoa-space-4);
+  background: color-mix(in oklch, var(--stoa-color-neutral-1000) 50%, transparent);
+}
+.stoa-overlay[data-entering] { animation: stoa-fade-in var(--stoa-motion-duration-base) var(--stoa-motion-easing-enter); }
+@keyframes stoa-fade-in { from { opacity: 0; } }
+.stoa-modal {
+  display: flex;
+  inline-size: min(100%, calc(var(--stoa-space-12) * 12));
+  max-block-size: 100%;
+  background: var(--stoa-color-surface);
+  color: var(--stoa-color-text);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-lg);
+  font-family: var(--stoa-font-family-sans);
+  font-size: var(--stoa-font-size-sm);
+  outline: none;
+}
+.stoa-modal--alert { inline-size: min(100%, calc(var(--stoa-space-12) * 9)); }
+/* The whole dialog scrolls when it is taller than the screen; it holds the
+   close button or the actions, so the scrolling area is reachable by
+   keyboard. */
+.stoa-dialog {
+  flex: 1; min-inline-size: 0;
+  display: flex; flex-direction: column; gap: var(--stoa-space-3);
+  padding: var(--stoa-space-4);
+  overflow: auto; outline: none;
+}
+.stoa-dialog__header { display: flex; align-items: start; gap: var(--stoa-space-3); }
+.stoa-dialog__title {
+  flex: 1; margin: 0;
+  font-size: var(--stoa-font-size-md); font-weight: var(--stoa-font-weight-semibold);
+  line-height: var(--stoa-font-line-height-tight);
+}
+.stoa-dialog__close {
+  flex: none; display: inline-grid; place-items: center;
+  min-inline-size: var(--stoa-space-6); min-block-size: var(--stoa-space-6); padding: 0;
+  line-height: var(--stoa-font-line-height-tight);
+}
+.stoa-dialog__body { line-height: var(--stoa-font-line-height-normal); }
+.stoa-dialog__body > :first-child { margin-block-start: 0; }
+.stoa-dialog__body > :last-child { margin-block-end: 0; }
+.stoa-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--stoa-space-2); }
+
+/* Sheet: from the inline end, full height; or from the bottom, full
+   width. "auto" is the side panel on a wide screen and the bottom sheet on
+   a narrow one. */
+.stoa-overlay--sheet { padding: 0; justify-content: flex-end; align-items: stretch; }
+.stoa-sheet {
+  inline-size: min(100%, calc(var(--stoa-space-12) * 8));
+  border-radius: 0; border-block-width: 0; border-inline-end-width: 0;
+}
+.stoa-sheet[data-entering] { animation: stoa-slide-from-end var(--stoa-motion-duration-slow) var(--stoa-motion-easing-enter); }
+.stoa-sheet[data-entering]:dir(rtl) { animation-name: stoa-slide-from-start; }
+@keyframes stoa-slide-from-end { from { transform: translateX(100%); } }
+@keyframes stoa-slide-from-start { from { transform: translateX(-100%); } }
+@keyframes stoa-slide-from-bottom { from { transform: translateY(100%); } }
+.stoa-overlay--bottom { align-items: flex-end; }
+.stoa-sheet--bottom {
+  inline-size: 100%; max-block-size: 85%;
+  border-width: 1px 0 0;
+  border-start-start-radius: var(--stoa-radius-lg); border-start-end-radius: var(--stoa-radius-lg);
+}
+.stoa-sheet--bottom[data-entering],
+.stoa-sheet--bottom[data-entering]:dir(rtl) { animation-name: stoa-slide-from-bottom; }
+@media (max-width: 40rem) {
+  .stoa-overlay--auto { align-items: flex-end; }
+  .stoa-sheet--auto {
+    inline-size: 100%; max-block-size: 85%;
+    border-width: 1px 0 0;
+    border-start-start-radius: var(--stoa-radius-lg); border-start-end-radius: var(--stoa-radius-lg);
+  }
+  .stoa-sheet--auto[data-entering],
+  .stoa-sheet--auto[data-entering]:dir(rtl) { animation-name: stoa-slide-from-bottom; }
+}
+
+/* Keyboard shortcuts: one two-column grid per group, keys in the first. */
+.stoa-shortcuts { display: grid; gap: var(--stoa-space-4); }
+.stoa-shortcuts__title {
+  margin: 0 0 var(--stoa-space-2);
+  font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium);
+  color: var(--stoa-color-text-muted);
+}
+.stoa-shortcuts__list {
+  display: grid; grid-template-columns: auto 1fr; align-items: baseline;
+  gap: var(--stoa-space-2) var(--stoa-space-4); margin: 0;
+}
+.stoa-shortcuts__row { display: contents; }
+.stoa-shortcuts__row dd { margin: 0; }
+.stoa-shortcuts__row[data-disabled] dd { color: var(--stoa-color-text-subtle); }
+
+/* ReorderableList: rows with a drag handle, the content and the move and
+   remove buttons, each at least 24 px square (WCAG 2.5.8). */
+.stoa-reorder__list { display: grid; gap: var(--stoa-space-1); outline: none; }
+.stoa-reorder__list[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+  border-radius: var(--stoa-radius-md);
+}
+.stoa-reorder__item {
+  display: flex; align-items: center; gap: var(--stoa-space-2);
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border);
+  border-radius: var(--stoa-radius-md);
+  outline: none;
+}
+.stoa-reorder__item[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-reorder__item[data-dragging] { opacity: 0.5; }
+.stoa-reorder__drop[data-drop-target] { outline: 1px solid var(--stoa-color-accent); }
+.stoa-reorder__handle {
+  flex: none; align-self: stretch;
+  min-inline-size: var(--stoa-space-6); padding: 0;
+  font: inherit; color: var(--stoa-color-text-muted);
+  background: transparent; border: 0; border-radius: var(--stoa-radius-sm);
+  cursor: grab;
+}
+.stoa-reorder__handle[data-focus-visible] {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-reorder__content { flex: 1; min-inline-size: 0; }
+.stoa-reorder__controls { flex: none; display: flex; gap: var(--stoa-space-1); }
+.stoa-reorder__move, .stoa-reorder__remove {
+  display: inline-grid; place-items: center;
+  min-inline-size: var(--stoa-space-6); min-block-size: var(--stoa-space-6); padding: 0;
+  line-height: var(--stoa-font-line-height-tight);
+}
+.stoa-reorder__move--up .stoa-chevron { transform: rotate(180deg); }
+.stoa-reorder__empty { display: block; padding: var(--stoa-space-2); color: var(--stoa-color-text-muted); }
+
+/* StepList: a number, then the title with its status, and an optional
+   explanation, progress bar and actions. The status symbol takes the
+   tone's colour; the word stays muted, except for an error. */
+.stoa-steps { display: grid; gap: var(--stoa-space-2); margin: 0; padding: 0; list-style: none; }
+.stoa-step, .stoa-steps__row { display: flex; align-items: start; gap: var(--stoa-space-3); }
+.stoa-steps__row { flex: 1; }
+.stoa-step__number {
+  flex: none; display: inline-grid; place-items: center;
+  min-inline-size: var(--stoa-space-6); block-size: var(--stoa-space-6);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-full);
+  font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums;
+  color: var(--stoa-color-text-muted);
+}
+.stoa-step__main { flex: 1; min-inline-size: 0; display: grid; gap: var(--stoa-space-1); }
+.stoa-step__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-2); min-block-size: var(--stoa-space-6); }
+.stoa-step__title { font-weight: var(--stoa-font-weight-medium); }
+.stoa-step--skipped .stoa-step__title, .stoa-step--undone .stoa-step__title { color: var(--stoa-color-text-muted); font-weight: var(--stoa-font-weight-regular); }
+.stoa-step__status { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-step__symbol { display: inline-block; }
+.stoa-step__status--running .stoa-step__symbol { color: var(--stoa-color-accent); }
+.stoa-step__status--done .stoa-step__symbol { color: var(--stoa-color-up); }
+.stoa-step__status--awaiting .stoa-step__symbol { color: var(--stoa-color-warning); }
+.stoa-step__status--error { color: var(--stoa-color-down); }
+/* A running step's symbol breathes in size, not in opacity, so its
+   contrast never drops; it stands still under reduced motion, which sets
+   the duration token to zero. */
+.stoa-step__status--running .stoa-step__symbol {
+  animation: stoa-pulse var(--stoa-motion-duration-flash) var(--stoa-motion-easing-standard) infinite alternate;
+}
+@keyframes stoa-pulse { to { transform: scale(0.75); } }
+.stoa-step__explanation { font-size: var(--stoa-font-size-sm); color: var(--stoa-color-text-muted); }
+.stoa-step__progress { display: flex; align-items: center; gap: var(--stoa-space-2); }
+.stoa-step__track {
+  flex: 1; block-size: var(--stoa-space-2); overflow: hidden;
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-full);
+}
+.stoa-step__fill {
+  display: block; block-size: 100%; background: var(--stoa-color-accent);
+  transition: inline-size var(--stoa-motion-duration-base) var(--stoa-motion-easing-standard);
+}
+.stoa-step__value {
+  min-inline-size: 5ch; text-align: end;
+  font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums;
+  color: var(--stoa-color-text-muted);
+}
+.stoa-step__actions { display: flex; flex-wrap: wrap; gap: var(--stoa-space-2); }
+
+/* LogView and CodeView: a label, the Copy button and its status, and a
+   scroll area as tall as `--code-lines` lines (set by the component). The
+   area is always left to right; its start is the left edge. */
+.stoa-code { --code-lines: 20; --code-digits: 2; display: grid; gap: var(--stoa-space-1); min-inline-size: 0; }
+.stoa-code__bar { display: flex; align-items: center; gap: var(--stoa-space-2); }
+.stoa-code__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-code__status { flex: 1; text-align: end; font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-code__copy, .stoa-code__jump {
+  font-size: var(--stoa-font-size-xs);
+  min-block-size: var(--stoa-space-6);
+  padding: calc(var(--stoa-space-1) / 2) calc(var(--stoa-space-1) * 1.5);
+}
+.stoa-code__scroll {
+  margin: 0;
+  padding: var(--stoa-space-2) var(--stoa-space-3);
+  max-block-size: calc(var(--code-lines) * var(--stoa-font-line-height-normal) * 1em + 2 * var(--stoa-space-2));
+  overflow: auto;
+  font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs);
+  line-height: var(--stoa-font-line-height-normal);
+  text-align: start;
+  background: var(--stoa-color-surface-sunken); color: var(--stoa-color-text);
+  border: 1px solid var(--stoa-color-border); border-radius: var(--stoa-radius-md);
+}
+/* A log's long line wraps inside the log, so nothing runs off its side: a
+   right-to-left message would otherwise lose its start beyond the edge.
+   Code keeps its lines whole and scrolls sideways. */
+.stoa-code--log .stoa-code__scroll { white-space: pre-wrap; overflow-wrap: anywhere; }
+.stoa-code__scroll:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-code__number {
+  display: inline-block; min-inline-size: calc(var(--code-digits) * 1ch);
+  margin-inline-end: var(--stoa-space-3);
+  text-align: end; color: var(--stoa-color-text-muted);
+  user-select: none;
+}
+.stoa-code__time, .stoa-code__level { color: var(--stoa-color-text-muted); }
+/* A message given as a line's part is words, in the sans face: running
+   Arabic text is never set in the monospace face. */
+.stoa-code__message { font-family: var(--stoa-font-family-sans); }
+
+/* Metric: label, value with its unit, threshold and basis. Numbers are in
+   the numeric face, whose Arabic-Indic digits are tabular too. Inside a
+   StatBar it takes the bar's size. */
+/* RecordList: the rows of a master-detail list. The picked row has a bar
+   at its start edge and a heavier name; a hovered or focused row the
+   sunken fill. */
+.stoa-record-list {
+  display: grid; margin: 0; padding: 0; outline: none;
+  font-size: var(--stoa-density-font-size);
+}
+.stoa-record-list[data-focus-visible] { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: var(--stoa-focus-offset); }
+.stoa-record-list__row {
+  display: flex; align-items: center; gap: var(--stoa-space-3);
+  min-block-size: var(--stoa-density-row-height);
+  padding: var(--stoa-space-1) var(--stoa-space-3);
+  border-inline-start: var(--stoa-space-1) solid transparent;
+  border-block-end: 1px solid var(--stoa-color-border);
+  cursor: pointer; outline: none;
+}
+.stoa-record-list__row[data-hovered], .stoa-record-list__row[data-focused] { background: var(--stoa-color-surface-sunken); }
+.stoa-record-list__row[data-selected] { border-inline-start-color: var(--stoa-color-accent); }
+.stoa-record-list__row[data-selected] .stoa-record-list__label { font-weight: var(--stoa-font-weight-semibold); }
+.stoa-record-list__row[data-focus-visible] { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: calc(-1 * var(--stoa-focus-width)); }
+.stoa-record-list__row[data-disabled] { color: var(--stoa-color-text-subtle); cursor: not-allowed; }
+.stoa-record-list__text { display: grid; flex: 1; min-inline-size: 0; }
+.stoa-record-list__label { overflow-wrap: anywhere; }
+.stoa-record-list__description { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-record-list__row[data-disabled] .stoa-record-list__description { color: inherit; }
+.stoa-record-list__meta { flex: none; font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+.stoa-record-list__empty { padding: var(--stoa-space-3); color: var(--stoa-color-text-muted); }
+
+/* DescriptionList: terms and values of a read-only record, in the
+   density's type size. In columns, every pair shares one grid, so the
+   values line up after the longest term. */
+.stoa-description-list {
+  display: grid; margin: 0;
+  font-size: var(--stoa-density-font-size); line-height: var(--stoa-font-line-height-normal);
+}
+.stoa-description-list--columns { grid-template-columns: max-content minmax(0, 1fr); gap: var(--stoa-space-1) var(--stoa-space-4); }
+.stoa-description-list--columns .stoa-description-list__item { display: contents; }
+.stoa-description-list--stacked { gap: var(--stoa-space-2); }
+.stoa-description-list--stacked .stoa-description-list__item { display: grid; gap: calc(var(--stoa-space-1) / 2); }
+.stoa-description-list__term { color: var(--stoa-color-text-muted); }
+/* A value takes its own direction (dir="auto") but is aligned by the
+   list's: match-parent reads start and end in the parent's direction.
+   Chromium and WebKit apply only the prefixed keyword (Chromium computes
+   the plain one to start); Firefox takes the plain one. */
+.stoa-description-list__value {
+  margin: 0; min-inline-size: 0; overflow-wrap: anywhere;
+  text-align: match-parent; text-align: -webkit-match-parent;
+}
+.stoa-description-list__value--numeric { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+
+/* Ltr: a left-to-right run inside a sentence; the bdi isolates it. */
+.stoa-ltr--mono { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+
+.stoa-metric { display: grid; gap: var(--stoa-space-1); margin: 0; }
+.stoa-metric dd { margin: 0; }
+.stoa-metric__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-metric__number { font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xl); font-variant-numeric: tabular-nums; }
+.stoa-metric__unit { font-size: var(--stoa-font-size-sm); color: var(--stoa-color-text-muted); }
+.stoa-metric__basis { font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted); }
+.stoa-statbar__item--metric .stoa-metric__label,
+.stoa-statbar__item--metric .stoa-metric__number,
+.stoa-statbar__item--metric .stoa-metric__unit,
+.stoa-statbar__item--metric .stoa-metric__basis,
+.stoa-statbar__item--metric .stoa-badge { font-size: inherit; }
+/* ==== Table and charts ==== */
+
+/* Table: a table larger than its box scrolls inside this region, never
+   the page; the region is a tab stop only while it scrolls (Table.tsx). */
+.stoa-table-region { overflow: auto; max-inline-size: 100%; }
+.stoa-table-region:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-table__caption {
+  caption-side: top; text-align: start;
+  padding-block-end: var(--stoa-space-2); padding-inline: var(--stoa-density-cell-padding-x);
+  font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium);
+  color: var(--stoa-color-text);
+}
+/* A row header names its row, so it stays on one line; a table too wide
+   for that scrolls inside its region. */
+.stoa-table th[scope="row"] { color: var(--stoa-color-text); border-block-end: 0; white-space: nowrap; }
+.stoa-table__cell--center, .stoa-table th.stoa-table__cell--center { text-align: center; }
+.stoa-table__cell--end, .stoa-table th.stoa-table__cell--end { text-align: end; }
+.stoa-table td.stoa-num, .stoa-table th.stoa-num { white-space: nowrap; }
+/* Sticky cells need an opaque fill or the rows scrolling under them show
+   through. A table sits on a panel's surface. */
+.stoa-table--sticky-header thead th {
+  position: sticky; inset-block-start: 0; z-index: 1;
+  background: var(--stoa-color-surface);
+}
+.stoa-table--sticky-first th:first-child, .stoa-table--sticky-first td:first-child {
+  position: sticky; inset-inline-start: 0; white-space: nowrap;
+  background: var(--stoa-color-surface);
+}
+.stoa-table--sticky-header.stoa-table--sticky-first thead th:first-child { z-index: 2; }
+
+/* Charts: SVG drawn in CSS pixels at the element's real width. Strokes and
+   fills come from the semantic colour tokens, so the theme switches them
+   without a redraw. The SVG's own direction is left to right because its
+   coordinates are; the time axis direction is a prop (LineChart.tsx). */
+.stoa-chart, .stoa-event-strip { margin: 0; min-inline-size: 0; }
+.stoa-chart__plot, .stoa-event-strip__plot { position: relative; font-size: var(--stoa-font-size-2xs); }
+.stoa-chart__svg { display: block; inline-size: 100%; overflow: visible; direction: ltr; }
+.stoa-chart__axis-label {
+  margin: 0 0 var(--stoa-space-1);
+  font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted);
+}
+.stoa-chart__tick { fill: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-2xs); }
+.stoa-chart__grid { stroke: var(--stoa-color-border); stroke-width: 1; }
+.stoa-chart__axis { stroke: var(--stoa-color-border-strong); stroke-width: 1; }
+.stoa-chart__line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: butt; }
+.stoa-chart__line--accent { stroke: var(--stoa-color-accent); }
+.stoa-chart__line--neutral { stroke: var(--stoa-color-text-muted); }
+.stoa-chart__line--warning { stroke: var(--stoa-color-warning); }
+.stoa-chart__line--up { stroke: var(--stoa-color-up); }
+.stoa-chart__line--down { stroke: var(--stoa-color-down); }
+.stoa-chart__dot--accent { fill: var(--stoa-color-accent); }
+.stoa-chart__dot--neutral { fill: var(--stoa-color-text-muted); }
+.stoa-chart__dot--warning { fill: var(--stoa-color-warning); }
+.stoa-chart__dot--up { fill: var(--stoa-color-up); }
+.stoa-chart__dot--down { fill: var(--stoa-color-down); }
+.stoa-chart__empty {
+  display: grid; place-items: center; block-size: 100%; margin: 0;
+  color: var(--stoa-color-text-muted); font-size: var(--stoa-density-font-size);
+}
+.stoa-chart__legend {
+  display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-4);
+  margin: var(--stoa-space-2) 0 0; padding: 0; list-style: none;
+  font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text);
+}
+.stoa-chart__legend-item { display: inline-flex; align-items: center; gap: var(--stoa-space-1); }
+.stoa-chart__swatch, .stoa-event-strip__swatch { flex: none; }
+.stoa-chart__note { margin: var(--stoa-space-1) 0 0; font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-chart__data { margin-block-start: var(--stoa-space-2); }
+
+/* EventStrip markers: shape tells the kind, the legend names it. */
+.stoa-event-strip__mark--coupon { stroke: var(--stoa-color-text-muted); stroke-width: 1.5; }
+.stoa-event-strip__mark--amortisation { fill: var(--stoa-color-accent); }
+.stoa-event-strip__mark--offer { fill: var(--stoa-color-warning); }
+.stoa-event-strip__mark--maturity { fill: var(--stoa-color-text); }
+/* ==== DataGrid ==== */
+/* The wrapper holds the scrolling grid, the overlays for the loading and
+   empty states, and the live region. It is fifteen rows and a header
+   tall unless a class sizes it. The component places rows by translateY
+   (index times the measured row height); pinned cells stick to the start
+   edge and the others sit at their column's offset by
+   inset-inline-start, so the grid mirrors in a right-to-left page without
+   overrides. */
+.stoa-data-grid {
+  position: relative;
+  block-size: calc(var(--stoa-density-row-height) * 16);
+  border: 1px solid var(--stoa-color-border);
+  border-radius: var(--stoa-radius-md);
+  overflow: hidden;
+  background: var(--stoa-color-surface);
+  color: var(--stoa-color-text);
+  font-size: var(--stoa-density-font-size);
+}
+.stoa-data-grid__scroller { position: relative; block-size: 100%; overflow: auto; overscroll-behavior: contain; outline: none; }
+.stoa-data-grid__head { position: sticky; inset-block-start: 0; z-index: 3; }
+.stoa-data-grid__body { position: relative; }
+.stoa-data-grid__row {
+  position: absolute; inset-block-start: 0; inset-inline-start: 0;
+  display: flex; block-size: var(--stoa-density-row-height);
+}
+.stoa-data-grid__row--head { position: relative; }
+/* A row being edited, and its editor, sit above the rows after it. */
+.stoa-data-grid__row[data-editing] { z-index: 2; }
+.stoa-data-grid__cell {
+  box-sizing: border-box; display: flex; align-items: center; flex: none; block-size: 100%;
+  padding-inline: var(--stoa-density-cell-padding-x);
+  overflow: hidden; white-space: nowrap;
+  border-block-end: 1px solid var(--stoa-color-border);
+  background: var(--stoa-color-surface);
+  outline: none;
+}
+.stoa-data-grid__cell--pinned { position: sticky; z-index: 1; }
+.stoa-data-grid__cell--center { position: absolute; inset-block-start: 0; }
+.stoa-data-grid__cell--pin-edge { border-inline-end: 1px solid var(--stoa-color-border-strong); }
+.stoa-data-grid__cell--end { justify-content: flex-end; }
+.stoa-data-grid__cell--num { justify-content: flex-end; font-variant-numeric: tabular-nums; }
+.stoa-data-grid__cell--mono { font-family: var(--stoa-font-family-mono); }
+.stoa-data-grid__cell--select { justify-content: center; padding-inline: 0; }
+.stoa-data-grid__cell[data-editing] { overflow: visible; z-index: 2; padding-inline: 0; }
+.stoa-data-grid__cell:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-data-grid__text { overflow: hidden; text-overflow: ellipsis; }
+.stoa-data-grid__row--head .stoa-data-grid__cell {
+  gap: var(--stoa-space-1);
+  background: var(--stoa-color-surface-sunken);
+  color: var(--stoa-color-text-muted);
+  font-weight: var(--stoa-font-weight-medium);
+  border-block-end-color: var(--stoa-color-border-strong);
+}
+.stoa-data-grid__cell--sortable { cursor: pointer; user-select: none; }
+.stoa-data-grid__sort { color: var(--stoa-color-accent); }
+.stoa-data-grid__sort--ascending { transform: rotate(180deg); }
+/* A selected row: the hover fill (body text on it is a checked pair), the
+   checked box, and an accent bar at the start of the row, so the state is
+   never told by the fill alone. */
+.stoa-data-grid__row[data-selected] > .stoa-data-grid__cell { background: var(--stoa-color-surface-hover); }
+.stoa-data-grid__row[data-selected] > .stoa-data-grid__cell--select {
+  border-inline-start: var(--stoa-focus-width) solid var(--stoa-color-accent);
+}
+.stoa-data-grid__checkbox { margin: 0; accent-color: var(--stoa-color-accent); cursor: pointer; }
+/* A search match: weight and an accent underline, no new fill colour. */
+.stoa-data-grid__mark {
+  background: none; color: inherit;
+  font-weight: var(--stoa-font-weight-semibold);
+  text-decoration: underline var(--stoa-focus-width) var(--stoa-color-accent);
+  text-underline-offset: var(--stoa-space-0-5);
+}
+.stoa-data-grid__editor { position: relative; display: flex; align-items: center; inline-size: 100%; block-size: 100%; }
+.stoa-data-grid__editor > .stoa-data-grid__text { padding-inline: var(--stoa-density-cell-padding-x); }
+.stoa-data-grid__input {
+  box-sizing: border-box; inline-size: 100%; block-size: 100%; min-inline-size: 0;
+  font: inherit; padding-inline: var(--stoa-density-cell-padding-x);
+  border: 1px solid var(--stoa-color-border-strong); border-radius: 0;
+  background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-data-grid__input[aria-invalid="true"] { border-color: var(--stoa-color-down); }
+.stoa-data-grid__popover {
+  position: absolute; inset-inline-start: 0; inset-block-start: 100%;
+  min-inline-size: 100%; z-index: 2;
+  background: var(--stoa-color-surface);
+  border: 1px solid var(--stoa-color-border-strong);
+  border-radius: var(--stoa-radius-sm);
+  font-family: var(--stoa-font-family-sans);
+}
+.stoa-data-grid__popover[data-placement="above"] { inset-block-start: auto; inset-block-end: 100%; }
+.stoa-data-grid__listbox { padding-block: var(--stoa-space-1); outline: none; }
+.stoa-data-grid__listbox:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}
+.stoa-data-grid__option {
+  padding: var(--stoa-space-1) var(--stoa-space-3); cursor: pointer; white-space: nowrap;
+  border-inline-start: var(--stoa-focus-width) solid transparent;
+}
+.stoa-data-grid__option[aria-selected="true"] {
+  background: var(--stoa-color-surface-hover);
+  border-inline-start-color: var(--stoa-color-accent);
+  font-weight: var(--stoa-font-weight-medium);
+}
+.stoa-data-grid__error {
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  background: var(--stoa-color-surface);
+  border-block-start: 1px solid var(--stoa-color-border);
+  color: var(--stoa-color-down);
+  font-family: var(--stoa-font-family-sans);
+  font-size: var(--stoa-font-size-xs);
+  white-space: normal;
+}
+.stoa-data-grid__editor > .stoa-data-grid__error {
+  position: absolute; inset-inline-start: 0; inset-block-start: 100%; min-inline-size: 100%;
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-sm);
+}
+/* Loading and empty states sit under the header, over the empty body. */
+.stoa-data-grid__overlay {
+  position: absolute; inset-inline: 0; inset-block-end: 0;
+  inset-block-start: var(--stoa-density-row-height);
+  display: grid; align-content: start; gap: var(--stoa-space-2);
+  padding: var(--stoa-space-3);
+}
+.stoa-data-grid__empty { color: var(--stoa-color-text-muted); justify-items: center; }
+.stoa-data-grid__skeleton {
+  display: block; block-size: calc(var(--stoa-density-row-height) / 2);
+  border-radius: var(--stoa-radius-sm);
+  background: var(--stoa-color-surface-hover);
+  animation: stoa-data-grid-pulse calc(var(--stoa-motion-duration-slow) * 5) var(--stoa-motion-easing-standard) infinite alternate;
+}
+@keyframes stoa-data-grid-pulse {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}

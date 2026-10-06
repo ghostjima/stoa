@@ -1,0 +1,439 @@
+{
+  "name": "stoa-default",
+  "savedAt": "2026-10-03T17:35:04.000Z",
+  "commit": "1013a82dd2b9c52c6595cbf852b5fe86cbe32f0e",
+  "dirty": false,
+  "base": "stoa-default: the token files of packages/tokens at this commit",
+  "overrides": {},
+  "tokens": {
+    "primitive.json": {
+      "color": {
+        "$type": "color",
+        "neutral": {
+          "0": {
+            "$value": "oklch(1 0 0)"
+          },
+          "50": {
+            "$value": "oklch(0.985 0.002 250)"
+          },
+          "100": {
+            "$value": "oklch(0.967 0.003 250)"
+          },
+          "150": {
+            "$value": "oklch(0.94 0.004 250)"
+          },
+          "200": {
+            "$value": "oklch(0.92 0.005 250)"
+          },
+          "300": {
+            "$value": "oklch(0.87 0.007 250)"
+          },
+          "400": {
+            "$value": "oklch(0.71 0.01 250)"
+          },
+          "450": {
+            "$value": "oklch(0.64 0.011 250)"
+          },
+          "500": {
+            "$value": "oklch(0.55 0.012 250)"
+          },
+          "600": {
+            "$value": "oklch(0.45 0.012 250)"
+          },
+          "700": {
+            "$value": "oklch(0.37 0.012 250)"
+          },
+          "800": {
+            "$value": "oklch(0.28 0.01 250)"
+          },
+          "850": {
+            "$value": "oklch(0.235 0.009 250)"
+          },
+          "900": {
+            "$value": "oklch(0.205 0.008 250)"
+          },
+          "950": {
+            "$value": "oklch(0.16 0.007 250)"
+          },
+          "1000": {
+            "$value": "oklch(0.13 0.006 250)"
+          }
+        },
+        "blue": {
+          "400": {
+            "$value": "oklch(0.7 0.13 255)"
+          },
+          "500": {
+            "$value": "oklch(0.6 0.17 255)"
+          },
+          "600": {
+            "$value": "oklch(0.52 0.17 255)"
+          }
+        },
+        "teal": {
+          "400": {
+            "$value": "oklch(0.74 0.12 170)"
+          },
+          "600": {
+            "$value": "oklch(0.53 0.11 170)"
+          },
+          "wash": {
+            "$value": "oklch(0.62 0.13 170 / 0.18)"
+          }
+        },
+        "red": {
+          "400": {
+            "$value": "oklch(0.72 0.15 32)"
+          },
+          "600": {
+            "$value": "oklch(0.56 0.18 30)"
+          },
+          "wash": {
+            "$value": "oklch(0.6 0.18 30 / 0.18)"
+          }
+        },
+        "amber": {
+          "500": {
+            "$value": "oklch(0.78 0.15 80)"
+          },
+          "700": {
+            "$value": "oklch(0.55 0.12 65)"
+          }
+        }
+      },
+      "font": {
+        "family": {
+          "$type": "fontFamily",
+          "sans": {
+            "$value": [
+              "IBM Plex Sans",
+              "IBM Plex Sans Arabic",
+              "system-ui",
+              "sans-serif"
+            ]
+          },
+          "mono": {
+            "$value": [
+              "IBM Plex Mono",
+              "Noto Sans Arabic",
+              "ui-monospace",
+              "monospace"
+            ]
+          }
+        },
+        "size": {
+          "$type": "dimension",
+          "2xs": {
+            "$value": "11px"
+          },
+          "xs": {
+            "$value": "12px"
+          },
+          "sm": {
+            "$value": "13px"
+          },
+          "md": {
+            "$value": "14px"
+          },
+          "lg": {
+            "$value": "16px"
+          },
+          "xl": {
+            "$value": "20px"
+          },
+          "2xl": {
+            "$value": "24px"
+          }
+        },
+        "weight": {
+          "$type": "fontWeight",
+          "regular": {
+            "$value": 400
+          },
+          "medium": {
+            "$value": 500
+          },
+          "semibold": {
+            "$value": 600
+          }
+        },
+        "line-height": {
+          "$type": "number",
+          "tight": {
+            "$value": 1.25
+          },
+          "normal": {
+            "$value": 1.45
+          }
+        }
+      },
+      "space": {
+        "$type": "dimension",
+        "0": {
+          "$value": "0px"
+        },
+        "0-5": {
+          "$value": "2px"
+        },
+        "1": {
+          "$value": "4px"
+        },
+        "2": {
+          "$value": "8px"
+        },
+        "3": {
+          "$value": "12px"
+        },
+        "4": {
+          "$value": "16px"
+        },
+        "6": {
+          "$value": "24px"
+        },
+        "8": {
+          "$value": "32px"
+        },
+        "12": {
+          "$value": "48px"
+        }
+      },
+      "radius": {
+        "$type": "dimension",
+        "none": {
+          "$value": "0px"
+        },
+        "sm": {
+          "$value": "2px"
+        },
+        "md": {
+          "$value": "4px"
+        },
+        "lg": {
+          "$value": "8px"
+        },
+        "full": {
+          "$value": "9999px"
+        }
+      },
+      "motion": {
+        "duration": {
+          "$type": "duration",
+          "instant": {
+            "$value": "0ms"
+          },
+          "fast": {
+            "$value": "80ms"
+          },
+          "base": {
+            "$value": "160ms"
+          },
+          "slow": {
+            "$value": "240ms"
+          },
+          "flash": {
+            "$value": "600ms"
+          }
+        },
+        "easing": {
+          "$type": "cubicBezier",
+          "standard": {
+            "$value": [
+              0.2,
+              0,
+              0,
+              1
+            ]
+          },
+          "enter": {
+            "$value": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          "exit": {
+            "$value": [
+              0.3,
+              0,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "focus": {
+        "width": {
+          "$type": "dimension",
+          "$value": "2px"
+        },
+        "offset": {
+          "$type": "dimension",
+          "$value": "2px"
+        }
+      }
+    },
+    "semantic.light.json": {
+      "color": {
+        "$type": "color",
+        "bg": {
+          "$value": "{color.neutral.50}"
+        },
+        "surface": {
+          "$value": "{color.neutral.0}"
+        },
+        "surface-sunken": {
+          "$value": "{color.neutral.100}"
+        },
+        "surface-hover": {
+          "$value": "{color.neutral.150}"
+        },
+        "border": {
+          "$value": "{color.neutral.200}"
+        },
+        "border-strong": {
+          "$value": "{color.neutral.450}"
+        },
+        "text": {
+          "$value": "{color.neutral.950}"
+        },
+        "text-muted": {
+          "$value": "{color.neutral.600}"
+        },
+        "text-subtle": {
+          "$value": "{color.neutral.500}"
+        },
+        "accent": {
+          "$value": "{color.blue.600}"
+        },
+        "focus": {
+          "$value": "{color.blue.500}"
+        },
+        "up": {
+          "$value": "{color.teal.600}"
+        },
+        "down": {
+          "$value": "{color.red.600}"
+        },
+        "bid": {
+          "$value": "{color.teal.600}"
+        },
+        "ask": {
+          "$value": "{color.red.600}"
+        },
+        "up-wash": {
+          "$value": "{color.teal.wash}"
+        },
+        "down-wash": {
+          "$value": "{color.red.wash}"
+        },
+        "warning": {
+          "$value": "{color.amber.700}"
+        }
+      }
+    },
+    "semantic.dark.json": {
+      "color": {
+        "$type": "color",
+        "bg": {
+          "$value": "{color.neutral.1000}"
+        },
+        "surface": {
+          "$value": "{color.neutral.950}"
+        },
+        "surface-sunken": {
+          "$value": "oklch(0.11 0.005 250)"
+        },
+        "surface-hover": {
+          "$value": "{color.neutral.900}"
+        },
+        "border": {
+          "$value": "{color.neutral.850}"
+        },
+        "border-strong": {
+          "$value": "{color.neutral.500}"
+        },
+        "text": {
+          "$value": "{color.neutral.100}"
+        },
+        "text-muted": {
+          "$value": "{color.neutral.400}"
+        },
+        "text-subtle": {
+          "$value": "{color.neutral.450}"
+        },
+        "accent": {
+          "$value": "{color.blue.400}"
+        },
+        "focus": {
+          "$value": "{color.blue.400}"
+        },
+        "up": {
+          "$value": "{color.teal.400}"
+        },
+        "down": {
+          "$value": "{color.red.400}"
+        },
+        "bid": {
+          "$value": "{color.teal.400}"
+        },
+        "ask": {
+          "$value": "{color.red.400}"
+        },
+        "up-wash": {
+          "$value": "{color.teal.wash}"
+        },
+        "down-wash": {
+          "$value": "{color.red.wash}"
+        },
+        "warning": {
+          "$value": "{color.amber.500}"
+        }
+      }
+    },
+    "density.json": {
+      "compact": {
+        "row-height": {
+          "$type": "dimension",
+          "$value": "24px"
+        },
+        "cell-padding-x": {
+          "$type": "dimension",
+          "$value": "6px"
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": "12px"
+        }
+      },
+      "regular": {
+        "row-height": {
+          "$type": "dimension",
+          "$value": "28px"
+        },
+        "cell-padding-x": {
+          "$type": "dimension",
+          "$value": "8px"
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": "13px"
+        }
+      },
+      "comfortable": {
+        "row-height": {
+          "$type": "dimension",
+          "$value": "36px"
+        },
+        "cell-padding-x": {
+          "$type": "dimension",
+          "$value": "12px"
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": "14px"
+        }
+      }
+    }
+  }
+}

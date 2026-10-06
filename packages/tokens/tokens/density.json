@@ -1,0 +1,17 @@
+{
+  "compact": {
+    "row-height": { "$type": "dimension", "$value": "24px" },
+    "cell-padding-x": { "$type": "dimension", "$value": "6px" },
+    "font-size": { "$type": "dimension", "$value": "12px" }
+  },
+  "regular": {
+    "row-height": { "$type": "dimension", "$value": "28px" },
+    "cell-padding-x": { "$type": "dimension", "$value": "8px" },
+    "font-size": { "$type": "dimension", "$value": "13px" }
+  },
+  "comfortable": {
+    "row-height": { "$type": "dimension", "$value": "36px" },
+    "cell-padding-x": { "$type": "dimension", "$value": "12px" },
+    "font-size": { "$type": "dimension", "$value": "14px" }
+  }
+}

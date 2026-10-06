@@ -7,36 +7,28 @@
 // `persist: false` keeps its choice in its own state only, for a preview
 // frame that must not change the page's URL or the next visit.
 //
-// Before first paint: call `applyTheme(readThemeChoice())` and
+// Before first paint: inline `firstPaintScript(config)` (firstPaint.ts)
+// into index.html's head, and read the same choices at run time with
+// `useAppPreferences(config)`, so a dark page does not flash light and an
+// Arabic one does not flash left to right. Without the inline script,
+// call `applyTheme(readThemeChoice())` and
 // `applyLanguage(readLanguage(languages))` before rendering (in main.tsx,
-// before createRoot), so a dark page does not flash light and an Arabic
-// one does not flash left to right. The hooks read the same values and
-// apply each change in a layout effect, before the browser paints it.
+// before createRoot), which is later than the first paint of the HTML.
+// The hooks read the same values and apply each change in a layout
+// effect, before the browser paints it.
 import { useEffect, useLayoutEffect, useState } from "react";
 import { ChoiceGroup } from "./Controls";
+import { LANGUAGE_STORE, THEME_STORE, directionOf, withDefaults, type FirstPaintConfig, type PreferenceStore } from "./firstPaint";
 import { useStoaFormat } from "./locale";
+
+export { directionOf, type PreferenceStore } from "./firstPaint";
 
 export type Theme = "light" | "dark";
 /** "system" is no choice: no data-theme on <html>, and tokens.css follows
  * the system's prefers-color-scheme. */
 export type ThemeChoice = "system" | Theme;
 
-export type PreferenceStore = {
-  /** The URL parameter that carries the choice. */
-  param?: string;
-  /** The localStorage key that keeps it. Give each application its own. */
-  storageKey?: string;
-};
-
 const DARK_QUERY = "(prefers-color-scheme: dark)";
-const THEME_STORE = { param: "theme", storageKey: "stoa-theme" };
-const LANGUAGE_STORE = { param: "lang", storageKey: "stoa-lang" };
-
-/** The store's names, with the defaults for any left out or undefined
- * (a spread would let an undefined `storageKey` replace the default). */
-function withDefaults(defaults: Required<PreferenceStore>, store: PreferenceStore): Required<PreferenceStore> {
-  return { param: store.param ?? defaults.param, storageKey: store.storageKey ?? defaults.storageKey };
-}
 
 const hasWindow = () => typeof window !== "undefined";
 
@@ -152,14 +144,6 @@ export function useThemePreference({
   };
 }
 
-const RTL_LANGUAGES = new Set(["ar", "arc", "ckb", "dv", "fa", "he", "ps", "sd", "ug", "ur", "yi"]);
-
-/** The writing direction of a language tag: right to left for Arabic,
- * Hebrew, Persian, Urdu and the other right-to-left scripts' languages. */
-export function directionOf(language: string): "ltr" | "rtl" {
-  return RTL_LANGUAGES.has(language.split("-")[0]?.toLowerCase() ?? "") ? "rtl" : "ltr";
-}
-
 /** The language chosen in the URL, else in storage, if it is one of
  * `languages`; else the first of them. */
 export function readLanguage(languages: string[], store: PreferenceStore = {}): string {
@@ -218,6 +202,33 @@ export function useLanguagePreference({
       setLanguageState(next);
     },
   };
+}
+
+export type AppPreferences = {
+  language: LanguagePreference;
+  theme: ThemePreference;
+};
+
+/** The language and the theme of an application, read from and kept in
+ * the places its FirstPaintConfig names, the same config its index.html
+ * inlines `firstPaintScript` with, so the first paint and the running
+ * application agree. Applied to <html lang dir data-theme>. An application
+ * without a theme switch (`theme: false`) still gets a ThemePreference,
+ * which stays on "system" and keeps nothing. */
+export function useAppPreferences(config: FirstPaintConfig): AppPreferences {
+  const language = useLanguagePreference({
+    languages: config.languages,
+    defaultLanguage: config.defaultLanguage,
+    ...withDefaults(LANGUAGE_STORE, config.language),
+  });
+  const themed = config.theme === false ? null : (config.theme ?? {});
+  const theme = useThemePreference({
+    ...(themed ? withDefaults(THEME_STORE, themed) : {}),
+    defaultChoice: themed?.defaultChoice ?? "system",
+    apply: themed !== null,
+    persist: themed !== null,
+  });
+  return { language, theme };
 }
 
 export type ThemeSwitchProps = {

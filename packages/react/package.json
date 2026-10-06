@@ -20,6 +20,10 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./first-paint": {
+      "types": "./dist/firstPaint.d.ts",
+      "default": "./dist/firstPaint.js"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {

@@ -94,8 +94,10 @@ export {
   readLanguage,
   readThemeChoice,
   systemTheme,
+  useAppPreferences,
   useLanguagePreference,
   useThemePreference,
+  type AppPreferences,
   type LanguagePreference,
   type LanguageSwitchProps,
   type PreferenceOptions,
@@ -105,6 +107,19 @@ export {
   type ThemePreference,
   type ThemeSwitchProps,
 } from "./Preferences";
+// Application helpers: the first paint, formatters and breakpoints.
+export { firstPaintScript, preloadFonts, type FirstPaintConfig, type FirstPaintThemeChoice } from "./firstPaint";
+export {
+  stoaFormatters,
+  useFormatters,
+  type DateStyle,
+  type DurationOptions,
+  type DurationUnit,
+  type MoneyOptions,
+  type StoaFormatters,
+  type StoaFormattersOptions,
+} from "./format";
+export { BREAKPOINTS, breakpointQueries, useBreakpoint, useMediaQuery, type Breakpoint } from "./media";
 // Overlays, lists and content.
 export { Dialog, Sheet, AlertDialog, type DialogProps, type SheetProps, type AlertDialogProps, type OverlayOpenProps } from "./Dialog";
 export { ReorderableList, type ReorderableItem, type ReorderableListProps } from "./ReorderableList";

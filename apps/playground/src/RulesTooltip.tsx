@@ -8,6 +8,7 @@
 import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import type { TokenRuleRef } from "./browserChecks";
+import { useChromeText } from "./chromeLanguage";
 
 /** Space between the tooltip and the panel, the field or the window edge. */
 const GAP = 8;
@@ -19,6 +20,7 @@ const MAX_WIDTH = 360;
 type Place = { top: number; left: number; width: number };
 
 export function RulesTooltip({ anchor, title, rules }: { anchor: RefObject<HTMLElement | null>; title: string; rules: TokenRuleRef[] }) {
+  const t = useChromeText();
   const tip = useRef<HTMLDivElement>(null);
   const [place, setPlace] = useState<Place | null>(null);
 
@@ -65,7 +67,7 @@ export function RulesTooltip({ anchor, title, rules }: { anchor: RefObject<HTMLE
         {rules.map((rule, index) => (
           <li key={index}>
             {rule.rule}
-            {rule.theme ? ` (${rule.theme})` : ""}: {rule.subject}
+            {rule.theme ? ` (${t.tokens.themes[rule.theme]})` : ""}: {rule.subject}
           </li>
         ))}
       </ul>

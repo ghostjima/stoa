@@ -29,6 +29,8 @@ import {
   useStoaFormat,
 } from "@ghostjima/stoa-react";
 import { CVD_CHOICES, CvdFilterDefs, cvdFilterStyle, type CvdMode } from "./cvdPreview";
+import { useChromeText } from "./chromeLanguage";
+import type { ViewId } from "./chromeText";
 import type { ResolvedTokens, Theme } from "./tokenModel";
 import { HISTORY, timeAt, type Stream, type StreamFrame } from "./stream";
 import { LANGUAGES, SCREEN_TEXT, localeFor, retypeDigits, type Language } from "./screenText";
@@ -49,14 +51,14 @@ const COMPONENT_SCREENS: Record<Exclude<ScreenId, "market">, (props: ComponentSc
   grid: GridScreen,
 };
 
-export type FrameSpec = { id: string; label: string; theme: Theme; dir: "ltr" | "rtl" };
+export type FrameSpec = { id: ViewId; theme: Theme; dir: "ltr" | "rtl" };
 
-/** The views a frame can show. */
+/** The views a frame can show; their names are the chrome's words. */
 export const VIEWS: FrameSpec[] = [
-  { id: "light-ltr", label: "Light, left to right", theme: "light", dir: "ltr" },
-  { id: "light-rtl", label: "Light, right to left", theme: "light", dir: "rtl" },
-  { id: "dark-ltr", label: "Dark, left to right", theme: "dark", dir: "ltr" },
-  { id: "dark-rtl", label: "Dark, right to left", theme: "dark", dir: "rtl" },
+  { id: "light-ltr", theme: "light", dir: "ltr" },
+  { id: "light-rtl", theme: "light", dir: "rtl" },
+  { id: "dark-ltr", theme: "dark", dir: "ltr" },
+  { id: "dark-rtl", theme: "dark", dir: "rtl" },
 ];
 
 export type PreviewGridProps = {
@@ -79,9 +81,7 @@ export type PreviewGridProps = {
 
 /** What the two frames show on load: between them, both themes and both
  * directions. */
-const INITIAL_VIEWS = ["light-ltr", "dark-rtl"];
-
-const VIEW_OPTIONS = VIEWS.map(({ id, label }) => ({ id, label }));
+const INITIAL_VIEWS: ViewId[] = ["light-ltr", "dark-rtl"];
 
 /** What `[data-motion="reduce"]` sets in tokens.css. The frame writes the
  * token values inline, which outranks that rule, so a reduced frame writes
@@ -153,7 +153,7 @@ function PreviewFrame({
   onRetry,
 }: {
   slot: number;
-  initialView: string;
+  initialView: ViewId;
   stream: Stream;
   tokens: Record<Theme, ResolvedTokens>;
   revision: string;
@@ -166,8 +166,9 @@ function PreviewFrame({
   // Local, visual-only, and irrelevant to what the checks measure: a
   // preview is one person looking at one frame, not a value that follows
   // the tokens into history or a snapshot.
+  const t = useChromeText();
   const [cvd, setCvd] = useState<CvdMode>("none");
-  const [view, setView] = useState(initialView);
+  const [view, setView] = useState<ViewId>(initialView);
   // The language of the screen's words and digits, apart from the view:
   // Arabic in a left-to-right frame is a case to look at, not an error.
   const [language, setLanguage] = useState<Language>("en");
@@ -219,15 +220,22 @@ function PreviewFrame({
     };
   }, []);
   const spec = VIEWS.find((candidate) => candidate.id === view) ?? VIEWS[0]!;
-  const name = `Preview ${slot}`;
+  const name = t.frames.preview(String(slot));
   const ComponentScreen = settings.screen === "market" ? null : COMPONENT_SCREENS[settings.screen];
   return (
-    <section className="pg-frame" aria-label={`${name}: ${spec.label}`} data-slot={slot}>
+    <section className="pg-frame" aria-label={t.frames.frameLabel(name, t.frames.views[spec.id])} data-slot={slot}>
       <header className="pg-frame__header">
         <div className="pg-frame__picks">
-          <Select label={`${name} view`} hideLabel size="small" options={VIEW_OPTIONS} value={view} onChange={setView} />
+          <Select<ViewId>
+            label={t.frames.viewLabel(name)}
+            hideLabel
+            size="small"
+            options={VIEWS.map(({ id }) => ({ id, label: t.frames.views[id] }))}
+            value={view}
+            onChange={setView}
+          />
           <ChoiceGroup
-            label={`${name}: language`}
+            label={t.frames.languageLabel(name)}
             hideLabel
             size="small"
             choices={LANGUAGES}
@@ -237,13 +245,13 @@ function PreviewFrame({
         </div>
         <div className="pg-frame__picks">
           <Toggle size="small" isSelected={reducedMotion} onChange={setReducedMotion}>
-            Reduced motion
+            {t.frames.reducedMotion}
           </Toggle>
-          <ChoiceGroup
-            label={`${name}: colour-vision preview`}
+          <ChoiceGroup<CvdMode>
+            label={t.frames.cvdLabel(name)}
             hideLabel
             size="small"
-            choices={CVD_CHOICES}
+            choices={CVD_CHOICES.map((id) => ({ id, label: t.frames.cvd[id] }))}
             value={cvd}
             onChange={setCvd}
           />

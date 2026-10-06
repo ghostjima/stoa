@@ -3,6 +3,7 @@
 // the density mode's font size, and each row says which rule produced the
 // size on screen.
 import { Button, ChoiceGroup, Disclosure, StatusBadge, TextField, TimeSlider } from "@ghostjima/stoa-react";
+import { useChromeText } from "../chromeLanguage";
 import type { DensityMode } from "../tokenModel";
 import type { Axis } from "./report.ts";
 import {
@@ -11,7 +12,6 @@ import {
   RATIO_MAX,
   RATIO_MIN,
   ROLE_IDS,
-  ROLE_LABELS,
   WEIGHT_MAX,
   WEIGHT_MIN,
   featuresText,
@@ -64,12 +64,15 @@ export function TypeRoles({
   onScale,
   onRole,
 }: TypeRolesProps) {
+  const t = useChromeText();
+  const words = t.type.scale;
+  const densityName = t.session.densityModes[density];
   const context: SizeContext = { scale, densityFontSize };
   return (
     <div className="pg-stack pg-type__roles">
       <div className="pg-stack">
         <TimeSlider
-          label="Reading scale ratio"
+          label={words.ratio}
           hideLabel
           min={RATIO_MIN}
           max={RATIO_MAX}
@@ -79,7 +82,7 @@ export function TypeRoles({
           format={(value) => value.toFixed(3)}
         />
         <TimeSlider
-          label="Reading scale base"
+          label={words.base}
           hideLabel
           min={10}
           max={24}
@@ -88,10 +91,7 @@ export function TypeRoles({
           onChange={(base) => onScale({ ...scale, base })}
           format={(value) => `${value}px`}
         />
-        <p className="pg-note">
-          The reading roles step off this base by this ratio, rounded to whole pixels. The working roles ignore both and
-          follow the {density} density font size, {densityFontSize}px.
-        </p>
+        <p className="pg-note">{words.note(densityName, String(densityFontSize))}</p>
       </div>
 
       {ROLE_IDS.map((id) => (
@@ -99,7 +99,7 @@ export function TypeRoles({
           key={id}
           role={roles[id]}
           size={roleSize(roles[id], context)}
-          provenance={sizeProvenance(roles[id], context, density)}
+          provenance={sizeProvenance(roles[id], context, density, t.type.report, densityName)}
           families={families}
           arabicFamilies={arabicFamilies}
           metrics={metricsFor(roles[id].family)}
@@ -138,6 +138,8 @@ function RoleFields({
   featureTags: string[];
   onRole: (id: RoleId, role: TypeRole) => void;
 }) {
+  const t = useChromeText();
+  const words = t.type.scale;
   const set = (changes: Partial<TypeRole>) => onRole(role.id, { ...role, ...changes });
   const parsed = parseFeatureSettings(featuresText(role.features));
   const unknown = Object.keys(parsed.features).filter(
@@ -146,7 +148,8 @@ function RoleFields({
   const sizeAdjust = roleSizeAdjust(role, metrics);
   // Six roles on one page means six of every field, so each one is named
   // after its role rather than leaving six identical labels behind.
-  const named = (field: string) => `${ROLE_LABELS[role.id]} ${field}`;
+  const roleName = t.type.roleNames[role.id];
+  const named = (field: string) => words.named(roleName, field);
 
   return (
     <Disclosure
@@ -154,10 +157,10 @@ function RoleFields({
       data-role={role.id}
       summary={
         <>
-          <span className="pg-type__role-name">{ROLE_LABELS[role.id]}</span>
+          <span className="pg-type__role-name">{roleName}</span>
           <code data-testid={`type-size-${role.id}`}>{size}px</code>
           <span className="pg-note">
-            {role.hierarchy}, {role.family}
+            {words.hierarchy[role.hierarchy]}, {role.family}
           </span>
         </>
       }
@@ -165,11 +168,11 @@ function RoleFields({
 
       <div className="pg-stack">
         <p className="pg-note" data-testid={`type-provenance-${role.id}`}>
-          {size}px from {provenance}
+          {words.sizeFrom(String(size), provenance)}
         </p>
 
         <ChoiceGroup
-          label={named("family")}
+          label={named(words.family)}
           hideLabel
           choices={families.map((family) => ({ id: family.value, label: family.label }))}
           value={role.family}
@@ -178,18 +181,18 @@ function RoleFields({
 
         {role.hierarchy === "reading" ? (
           <TimeSlider
-            label={named("step on the scale")}
+            label={named(words.step)}
             hideLabel
             min={0}
             max={5}
             step={1}
             value={role.step}
             onChange={(step) => set({ step })}
-            format={(value) => `step ${value}`}
+            format={(value) => words.stepValue(String(value))}
           />
         ) : (
           <TimeSlider
-            label={named("pixels from the density font size")}
+            label={named(words.offset)}
             hideLabel
             min={-4}
             max={8}
@@ -201,7 +204,7 @@ function RoleFields({
         )}
 
         <TimeSlider
-          label={named("weight")}
+          label={named(words.weight)}
           hideLabel
           min={WEIGHT_MIN}
           max={WEIGHT_MAX}
@@ -211,7 +214,7 @@ function RoleFields({
           format={(value) => String(value)}
         />
         <TimeSlider
-          label={named("line height")}
+          label={named(words.lineHeight)}
           hideLabel
           min={1}
           max={2}
@@ -223,7 +226,7 @@ function RoleFields({
 
         <div className="pg-row">
           <TextField
-            label={named("tracking")}
+            label={named(words.tracking)}
             value={String(role.tracking.value)}
             onChange={(text) => {
               const value = Number.parseFloat(text);
@@ -231,10 +234,10 @@ function RoleFields({
             }}
             dir="ltr"
             mono
-            description={`letter-spacing, in ${role.tracking.unit}`}
+            description={words.trackingDescription(role.tracking.unit)}
           />
           <ChoiceGroup
-            label={named("tracking unit")}
+            label={named(words.trackingUnit)}
             hideLabel
             choices={TRACKING_UNITS.map((unit) => ({ id: unit.value, label: unit.label }))}
             value={role.tracking.unit}
@@ -258,7 +261,7 @@ function RoleFields({
           ))}
 
         <TextField
-          label={named("features")}
+          label={named(words.features)}
           value={featuresText(role.features)}
           onChange={(text) => {
             const { features } = parseFeatureSettings(text);
@@ -267,19 +270,17 @@ function RoleFields({
           dir="ltr"
           mono
           description={
-            featureTags.length === 0
-              ? "Tags and values, for example: tnum, zero. No font loaded for this family, so the tags are not checked."
-              : `Tags and values, for example: tnum, zero. This file has ${featureTags.join(" ")}`
+            featureTags.length === 0 ? words.featuresNoFont : words.featuresInFile(featureTags.join(" "))
           }
         />
         {unknown.length > 0 && (
-          <StatusBadge tone="warning">{unknown.join(", ")} not in the file loaded for this family</StatusBadge>
+          <StatusBadge tone="warning">{words.notInLoadedFile(unknown.join(", "))}</StatusBadge>
         )}
 
         <ChoiceGroup
-          label={named("Arabic pairing")}
+          label={named(words.arabicPairing)}
           hideLabel
-          choices={[{ id: "", label: "none" }, ...arabicFamilies.map((family) => ({ id: family.value, label: family.label }))]}
+          choices={[{ id: "", label: words.none }, ...arabicFamilies.map((family) => ({ id: family.value, label: family.label }))]}
           value={role.arabic.family}
           onChange={(family) =>
             set({ arabic: { family, metrics: family === "" ? NO_METRICS : metricsFor(family) } })
@@ -287,14 +288,14 @@ function RoleFields({
         />
         <p className="pg-note" data-testid={`type-size-adjust-${role.id}`}>
           {role.arabic.family === ""
-            ? "No pairing: a line that mixes scripts falls back to whatever the stack finds."
+            ? words.noPairing
             : sizeAdjust === null
-              ? "size-adjust cannot be computed: one of the two faces states no x-height."
-              : `size-adjust ${sizeAdjust}% on ${role.arabic.family}, from the two x-heights.`}
+              ? words.sizeAdjustUnknown
+              : words.sizeAdjustOn(String(sizeAdjust), role.arabic.family)}
         </p>
 
         <div className="pg-row">
-          <Button onPress={() => onRole(role.id, DEFAULT_ROLES[role.id])}>Reset this role</Button>
+          <Button onPress={() => onRole(role.id, DEFAULT_ROLES[role.id])}>{words.reset}</Button>
         </div>
       </div>
     </Disclosure>

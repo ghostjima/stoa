@@ -3,8 +3,10 @@
 // trust, and a digit set the file does not have is said to be missing
 // rather than reported as tabular.
 import { useState } from "react";
-import { Button, StatusBadge, TextField } from "@ghostjima/stoa-react";
-import { DIGIT_SETS, digitSummary } from "./digits.ts";
+import { Button, StatusBadge, TextField, useStoaFormat } from "@ghostjima/stoa-react";
+import { useChromeText } from "../chromeLanguage";
+import type { ChromeText } from "../chromeText";
+import { digitSummary } from "./digits.ts";
 import { featureCountSentence } from "./report.ts";
 import { fontLicence, type LoadedFont } from "./fonts.ts";
 
@@ -24,11 +26,11 @@ export type FontInspectorProps = {
 const FEATURES_SHOWN = 12;
 
 /** Where a loaded font came from, in one phrase. */
-function sourceLabel(font: LoadedFont): string {
+function sourceLabel(font: LoadedFont, words: ChromeText["type"]["inspector"]): string {
   const { source } = font;
   if (source.kind === "file") return source.name;
   if (source.kind === "fontsource") return `fontsource:${source.id}`;
-  return "shipped with Stoa";
+  return words.shipped;
 }
 
 export function FontInspector({
@@ -41,6 +43,7 @@ export function FontInspector({
   onFontsourceId,
   onForget,
 }: FontInspectorProps) {
+  const words = useChromeText().type.inspector;
   const [catalogueId, setCatalogueId] = useState("");
   const [dropping, setDropping] = useState(false);
 
@@ -60,7 +63,7 @@ export function FontInspector({
         }}
       >
         <label className="pg-type__file">
-          <span>Font file</span>
+          <span>{words.fontFile}</span>
           <input
             type="file"
             accept=".ttf,.otf,.ttc,.woff2,font/ttf,font/otf,font/woff2"
@@ -74,27 +77,24 @@ export function FontInspector({
             }}
           />
         </label>
-        <p className="pg-note">
-          Drop a TTF, OTF, TTC or WOFF2 here, or choose one. WOFF2 is decoded before anything is measured; WOFF 1.0 is
-          refused rather than mis-measured.
-        </p>
+        <p className="pg-note">{words.dropNote}</p>
       </div>
 
       <div className="pg-row">
         <TextField
-          label="Fontsource id"
+          label={words.catalogueId}
           value={catalogueId}
           onChange={setCatalogueId}
           dir="ltr"
           mono
-          description="For example ibm-plex-sans or noto-sans-arabic. Fetched from api.fontsource.org, with the licence it records."
+          description={words.catalogueDescription}
         />
         <Button onPress={() => onFontsourceId(catalogueId.trim())} isDisabled={busy || catalogueId.trim() === ""}>
-          Load from Fontsource
+          {words.loadFromCatalogue}
         </Button>
       </div>
 
-      {busy && <StatusBadge tone="neutral">reading the file</StatusBadge>}
+      {busy && <StatusBadge tone="neutral">{words.reading}</StatusBadge>}
       {error && (
         <p className="pg-verify__error" role="alert" data-testid="type-error">
           {error}
@@ -105,10 +105,10 @@ export function FontInspector({
         <ul className="pg-type__loaded" data-testid="type-loaded">
           {fonts.map((font) => (
             <li key={font.id} data-font={font.id} data-selected={font.id === selected?.id ? "true" : undefined}>
-              <Button onPress={() => onSelect(font.id)}>{font.report.names.family || "unnamed family"}</Button>
+              <Button onPress={() => onSelect(font.id)}>{font.report.names.family || words.unnamedFamily}</Button>
               <code>{font.report.format}</code>
-              <span className="pg-note">{sourceLabel(font)}</span>
-              <Button onPress={() => onForget(font.id)}>Forget</Button>
+              <span className="pg-note">{sourceLabel(font, words)}</span>
+              <Button onPress={() => onForget(font.id)}>{words.forget}</Button>
             </li>
           ))}
         </ul>
@@ -120,6 +120,9 @@ export function FontInspector({
 }
 
 function Report({ font }: { font: LoadedFont }) {
+  const t = useChromeText();
+  const words = t.type.inspector;
+  const format = useStoaFormat();
   const { report } = font;
   const gsub = report.features.filter((feature) => feature.table === "GSUB");
   const gpos = report.features.filter((feature) => feature.table === "GPOS");
@@ -127,19 +130,18 @@ function Report({ font }: { font: LoadedFont }) {
   return (
     <div className="pg-stack" data-testid="type-report">
       <dl className="pg-verify__results">
-        <dt>Family</dt>
+        <dt>{words.family}</dt>
         <dd>
           {report.names.family} {report.names.subfamily && <code>{report.names.subfamily}</code>}
         </dd>
-        <dt>File</dt>
+        <dt>{words.file}</dt>
         <dd>
-          <code>{report.format}</code>
-          {report.decompressed ? " decoded to " : " read as "}
-          {report.sfntBytes.toLocaleString("en-US")} bytes of sfnt, HarfBuzz {report.harfbuzz}
+          <code>{report.format}</code>{" "}
+          {(report.decompressed ? words.decodedTo : words.readAs)(format.integer(report.sfntBytes), report.harfbuzz)}
         </dd>
-        <dt>Licence</dt>
+        <dt>{words.licence}</dt>
         <dd data-testid="type-licence">
-          {fontLicence(font)}
+          {fontLicence(font, t.type.report)}
           {report.names.licenceUrl && (
             <>
               {" "}
@@ -147,29 +149,33 @@ function Report({ font }: { font: LoadedFont }) {
             </>
           )}
         </dd>
-        <dt>Metrics</dt>
+        <dt>{words.metrics}</dt>
         <dd data-testid="type-metrics">
-          {report.metrics.upem} units per em, x-height {report.metrics.xHeight ?? "not stated"}, cap height{" "}
-          {report.metrics.capHeight ?? "not stated"}, ascender {report.metrics.ascender}, descender{" "}
-          {report.metrics.descender}
+          {words.metricsLine(
+            String(report.metrics.upem),
+            report.metrics.xHeight === null ? words.notStated : String(report.metrics.xHeight),
+            report.metrics.capHeight === null ? words.notStated : String(report.metrics.capHeight),
+            String(report.metrics.ascender),
+            String(report.metrics.descender),
+          )}
         </dd>
       </dl>
 
-      <h4 className="pg-type__subtitle">Axes</h4>
+      <h4 className="pg-type__subtitle">{words.axes}</h4>
       {report.axes.length === 0 ? (
-        <p className="pg-note">No variation axes: this is a static file.</p>
+        <p className="pg-note">{words.staticFile}</p>
       ) : (
         <table className="stoa-table" data-testid="type-axes">
-          <caption className="stoa-visually-hidden">Variation axes and their ranges</caption>
+          <caption className="stoa-visually-hidden">{words.axesCaption}</caption>
           <thead>
             <tr>
-              <th scope="col">Axis</th>
-              <th scope="col">Name</th>
+              <th scope="col">{words.axis}</th>
+              <th scope="col">{words.name}</th>
               <th scope="col" className="stoa-num">
-                Range
+                {words.range}
               </th>
               <th scope="col" className="stoa-num">
-                Default
+                {words.default}
               </th>
             </tr>
           </thead>
@@ -180,9 +186,7 @@ function Report({ font }: { font: LoadedFont }) {
                   <code>{axis.tag}</code>
                 </td>
                 <td>{axis.name}</td>
-                <td className="stoa-num">
-                  {axis.min} to {axis.max}
-                </td>
+                <td className="stoa-num">{words.rangeValue(String(axis.min), String(axis.max))}</td>
                 <td className="stoa-num">{axis.default}</td>
               </tr>
             ))}
@@ -191,7 +195,7 @@ function Report({ font }: { font: LoadedFont }) {
       )}
       {report.instances.length > 0 && (
         <p className="pg-note" data-testid="type-instances">
-          Named instances:{" "}
+          {words.namedInstances}{" "}
           {report.instances
             .map(
               (instance) =>
@@ -203,18 +207,18 @@ function Report({ font }: { font: LoadedFont }) {
         </p>
       )}
 
-      <h4 className="pg-type__subtitle">Features</h4>
+      <h4 className="pg-type__subtitle">{words.features}</h4>
       <p className="pg-note" data-testid="type-feature-count">
-        {featureCountSentence(report)}
+        {featureCountSentence(report, t.type.report)}
       </p>
       <table className="stoa-table" data-testid="type-features">
-        <caption className="stoa-visually-hidden">Layout features in this file and what they do to the probe</caption>
+        <caption className="stoa-visually-hidden">{words.featuresCaption}</caption>
         <thead>
           <tr>
-            <th scope="col">Tag</th>
-            <th scope="col">Table</th>
-            <th scope="col">Name in the font</th>
-            <th scope="col">On the probe</th>
+            <th scope="col">{words.tag}</th>
+            <th scope="col">{words.table}</th>
+            <th scope="col">{words.nameInFont}</th>
+            <th scope="col">{words.onProbe}</th>
           </tr>
         </thead>
         <tbody>
@@ -224,15 +228,15 @@ function Report({ font }: { font: LoadedFont }) {
                 <code>{feature.tag}</code>
               </td>
               <td>{feature.table}</td>
-              <td>{feature.uiName ?? "not named"}</td>
+              <td>{feature.uiName ?? words.notNamed}</td>
               <td>
                 {feature.changes.length === 0
                   ? feature.table === "GPOS"
-                    ? "positioning, not substitution"
-                    : "nothing on this probe"
+                    ? words.positioning
+                    : words.nothingOnProbe
                   : feature.changes
                       .slice(0, 4)
-                      .map((change) => `${change.before} to ${change.after}`)
+                      .map((change) => words.change(change.before, change.after))
                       .join(", ")}
               </td>
             </tr>
@@ -240,40 +244,36 @@ function Report({ font }: { font: LoadedFont }) {
         </tbody>
       </table>
       {gsub.length + gpos.length > FEATURES_SHOWN && (
-        <p className="pg-note">
-          {gsub.length + gpos.length - FEATURES_SHOWN} more feature(s) in this file, not listed here.
-        </p>
+        <p className="pg-note">{words.moreFeatures(gsub.length + gpos.length - FEATURES_SHOWN)}</p>
       )}
 
-      <h4 className="pg-type__subtitle">Digits</h4>
+      <h4 className="pg-type__subtitle">{words.digits}</h4>
       <table className="stoa-table" data-testid="type-digits">
-        <caption className="stoa-visually-hidden">Digit advances per set, with and without tnum</caption>
+        <caption className="stoa-visually-hidden">{words.digitsCaption}</caption>
         <thead>
           <tr>
-            <th scope="col">Set</th>
-            <th scope="col">Asked for</th>
-            <th scope="col">Verdict</th>
+            <th scope="col">{words.set}</th>
+            <th scope="col">{words.askedFor}</th>
+            <th scope="col">{words.verdict}</th>
             <th scope="col" className="stoa-num">
-              Advances
+              {words.advances}
             </th>
           </tr>
         </thead>
         <tbody>
           {report.digits.map((row) => (
             <tr key={`${row.set}-${row.feature}`} data-digits={`${row.set}-${row.feature}`}>
-              <td>{DIGIT_SETS.find((set) => set.id === row.set)?.label ?? row.set}</td>
-              <td>
-                <code>{row.feature === "tnum" ? "tnum 1" : "as shaped"}</code>
-              </td>
+              <td>{t.type.report.digitSets[row.set]}</td>
+              <td>{row.feature === "tnum" ? <code>tnum 1</code> : t.type.report.asShaped}</td>
               <td>
                 <StatusBadge
                   tone={row.verdict === "tabular" ? "positive" : row.verdict === "proportional" ? "warning" : "neutral"}
                 >
-                  {row.verdict}
+                  {words.verdicts[row.verdict]}
                 </StatusBadge>
               </td>
               <td className="stoa-num">
-                {row.present ? `${row.distinct} distinct, ${row.min} to ${row.max}` : "not in this file"}
+                {row.present ? words.advancesValue(String(row.distinct), String(row.min), String(row.max)) : words.notInFile}
               </td>
             </tr>
           ))}
@@ -281,7 +281,7 @@ function Report({ font }: { font: LoadedFont }) {
       </table>
       <ul className="pg-checks" data-testid="type-digit-summaries">
         {report.digits.map((row) => (
-          <li key={`${row.set}-${row.feature}`}>{digitSummary(row, report.metrics.upem)}</li>
+          <li key={`${row.set}-${row.feature}`}>{digitSummary(row, report.metrics.upem, t.type.report)}</li>
         ))}
       </ul>
     </div>

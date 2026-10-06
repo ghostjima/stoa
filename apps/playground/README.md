@@ -57,6 +57,18 @@ pnpm --filter playground dev   # http://localhost:5186
   density, motion, filter and locale. The container sticks to the part
   of the frame in view. A screen's keyboard shortcuts run only while the
   focus is inside its frame.
+- The chrome (the header, the side panel and its tabs, the frame headers,
+  the type panel and the sentences its measurements are reported in) is in
+  English or Russian, from the EN/RU switch in the header: Stoa's
+  LanguageSwitch wired to `useLanguagePreference`, kept in `?lang=` and in
+  localStorage under `stoa-playground-lang`, with `lang` set on the document
+  element and the document's title following it. English is the default.
+  The words live in `src/chromeText.ts`, one typed dictionary per language
+  with counts in their plural forms (`Intl.PluralRules`); token names, CSS
+  variables and code identifiers stay as they are. The frames keep their
+  own language selector. A message from the dev server or the font engine
+  is shown as it came, in English, after a sentence in the chrome's
+  language.
 - The page is a Stoa PageShell with a fixed header: the header stays at
   the top and the page scrolls in the region under it, whose scrollbar
   lane is reserved; the side panel sticks inside that region. Every
@@ -153,7 +165,8 @@ version downloads: `pnpm --filter playground exec playwright install
 chromium`. `tests/axe.spec.ts` runs axe-core (a pinned dev dependency)
 over every screen in both initial views and every language, and over
 every data state; it fails on any serious or critical violation and
-logs the rest.
+logs the rest; it also scans the chrome in Russian, in the light and the
+dark theme. `tests/language.spec.ts` switches the chrome to Russian and back.
 
 `node apps/playground/scripts/screenshot.mjs [url] [out]` photographs the
 frames against a dev server that is already running.

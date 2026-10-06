@@ -8,26 +8,15 @@ export type ScreenId = "market" | "controls" | "feedback" | "overlays" | "charts
 
 /** The screens, in the order the side panel lists them. Market is the
  * dense screen the playground started with; the others put the
- * components of each group to work on a screen of their own. */
-export const SCREENS: { id: ScreenId; label: string }[] = [
-  { id: "market", label: "Market" },
-  { id: "controls", label: "Controls" },
-  { id: "feedback", label: "Feedback" },
-  { id: "overlays", label: "Overlays and lists" },
-  { id: "charts", label: "Charts and tables" },
-  { id: "grid", label: "Data grid" },
-];
+ * components of each group to work on a screen of their own. Their names
+ * are the chrome's words (chromeText.ts). */
+export const SCREENS: ScreenId[] = ["market", "controls", "feedback", "overlays", "charts", "grid"];
 
 /** The state of the data behind a component screen. Live is the data
  * itself; the other three are what a screen shows instead of it. */
 export type DataState = "live" | "loading" | "empty" | "error";
 
-export const DATA_STATES: { id: DataState; label: string }[] = [
-  { id: "live", label: "Live" },
-  { id: "loading", label: "Loading" },
-  { id: "empty", label: "Empty" },
-  { id: "error", label: "Error" },
-];
+export const DATA_STATES: DataState[] = ["live", "loading", "empty", "error"];
 
 /** Rows in the data grid: a page of a few hundred, a day's blotter, and
  * the size the grid is virtualised for. The default stays light, because

@@ -2,7 +2,8 @@
 // own line tells you very little about a role that will spend its life in a
 // dense row, so each one is rendered as a table cell at the frame's own
 // density and in the frame's own direction.
-import { ROLE_IDS, ROLE_LABELS, type RoleId, type TypeRole } from "./roles.ts";
+import type { ChromeText } from "../chromeText";
+import { ROLE_IDS, type RoleId, type TypeRole } from "./roles.ts";
 
 /** What each role is shown with. Latin text, Latin digits and Arabic-Indic
  * digits in one line, because that is the line the pairing has to hold. */
@@ -15,39 +16,47 @@ const SAMPLES: Record<RoleId, string> = {
   code: "mid = (bid + ask) / 2",
 };
 
-const TITLE = "Type roles at this frame's density and direction";
-
 export type SpecimensProps = {
+  /** The type panel's words: the table is the panel's contribution to the
+   * frames, so it is in the chrome's language, not the frame's. */
+  text: ChromeText["type"];
+  /** The chrome's language, set on the table's words: the frame around
+   * them may be in another. The specimens keep the frame's. */
+  lang: string;
   roles: Record<RoleId, TypeRole>;
   /** The size each role resolved to, in pixels, for the column that says
    * so. The cells themselves read the CSS variables. */
   sizes: Record<RoleId, number>;
 };
 
-export function Specimens({ roles, sizes }: SpecimensProps) {
+export function Specimens({ text, lang, roles, sizes }: SpecimensProps) {
   return (
     <>
       {/* A divider with the title in it, between the screen and the
           specimens. The table keeps its caption for assistive technology,
           so the divider's text is hidden from it. */}
-      <p className="pg-type__specimens-title" aria-hidden="true">
-        {TITLE}
+      <p className="pg-type__specimens-title" aria-hidden="true" lang={lang}>
+        {text.specimens.title}
       </p>
       <table className="stoa-table pg-type__specimens" data-testid="type-specimens">
-        <caption className="stoa-visually-hidden">{TITLE}</caption>
-        <thead>
+        <caption className="stoa-visually-hidden" lang={lang}>
+          {text.specimens.title}
+        </caption>
+        <thead lang={lang}>
           <tr>
-            <th scope="col">Role</th>
-            <th scope="col">Specimen</th>
+            <th scope="col">{text.specimens.role}</th>
+            <th scope="col">{text.specimens.specimen}</th>
             <th scope="col" className="stoa-num">
-              Size
+              {text.specimens.size}
             </th>
           </tr>
         </thead>
         <tbody>
           {ROLE_IDS.map((id) => (
             <tr key={id} data-role={id}>
-              <th scope="row">{ROLE_LABELS[id]}</th>
+              <th scope="row" lang={lang}>
+                {text.roleNames[id]}
+              </th>
               <td
                 data-specimen={id}
                 style={{

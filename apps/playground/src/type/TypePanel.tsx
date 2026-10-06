@@ -5,10 +5,12 @@
 // are drawn with, the specimen table that goes inside every preview frame,
 // and what a snapshot records. Nothing else in the app knows about fonts.
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChoiceGroup } from "@ghostjima/stoa-react";
+import { ChoiceGroup, useStoaFormat } from "@ghostjima/stoa-react";
 import plexMonoUrl from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url";
 import plexSansUrl from "@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url";
 import plexSansArabicUrl from "@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-arabic-400-normal.woff2?url";
+import { useChromeText } from "../chromeLanguage";
+import type { ChromeText } from "../chromeText";
 import { digest, type DensityMode } from "../tokenModel";
 import type { PanelProps } from "../panels";
 import { CanvasNumerics } from "./CanvasNumerics.tsx";
@@ -64,14 +66,43 @@ const densityFontSizeOf = (variables: Record<string, string>): number => {
  * theme and direction, not by type. */
 const PROBE_FRAME = "[data-frame]";
 
+/** What went wrong last, kept as data so that it reads in whichever
+ * language the chrome is in when it is shown. `detail` is the error's own
+ * message, from the engine, the catalogue or the browser. */
+type PanelError =
+  | { kind: "shipped"; family: string; detail: string }
+  | { kind: "size-adjust"; percent: number; family: string; detail: string }
+  | { kind: "no-file"; id: string }
+  | { kind: "measure"; detail: string }
+  | { kind: "failed"; detail: string };
+
+function errorText(error: PanelError, text: ChromeText["type"]): string {
+  if (error.kind === "shipped") return text.shippedUnreadable(error.family, error.detail);
+  if (error.kind === "size-adjust") return text.sizeAdjustFailed(String(error.percent), error.family, error.detail);
+  if (error.kind === "no-file") return text.noCatalogueFile(error.id);
+  if (error.kind === "measure") return text.measureFailed(error.detail);
+  return text.failed(error.detail);
+}
+
+const messageOf = (cause: unknown) => (cause instanceof Error ? cause.message : String(cause));
+
+/** Thrown when the catalogue lists a family but no file to fetch for it. */
+class NoCatalogueFile extends Error {
+  constructor(readonly id: string) {
+    super(`Fontsource lists no file for ${id}`);
+  }
+}
+
 export function TypePanel({ density, tokens, onContribute }: PanelProps) {
+  const t = useChromeText();
+  const lang = useStoaFormat().locale.split("-")[0] ?? "en";
   const engine = fontEngine();
   const [fonts, setFonts] = useState<LoadedFont[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [roles, setRoles] = useState<Record<RoleId, TypeRole>>(DEFAULT_ROLES);
   const [scale, setScale] = useState<ScaleSettings>(DEFAULT_SCALE);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<PanelError | null>(null);
   const [canvasReport, setCanvasReport] = useState<CanvasNumericsReport | null>(null);
   const [canvasBusy, setCanvasBusy] = useState(false);
   const [monoFromNumeric, setMonoFromNumeric] = useState(false);
@@ -110,8 +141,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
         } catch (cause) {
           // A shipped family that cannot be read is worth saying out loud:
           // every pairing computed without it is a pairing without metrics.
-          const reason = cause instanceof Error ? cause.message : String(cause);
-          setError(`${family} could not be read from the bundle: ${reason}`);
+          setError({ kind: "shipped", family, detail: messageOf(cause) });
         }
       }
     })();
@@ -139,7 +169,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
 
   const families: FamilyChoice[] = fonts.map((font) => ({
     value: font.cssFamily,
-    label: font.source.kind === "shipped" ? font.source.family : `${font.report.names.family} (loaded)`,
+    label: font.source.kind === "shipped" ? font.source.family : t.type.loaded(font.report.names.family),
   }));
   /** A pairing is only offered by a font that has the Arabic-Indic digits:
    * a family without them would silently fall through to something else. */
@@ -170,8 +200,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
           const family = await registerAdjustedFace(pairing, percent);
           setAdjusted((previous) => ({ ...previous, [key]: family }));
         } catch (cause) {
-          const reason = cause instanceof Error ? cause.message : String(cause);
-          setError(`size-adjust ${percent}% on ${pairing.cssFamily} could not be registered: ${reason}`);
+          setError({ kind: "size-adjust", percent, family: pairing.cssFamily, detail: messageOf(cause) });
         }
       }
     })();
@@ -223,7 +252,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
         }),
       );
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : String(cause));
+      setError({ kind: "measure", detail: messageOf(cause) });
     } finally {
       setCanvasBusy(false);
     }
@@ -240,7 +269,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
           setSelectedId(font.id);
         }
       } catch (cause) {
-        setError(cause instanceof Error ? cause.message : String(cause));
+        setError({ kind: "failed", detail: messageOf(cause) });
       } finally {
         setBusy(false);
       }
@@ -254,7 +283,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
       try {
         const family = await loadFontsourceFamily(id);
         const file = pickFile(family, { weight: 400 });
-        if (!file) throw new Error(`Fontsource lists no file for ${id}`);
+        if (!file) throw new NoCatalogueFile(id);
         const font = await read(await fetchFontBytes(file.url), {
           kind: "fontsource",
           id,
@@ -263,7 +292,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
         });
         setSelectedId(font.id);
       } catch (cause) {
-        setError(cause instanceof Error ? cause.message : String(cause));
+        setError(cause instanceof NoCatalogueFile ? { kind: "no-file", id: cause.id } : { kind: "failed", detail: messageOf(cause) });
       } finally {
         setBusy(false);
       }
@@ -285,7 +314,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
         ...variables,
         ...(monoFromNumeric && numeric ? { "--stoa-font-family-mono": stackFor(roles.numeric) } : {}),
       },
-      frameContent: <Specimens roles={roles} sizes={sizes} />,
+      frameContent: <Specimens text={t.type} lang={lang} roles={roles} sizes={sizes} />,
       snapshot: {
         scale,
         fonts: fonts.map(fontReference),
@@ -294,7 +323,7 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
         ),
       },
     };
-  }, [roles, context, stackFor, monoFromNumeric, fontFor, sizes, scale, fonts, metricsFor]);
+  }, [roles, context, stackFor, monoFromNumeric, fontFor, sizes, scale, fonts, metricsFor, t, lang]);
 
   useEffect(() => {
     onContribute(contribution);
@@ -304,19 +333,19 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
 
   return (
     <div className="pg-type">
-      <h3 className="pg-group__title">Fonts</h3>
+      <h3 className="pg-group__title">{t.type.fonts}</h3>
       <FontInspector
         fonts={fonts}
         selected={selected}
         busy={busy}
-        error={error}
+        error={error === null ? null : errorText(error, t.type)}
         onSelect={setSelectedId}
         onFiles={loadFiles}
         onFontsourceId={loadFromCatalogue}
         onForget={forget}
       />
 
-      <h3 className="pg-group__title">Type roles</h3>
+      <h3 className="pg-group__title">{t.type.roles}</h3>
       <TypeRoles
         roles={roles}
         scale={scale}
@@ -331,21 +360,21 @@ export function TypePanel({ density, tokens, onContribute }: PanelProps) {
         onRole={(id, role) => setRoles((previous) => ({ ...previous, [id]: role }))}
       />
 
-      <h3 className="pg-group__title">Canvas numerics</h3>
+      <h3 className="pg-group__title">{t.type.canvas}</h3>
       <div className="pg-stack">
         <ChoiceGroup
-          label="Mono variable in the frames"
+          label={t.type.monoLabel}
           hideLabel
           choices={[
-            { id: "tokens", label: "As the tokens say" },
-            { id: "numeric", label: "The numeric role's face" },
+            { id: "tokens", label: t.type.monoTokens },
+            { id: "numeric", label: t.type.monoNumeric },
           ]}
           value={monoFromNumeric ? "numeric" : "tokens"}
           onChange={(value) => setMonoFromNumeric(value === "numeric")}
         />
         <p className="pg-note">
-          The canvas views read <code>--stoa-font-family-mono</code>. Pointing it at the numeric role&apos;s face is
-          what puts that face on Ladder&apos;s digits.
+          {t.type.monoNoteBefore} <code>--stoa-font-family-mono</code>
+          {t.type.monoNoteAfter}
         </p>
         <CanvasNumerics
           report={canvasReport}

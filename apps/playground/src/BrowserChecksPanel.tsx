@@ -4,6 +4,8 @@
 import { useMemo, useState } from "react";
 import { Button, ChoiceGroup, Disclosure, StatusBadge, type StatusTone } from "@ghostjima/stoa-react";
 import type { BrowserCheck, CheckStatus } from "./browserChecks";
+import { useChromeText } from "./chromeLanguage";
+import type { RuleId } from "./chromeText";
 
 export type BrowserChecksPanelProps = {
   checks: BrowserCheck[];
@@ -22,26 +24,6 @@ const STATUS_TONE: Record<CheckStatus, StatusTone> = {
   "listed-reported": "negative",
 };
 
-const STATUS_LABEL: Record<CheckStatus, string> = {
-  pass: "passed",
-  fixed: "fixed, remove from known-violations.json",
-  known: "known",
-  new: "new failure",
-  reported: "reported only",
-  "listed-reported": "listed, but reported only: remove from known-violations.json",
-};
-
-const RULE_LABEL: Record<string, string> = {
-  "text-contrast": "Text contrast",
-  "non-text-contrast": "Non-text contrast",
-  "up-down-distinguishability": "Up/down distinguishability",
-  "target-size": "Target size",
-};
-
-const FILTERS = [
-  { id: "all", label: "All" },
-  { id: "new", label: "New only" },
-];
 
 function groupByRule(checks: BrowserCheck[]): [string, BrowserCheck[]][] {
   const byRule = new Map<string, BrowserCheck[]>();
@@ -50,6 +32,11 @@ function groupByRule(checks: BrowserCheck[]): [string, BrowserCheck[]][] {
 }
 
 export function BrowserChecksPanel({ checks, unproduced, onSelect }: BrowserChecksPanelProps) {
+  const t = useChromeText();
+  /** A rule's name in the chrome's words; a rule this panel does not know
+   * yet keeps its id. */
+  const ruleName = (rule: string) => (rule in t.checks.rules ? t.checks.rules[rule as RuleId] : rule);
+  const themeName = (theme: string) => (theme === "light" || theme === "dark" ? t.tokens.themes[theme] : theme);
   const [filter, setFilter] = useState<"all" | "new">("all");
   const groups = useMemo(() => groupByRule(checks), [checks]);
   const newCount = checks.filter((c) => c.status === "new").length;
@@ -58,17 +45,26 @@ export function BrowserChecksPanel({ checks, unproduced, onSelect }: BrowserChec
     <div className="pg-checks" data-testid="browser-checks">
       <div className="pg-row pg-row--between">
         <StatusBadge tone={newCount === 0 ? "positive" : "negative"}>
-          {newCount === 0 ? `${checks.length} checks, no new failures` : `${newCount} new failure${newCount === 1 ? "" : "s"}`}
+          {newCount === 0 ? t.checks.noNew(checks.length) : t.checks.newCount(newCount)}
         </StatusBadge>
-        <ChoiceGroup label="Show" hideLabel choices={FILTERS} value={filter} onChange={(v) => setFilter(v as "all" | "new")} />
+        <ChoiceGroup
+          label={t.checks.filterLabel}
+          hideLabel
+          choices={[
+            { id: "all", label: t.checks.all },
+            { id: "new", label: t.checks.newOnly },
+          ]}
+          value={filter}
+          onChange={(v) => setFilter(v as "all" | "new")}
+        />
       </div>
       {unproduced.length > 0 && (
         <table className="stoa-table" data-testid="unproduced-entries">
-          <caption>known-violations.json entries no rule produces</caption>
+          <caption>{t.checks.unproducedCaption}</caption>
           <thead>
             <tr>
-              <th scope="col">Entry</th>
-              <th scope="col">Status</th>
+              <th scope="col">{t.checks.entry}</th>
+              <th scope="col">{t.checks.status}</th>
             </tr>
           </thead>
           <tbody>
@@ -78,7 +74,7 @@ export function BrowserChecksPanel({ checks, unproduced, onSelect }: BrowserChec
                   <code>{id}</code>
                 </td>
                 <td>
-                  <StatusBadge tone="negative">not produced by any rule: remove the entry or correct the id</StatusBadge>
+                  <StatusBadge tone="negative">{t.checks.unproduced}</StatusBadge>
                 </td>
               </tr>
             ))}
@@ -94,16 +90,16 @@ export function BrowserChecksPanel({ checks, unproduced, onSelect }: BrowserChec
             key={rule}
             className="pg-check-group"
             defaultOpen={flagged > 0}
-            summary={`${RULE_LABEL[rule] ?? rule} (${ruleChecks.length}, ${flagged} flagged)`}
+            summary={t.checks.groupSummary(ruleName(rule), String(ruleChecks.length), String(flagged))}
           >
             <table className="stoa-table">
-              <caption className="stoa-visually-hidden">{RULE_LABEL[rule] ?? rule} results</caption>
+              <caption className="stoa-visually-hidden">{t.checks.resultsCaption(ruleName(rule))}</caption>
               <thead>
                 <tr>
-                  <th scope="col">Check</th>
-                  <th scope="col">Result</th>
+                  <th scope="col">{t.checks.check}</th>
+                  <th scope="col">{t.checks.result}</th>
                   <th scope="col" className="pg-check__action">
-                    <span className="stoa-visually-hidden">Highlight</span>
+                    <span className="stoa-visually-hidden">{t.checks.highlight}</span>
                   </th>
                 </tr>
               </thead>
@@ -114,15 +110,20 @@ export function BrowserChecksPanel({ checks, unproduced, onSelect }: BrowserChec
                       {check.subject}
                       {check.model ? ` (${check.model})` : ""}
                       <span className="pg-check__measure">
-                        {check.theme ?? "both themes"}: {check.value.toFixed(2)} {check.unit}, threshold {check.threshold}
+                        {t.checks.measure(
+                          check.theme === null ? t.checks.bothThemes : themeName(check.theme),
+                          check.value.toFixed(2),
+                          check.unit,
+                          String(check.threshold),
+                        )}
                       </span>
                     </td>
                     <td>
-                      <StatusBadge tone={STATUS_TONE[check.status]}>{STATUS_LABEL[check.status]}</StatusBadge>
+                      <StatusBadge tone={STATUS_TONE[check.status]}>{t.checks.statuses[check.status]}</StatusBadge>
                     </td>
                     <td className="pg-check__action">
                       <Button onPress={() => onSelect(check)} isDisabled={check.tokens.length === 0}>
-                        Highlight
+                        {t.checks.highlight}
                       </Button>
                     </td>
                   </tr>

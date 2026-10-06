@@ -9,13 +9,9 @@ import { MACHADO_SEVERITY_1 } from "@ghostjima/stoa-tokens/color";
 
 export type CvdMode = "none" | "protanopia" | "deuteranopia" | "tritanopia" | "grayscale";
 
-export const CVD_CHOICES: { id: CvdMode; label: string }[] = [
-  { id: "none", label: "None" },
-  { id: "protanopia", label: "Protan" },
-  { id: "deuteranopia", label: "Deutan" },
-  { id: "tritanopia", label: "Tritan" },
-  { id: "grayscale", label: "Grey" },
-];
+/** The previews, in the order a frame header offers them; their names
+ * are the chrome's words (chromeText.ts). */
+export const CVD_CHOICES: CvdMode[] = ["none", "protanopia", "deuteranopia", "tritanopia", "grayscale"];
 
 const DICHROMACIES = Object.keys(MACHADO_SEVERITY_1) as (keyof typeof MACHADO_SEVERITY_1)[];
 

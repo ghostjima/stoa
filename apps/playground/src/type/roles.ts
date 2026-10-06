@@ -7,6 +7,7 @@
 // label because the ratio changed, it gets the size the density mode says
 // plus a fixed offset. The two rules live side by side here so that a size
 // on screen can always be traced to one of them.
+import { CHROME_TEXT, type TypeReportText } from "../chromeText.ts";
 import type { DensityMode } from "../tokenModel";
 
 export type RoleId = "display" | "heading" | "body" | "label" | "numeric" | "code";
@@ -151,15 +152,6 @@ export const DEFAULT_ROLES: Record<RoleId, TypeRole> = {
   },
 };
 
-export const ROLE_LABELS: Record<RoleId, string> = {
-  display: "Display",
-  heading: "Heading",
-  body: "Body",
-  label: "Label",
-  numeric: "Numeric",
-  code: "Code",
-};
-
 /** A step on the modular scale, in whole pixels. */
 export function readingSize(scale: ScaleSettings, step: number): number {
   return Math.max(MIN_SIZE_PX, Math.round(scale.base * scale.ratio ** step));
@@ -182,13 +174,21 @@ export function roleSize(role: TypeRole, context: SizeContext): number {
     : workingSize(context.densityFontSize, role.densityOffset);
 }
 
-/** Where a size came from, in the words the panel shows beside it. */
-export function sizeProvenance(role: TypeRole, context: SizeContext, density: DensityMode): string {
+/** Where a size came from, in the words the panel shows beside it:
+ * English, with the density mode's own name, unless other words are
+ * given. */
+export function sizeProvenance(
+  role: TypeRole,
+  context: SizeContext,
+  density: DensityMode,
+  words: TypeReportText = CHROME_TEXT.en.type.report,
+  densityName: string = density,
+): string {
   if (role.hierarchy === "reading") {
-    return `${context.scale.base}px base times ${context.scale.ratio} to the power ${role.step}, rounded`;
+    return words.provenanceReading(String(context.scale.base), String(context.scale.ratio), String(role.step));
   }
   const sign = role.densityOffset >= 0 ? "+" : "";
-  return `${density} density font-size ${context.densityFontSize}px ${sign}${role.densityOffset}px`;
+  return words.provenanceWorking(densityName, String(context.densityFontSize), `${sign}${role.densityOffset}`);
 }
 
 /** The percentage for CSS `size-adjust` on a fallback face so that its

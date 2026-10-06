@@ -5,6 +5,7 @@
 // panel reads reports and never shapes anything, so importing this must not
 // pull HarfBuzz and the WOFF2 decoder into the main bundle. The engine side
 // of the worker imports these same types.
+import { CHROME_TEXT, type TypeReportText } from "../chromeText.ts";
 import type { DigitRow } from "./digits.ts";
 import type { FontFormat } from "./sfnt.ts";
 
@@ -94,21 +95,10 @@ export const FULL_GSUB_TAG_COUNTS: Record<string, number> = {
 
 /** How the inspector states the feature count: the "8 of 39" sentence when
  * the full release has been measured, and what the file has when it has
- * not. */
-export function featureCountSentence(report: FontReport): string {
+ * not. In English unless other words are given. */
+export function featureCountSentence(report: FontReport, words: TypeReportText = CHROME_TEXT.en.type.report): string {
   const full = report.knownFullGsubTagCount;
-  if (full === null) {
-    const family = report.names.family || "this family";
-    return (
-      `this file has ${report.gsubTagCount} GSUB feature(s); the full release of ${family} ` +
-      "has not been measured here, so there is nothing to compare"
-    );
-  }
-  if (report.gsubTagCount >= full) {
-    return `this file has ${report.gsubTagCount} GSUB feature(s), the full ${report.names.family} release as measured here`;
-  }
-  return (
-    `this file has ${report.gsubTagCount} of the ${full} GSUB features of the full ${report.names.family} release: ` +
-    "a web subset drops the rest"
-  );
+  if (full === null) return words.featuresUnmeasured(report.gsubTagCount, report.names.family || words.thisFamily);
+  if (report.gsubTagCount >= full) return words.featuresFull(report.gsubTagCount, report.names.family);
+  return words.featuresSubset(report.gsubTagCount, String(full), report.names.family);
 }

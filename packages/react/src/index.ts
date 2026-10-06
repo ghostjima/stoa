@@ -144,6 +144,7 @@ export { niceTicks, formatDate, type Ticks } from "./chartScale";
 // DataGrid
 export {
   DataGrid,
+  dataGridCellText,
   type DataGridCell,
   type DataGridColumn,
   type DataGridEdit,

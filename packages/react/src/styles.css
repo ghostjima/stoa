@@ -1368,3 +1368,15 @@
 .stoa-source-note__text { unicode-bidi: isolate; }
 .stoa-source-note a { color: inherit; }
 .stoa-source-note + .stoa-source-note { margin-block-start: calc(-1 * var(--stoa-space-2)); }
+
+/* DataGrid's drawn cells: the node a column's render returns, cut at the
+   cell's end like text. Links in it keep the cell's text colour (body text
+   on the surface, and on a selected row's fill) and are told apart by
+   their underline. A focused link or control draws its ring inside its own
+   box, where the cell, which clips its content, does not cut it off. */
+.stoa-data-grid__content { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; }
+.stoa-data-grid__content a { color: inherit; }
+.stoa-data-grid__content :focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}

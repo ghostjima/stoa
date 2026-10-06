@@ -281,7 +281,7 @@
 /* The labels are words, in the sans face; the values stay in the numeric
    face. */
 .stoa-statbar dt { color: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-sans); }
-.stoa-statbar dd { margin: 0; font-variant-numeric: tabular-nums; }
+.stoa-statbar dd { margin: 0; font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 
 .stoa-field { display: grid; gap: var(--stoa-space-1); }
 .stoa-field__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
@@ -316,6 +316,29 @@
 .stoa-tabs__tab {
   padding: var(--stoa-space-2) var(--stoa-space-3); cursor: pointer; color: var(--stoa-color-text-muted);
   border-block-end: 2px solid transparent; outline: none;
+}
+/* On a narrow screen, tabs that do not fit stay on one row, which scrolls
+   sideways, rather than wrapping onto rows that read as one; an end that
+   hides tabs fades out (data-hidden-edges, set in Form.tsx), so the row
+   shows there is more of it. The fade is a mask, so it works on any
+   surface. The row takes its container's width and never widens it.
+   Wider screens keep wrapping, as before. 40rem is
+   --stoa-breakpoint-narrow's value: media queries cannot read variables. */
+@media (max-width: 40rem) {
+  .stoa-tabs__list {
+    flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; overscroll-behavior-inline: contain;
+    contain: inline-size;
+    /* The fade's width; Form.tsx keeps a focused tab clear of it. */
+    scroll-padding-inline: var(--stoa-space-8);
+  }
+  .stoa-tabs__tab { flex: none; white-space: nowrap; }
+  .stoa-tabs__list[data-hidden-edges="end"] { mask-image: linear-gradient(to right, black calc(100% - var(--stoa-space-8)), transparent); }
+  .stoa-tabs__list[data-hidden-edges="start"] { mask-image: linear-gradient(to left, black calc(100% - var(--stoa-space-8)), transparent); }
+  .stoa-tabs__list[data-hidden-edges="start end"] {
+    mask-image: linear-gradient(to right, transparent, black var(--stoa-space-8), black calc(100% - var(--stoa-space-8)), transparent);
+  }
+  .stoa-tabs__list[data-hidden-edges="end"]:dir(rtl) { mask-image: linear-gradient(to left, black calc(100% - var(--stoa-space-8)), transparent); }
+  .stoa-tabs__list[data-hidden-edges="start"]:dir(rtl) { mask-image: linear-gradient(to right, black calc(100% - var(--stoa-space-8)), transparent); }
 }
 .stoa-tabs__tab[data-hovered]:not([data-selected]) { color: var(--stoa-color-text); }
 .stoa-tabs__tab[data-selected] { color: var(--stoa-color-text); border-block-end-color: var(--stoa-color-accent); }
@@ -590,7 +613,13 @@
   flex: none; white-space: nowrap; border-radius: var(--stoa-radius-full);
   padding-inline: var(--stoa-space-3);
 }
-.stoa-filter-chip__count { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+/* The count's line height is a number, not "normal": with "normal" a line
+   takes the tallest face drawn in it, and Arabic-Indic digits are drawn in
+   Noto Sans Arabic, whose ascent and descent are much larger than Plex
+   Mono's, so the chip grew when that font arrived. A number sizes the line
+   from the first face of the stack alone, whatever face draws the digits.
+   The same holds for StatBar's values and RecordList's meta. */
+.stoa-filter-chip__count { font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 .stoa-filter-chip--small {
   font-size: var(--stoa-font-size-xs);
   min-block-size: var(--stoa-space-6);
@@ -987,8 +1016,11 @@
 .stoa-record-list__label { overflow-wrap: anywhere; }
 .stoa-record-list__description { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 .stoa-record-list__row[data-disabled] .stoa-record-list__description { color: inherit; }
-.stoa-record-list__meta { flex: none; font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; }
+.stoa-record-list__meta { flex: none; font-family: var(--stoa-font-family-mono); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 .stoa-record-list__empty { padding: var(--stoa-space-3); color: var(--stoa-color-text-muted); }
+/* The rows as drawn before React Aria's own arrive (RecordList.tsx): the
+   wrapper leaves the rows in the list's grid. */
+.stoa-record-list__drawn { display: contents; }
 
 /* DescriptionList: terms and values of a read-only record, in the
    density's type size. In columns, every pair shares one grid, so the
@@ -1058,6 +1090,10 @@
   background: var(--stoa-color-surface);
 }
 .stoa-table--sticky-header.stoa-table--sticky-first thead th:first-child { z-index: 2; }
+/* Headers that wrap (`wrapHeaders`): column and row headers take as many
+   lines as they need, number cells stay on one. After the rules above,
+   with as much weight, so it wins over each of them. */
+.stoa-table.stoa-table--wrap-headers th { white-space: normal; }
 
 /* Charts: SVG drawn in CSS pixels at the element's real width. Strokes and
    fills come from the semantic colour tokens, so the theme switches them
@@ -1264,3 +1300,29 @@
   border: 1px solid var(--stoa-color-border); border-radius: var(--stoa-radius-md);
 }
 .stoa-selection-bar__count { font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); margin-inline-end: var(--stoa-space-2); }
+
+/* FilterBar: the search, the chip groups and a line with the count of
+   results and Clear all, then the results or the empty state. On a narrow
+   screen the groups fold into a "Filters" button beside the search, which
+   opens them in a sheet (FilterBar.tsx); 40rem is
+   --stoa-breakpoint-narrow's value, as media queries cannot read
+   variables. */
+.stoa-filter-bar { display: grid; gap: var(--stoa-space-4); min-inline-size: 0; }
+.stoa-filter-bar__bar {
+  display: flex; flex-wrap: wrap; align-items: end; gap: var(--stoa-space-3) var(--stoa-space-4);
+  min-inline-size: 0;
+}
+.stoa-filter-bar__search { flex: 1 1 calc(var(--stoa-space-12) * 5); max-inline-size: calc(var(--stoa-space-12) * 8); }
+.stoa-filter-bar__groups { display: flex; flex-wrap: wrap; gap: var(--stoa-space-3) var(--stoa-space-6); flex-basis: 100%; min-inline-size: 0; }
+.stoa-filter-bar__groups-in-sheet { display: grid; gap: var(--stoa-space-4); }
+.stoa-filter-bar__sheet { display: none; }
+.stoa-filter-bar__open { display: inline-flex; align-items: center; gap: var(--stoa-space-2); }
+.stoa-filter-bar__summary {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2) var(--stoa-space-4);
+  flex-basis: 100%;
+}
+.stoa-filter-bar__count { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-xs); }
+@media (max-width: 40rem) {
+  .stoa-filter-bar__groups { display: none; }
+  .stoa-filter-bar__sheet { display: block; }
+}

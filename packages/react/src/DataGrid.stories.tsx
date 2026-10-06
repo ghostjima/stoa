@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
 import { I18nProvider } from "react-aria-components";
-import { DataGrid, type DataGridColumn, type DataGridSort } from "./DataGrid";
+import { Button } from "./Controls";
+import { AlertDialog } from "./Dialog";
+import { DataGrid, type DataGridColumn, type DataGridEdit, type DataGridSort } from "./DataGrid";
 import { DataGridColumnChooser, DataGridSelectionBar } from "./DataGridTools";
 import { TextField } from "./Form";
 import { Panel } from "./Panel";
@@ -71,6 +73,49 @@ export const Editable: StoryObj = {
             setRows((previous) => previous.map((o) => (o.id === rowKey ? { ...o, [column]: value } : o)))
           }
         />
+      </Panel>
+    );
+  },
+};
+
+/** A change of status asks for confirmation first: the editor closes, a
+ * confirmation opens, and when it closes, by its own buttons or Escape,
+ * the focus goes back to the edited cell, not to Export after the grid. */
+export const EditWithConfirmation: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const [rows, setRows] = useState(() => sampleOrders(20, 5));
+    const columns = useMemo(() => sampleOrderColumns(arabic ? "ar" : "en"), [arabic]);
+    const [pending, setPending] = useState<DataGridEdit<SampleOrder> | null>(null);
+    const save = ({ rowKey, column, value }: DataGridEdit<SampleOrder>) =>
+      setRows((previous) => previous.map((o) => (o.id === rowKey ? { ...o, [column]: value } : o)));
+    return (
+      <Panel title={arabic ? "الأوامر" : "Orders"}>
+        <div style={{ display: "grid", gap: "var(--stoa-space-3)" }}>
+          <DataGrid
+            label={arabic ? "الأوامر، قابلة للتعديل" : "Orders, editable"}
+            rows={rows}
+            columns={columns}
+            rowKey={orderKey}
+            onEdit={(edit) => (edit.column === "status" ? setPending(edit) : save(edit))}
+          />
+          <div>
+            <Button>{arabic ? "تصدير" : "Export"}</Button>
+          </div>
+        </div>
+        <AlertDialog
+          isOpen={pending !== null}
+          onOpenChange={(open) => {
+            if (!open) setPending(null);
+          }}
+          title={arabic ? "تغيير الحالة؟" : "Change the status?"}
+          confirmLabel={arabic ? "تغيير الحالة" : "Change status"}
+          onConfirm={() => {
+            if (pending) save(pending);
+          }}
+        >
+          {pending && (arabic ? `سيتغير الأمر ${pending.rowKey}.` : `Order ${pending.rowKey} will change.`)}
+        </AlertDialog>
       </Panel>
     );
   },

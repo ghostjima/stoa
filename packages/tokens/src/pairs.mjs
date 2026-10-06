@@ -41,25 +41,25 @@ export const UP_DOWN_MIN_CONTRAST = NON_TEXT;
 /** Text-role colours against the surfaces they sit on. */
 export const TEXT_PAIRS = [
   { fg: "text", bg: "bg", min: TEXT_AAA, reason: "Body text on the page background; the preview stylesheet sets both on `body`." },
-  { fg: "text", bg: "surface", min: TEXT_AAA, reason: "Body text inside a panel, a table cell or the ladder; also a chart legend and the maturity marker of an event strip." },
+  { fg: "text", bg: "surface", min: TEXT_AAA, reason: "Body text inside a panel, a table cell or the ladder; also a chart legend, the maturity marker of an event strip, and the label beside a scatter chart's active point, on its surface plate." },
   { fg: "text", bg: "surface-hover", min: TEXT_AA, reason: "Button label while the pointer is over the button." },
   { fg: "text", bg: "surface-sunken", min: TEXT_AA, reason: "Body text in a sunken well, the label of a secondary button, and a key drawn by Kbd." },
   { fg: "surface", bg: "accent", min: TEXT_AA, reason: "Label of a primary button, a selected choice or filter chip, or an accent Tag: the surface colour reversed out of the accent fill. The check mark of a checkbox and the thumb of a switch that is on are the same colour on the same fill; they are non-text marks, held here to the stricter text ratio." },
   { fg: "surface", bg: "down", min: TEXT_AA, reason: "Label of a danger button: the surface colour reversed out of the danger fill, which is the falling colour." },
-  { fg: "text-muted", bg: "surface", min: TEXT_AA, reason: "Panel title, field label, table header, statbar term, and the heatmap price labels on their surface plates; also chart axis labels and notes, the neutral series line of a line chart, the coupon marker of an event strip and a DataGrid cell's neutral tone symbol on its surface plate." },
+  { fg: "text-muted", bg: "surface", min: TEXT_AA, reason: "Panel title, field label, table header, statbar term, and the heatmap price labels on their surface plates; also chart axis labels and notes, the neutral series line of a line chart, the neutral points of a scatter chart, the coupon marker of an event strip and a DataGrid cell's neutral tone symbol on its surface plate." },
   { fg: "text-muted", bg: "bg", min: TEXT_AA, reason: "The same muted labels, chart lines and markers when a table, chart or statbar sits straight on the page background." },
   { fg: "text-muted", bg: "surface-sunken", min: TEXT_AA, reason: "Muted labels in a sunken well." },
   { fg: "text-subtle", bg: "surface", min: TEXT_AA, reason: "The third text role: the description of a disabled shortcut in ShortcutList and ShortcutsDialog." },
   { fg: "text-subtle", bg: "bg", min: TEXT_AA, reason: "The same, on the page background." },
-  { fg: "accent", bg: "surface", min: TEXT_AA, reason: "Accent used as text or an icon inside a panel; also the accent series line of a line chart and the amortisation marker of an event strip." },
+  { fg: "accent", bg: "surface", min: TEXT_AA, reason: "Accent used as text or an icon inside a panel; also the accent series line of a line chart, the accent points of a scatter chart and the amortisation marker of an event strip." },
   { fg: "accent", bg: "bg", min: TEXT_AA, reason: "The same, on the page background." },
-  { fg: "up", bg: "surface", min: TEXT_AA, reason: "A rising price or change, in a table cell or a badge, or a rising series line in a chart; the positive tone's symbol in a DataGrid cell, on its surface plate in any row." },
-  { fg: "down", bg: "surface", min: TEXT_AA, reason: "A falling price or change, in a table cell or a badge, or a falling series line in a chart; the danger colour as text, in a Tag of negative tone; the negative tone's symbol in a DataGrid cell, on its surface plate." },
+  { fg: "up", bg: "surface", min: TEXT_AA, reason: "A rising price or change, in a table cell or a badge, or a rising series line or point in a chart; the positive tone's symbol in a DataGrid cell, on its surface plate in any row." },
+  { fg: "down", bg: "surface", min: TEXT_AA, reason: "A falling price or change, in a table cell or a badge, or a falling series line or point in a chart; the danger colour as text, in a Tag of negative tone; the negative tone's symbol in a DataGrid cell, on its surface plate." },
   { fg: "up", bg: "bg", min: TEXT_AA, reason: "The same badge in a toolbar on the page background." },
   { fg: "down", bg: "bg", min: TEXT_AA, reason: "The same badge in a toolbar on the page background." },
   { fg: "bid", bg: "surface", min: TEXT_AA, reason: "Bid prices and the B marker the ladder draws over its own surface fill." },
   { fg: "ask", bg: "surface", min: TEXT_AA, reason: "Ask prices and the A marker the ladder draws over its own surface fill." },
-  { fg: "warning", bg: "surface", min: TEXT_AA, reason: "The warning glyph of a status badge, and of a DataGrid cell's warning tone on its surface plate; both are drawn as characters, so they are text. Also the warning series line of a line chart and the offer marker of an event strip." },
+  { fg: "warning", bg: "surface", min: TEXT_AA, reason: "The warning glyph of a status badge, and of a DataGrid cell's warning tone on its surface plate; both are drawn as characters, so they are text. Also the warning series line of a line chart, the warning points of a scatter chart and the offer marker of an event strip." },
   { fg: "warning", bg: "bg", min: TEXT_AA, reason: "The same glyph, line and marker on the page background." },
   {
     fg: "text",
@@ -83,17 +83,17 @@ export const TEXT_PAIRS = [
  * pairs the text rule already measures at 4.5:1, which is the stricter of
  * the two, so they are not repeated here. What is listed is the part of
  * those marks the text rule cannot see: the translucent washes. The same
- * holds for chart marks: a line chart's series lines (accent, text-muted,
- * warning, up, down) and an event strip's markers (text-muted, accent,
- * warning, text) are measured by the text pairs above at 4.5:1 or more,
+ * holds for chart marks: a line chart's series lines and a scatter chart's
+ * points (accent, text-muted, warning, up, down) and an event strip's
+ * markers (text-muted, accent, warning, text) are measured by the text pairs above at 4.5:1 or more,
  * which is stricter than 1.4.11's 3:1, so they are named in those reasons
  * rather than repeated here. The accent
  * pairs are repeated, because the selected tab is a different promise from
  * accent used as text and Stage 2 may want to move only one of them. */
 export const NON_TEXT_PAIRS = [
-  { fg: "border-strong", bg: "surface", min: NON_TEXT, reason: "Boundary of a text field, a button, a checkbox, the track of a switch and the slider track inside a panel: it is what identifies the control, so 1.4.11 applies. Also the time axis of a line chart and an event strip, which the markers and lines are read against." },
+  { fg: "border-strong", bg: "surface", min: NON_TEXT, reason: "Boundary of a text field, a button, a checkbox, the track of a switch and the slider track inside a panel: it is what identifies the control, so 1.4.11 applies. Also the time axis of a line chart and an event strip and the x axis of a scatter chart, which the markers, lines and points are read against." },
   { fg: "border-strong", bg: "bg", min: NON_TEXT, reason: "The same controls and axes when they sit straight on the page background." },
-  { fg: "focus", bg: "surface", min: NON_TEXT, reason: "Focus ring around a control inside a panel." },
+  { fg: "focus", bg: "surface", min: NON_TEXT, reason: "Focus ring around a control inside a panel; also the ring a scatter chart draws around its active point, on the chart's surface." },
   { fg: "focus", bg: "bg", min: NON_TEXT, reason: "Focus ring around a control on the page background." },
   { fg: "accent", bg: "surface", min: NON_TEXT, reason: "Underline of the selected tab, the fill of a checked checkbox and of a switch that is on, and the filled part of a slider track: how the selected state or the value is shown." },
   { fg: "accent", bg: "bg", min: NON_TEXT, reason: "The same tab indicator when the tab list sits straight on the page background." },
@@ -117,7 +117,7 @@ export const NON_TEXT_PAIRS = [
     bg: "surface",
     min: NON_TEXT,
     enforced: false,
-    reason: "Panel boundary, table header rule, tab-list rule and the gridlines of a line chart. They identify no control and carry no state, so 1.4.11 does not require 3:1; reported because a boundary nobody can see still costs scanning speed.",
+    reason: "Panel boundary, table header rule, tab-list rule, the gridlines of a line chart or a scatter chart, and the frame of a scatter chart's point label. They identify no control and carry no state, so 1.4.11 does not require 3:1; reported because a boundary nobody can see still costs scanning speed.",
   },
   {
     fg: "border",

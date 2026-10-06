@@ -32,9 +32,14 @@ follow as the products need them.
   format, built with Style Dictionary into CSS variables (`--stoa-*`),
   an ES module with TypeScript declarations, and flat JSON.
 - `@ghostjima/stoa-react`: React components on React Aria.
-  - Market data: Ladder and Heatmap on canvas, TradeTable on the
-    generic Table, LineChart and EventStrip, each with an empty state
-    and a text alternative.
+  - Market data: Ladder, Heatmap and ScatterChart on canvas, TradeTable
+    on the generic Table, LineChart and EventStrip, each with an empty
+    state and a text alternative. ScatterChart draws each point's
+    category as a shape and a tone named in the legend, on a numeric x
+    axis and a numeric or categorical value axis (ratings from AAA
+    down); it is one tab stop whose arrow keys walk the points (left and
+    right by x, up and down from the top) and read each one through a
+    live region, and its data table is the way to read every value.
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
     columns, sorting, selection, inline editing and a tone per cell (a
     symbol in the status colour, never the colour alone)

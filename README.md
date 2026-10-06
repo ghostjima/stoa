@@ -2,21 +2,16 @@
 
 [![CI](https://github.com/ghostjima/stoa/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ghostjima/stoa/actions/workflows/ci.yml)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/License-MIT%20OR%20Apache--2.0-blue.svg)](#license)
-[![Unit tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/unit-tests.json)](#badges)
-[![Browser tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/browser-tests.json)](#badges)
-[![axe](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/axe.json)](#badges)
-[![WCAG 2 contrast](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/contrast.json)](#badges)
-[![CSS gzip](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/css-size.json)](#badges)
 
-The test, axe, contrast and size badges are measured and published by CI
-from `main`; what each one counts is under [Badges](#badges).
+## In one minute
 
-A design system for decision-dense financial interfaces: operations
+Stoa is a design system for decision-dense financial interfaces: operations
 desks, bond and trading screens, ledgers, anything with many live values,
 many states and little room. It covers design tokens and accessible React
 components, in English, Russian and Arabic (the right-to-left proof), and
-its quality is measured rather than claimed: the badges above and the
-checks under [Principles](#principles).
+its quality is measured rather than claimed (see
+[Measured quality](#measured-quality) and the checks under
+[Principles](#principles)).
 
 It is built in the open alongside the two reference products that use
 it:
@@ -216,27 +211,15 @@ Set `lang` and `dir` on the root element before the first paint (an inline
 script that reads the stored language), so the first layout is already
 the Arabic one.
 
-## Development
+## Measured quality
 
-```bash
-pnpm install --frozen-lockfile
-pnpm build
-pnpm -r typecheck
-pnpm test
-```
+[![Unit tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/unit-tests.json)](#what-each-badge-counts)
+[![Browser tests](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/browser-tests.json)](#what-each-badge-counts)
+[![axe](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/axe.json)](#what-each-badge-counts)
+[![WCAG 2 contrast](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/contrast.json)](#what-each-badge-counts)
+[![CSS gzip](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ghostjima/stoa/badges/css-size.json)](#what-each-badge-counts)
 
-`pnpm test:e2e` runs the playground's browser tests (it needs the
-Chromium that `pnpm --filter playground exec playwright install chromium`
-downloads), `node scripts/token-map.mjs --check` fails when the token map
-in `docs/generated/` is stale, and `pnpm storybook` serves the stories.
-`pnpm build-storybook` builds the stories into `storybook-static/`, and
-`pnpm --filter @ghostjima/stoa-react test:stories` runs the browser
-tests against that build, the axe sweep over every story among them.
-The playground, the tool the tokens are tuned in, is described in
-[apps/playground/README.md](apps/playground/README.md). How to contribute,
-and what every change has to pass: [CONTRIBUTING.md](CONTRIBUTING.md).
-
-### Badges
+### What each badge counts
 
 CI publishes the dynamic badges from each green run on `main` to the
 `badges` branch, as JSON that img.shields.io reads; `scripts/badges.mjs`
@@ -257,6 +240,32 @@ when a value cannot be read.
   failures `known-violations.json` accepts. Reported-only measurements
   are not in it.
 - CSS gzip: the built `styles.css` and `tokens.css`, gzip level 9.
+
+## Development
+
+```bash
+pnpm install --frozen-lockfile
+pnpm build
+pnpm -r typecheck
+pnpm test
+```
+
+`pnpm test:e2e` runs the playground's browser tests (it needs the
+Chromium that `pnpm --filter playground exec playwright install chromium`
+downloads), `node scripts/token-map.mjs --check` fails when the token map
+in `docs/generated/` is stale, and `pnpm storybook` serves the stories.
+`pnpm build-storybook` builds the stories into `storybook-static/`, and
+`pnpm --filter @ghostjima/stoa-react test:stories` runs the browser
+tests against that build, the axe sweep over every story among them.
+The playground, the tool the tokens are tuned in, is described in
+[apps/playground/README.md](apps/playground/README.md). How to contribute,
+and what every change has to pass: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Role
+
+Timur Khubaev ([ghostjima](https://github.com/ghostjima)): design of the
+system, its tokens and components, the accessibility and contrast checks,
+the playground and the tests.
 
 ## License
 

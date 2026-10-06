@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useCallback, useEffect, useImperativeHandle, useRef, type ReactNode, type Ref } from "react";
 import { ListBox, ListBoxItem, Text } from "react-aria-components";
 import { keepFocusInPlace } from "./focus";
 import { useStoaFormat } from "./locale";
@@ -17,7 +17,22 @@ export type RecordListItem = {
   isDisabled?: boolean;
 };
 
+/** What a RecordList's `ref` gives the application. */
+export type RecordListHandle = {
+  /** Moves the focus to the record with this id, as if the arrow keys had
+   * brought it there (the selection is not changed). A list that has just
+   * mounted has no options yet, only rows drawn in their place: the record
+   * is focused as soon as its option exists, with no polling by the
+   * caller. A record the list does not hold is not waited for: once the
+   * options exist without it, the call does nothing; a later call
+   * replaces an earlier one that is still waiting. */
+  focusRecord: (id: string) => void;
+};
+
 export type RecordListProps = {
+  /** `focusRecord(id)`, for an application that puts the focus back on a
+   * record (the one a detail was opened from, on a narrow screen). */
+  ref?: Ref<RecordListHandle>;
   /** Names the list for assistive technology ("Bonds"). */
   label: string;
   items: RecordListItem[];
@@ -46,9 +61,34 @@ export type RecordListProps = {
  * and if the list leaves the document with the focus in it, the focus
  * goes to the tab stop that stands where it was, never to the page's
  * body. */
-export function RecordList({ label, items, value, onChange, emptyText }: RecordListProps) {
+export function RecordList({ ref, label, items, value, onChange, emptyText }: RecordListProps) {
   const { messages } = useStoaFormat();
   const list = useRef<HTMLDivElement>(null);
+  // The record `focusRecord` was asked for, until its option exists.
+  const pending = useRef<string | null>(null);
+  const focusPending = useCallback(() => {
+    const el = list.current;
+    const id = pending.current;
+    if (!el || id === null) return;
+    // The records' options carry their key; the empty state's wrapper,
+    // which holds the rows drawn in their place, is an option without one.
+    const options = [...el.querySelectorAll<HTMLElement>('[role="option"][data-key]')];
+    // No options yet: React Aria has not built them; an option's mount
+    // calls this again.
+    if (options.length === 0) return;
+    pending.current = null;
+    options.find((option) => option.dataset.key === id)?.focus();
+  }, []);
+  useImperativeHandle(
+    ref,
+    () => ({
+      focusRecord: (id: string) => {
+        pending.current = id;
+        focusPending();
+      },
+    }),
+    [focusPending],
+  );
   // A pick from the keyboard happens on Enter's key down. React Aria
   // leaves Enter's default action in place on macOS, and that action
   // clicks whatever button has the focus once the event is over: the one
@@ -110,6 +150,7 @@ export function RecordList({ label, items, value, onChange, emptyText }: RecordL
     >
       {(item) => (
         <ListBoxItem id={item.id} textValue={item.label} className="stoa-record-list__row">
+          <WhenDrawn onDrawn={focusPending} />
           <span className="stoa-record-list__text">
             <Text slot="label" className="stoa-record-list__label">
               {item.label}
@@ -125,4 +166,11 @@ export function RecordList({ label, items, value, onChange, emptyText }: RecordL
       )}
     </ListBox>
   );
+}
+
+/** Calls `onDrawn` once its option is in the document, for a focus asked
+ * for before React Aria had built the options. It renders nothing. */
+function WhenDrawn({ onDrawn }: { onDrawn: () => void }) {
+  useEffect(() => onDrawn(), [onDrawn]);
+  return null;
 }

@@ -61,7 +61,9 @@ follow as the products need them.
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
     VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.
   - Overlays, lists and content: Dialog, Sheet, AlertDialog, Tooltip,
-    ReorderableList, RecordList (the list of a master-detail view),
+    ReorderableList, RecordList (the list of a master-detail view, whose
+    `focusRecord(id)` puts the focus on a record, even right after the
+    list mounts),
     StepList, DescriptionList, LogView, CodeView, and Ltr, an inline
     left-to-right isolate for code, tickers and formulas in a sentence.
     The values Stoa draws (StatBar and Metric values, number cells in

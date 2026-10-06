@@ -298,10 +298,13 @@ const STEPS: Step[] = [
   { id: "5", title: "Hedge", status: "skipped", explanation: "No position to hedge." },
   { id: "6", title: "Rebalance", status: "undone" },
   { id: "7", title: "Report", status: "error", explanation: "The report service did not answer.", actions: <Button>Retry</Button> },
+  { id: "8", title: "Archive the run", status: "notRun", explanation: "The run stopped before this step." },
 ];
 
 /** Every status, each a symbol and a word; the running step pulses unless
- * motion is reduced, and shows its progress. */
+ * motion is reduced, and shows its progress. A skipped step was passed
+ * over while the run went on; a step not run was never reached, because
+ * the run stopped before it. */
 export const StepsAllStatuses: StoryObj = {
   render: () => (
     <Panel title="Order">

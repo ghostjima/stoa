@@ -115,7 +115,7 @@ export type StoaMessages = {
   showResults: (count: string) => string;
   /** The word for each step status, shown beside its symbol (StepList's
    * `StepStatus` is this record's keys). */
-  stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "undone" | "error", string>;
+  stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "notRun" | "undone" | "error", string>;
   // Table and charts.
   /** A line chart with nothing to draw. */
   noChartData: string;
@@ -247,6 +247,7 @@ const EN: StoaMessages = {
     done: "Done",
     awaiting: "Awaiting decision",
     skipped: "Skipped",
+    notRun: "Not run",
     undone: "Undone",
     error: "Error",
   },
@@ -351,6 +352,7 @@ const AR: StoaMessages = {
     done: "تم",
     awaiting: "بانتظار قرار",
     skipped: "تم التخطي",
+    notRun: "لم يُنفَّذ",
     undone: "تم التراجع",
     error: "خطأ",
   },
@@ -470,6 +472,7 @@ const RU: StoaMessages = {
     done: "Готово",
     awaiting: "Ждёт решения",
     skipped: "Пропущено",
+    notRun: "Не запускалось",
     undone: "Отменено",
     error: "Ошибка",
   },

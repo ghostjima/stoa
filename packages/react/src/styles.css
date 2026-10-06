@@ -924,7 +924,7 @@
 .stoa-step__main { flex: 1; min-inline-size: 0; display: grid; gap: var(--stoa-space-1); }
 .stoa-step__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-2); min-block-size: var(--stoa-space-6); }
 .stoa-step__title { font-weight: var(--stoa-font-weight-medium); }
-.stoa-step--skipped .stoa-step__title, .stoa-step--undone .stoa-step__title { color: var(--stoa-color-text-muted); font-weight: var(--stoa-font-weight-regular); }
+.stoa-step--skipped .stoa-step__title, .stoa-step--notRun .stoa-step__title, .stoa-step--undone .stoa-step__title { color: var(--stoa-color-text-muted); font-weight: var(--stoa-font-weight-regular); }
 .stoa-step__status { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 .stoa-step__symbol { display: inline-block; }
 .stoa-step__status--running .stoa-step__symbol { color: var(--stoa-color-accent); }

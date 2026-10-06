@@ -317,6 +317,29 @@
   padding: var(--stoa-space-2) var(--stoa-space-3); cursor: pointer; color: var(--stoa-color-text-muted);
   border-block-end: 2px solid transparent; outline: none;
 }
+/* On a narrow screen, tabs that do not fit stay on one row, which scrolls
+   sideways, rather than wrapping onto rows that read as one; an end that
+   hides tabs fades out (data-hidden-edges, set in Form.tsx), so the row
+   shows there is more of it. The fade is a mask, so it works on any
+   surface. The row takes its container's width and never widens it.
+   Wider screens keep wrapping, as before. 40rem is
+   --stoa-breakpoint-narrow's value: media queries cannot read variables. */
+@media (max-width: 40rem) {
+  .stoa-tabs__list {
+    flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; overscroll-behavior-inline: contain;
+    contain: inline-size;
+    /* The fade's width; Form.tsx keeps a focused tab clear of it. */
+    scroll-padding-inline: var(--stoa-space-8);
+  }
+  .stoa-tabs__tab { flex: none; white-space: nowrap; }
+  .stoa-tabs__list[data-hidden-edges="end"] { mask-image: linear-gradient(to right, black calc(100% - var(--stoa-space-8)), transparent); }
+  .stoa-tabs__list[data-hidden-edges="start"] { mask-image: linear-gradient(to left, black calc(100% - var(--stoa-space-8)), transparent); }
+  .stoa-tabs__list[data-hidden-edges="start end"] {
+    mask-image: linear-gradient(to right, transparent, black var(--stoa-space-8), black calc(100% - var(--stoa-space-8)), transparent);
+  }
+  .stoa-tabs__list[data-hidden-edges="end"]:dir(rtl) { mask-image: linear-gradient(to left, black calc(100% - var(--stoa-space-8)), transparent); }
+  .stoa-tabs__list[data-hidden-edges="start"]:dir(rtl) { mask-image: linear-gradient(to right, black calc(100% - var(--stoa-space-8)), transparent); }
+}
 .stoa-tabs__tab[data-hovered]:not([data-selected]) { color: var(--stoa-color-text); }
 .stoa-tabs__tab[data-selected] { color: var(--stoa-color-text); border-block-end-color: var(--stoa-color-accent); }
 .stoa-tabs__tab[data-focus-visible] { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: -2px; }

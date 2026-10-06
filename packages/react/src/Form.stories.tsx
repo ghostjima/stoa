@@ -154,3 +154,27 @@ export const TabList: StoryObj = {
     </Panel>
   ),
 };
+
+const ISSUE_TABS = {
+  en: ["Overview", "Payments", "Offer and call", "Rating history", "Documents", "Trades"],
+  ar: ["نظرة عامة", "المدفوعات", "العرض والاسترداد", "سجل التصنيف", "المستندات", "الصفقات"],
+};
+
+/** More tabs than fit a phone's width. On a narrow screen they stay on
+ * one row, which scrolls sideways, and the end that hides tabs fades out;
+ * the arrow keys move through every tab as before and bring each into
+ * view. On a wider screen they wrap, as before. */
+export const TabListNarrow: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const names = ISSUE_TABS[arabic ? "ar" : "en"];
+    return (
+      <Panel title={arabic ? "الإصدار" : "Issue"}>
+        <Tabs
+          label={arabic ? "أقسام الإصدار" : "Issue sections"}
+          items={names.map((name, i) => ({ id: `t${i}`, label: name, content: <p>{name}</p> }))}
+        />
+      </Panel>
+    );
+  },
+};

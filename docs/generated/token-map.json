@@ -138,6 +138,11 @@
             "line": 1260
           },
           {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1316
+          },
+          {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1139
@@ -453,7 +458,9 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -493,6 +500,12 @@
             "component": "Callout",
             "file": "packages/react/src/styles.css",
             "line": 494,
+            "via": "--stoa-color-warning"
+          },
+          {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1306,
             "via": "--stoa-color-warning"
           },
           {
@@ -589,6 +602,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -673,6 +690,12 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1306,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1202,
@@ -766,6 +789,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -1140,6 +1167,12 @@
             "via": "--stoa-color-accent"
           },
           {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1316,
+            "via": "--stoa-color-accent"
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 240,
@@ -1550,6 +1583,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -1647,7 +1684,9 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -1908,6 +1947,10 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -2115,6 +2158,12 @@
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1260,
+            "via": "--stoa-color-accent"
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1316,
             "via": "--stoa-color-accent"
           },
           {
@@ -2465,7 +2514,9 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -2546,7 +2597,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1300
+            "line": 1324
           },
           {
             "component": "FilterChip",
@@ -2692,6 +2743,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -2789,7 +2844,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -3182,6 +3239,11 @@
             "line": 495
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1307
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1201
@@ -3294,6 +3356,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -3674,6 +3740,10 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -3837,6 +3907,12 @@
             "component": "Checkbox",
             "file": "packages/react/src/styles.css",
             "line": 696,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1303,
             "via": "--stoa-color-surface"
           },
           {
@@ -4076,6 +4152,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -4174,7 +4254,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -4719,6 +4801,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -5218,7 +5304,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1300,
+            "line": 1324,
             "via": "--stoa-color-border"
           },
           {
@@ -5380,6 +5466,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -5477,7 +5567,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -5650,6 +5742,18 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1314,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1317,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "DescriptionList",
             "file": "packages/react/src/styles.css",
             "line": 1036,
@@ -5688,7 +5792,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1324,
+            "line": 1348,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -5952,6 +6056,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -6050,7 +6158,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -7102,6 +7212,18 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1314,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1317,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "DescriptionList",
             "file": "packages/react/src/styles.css",
             "line": 1036,
@@ -7140,7 +7262,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1324,
+            "line": 1348,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7404,6 +7526,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -7502,7 +7628,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -7640,7 +7768,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1300,
+            "line": 1324,
             "via": "--stoa-color-border"
           },
           {
@@ -7802,6 +7930,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -7899,7 +8031,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -8324,6 +8458,12 @@
             "component": "Checkbox",
             "file": "packages/react/src/styles.css",
             "line": 696,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1303,
             "via": "--stoa-color-surface"
           },
           {
@@ -8845,6 +8985,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -8943,7 +9087,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -9017,6 +9163,12 @@
             "component": "Callout",
             "file": "packages/react/src/styles.css",
             "line": 495,
+            "via": "--stoa-color-down"
+          },
+          {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1307,
             "via": "--stoa-color-down"
           },
           {
@@ -9156,6 +9308,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -9329,6 +9485,12 @@
             "via": "--stoa-color-down"
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1307,
+            "via": "--stoa-color-down"
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1201,
@@ -9465,6 +9627,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -9759,6 +9925,11 @@
             "line": 696
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1303
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1156
@@ -9967,6 +10138,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -10065,7 +10240,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -11410,6 +11587,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -11634,6 +11815,16 @@
             "line": 1283
           },
           {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1314
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1317
+          },
+          {
             "component": "DescriptionList",
             "file": "packages/react/src/styles.css",
             "line": 1036
@@ -11666,7 +11857,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1324
+            "line": 1348
           },
           {
             "component": "Heatmap",
@@ -11897,6 +12088,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -11995,7 +12190,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -12496,6 +12693,11 @@
             "line": 494
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1306
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1202
@@ -12581,6 +12783,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -12676,6 +12882,10 @@
           }
         ],
         "stories": [
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -12799,6 +13009,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -12951,6 +13165,10 @@
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
           "Controls/FilterBar > NoMatches",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -13566,6 +13784,10 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -13841,6 +14063,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -13949,6 +14175,11 @@
             "component": "(css) body",
             "file": ".storybook/preview.css",
             "line": 4
+          },
+          {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1304
           },
           {
             "component": "DataGrid",
@@ -14061,6 +14292,10 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -14969,7 +15204,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1302
+            "line": 1326
           },
           {
             "component": "EmptyState",
@@ -15031,6 +15266,10 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -15199,6 +15438,16 @@
             "line": 1269
           },
           {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1314
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1317
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 233
@@ -15211,7 +15460,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1324
+            "line": 1348
           },
           {
             "component": "FilterChip",
@@ -15410,6 +15659,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -15503,7 +15756,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -15550,7 +15805,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1302
+            "line": 1326
           },
           {
             "component": "Disclosure",
@@ -15649,6 +15904,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -15737,7 +15996,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -15773,6 +16034,10 @@
           }
         ],
         "stories": [
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -15865,6 +16130,16 @@
             "line": 442
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1304
+          },
+          {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1308
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1198
@@ -15916,6 +16191,10 @@
           "Controls/Inputs > TagsSmall",
           "Controls/Inputs > ThemeSwitchStates",
           "Controls/Inputs > ToolbarTransport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -16761,6 +17040,11 @@
             "line": 936
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1303
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1197
@@ -16850,6 +17134,10 @@
           "Controls/Playback > Trades",
           "Controls/Playback > TradesEmpty",
           "Controls/Playback > Transport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -16970,7 +17258,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1300
+            "line": 1324
           },
           {
             "component": "Panel",
@@ -17023,6 +17311,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -17111,7 +17403,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -17538,6 +17832,11 @@
       "readBy": {
         "components": [
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1303
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1196
@@ -17615,6 +17914,10 @@
           "Controls/Inputs > TagsSmall",
           "Controls/Inputs > ThemeSwitchStates",
           "Controls/Inputs > ToolbarTransport",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -17710,6 +18013,11 @@
             "line": 159
           },
           {
+            "component": "Countdown",
+            "file": "packages/react/src/styles.css",
+            "line": 1301
+          },
+          {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1196
@@ -17737,7 +18045,7 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1299
+            "line": 1323
           },
           {
             "component": "DescriptionList",
@@ -18081,6 +18389,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -18206,7 +18518,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1315
+            "line": 1339
           },
           {
             "component": "ToastRegion",
@@ -18405,12 +18717,22 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1299
+            "line": 1323
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1302
+            "line": 1326
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1312
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1313
           },
           {
             "component": "DescriptionList",
@@ -18440,12 +18762,12 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1319
+            "line": 1343
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1321
+            "line": 1345
           },
           {
             "component": "FilterChip",
@@ -18654,6 +18976,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -18747,7 +19073,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -18824,12 +19152,12 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1312
+            "line": 1336
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1316
+            "line": 1340
           },
           {
             "component": "FilterChip",
@@ -18978,6 +19306,10 @@
           "Data/Charts > StripEmpty",
           "Data/Charts > StripPayments",
           "Data/Charts > StripTimeFollowsLocale",
+          "Data/Countdown > InATable",
+          "Data/Countdown > Live",
+          "Data/Countdown > States",
+          "Data/Countdown > Units",
           "Data/DataGrid > CellTone",
           "Data/DataGrid > ColumnChooser",
           "Data/DataGrid > EditWithConfirmation",
@@ -19066,7 +19398,9 @@
           "Report > TooltipClosed",
           "Report > TooltipOpen",
           "Report > TooltipPlacements",
-          "التنسيقات > Formatters"
+          "التنسيقات > Formatters",
+          "طريقة الحساب > CouponAfterTax",
+          "طريقة الحساب > Plain"
         ]
       },
       "reachedByTheme": {
@@ -19143,22 +19477,22 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1310
+            "line": 1334
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1312
+            "line": 1336
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1317
+            "line": 1341
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1321
+            "line": 1345
           },
           {
             "component": "LineChart",
@@ -19412,7 +19746,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1316
+            "line": 1340
           },
           {
             "component": "FilterChip",

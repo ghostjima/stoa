@@ -51,6 +51,12 @@ follow as the products need them.
     its label by default; `hideLabel` keeps it for assistive technology
     only, where the options name themselves or a heading names the
     control (ThemeSwitch and LanguageSwitch always hide theirs).
+  - Deadlines and workings: Countdown and DeadlineCell (time left in
+    working days, days or hours counted by the application, a warning
+    and an overdue state in words and a symbol, read out only when the
+    state changes) and DerivationTable (how a figure was worked out:
+    step, formula, value, and source with its revision; copied as plain
+    text).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
     VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.

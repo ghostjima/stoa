@@ -9,6 +9,15 @@
 import { useMemo } from "react";
 import { useLocale } from "react-aria-components";
 
+/** The unit a deadline's time left is counted in: working days (by the
+ * caller's own calendar), calendar days or hours. */
+export type DeadlineUnit = "workingDays" | "days" | "hours";
+
+/** A count's plural category in the locale (Intl.PluralRules), which
+ * picks the word's form: "1 рабочий день", "2 рабочих дня", "5 рабочих
+ * дней". */
+export type PluralCategory = "zero" | "one" | "two" | "few" | "many" | "other";
+
 export type StoaMessages = {
   time: string;
   side: string;
@@ -137,6 +146,21 @@ export type StoaMessages = {
   eventItem: (date: string, kind: string) => string;
   /** An event strip with no events. */
   noEvents: string;
+  /** Countdown: time left before a deadline, the count already in the
+   * locale's digits and `plural` its plural category. */
+  deadlineLeft: (count: string, unit: DeadlineUnit, plural: PluralCategory) => string;
+  /** Countdown: how long ago a deadline passed. */
+  deadlineOverdue: (count: string, unit: DeadlineUnit, plural: PluralCategory) => string;
+  /** Countdown: a deadline that falls now: today in days, this hour in
+   * hours. */
+  deadlineDue: (unit: DeadlineUnit) => string;
+  /** DerivationTable: its column headers. */
+  derivationStep: string;
+  derivationFormula: string;
+  derivationValue: string;
+  derivationSource: string;
+  /** DerivationTable: a source's revision ("revision 2025-12-01"). */
+  derivationRevision: (revision: string) => string;
   /** DataGrid: the name of the checkbox that selects every row. */
   gridSelectAll: string;
   /** DataGrid: the name of a row's checkbox, from the row's first value. */
@@ -243,6 +267,16 @@ const EN: StoaMessages = {
   eventSummary: (from, to, parts) => `From ${from} to ${to}: ${parts.join("; ")}.`,
   eventItem: (date, kind) => `${date}: ${kind}`,
   noEvents: "No events to show.",
+  deadlineLeft: (count, unit, plural) =>
+    `${count} ${{ workingDays: plural === "one" ? "working day" : "working days", days: plural === "one" ? "day" : "days", hours: plural === "one" ? "hour" : "hours" }[unit]} left`,
+  deadlineOverdue: (count, unit, plural) =>
+    `${count} ${{ workingDays: plural === "one" ? "working day" : "working days", days: plural === "one" ? "day" : "days", hours: plural === "one" ? "hour" : "hours" }[unit]} overdue`,
+  deadlineDue: (unit) => (unit === "hours" ? "Due within the hour" : "Due today"),
+  derivationStep: "Step",
+  derivationFormula: "Formula",
+  derivationValue: "Value",
+  derivationSource: "Source",
+  derivationRevision: (revision) => `revision ${revision}`,
   gridSelectAll: "Select all rows",
   gridSelectRow: (row) => `Select row ${row}`,
   gridSortedAscending: (column) => `Sorted by ${column}, ascending`,
@@ -337,6 +371,16 @@ const AR: StoaMessages = {
   eventSummary: (from, to, parts) => `من ${from} إلى ${to}: ${parts.join("؛ ")}.`,
   eventItem: (date, kind) => `${date}: ${kind}`,
   noEvents: "لا أحداث لعرضها.",
+  // A count before its noun would need the noun's number to agree with
+  // it; a label and a colon need none.
+  deadlineLeft: (count, unit, _plural) => `${{ workingDays: "أيام العمل المتبقية", days: "الأيام المتبقية", hours: "الساعات المتبقية" }[unit]}: ${count}`,
+  deadlineOverdue: (count, unit, _plural) => `${{ workingDays: "أيام عمل التأخير", days: "أيام التأخير", hours: "ساعات التأخير" }[unit]}: ${count}`,
+  deadlineDue: (unit) => (unit === "hours" ? "الموعد خلال الساعة" : "الموعد اليوم"),
+  derivationStep: "الخطوة",
+  derivationFormula: "الصيغة",
+  derivationValue: "القيمة",
+  derivationSource: "المصدر",
+  derivationRevision: (revision) => `المراجعة ${revision}`,
   gridSelectAll: "تحديد كل الصفوف",
   gridSelectRow: (row) => `تحديد الصف ${row}`,
   gridSortedAscending: (column) => `مرتب حسب ${column} تصاعديًا`,
@@ -351,6 +395,20 @@ const AR: StoaMessages = {
   gridSelected: (count) => `المحدد: ${count}`,
   gridClearSelection: "إلغاء التحديد",
 };
+
+/** A Russian unit in the form its count asks for: "1 рабочий день",
+ * "2 рабочих дня", "5 рабочих дней"; the same form after "Осталось" and
+ * after "на". A fraction takes the "few" form's genitive singular, which
+ * Intl reports as "other": "1,5 рабочего дня". */
+function ruUnit(unit: DeadlineUnit, plural: PluralCategory): string {
+  const forms: Record<DeadlineUnit, Record<"one" | "few" | "many" | "other", string>> = {
+    workingDays: { one: "рабочий день", few: "рабочих дня", many: "рабочих дней", other: "рабочего дня" },
+    days: { one: "день", few: "дня", many: "дней", other: "дня" },
+    hours: { one: "час", few: "часа", many: "часов", other: "часа" },
+  };
+  const form = plural === "one" || plural === "few" || plural === "many" ? plural : "other";
+  return forms[unit][form];
+}
 
 const RU: StoaMessages = {
   time: "Время",
@@ -432,6 +490,14 @@ const RU: StoaMessages = {
   eventSummary: (from, to, parts) => `С ${from} по ${to}: ${parts.join("; ")}.`,
   eventItem: (date, kind) => `${date}: ${kind}`,
   noEvents: "Событий для показа нет.",
+  deadlineLeft: (count, unit, plural) => `${plural === "one" ? "Остался" : "Осталось"} ${count} ${ruUnit(unit, plural)}`,
+  deadlineOverdue: (count, unit, plural) => `Просрочено на ${count} ${ruUnit(unit, plural)}`,
+  deadlineDue: (unit) => (unit === "hours" ? "Срок истекает в течение часа" : "Срок сегодня"),
+  derivationStep: "Шаг",
+  derivationFormula: "Формула",
+  derivationValue: "Значение",
+  derivationSource: "Источник",
+  derivationRevision: (revision) => `редакция от ${revision}`,
   gridSelectAll: "Выбрать все строки",
   gridSelectRow: (row) => `Выбрать строку ${row}`,
   gridSortedAscending: (column) => `Сортировка по столбцу ${column}, по возрастанию`,

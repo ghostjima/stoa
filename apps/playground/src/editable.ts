@@ -3,7 +3,8 @@
 //
 // Fonts and motion are out of scope for this brief, so the panel does not
 // offer them; every token is still resolved and previewed.
-import { flattenFile, type TokenEntry, type TokenFiles } from "./tokenModel";
+import type { ChromeText } from "./chromeText";
+import { DENSITY_MODES, flattenFile, type TokenEntry, type TokenFiles } from "./tokenModel";
 
 export type Control =
   | { kind: "color" }
@@ -28,7 +29,9 @@ function colorItems(entries: TokenEntry[], label: (entry: TokenEntry) => string)
   return entries.map((entry) => ({ entry, label: label(entry), control: { kind: "color" } as Control }));
 }
 
-export function editableTabs(files: TokenFiles): EditableTab[] {
+/** The tabs and groups, named in the chrome's words; the items keep the
+ * token names they have in the files. */
+export function editableTabs(files: TokenFiles, words: ChromeText["tokens"]): EditableTab[] {
   const primitive = flattenFile("primitive", files.primitive);
   const palette = primitive.filter((e) => e.path[0] === "color");
   const shape = primitive.filter((e) => e.path[0] === "space" || e.path[0] === "radius" || e.path[0] === "focus");
@@ -43,19 +46,19 @@ export function editableTabs(files: TokenFiles): EditableTab[] {
   return [
     {
       id: "colour",
-      label: "Colour",
+      label: words.colour,
       groups: [
-        semanticGroup("semantic.light", "Semantic, light"),
-        semanticGroup("semantic.dark", "Semantic, dark"),
-        { id: "palette", label: "Palette", items: colorItems(palette, (e) => e.path.slice(1).join(" ")) },
+        semanticGroup("semantic.light", words.semanticLight),
+        semanticGroup("semantic.dark", words.semanticDark),
+        { id: "palette", label: words.palette, items: colorItems(palette, (e) => e.path.slice(1).join(" ")) },
       ],
     },
     {
       id: "density",
-      label: "Density",
-      groups: ["compact", "regular", "comfortable"].map((mode) => ({
+      label: words.density,
+      groups: DENSITY_MODES.map((mode) => ({
         id: `density.${mode}`,
-        label: mode[0]!.toUpperCase() + mode.slice(1),
+        label: words.densityGroups[mode],
         items: density
           .filter((e) => e.path[0] === mode)
           .map((entry) => ({ entry, label: last(entry), control: lengthControl(entry.value) })),
@@ -63,11 +66,11 @@ export function editableTabs(files: TokenFiles): EditableTab[] {
     },
     {
       id: "shape",
-      label: "Shape",
+      label: words.shape,
       groups: [
         {
           id: "shape.all",
-          label: "Space, radius and focus",
+          label: words.shapeAll,
           // Lengths with a slider first, then the ones edited as text
           // (radius.full, 9999px), at the end of the list.
           items: shape

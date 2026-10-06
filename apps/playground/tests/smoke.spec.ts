@@ -20,7 +20,7 @@ const washVariable = (page: Page, frame: string) =>
 
 test("loads two frames of the same dense screen, which show all four views between them", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Stoa playground", level: 1 })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Stoa System", level: 1 })).toBeVisible();
   await expect(page.locator("[data-frame]")).toHaveCount(2);
 
   for (const pair of VIEW_PAIRS) {

@@ -7,6 +7,7 @@
 // snapshot should record for it.
 import type { ComponentType, ReactNode } from "react";
 import { TypePanel } from "./type/TypePanel";
+import type { ChromeText } from "./chromeText";
 import type { DensityMode, ResolvedTokens, Theme } from "./tokenModel";
 
 export type Contribution = {
@@ -29,11 +30,12 @@ export type PanelProps = {
 export type PanelSpec = {
   /** Also the key a snapshot records this panel's state under. */
   id: string;
-  title: string;
+  /** The panel's title in the chrome's words. */
+  title: (text: ChromeText) => string;
   Component: ComponentType<PanelProps>;
 };
 
-export const AREA_PANELS: PanelSpec[] = [{ id: "type", title: "Type", Component: TypePanel }];
+export const AREA_PANELS: PanelSpec[] = [{ id: "type", title: (text) => text.type.title, Component: TypePanel }];
 
 /** The variables of every panel, later panels winning, as one object for a
  * preview frame's style. */

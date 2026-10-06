@@ -59,6 +59,25 @@ test("no serious or critical violation in any data state", async ({ page }) => {
   }
 });
 
+test("no serious or critical violation with the chrome in Russian, light and dark", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("radiogroup", { name: "Playground language" }).getByRole("radio", { name: "RU" }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "ru");
+  const theme = page.getByRole("radiogroup", { name: "Тема песочницы" });
+  for (const [choice, mode] of [
+    ["Светлая", "light"],
+    ["Тёмная", "dark"],
+  ] as const) {
+    await theme.getByRole("radio", { name: choice }).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", mode);
+    // The side tabs with the most chrome words: the checks and the type panel.
+    for (const tab of ["Проверки", "Типографика"]) {
+      await page.getByRole("tab", { name: tab }).click();
+      expect(serious(await audit(page, `chrome ru ${mode} ${tab}`)), `${mode} ${tab}`).toEqual([]);
+    }
+  }
+});
+
 test("no serious or critical violation with a dialog or a toast open in the dark frame", async ({ page }) => {
   await page.goto("/");
   await showScreen(page, "overlays");

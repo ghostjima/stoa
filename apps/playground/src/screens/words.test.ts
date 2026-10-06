@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { LANGUAGES } from "../screenText";
-import { DATA_STATES, SCREENS } from "./model";
 import { COMPONENT_WORDS } from "./words";
 
 /** Every leaf of a dictionary as [path, value]: strings, arrays of
@@ -57,15 +56,6 @@ describe("the component screens' words", () => {
         }
         if (!isSentenceKey(path)) expect(text, `${id} ${path}`).not.toMatch(/\.$/);
       }
-    }
-  });
-});
-
-describe("the side panel's settings", () => {
-  it("label every screen and state with a capital and no full stop", () => {
-    for (const { label } of [...SCREENS, ...DATA_STATES]) {
-      expect(label[0], label).toBe(label[0]!.toUpperCase());
-      expect(label).not.toMatch(/\.$/);
     }
   });
 });

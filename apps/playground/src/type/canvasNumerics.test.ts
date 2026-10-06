@@ -7,7 +7,7 @@ import { descriptorVerdict, tabularFromWidths, type CanvasNumericsReport, type N
 
 const route = (id: NumericRoute["id"], widths: number[]): NumericRoute => ({
   id,
-  label: id,
+  subject: id,
   widths,
   distinct: new Set(widths).size,
   tabular: tabularFromWidths(widths),

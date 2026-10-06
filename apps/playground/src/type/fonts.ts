@@ -6,6 +6,7 @@
 // them with features. A snapshot records the reference instead: a font file
 // is someone else's licensed work, and a snapshot is a record of a tuning
 // session, not a place to keep a copy of it.
+import { CHROME_TEXT, type TypeReportText } from "../chromeText.ts";
 import type { FontReport } from "./report.ts";
 import type { DigitRow } from "./digits.ts";
 
@@ -64,16 +65,17 @@ export function loadedFont(report: FontReport, bytes: ArrayBuffer, source: FontS
 }
 
 /** The licence this font states, from the file first and from the catalogue
- * when the file says nothing. */
-export function fontLicence(font: LoadedFont): string {
+ * when the file says nothing. In English unless other words are given: a
+ * snapshot records it in English. */
+export function fontLicence(font: LoadedFont, words: TypeReportText = CHROME_TEXT.en.type.report): string {
   const stated = font.report.names.licence.trim();
   if (stated !== "") return stated;
-  if (font.source.kind === "fontsource") return `Fontsource records: ${font.source.licence}`;
+  if (font.source.kind === "fontsource") return words.licenceFromFontsource(font.source.licence);
   // A subsetter can drop the licence description (name ID 13) and keep the
   // URL (name ID 14); the Fontsource builds of IBM Plex do exactly that.
   const url = font.report.names.licenceUrl.trim();
-  if (url !== "") return "the file states no licence text, only a licence URL";
-  return "the file states no licence";
+  if (url !== "") return words.licenceOnlyUrl;
+  return words.licenceNone;
 }
 
 /** Register a loaded file under a second family name with a `size-adjust`,

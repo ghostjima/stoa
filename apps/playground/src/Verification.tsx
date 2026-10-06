@@ -4,11 +4,12 @@
 // build emitted. A disagreement means the previews are lying and is shown
 // as a failure, not a warning.
 import { useEffect, useMemo, useState } from "react";
-import { Button, StatusBadge } from "@ghostjima/stoa-react";
+import { Button, StatusBadge, useStoaFormat } from "@ghostjima/stoa-react";
 import { RULES } from "@ghostjima/stoa-tokens/checks";
 import { requestBuild, type BuildResult } from "./api";
 import { compareVariables, variablesFromCss, type Disagreement } from "./builtCss";
 import { BrowserChecksPanel } from "./BrowserChecksPanel";
+import { useChromeText } from "./chromeLanguage";
 import { runBrowserChecks, type BrowserCheck, type BrowserChecks } from "./browserChecks";
 import type { DensityMode, ResolvedTokens, Theme } from "./tokenModel";
 
@@ -51,21 +52,16 @@ const SHOWN = 8;
  * browser does not check. Only a server pass beside a predicted gate
  * failure contradicts the browser. */
 function GateAgreement({ testsPassed, browserFails }: { testsPassed: boolean; browserFails: boolean }) {
-  if (testsPassed && !browserFails) return <StatusBadge tone="positive">agree: both pass</StatusBadge>;
-  if (testsPassed && browserFails) {
-    return <StatusBadge tone="negative">disagree: server tests passed, the browser checks would fail the gate</StatusBadge>;
-  }
-  if (browserFails) {
-    return <StatusBadge tone="neutral">server tests failed, the browser checks would fail the gate too</StatusBadge>;
-  }
-  return (
-    <StatusBadge tone="warning">
-      server tests failed on something the browser checks do not cover: see the test output
-    </StatusBadge>
-  );
+  const t = useChromeText();
+  if (testsPassed && !browserFails) return <StatusBadge tone="positive">{t.verify.gateBothPass}</StatusBadge>;
+  if (testsPassed && browserFails) return <StatusBadge tone="negative">{t.verify.gateServerOnly}</StatusBadge>;
+  if (browserFails) return <StatusBadge tone="neutral">{t.verify.gateBothFail}</StatusBadge>;
+  return <StatusBadge tone="warning">{t.verify.gateUncovered}</StatusBadge>;
 }
 
 export function Verification({ tokens, densityTokens, density, files, onSelectCheck }: VerificationProps) {
+  const t = useChromeText();
+  const format = useStoaFormat();
   const [busy, setBusy] = useState(false);
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [failure, setFailure] = useState<Failure | null>(null);
@@ -128,49 +124,53 @@ export function Verification({ tokens, densityTokens, density, files, onSelectCh
     <div className="pg-verify">
       <div className="pg-row pg-row--between">
         <Button variant="primary" onPress={run} isDisabled={busy}>
-          {busy ? "Building..." : "Build and test"}
+          {busy ? t.verify.building : t.verify.build}
         </Button>
         {result && (
           <span className="pg-verify__commit">
-            commit <code>{result.commit.slice(0, 7)}</code>
-            {result.dirty ? " (working tree dirty)" : ""}
+            {t.verify.commit} <code>{result.commit.slice(0, 7)}</code>
+            {result.dirty ? ` ${t.verify.dirty}` : ""}
           </span>
         )}
       </div>
 
-      {error && <p className="pg-verify__error" role="alert">{error}</p>}
+      {error && (
+        <p className="pg-verify__error" role="alert">
+          {t.verify.failed(error)}
+        </p>
+      )}
 
       {result && (
         <dl className="pg-verify__results" data-testid="build-results">
-          <dt>Build</dt>
+          <dt>{t.verify.buildRow}</dt>
           <dd data-testid="build-status">
             <StatusBadge tone={result.build.ok ? "positive" : "negative"}>
-              {result.build.ok ? "passed" : "failed"}
+              {result.build.ok ? t.verify.passed : t.verify.notPassed}
             </StatusBadge>
             <code>{result.build.command}</code>
           </dd>
-          <dt>Tests</dt>
+          <dt>{t.verify.testsRow}</dt>
           <dd data-testid="test-status">
             <StatusBadge tone={result.test.ok ? "positive" : "negative"}>
-              {result.test.ok ? "passed" : "failed"}
+              {result.test.ok ? t.verify.passed : t.verify.notPassed}
             </StatusBadge>
             <code>{result.test.command}</code>
           </dd>
-          <dt>Preview against built CSS</dt>
+          <dt>{t.verify.previewRow}</dt>
           <dd data-testid="agreement-status">
             {agreement === null ? (
-              <StatusBadge tone="neutral">no CSS to compare</StatusBadge>
+              <StatusBadge tone="neutral">{t.verify.noCss}</StatusBadge>
             ) : (
               <StatusBadge tone={disagreements.length === 0 ? "positive" : "negative"}>
                 {disagreements.length === 0
-                  ? `agrees on ${Object.keys(tokens.light.variables).length} variables per theme`
-                  : `${disagreements.length} variable(s) disagree`}
+                  ? t.verify.agrees(Object.keys(tokens.light.variables).length)
+                  : t.verify.disagree(disagreements.length)}
               </StatusBadge>
             )}
           </dd>
           {result.build.ok && browser.available && (
             <>
-              <dt>Known-violations gate: browser vs server tests</dt>
+              <dt>{t.verify.gateRow}</dt>
               <dd data-testid="checks-agreement-status">
                 <GateAgreement testsPassed={result.test.ok} browserFails={browser.wouldFailServerTests} />
               </dd>
@@ -181,12 +181,12 @@ export function Verification({ tokens, densityTokens, density, files, onSelectCh
 
       {disagreements.length > 0 && (
         <table className="stoa-table">
-          <caption className="stoa-visually-hidden">Variables where the preview and the built CSS differ</caption>
+          <caption className="stoa-visually-hidden">{t.verify.differCaption}</caption>
           <thead>
             <tr>
-              <th scope="col">Variable</th>
-              <th scope="col">Preview</th>
-              <th scope="col">Built</th>
+              <th scope="col">{t.verify.variable}</th>
+              <th scope="col">{t.verify.preview}</th>
+              <th scope="col">{t.verify.built}</th>
             </tr>
           </thead>
           <tbody>
@@ -209,26 +209,26 @@ export function Verification({ tokens, densityTokens, density, files, onSelectCh
 
       {result && (
         <>
-          <h3 className="pg-group__title">Test output</h3>
+          <h3 className="pg-group__title">{t.verify.testOutput}</h3>
           <pre className="pg-output" data-testid="test-output">
-            {result.test.output.trim() || "(no output)"}
+            {result.test.output.trim() || t.verify.noOutput}
           </pre>
           {!result.build.ok && (
             <>
-              <h3 className="pg-group__title">Build output</h3>
-              <pre className="pg-output">{result.build.output.trim() || "(no output)"}</pre>
+              <h3 className="pg-group__title">{t.verify.buildOutput}</h3>
+              <pre className="pg-output">{result.build.output.trim() || t.verify.noOutput}</pre>
             </>
           )}
         </>
       )}
 
-      <h3 className="pg-group__title">In-browser checks</h3>
+      <h3 className="pg-group__title">{t.verify.browserChecks}</h3>
       {browser.available ? (
         <>
           <p className="pg-note" data-testid="browser-checks-cost">
             {browserMs === null
-              ? `${browser.checks.length} checks, not yet timed`
-              : `${browser.checks.length} checks in ${browserMs.toFixed(2)} ms`}
+              ? t.verify.notTimed(browser.checks.length)
+              : t.verify.timed(browser.checks.length, format.decimal(browserMs, 2))}
           </p>
           <BrowserChecksPanel
             checks={browser.checks}
@@ -238,7 +238,7 @@ export function Verification({ tokens, densityTokens, density, files, onSelectCh
         </>
       ) : (
         <p className="pg-note" role="alert">
-          {browser.note}
+          {t.verify.unavailable(browser.note)}
         </p>
       )}
     </div>

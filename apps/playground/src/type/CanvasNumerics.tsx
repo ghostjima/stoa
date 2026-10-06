@@ -4,6 +4,7 @@
 // the loaded file twice, once plain and once with the features the numeric
 // role asks for, and reports what this browser drew.
 import { Button, StatusBadge } from "@ghostjima/stoa-react";
+import { useChromeText } from "../chromeLanguage";
 import { descriptorVerdict, type CanvasNumericsReport } from "./canvasNumerics.ts";
 
 export type CanvasNumericsProps = {
@@ -15,50 +16,46 @@ export type CanvasNumericsProps = {
 };
 
 export function CanvasNumerics({ report, busy, featureSettings, onRun }: CanvasNumericsProps) {
+  const t = useChromeText();
+  const words = t.type.numerics;
   return (
     <div className="pg-stack">
       <div className="pg-row">
         <Button variant="primary" onPress={onRun} isDisabled={busy}>
-          {busy ? "Measuring..." : "Measure the canvas"}
+          {busy ? words.measuring : words.measure}
         </Button>
         <code>{featureSettings}</code>
       </div>
-      <p className="pg-note">
-        The numeric role&apos;s file is registered as a FontFace with these features and the digits are measured on a
-        canvas. The same measurement is taken through the canvas element&apos;s own font-feature-settings, which the
-        specification does not promise.
-      </p>
+      <p className="pg-note">{words.note}</p>
 
       {report === null ? (
-        <p className="pg-note">Not measured yet in this browser.</p>
+        <p className="pg-note">{words.notMeasured}</p>
       ) : (
         <div className="pg-stack" data-testid="type-canvas-report">
           <p className="pg-note" data-testid="type-canvas-agent">
             {report.userAgent}
           </p>
-          <p data-testid="type-canvas-verdict">{descriptorVerdict(report)}</p>
-          {report.note && <p className="pg-note">{report.note}</p>}
+          <p data-testid="type-canvas-verdict">{descriptorVerdict(report, t.type.report)}</p>
+          {report.note && <p className="pg-note">{words.notes[report.note]}</p>}
           {report.routes.length > 0 && (
             <table className="stoa-table">
-              <caption className="stoa-visually-hidden">
-                Digit advances on canvas, per route, at {report.probeSizePx}px
-              </caption>
+              <caption className="stoa-visually-hidden">{words.routesCaption(String(report.probeSizePx))}</caption>
               <thead>
                 <tr>
-                  <th scope="col">Route</th>
-                  <th scope="col">Result</th>
+                  <th scope="col">{words.route}</th>
+                  <th scope="col">{words.result}</th>
                   <th scope="col" className="stoa-num">
-                    Distinct advances
+                    {words.distinct}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {report.routes.map((route) => (
                   <tr key={route.id} data-route={route.id}>
-                    <td>{route.label}</td>
+                    <td>{words.routes[route.id](route.subject)}</td>
                     <td>
                       <StatusBadge tone={route.tabular ? "positive" : "warning"}>
-                        {route.tabular ? "tabular" : "not tabular"}
+                        {route.tabular ? words.tabular : words.notTabular}
                       </StatusBadge>
                     </td>
                     <td className="stoa-num">{route.distinct}</td>
@@ -69,16 +66,16 @@ export function CanvasNumerics({ report, busy, featureSettings, onRun }: CanvasN
           )}
           {report.ladder && (
             <p data-testid="type-canvas-ladder">
-              Ladder draws with <code>{report.ladder.font}</code>:{" "}
+              {words.ladderBefore} <code>{report.ladder.font}</code>:{" "}
               <StatusBadge tone={report.ladder.tabular ? "positive" : "negative"}>
-                {report.ladder.tabular ? "tabular" : "not tabular"}
+                {report.ladder.tabular ? words.tabular : words.notTabular}
               </StatusBadge>{" "}
-              {report.ladder.distinct} distinct advance(s) across the ten digits.
+              {words.ladderAfter(report.ladder.distinct)}
             </p>
           )}
           <p className="pg-note">
-            The browser reported the descriptor as <code>{report.reportedFeatureSettings || "nothing"}</code>, and a
-            FontFace object {report.descriptorPresent ? "has" : "does not have"} the property.
+            {words.reportedBefore} <code>{report.reportedFeatureSettings || words.reportedNothing}</code>
+            {report.descriptorPresent ? words.reportedHas : words.reportedHasNot}
           </p>
         </div>
       )}

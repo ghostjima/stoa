@@ -7,15 +7,18 @@
 // assumes an answer: every route is measured on a canvas in the browser the
 // tool is running in, and the panel reports the measurement.
 import { readCanvasTokens } from "@ghostjima/stoa-react";
+import { CHROME_TEXT, type CanvasNote, type RouteId, type TypeReportText } from "../chromeText.ts";
 
 /** The ten Latin digits, the set the canvas views draw. */
 export const CANVAS_DIGITS = "0123456789";
 
-export type RouteId = "plain" | "descriptor" | "element-css";
+export type { CanvasNote, RouteId };
 
 export type NumericRoute = {
   id: RouteId;
-  label: string;
+  /** What the route is told apart by, for its name in the panel: the
+   * family the plain route draws with, the features for the other two. */
+  subject: string;
   /** Advance per digit in CSS pixels, at the probe size. */
   widths: number[];
   distinct: number;
@@ -36,7 +39,7 @@ export type CanvasNumericsReport = {
    * builds, measured on a canvas. */
   ladder: { font: string; widths: number[]; distinct: number; tabular: boolean } | null;
   /** Why there is no report, when there is none. */
-  note: string | null;
+  note: CanvasNote | null;
 };
 
 export const tabularFromWidths = (widths: number[]): boolean => widths.length > 0 && new Set(widths).size === 1;
@@ -48,9 +51,9 @@ export function measureDigitWidths(context: CanvasRenderingContext2D, font: stri
   return [...CANVAS_DIGITS].map((digit) => Math.round(context.measureText(digit).width * 100) / 100);
 }
 
-const route = (id: RouteId, label: string, widths: number[]): NumericRoute => ({
+const route = (id: RouteId, subject: string, widths: number[]): NumericRoute => ({
   id,
-  label,
+  subject,
   widths,
   distinct: new Set(widths).size,
   tabular: tabularFromWidths(widths),
@@ -102,16 +105,16 @@ export function probeCanvasNumerics(input: ProbeInput): CanvasNumericsReport {
     ladder: null,
     note: null,
   };
-  if (!context) return { ...base, note: "this browser gave no 2d canvas context, so nothing was measured" };
+  if (!context) return { ...base, note: "no-context" };
 
   const routes: NumericRoute[] = [];
   if (input.families) {
     const { plain, withFeatures } = input.families;
-    routes.push(route("plain", `${plain} as loaded`, measureDigitWidths(context, `${probeSizePx}px ${plain}`)));
+    routes.push(route("plain", plain, measureDigitWidths(context, `${probeSizePx}px ${plain}`)));
     routes.push(
       route(
         "descriptor",
-        `FontFace featureSettings: ${input.featureSettings}`,
+        input.featureSettings,
         measureDigitWidths(context, `${probeSizePx}px ${withFeatures}`),
       ),
     );
@@ -122,7 +125,7 @@ export function probeCanvasNumerics(input: ProbeInput): CanvasNumericsReport {
     routes.push(
       route(
         "element-css",
-        `font-feature-settings on the canvas element: ${input.featureSettings}`,
+        input.featureSettings,
         measureDigitWidths(context, `${probeSizePx}px ${plain}`),
       ),
     );
@@ -143,23 +146,18 @@ export function probeCanvasNumerics(input: ProbeInput): CanvasNumericsReport {
     ...base,
     routes,
     ladder,
-    note: input.families ? null : "load a font to compare the routes; the Ladder row is measured either way",
+    note: input.families ? null : "no-font",
   };
 }
 
 /** The sentence the panel shows about the descriptor: taken from the two
- * measurements, not from the descriptor being present. */
-export function descriptorVerdict(report: CanvasNumericsReport): string {
+ * measurements, not from the descriptor being present. In English unless
+ * other words are given. */
+export function descriptorVerdict(report: CanvasNumericsReport, words: TypeReportText = CHROME_TEXT.en.type.report): string {
   const plain = report.routes.find((item) => item.id === "plain");
   const descriptor = report.routes.find((item) => item.id === "descriptor");
-  if (!plain || !descriptor) return "no font loaded, so the descriptor has not been tried here";
+  if (!plain || !descriptor) return words.canvasVerdictNoFont;
   const changed = plain.widths.join(",") !== descriptor.widths.join(",");
-  if (!changed) {
-    return report.descriptorPresent
-      ? "this browser has the featureSettings descriptor but canvas drew the same advances, so it did not take effect here"
-      : "this browser has no featureSettings descriptor on FontFace, and canvas drew the same advances";
-  }
-  return descriptor.tabular
-    ? "the featureSettings descriptor reached canvas: the registered face draws all ten digits at one advance"
-    : "the featureSettings descriptor reached canvas: it changed the advances, though they are still not all equal";
+  if (!changed) return report.descriptorPresent ? words.canvasVerdictIgnored : words.canvasVerdictNoDescriptor;
+  return descriptor.tabular ? words.canvasVerdictTabular : words.canvasVerdictUneven;
 }

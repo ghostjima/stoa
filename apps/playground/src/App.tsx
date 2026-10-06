@@ -4,8 +4,22 @@
 // override is shown as one. The area panels (src/panels.tsx) sit in the
 // same list and contribute variables and content to every preview frame.
 import { Fragment, useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
-import { AppHeader, Button, ChoiceGroup, PageShell, Panel, Select, StatusBadge, Tabs, TextField } from "@ghostjima/stoa-react";
+import {
+  AppHeader,
+  Button,
+  ChoiceGroup,
+  LanguageSwitch,
+  PageShell,
+  Panel,
+  Select,
+  StatusBadge,
+  Tabs,
+  TextField,
+  useStoaFormat,
+} from "@ghostjima/stoa-react";
 import { useChromeTheme, type ChromeTheme } from "./chromeTheme";
+import { useChromeText } from "./chromeLanguage";
+import { CHROME_LANGUAGES, isChromeLanguage, type ChromeLanguage } from "./chromeText";
 import { useRegionBlockSize } from "./region";
 import {
   DATA_STATES,
@@ -58,7 +72,22 @@ const SPEEDS = [
   { id: "4", label: "4x", interval: 60 },
 ];
 
-export function App() {
+/** What the snapshot panel last reported, kept as data so that it reads
+ * in whichever language the chrome is in when it is shown. */
+type SnapshotNote =
+  | { kind: "saved"; path: string; commit: string; dirty: boolean }
+  | { kind: "restored"; slug: string; count: number };
+type SnapshotError = { kind: "save"; detail: string } | { kind: "load"; slug: string; detail: string };
+
+export type AppProps = {
+  /** The chrome's language; the frames keep their own. */
+  language: ChromeLanguage;
+  onLanguage: (language: ChromeLanguage) => void;
+};
+
+export function App({ language, onLanguage }: AppProps) {
+  const t = useChromeText();
+  const format = useStoaFormat();
   const [history, setHistory] = useState(emptyHistory);
   const [chromeTheme, setChromeTheme] = useChromeTheme();
   const [density, setDensity] = useState<DensityMode>("regular");
@@ -71,8 +100,8 @@ export function App() {
   // Empty: the server stamps an unnamed save with the time it was written,
   // so a save never lands on an earlier snapshot by default.
   const [name, setName] = useState("");
-  const [saved, setSaved] = useState<string | null>(null);
-  const [saveError, setSaveError] = useState<string | null>(null);
+  const [saved, setSaved] = useState<SnapshotNote | null>(null);
+  const [saveError, setSaveError] = useState<SnapshotError | null>(null);
   /** The server refused this name because it is taken; only then may the
    * user ask for it to be written over. */
   const [taken, setTaken] = useState(false);
@@ -96,7 +125,7 @@ export function App() {
 
   const overrides = history.present;
   const stream = useMemo(() => createStream(7), []);
-  const tabs = useMemo(() => editableTabs(baseTokens), []);
+  const tabs = useMemo(() => editableTabs(baseTokens, t.tokens), [t]);
 
   const tokens = useMemo<Record<Theme, ResolvedTokens>>(
     () => ({
@@ -177,13 +206,13 @@ export function App() {
         overwrite,
       });
       setTaken(false);
-      setSaved(`${result.path} on ${result.commit.slice(0, 7)}${result.dirty ? " (working tree dirty)" : ""}`);
+      setSaved({ kind: "saved", path: result.path, commit: result.commit.slice(0, 7), dirty: result.dirty });
       refreshSnapshots();
     } catch (cause) {
       setSaved(null);
       // 409 is the one refusal the user can answer: the name is taken.
       setTaken(cause instanceof ApiError && cause.status === 409);
-      setSaveError(cause instanceof Error ? cause.message : String(cause));
+      setSaveError({ kind: "save", detail: cause instanceof Error ? cause.message : String(cause) });
     }
   };
 
@@ -192,77 +221,90 @@ export function App() {
     try {
       const state = readSnapshot(await readSnapshotFile(slug));
       setHistory((h) => commit(h, state.overrides));
-      setSaved(`${slug}: ${Object.keys(state.overrides).length} override(s) restored`);
+      setSaved({ kind: "restored", slug, count: Object.keys(state.overrides).length });
     } catch (cause) {
-      setSaveError(cause instanceof Error ? cause.message : String(cause));
+      setSaveError({ kind: "load", slug, detail: cause instanceof Error ? cause.message : String(cause) });
     }
   };
+
+  const savedText =
+    saved === null
+      ? null
+      : saved.kind === "restored"
+        ? t.snapshot.restored(saved.slug, saved.count)
+        : (saved.dirty ? t.snapshot.savedDirty : t.snapshot.saved)(saved.path, saved.commit);
+  const saveErrorText =
+    saveError === null
+      ? null
+      : saveError.kind === "save"
+        ? t.snapshot.saveFailed(saveError.detail)
+        : t.snapshot.loadFailed(saveError.slug, saveError.detail);
 
   /** The side panels, in the order they are shown. Each brief of this wave
    * adds one entry here and keeps its own module under src/. */
   const panels = [
     {
       id: "session",
-      title: "Session",
+      title: t.session.title,
       content: (
         <div className="pg-stack">
           <div className="pg-row">
             <Button onPress={() => setHistory(undo)} isDisabled={!canUndo(history)}>
-              Undo
+              {t.session.undo}
             </Button>
             <Button onPress={() => setHistory(redo)} isDisabled={!canRedo(history)}>
-              Redo
+              {t.session.redo}
             </Button>
-            <Button onPress={() => setRunning((was) => !was)}>{running ? "Pause" : "Resume"}</Button>
+            <Button onPress={() => setRunning((was) => !was)}>{running ? t.session.pause : t.session.resume}</Button>
           </div>
           <ChoiceGroup
-            label="Stream speed"
+            label={t.session.streamSpeed}
             hideLabel
             choices={SPEEDS.map(({ id, label }) => ({ id, label }))}
             value={speed}
             onChange={setSpeed}
           />
           <ChoiceGroup
-            label="Density"
+            label={t.session.density}
             hideLabel
-            choices={DENSITY_MODES.map((mode) => ({ id: mode, label: mode }))}
+            choices={DENSITY_MODES.map((mode) => ({ id: mode, label: t.session.densityModes[mode] }))}
             value={density}
             onChange={setDensity}
           />
           {/* What both frames show: one screen, in one data state, so a
               look takes in both themes and directions of it. */}
           <Select<ScreenId>
-            label="Screen"
-            options={SCREENS}
+            label={t.session.screen}
+            options={SCREENS.map((id) => ({ id, label: t.session.screens[id] }))}
             value={screenSettings.screen}
             onChange={(screen) => setScreenSettings((settings) => ({ ...settings, screen }))}
           />
           <div className="pg-setting">
             <span className="pg-token__label" aria-hidden="true">
-              State
+              {t.session.state}
             </span>
             <ChoiceGroup<DataState>
-              label="State"
+              label={t.session.state}
               hideLabel
               size="small"
-              choices={DATA_STATES}
+              choices={DATA_STATES.map((id) => ({ id, label: t.session.states[id] }))}
               value={screenSettings.state}
               onChange={(state) => setScreenSettings((settings) => ({ ...settings, state }))}
             />
           </div>
           {screenSettings.screen === "market" && (
-            <p className="pg-note">Market follows the stream in every state; State applies to the component screens.</p>
+            <p className="pg-note">{t.session.marketNote}</p>
           )}
           {screenSettings.screen === "grid" && (
             <div className="pg-setting">
               <span className="pg-token__label" aria-hidden="true">
-                Grid rows
+                {t.session.gridRows}
               </span>
               <ChoiceGroup<GridRowCount>
-                label="Grid rows"
+                label={t.session.gridRows}
                 hideLabel
                 size="small"
-                choices={GRID_ROW_COUNTS.map((count) => ({ id: count, label: count.toLocaleString("en-US") }))}
+                choices={GRID_ROW_COUNTS.map((count) => ({ id: count, label: format.integer(count) }))}
                 value={screenSettings.gridRows}
                 onChange={(gridRows) => setScreenSettings((settings) => ({ ...settings, gridRows }))}
               />
@@ -273,7 +315,7 @@ export function App() {
     },
     {
       id: "tokens",
-      title: "Tokens",
+      title: t.panels.tokens,
       content: (
         <ControlPanel
           tabs={tabs}
@@ -298,8 +340,8 @@ export function App() {
     },
     {
       id: "overrides",
-      title: "Overrides",
-      tab: `Overrides (${Object.keys(overrides).length})`,
+      title: t.panels.overrides,
+      tab: t.panels.overridesTab(Object.keys(overrides).length),
       content: (
         <OverrideList
           overrides={overrides}
@@ -312,8 +354,8 @@ export function App() {
     },
     {
       id: "verification",
-      title: "Verification",
-      tab: "Checks",
+      title: t.panels.verification,
+      tab: t.panels.checksTab,
       content: (
         <Verification
           tokens={tokens}
@@ -330,36 +372,36 @@ export function App() {
     },
     ...AREA_PANELS.map(({ id, title, Component }) => ({
       id,
-      title,
+      title: title(t),
       content: <Component density={density} tokens={tokens} onContribute={handlers[id]!} />,
     })),
     {
       id: "snapshot",
-      title: "Snapshot",
+      title: t.panels.snapshot,
       content: (
         <div className="pg-stack">
           <TextField
-            label="Snapshot name"
+            label={t.snapshot.name}
             value={name}
             onChange={(value) => {
               setName(value);
               setTaken(false);
             }}
             dir="ltr"
-            description="Written to apps/playground/snapshots, with the overrides, what each area panel records and the commit it was based on. Empty: named after the time it was saved."
+            description={t.snapshot.description}
           />
           <div className="pg-row">
             <Button variant="primary" onPress={() => void save()}>
-              Save snapshot
+              {t.snapshot.save}
             </Button>
-            {taken && <Button onPress={() => void save(true)}>Replace {name.trim()}</Button>}
-            {saved && <StatusBadge tone="positive">{saved}</StatusBadge>}
-            {saveError && <StatusBadge tone="negative">{saveError}</StatusBadge>}
+            {taken && <Button onPress={() => void save(true)}>{t.snapshot.replace(name.trim())}</Button>}
+            {savedText && <StatusBadge tone="positive">{savedText}</StatusBadge>}
+            {saveErrorText && <StatusBadge tone="negative">{saveErrorText}</StatusBadge>}
           </div>
           <div className="pg-row" data-testid="snapshot-load">
-            <span className="pg-token__label">Load</span>
+            <span className="pg-token__label">{t.snapshot.load}</span>
             {snapshots.length === 0 ? (
-              <span className="pg-note">No snapshots on disk yet.</span>
+              <span className="pg-note">{t.snapshot.none}</span>
             ) : (
               snapshots.map((slug) => (
                 <Button key={slug} onPress={() => void load(slug)}>
@@ -368,7 +410,7 @@ export function App() {
               ))
             )}
           </div>
-          <p className="pg-note">Loading a snapshot restores its overrides, as one step back.</p>
+          <p className="pg-note">{t.snapshot.loadNote}</p>
         </div>
       ),
     },
@@ -376,16 +418,16 @@ export function App() {
     // they no longer move the controls under them.
     {
       id: "stats",
-      title: "Stats",
+      title: t.panels.stats,
       content: (
-        <dl className="pg-stats" aria-label="Playground counters">
+        <dl className="pg-stats" aria-label={t.stats.label}>
           {[
-            { label: "state to effect", value: `${renderMs.toFixed(1)} ms` },
-            { label: "interval", value: `${interval} ms` },
-            { label: "tokens", value: String(Object.keys(tokens.light.variables).length) },
-            { label: "revision", value: revision },
+            { id: "effect", label: t.stats.stateToEffect, value: t.stats.ms(format.decimal(renderMs, 1)) },
+            { id: "interval", label: t.stats.interval, value: t.stats.ms(format.integer(interval)) },
+            { id: "tokens", label: t.stats.tokens, value: format.integer(Object.keys(tokens.light.variables).length) },
+            { id: "revision", label: t.stats.revision, value: revision },
           ].map((stat) => (
-            <div key={stat.label} className="pg-stats__row">
+            <div key={stat.id} className="pg-stats__row">
               <dt className="pg-token__label">{stat.label}</dt>
               <dd>{stat.value}</dd>
             </div>
@@ -401,21 +443,31 @@ export function App() {
     <PageShell
       header={
         <AppHeader
-          title="Stoa playground"
-          subtitle="Dense components on stoa-default"
+          title={t.header.title}
+          subtitle={t.header.subtitle}
           actions={
-            <ChoiceGroup<ChromeTheme>
-              label="Playground theme"
-              hideLabel
-              size="small"
-              value={chromeTheme}
-              onChange={setChromeTheme}
-              choices={[
-                { id: "system", label: "System" },
-                { id: "light", label: "Light" },
-                { id: "dark", label: "Dark" },
-              ]}
-            />
+            <>
+              <ChoiceGroup<ChromeTheme>
+                label={t.header.themeLabel}
+                hideLabel
+                size="small"
+                value={chromeTheme}
+                onChange={setChromeTheme}
+                choices={[
+                  { id: "system", label: t.header.themes.system },
+                  { id: "light", label: t.header.themes.light },
+                  { id: "dark", label: t.header.themes.dark },
+                ]}
+              />
+              <LanguageSwitch
+                languages={CHROME_LANGUAGES}
+                label={t.header.languageLabel}
+                value={language}
+                onChange={(next) => {
+                  if (isChromeLanguage(next)) onLanguage(next);
+                }}
+              />
+            </>
           }
         />
       }
@@ -431,7 +483,7 @@ export function App() {
             ))}
 
           <Tabs
-            label="Playground panels"
+            label={t.panels.label}
             keepMounted
             selected={sideTab}
             onChange={setSideTab}

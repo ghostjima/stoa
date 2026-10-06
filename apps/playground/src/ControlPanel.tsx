@@ -4,6 +4,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Button, NumberField, StatusBadge, Tabs, TextField, TimeSlider } from "@ghostjima/stoa-react";
 import { rulesForToken } from "./browserChecks";
+import { useChromeText } from "./chromeLanguage";
 import { RulesTooltip } from "./RulesTooltip";
 import type { EditableItem, EditableTab } from "./editable";
 import type { Overrides, ResolvedTokens } from "./tokenModel";
@@ -47,9 +48,10 @@ export function ControlPanel({
   onSelectTab,
   highlighted,
 }: ControlPanelProps) {
+  const t = useChromeText();
   return (
     <Tabs
-      label="Token groups"
+      label={t.tokens.groupsLabel}
       selected={selected ?? tabs[0]?.id}
       onChange={onSelectTab}
       items={tabs.map((tab) => ({
@@ -98,6 +100,7 @@ function TokenControl({
   onReset: (id: string) => void;
   highlighted: boolean;
 }) {
+  const t = useChromeText();
   const id = item.entry.id;
   const derived = resolved?.derived ?? sourceText(item.entry.value);
   const effective = resolved?.effective ?? derived;
@@ -136,13 +139,13 @@ function TokenControl({
           {rules.map((rule, index) => (
             <li key={index}>
               {rule.rule}
-              {rule.theme ? ` (${rule.theme})` : ""}: {rule.subject}
+              {rule.theme ? ` (${t.tokens.themes[rule.theme]})` : ""}: {rule.subject}
             </li>
           ))}
         </ul>
       )}
       {editing && rules.length > 0 && (
-        <RulesTooltip anchor={container} title={`Checks reading ${item.label}`} rules={rules} />
+        <RulesTooltip anchor={container} title={t.tokens.checksReading(item.label)} rules={rules} />
       )}
       {control.kind === "length" && Number.isFinite(number) ? (
         <div className="pg-token__slider">
@@ -151,7 +154,7 @@ function TokenControl({
           <div className="pg-token__head">
             <span className="pg-token__label">{item.label}</span>
             <NumberField
-              label={`${item.label} in px`}
+              label={t.tokens.inPx(item.label)}
               hideLabel
               size="small"
               unit="px"
@@ -196,25 +199,25 @@ function TokenControl({
             aria-describedby={describedBy}
             description={
               control.kind === "color" && !isColor(effective)
-                ? `${effective}: not a colour this browser accepts`
+                ? t.tokens.notAColour(effective)
                 : effective === text
                   ? item.entry.variable
-                  : `${item.entry.variable} resolves to ${effective}`
+                  : t.tokens.resolvesTo(item.entry.variable, effective)
             }
           />
         </div>
       )}
       {override !== undefined && (
         <div className="pg-token__override">
-          <StatusBadge tone="warning">Override detected</StatusBadge>
+          <StatusBadge tone="warning">{t.tokens.overrideDetected}</StatusBadge>
           <code>{id}</code>
           <span>
-            derived <code>{derived}</code>
+            {t.tokens.derived} <code>{derived}</code>
           </span>
           <span>
-            override <code>{override}</code>
+            {t.tokens.override} <code>{override}</code>
           </span>
-          <Button onPress={() => onReset(id)}>Reset</Button>
+          <Button onPress={() => onReset(id)}>{t.tokens.reset}</Button>
         </div>
       )}
     </div>

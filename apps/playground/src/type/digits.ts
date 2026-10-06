@@ -3,11 +3,12 @@
 // side is `engine.ts`, and keeping the verdict separate is what lets both
 // answers ("tabular", "proportional") be tested without a font that has
 // them.
+import { CHROME_TEXT, type TypeReportText } from "../chromeText.ts";
+
 export type DigitSetId = "latin" | "arabic-indic";
 
 export type DigitSet = {
   id: DigitSetId;
-  label: string;
   /** The ten digits, zero first. */
   text: string;
   /** OpenType script tag, so the shaper is not left to guess a run of ten
@@ -17,10 +18,9 @@ export type DigitSet = {
 };
 
 export const DIGIT_SETS: DigitSet[] = [
-  { id: "latin", label: "Latin", text: "0123456789", script: "Latn", direction: "ltr" },
+  { id: "latin", text: "0123456789", script: "Latn", direction: "ltr" },
   {
     id: "arabic-indic",
-    label: "Arabic-Indic",
     text: "٠١٢٣٤٥٦٧٨٩",
     script: "Arab",
     direction: "rtl",
@@ -92,25 +92,20 @@ export function digitRow(
  * figures is laid out from the run, so it is said out loud. */
 export const runAgrees = (row: DigitRow): boolean => row.advances.join() === row.runAdvances.join();
 
-/** The sentence the inspector shows for one row. It never says "tabular"
- * about digits the file does not have. */
-export function digitSummary(row: DigitRow, upem: number): string {
-  const label = DIGIT_SETS.find((set) => set.id === row.set)?.label ?? row.set;
-  const asked = row.feature === "tnum" ? "with tnum" : "as shaped";
-  if (!row.present) {
-    return `${label} ${asked}: not in this file (at least one digit shaped to glyph 0), so there is nothing to measure`;
-  }
-  const perEm = (value: number) => `${Math.round((value / upem) * 1000) / 1000} em`;
+/** The sentence the inspector shows for one row, in English unless other
+ * words are given. It never says "tabular" about digits the file does not
+ * have. */
+export function digitSummary(row: DigitRow, upem: number, words: TypeReportText = CHROME_TEXT.en.type.report): string {
+  const label = words.digitSets[row.set];
+  const asked = row.feature === "tnum" ? words.withTnum : words.asShaped;
+  if (!row.present) return words.digitsAbsent(label, asked);
+  const perEm = (value: number) => words.em(String(Math.round((value / upem) * 1000) / 1000));
   const verdict =
     row.verdict === "tabular"
-      ? `${label} ${asked}: tabular, all ten advances ${row.min} units (${perEm(row.min)})`
-      : `${label} ${asked}: proportional, ${row.distinct} distinct advances from ${row.min} to ${row.max} units ` +
-        `(${perEm(row.min)} to ${perEm(row.max)})`;
+      ? words.digitsTabular(label, asked, String(row.min), perEm(row.min))
+      : words.digitsProportional(label, asked, String(row.distinct), String(row.min), String(row.max), perEm(row.min), perEm(row.max));
   if (runAgrees(row)) return verdict;
   const runMin = Math.min(...row.runAdvances);
   const runMax = Math.max(...row.runAdvances);
-  return (
-    `${verdict}; shaped as one run the ten advances are different again, ` +
-    `${row.runDistinct} distinct from ${runMin} to ${runMax} units, so this set kerns or has contextual alternates`
-  );
+  return words.digitsRunDiffers(verdict, String(row.runDistinct), String(runMin), String(runMax));
 }

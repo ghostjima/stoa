@@ -311,6 +311,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -1454,6 +1458,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -1814,6 +1822,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -2268,6 +2280,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -2570,6 +2586,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -3543,6 +3563,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -3923,6 +3947,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -4559,6 +4587,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -5204,6 +5236,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -5552,6 +5588,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1302,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 34,
@@ -5757,6 +5799,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -6189,6 +6235,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -6668,6 +6718,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -6971,6 +7025,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1302,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 34,
@@ -7176,6 +7236,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -7561,6 +7625,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -8588,6 +8656,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -9680,6 +9752,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -10159,6 +10235,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -11373,6 +11453,11 @@
             "line": 1138
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1302
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 34,
@@ -11546,6 +11631,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -11785,6 +11874,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -12441,6 +12534,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Data/Charts > LineDataTable",
           "Data/Charts > LineEmpty",
           "Data/Charts > LineFromZero",
@@ -12595,6 +12692,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Data/DataGrid > EditWithConfirmation",
           "Data/DataGrid > Editable",
           "Data/DataGrid > Empty",
@@ -12787,6 +12888,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -13154,6 +13259,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -13413,6 +13522,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -14012,6 +14125,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Playback > ChoiceGroupLabelled",
           "Controls/Playback > Choices",
           "Controls/Playback > Counters",
@@ -14789,6 +14906,11 @@
             "line": 1130
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1302
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 157
@@ -14930,6 +15052,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -15157,6 +15283,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -15437,6 +15567,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -16508,6 +16642,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -17512,6 +17650,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -17683,6 +17825,11 @@
             "line": 816
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1293
+          },
+          {
             "component": "ToastRegion",
             "file": "packages/react/src/styles.css",
             "line": 473
@@ -17694,6 +17841,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -17898,6 +18049,16 @@
             "line": 1129
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1297
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1299
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 82
@@ -18049,6 +18210,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -18265,6 +18430,16 @@
             "line": 1268
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1290
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1294
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 614
@@ -18356,6 +18531,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -18567,6 +18746,26 @@
             "line": 1128
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1288
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1290
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1295
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1299
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1128
@@ -18623,6 +18822,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",
@@ -18809,6 +19012,11 @@
             "line": 158
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1294
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 158
@@ -18885,6 +19093,10 @@
           }
         ],
         "stories": [
+          "Controls/FilterBar > Active",
+          "Controls/FilterBar > ChipsOnly",
+          "Controls/FilterBar > Default",
+          "Controls/FilterBar > NoMatches",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldSteps",

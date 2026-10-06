@@ -87,6 +87,23 @@ export type StoaMessages = {
   removed: (item: string) => string;
   /** A reorderable list with no items. */
   listEmpty: string;
+  /** FilterBar: the word for the filters, on the button that opens them
+   * on a narrow screen and as the sheet's title. */
+  filters: string;
+  /** FilterBar: read after "Filters" on that button, with how many are
+   * on. */
+  filtersOn: (count: string) => string;
+  /** FilterBar: the button that turns every filter off and empties the
+   * search. */
+  clearAll: string;
+  /** FilterBar: how many items the filters leave, out of all of them. */
+  filterShown: (shown: string, total: string) => string;
+  /** FilterBar: the empty state when nothing matches, and what to do. */
+  noMatches: string;
+  noMatchesHint: string;
+  /** FilterBar: the button that closes the filters sheet, with how many
+   * items they leave. */
+  showResults: (count: string) => string;
   /** The word for each step status, shown beside its symbol (StepList's
    * `StepStatus` is this record's keys). */
   stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "undone" | "error", string>;
@@ -183,6 +200,13 @@ const EN: StoaMessages = {
   moved: (item, position, total) => `${item} moved to position ${position} of ${total}.`,
   removed: (item) => `${item} removed.`,
   listEmpty: "No items.",
+  filters: "Filters",
+  filtersOn: (count) => `, ${count} on`,
+  clearAll: "Clear all",
+  filterShown: (shown, total) => `${shown} of ${total} shown`,
+  noMatches: "Nothing matches the filters.",
+  noMatchesHint: "Change the search or clear the filters.",
+  showResults: (count) => `Show results (${count})`,
   stepStatus: {
     waiting: "Waiting",
     running: "Running",
@@ -265,6 +289,13 @@ const AR: StoaMessages = {
   moved: (item, position, total) => `نُقل ${item} إلى الموضع ${position} من ${total}.`,
   removed: (item) => `أزيل ${item}.`,
   listEmpty: "لا عناصر.",
+  filters: "عوامل التصفية",
+  filtersOn: (count) => `، المفعّلة: ${count}`,
+  clearAll: "مسح الكل",
+  filterShown: (shown, total) => `المعروض ${shown} من ${total}`,
+  noMatches: "لا شيء يطابق عوامل التصفية.",
+  noMatchesHint: "غيّر البحث أو امسح عوامل التصفية.",
+  showResults: (count) => `عرض النتائج (${count})`,
   stepStatus: {
     waiting: "في الانتظار",
     running: "قيد التنفيذ",
@@ -348,6 +379,13 @@ const RU: StoaMessages = {
   moved: (item, position, total) => `${item}: позиция ${position} из ${total}.`,
   removed: (item) => `${item}: удалено.`,
   listEmpty: "Элементов нет.",
+  filters: "Фильтры",
+  filtersOn: (count) => `, включено: ${count}`,
+  clearAll: "Сбросить все",
+  filterShown: (shown, total) => `Показано ${shown} из ${total}`,
+  noMatches: "По этим фильтрам ничего не найдено.",
+  noMatchesHint: "Измените поиск или сбросьте фильтры.",
+  showResults: (count) => `Показать результаты (${count})`,
   stepStatus: {
     waiting: "Ожидает",
     running: "Выполняется",

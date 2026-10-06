@@ -64,6 +64,7 @@ export {
   type CheckboxProps,
   type SwitchProps,
 } from "./Toggles";
+export { FilterBar, type FilterBarProps, type FilterBarSearch, type FilterGroup } from "./FilterBar";
 export { Slider, type SliderProps } from "./Slider";
 export { ButtonGroup, Toolbar, ToolbarSeparator, type ButtonGroupProps, type ToolbarProps } from "./Toolbar";
 export {

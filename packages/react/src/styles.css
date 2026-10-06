@@ -1278,3 +1278,29 @@
   from { opacity: 1; }
   to { opacity: 0.5; }
 }
+
+/* FilterBar: the search, the chip groups and a line with the count of
+   results and Clear all, then the results or the empty state. On a narrow
+   screen the groups fold into a "Filters" button beside the search, which
+   opens them in a sheet (FilterBar.tsx); 40rem is
+   --stoa-breakpoint-narrow's value, as media queries cannot read
+   variables. */
+.stoa-filter-bar { display: grid; gap: var(--stoa-space-4); min-inline-size: 0; }
+.stoa-filter-bar__bar {
+  display: flex; flex-wrap: wrap; align-items: end; gap: var(--stoa-space-3) var(--stoa-space-4);
+  min-inline-size: 0;
+}
+.stoa-filter-bar__search { flex: 1 1 calc(var(--stoa-space-12) * 5); max-inline-size: calc(var(--stoa-space-12) * 8); }
+.stoa-filter-bar__groups { display: flex; flex-wrap: wrap; gap: var(--stoa-space-3) var(--stoa-space-6); flex-basis: 100%; min-inline-size: 0; }
+.stoa-filter-bar__groups-in-sheet { display: grid; gap: var(--stoa-space-4); }
+.stoa-filter-bar__sheet { display: none; }
+.stoa-filter-bar__open { display: inline-flex; align-items: center; gap: var(--stoa-space-2); }
+.stoa-filter-bar__summary {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2) var(--stoa-space-4);
+  flex-basis: 100%;
+}
+.stoa-filter-bar__count { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-xs); }
+@media (max-width: 40rem) {
+  .stoa-filter-bar__groups { display: none; }
+  .stoa-filter-bar__sheet { display: block; }
+}

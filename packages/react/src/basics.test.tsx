@@ -1,8 +1,9 @@
 // @vitest-environment jsdom
 // Button, Panel and StatBar, and the empty states of the data views.
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { createRef } from "react";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { AppHeader, Button, Heatmap, I18nProvider, Ladder, Panel, StatBar, TradeTable } from "./index";
+import { AppHeader, Button, Heatmap, I18nProvider, Ladder, Panel, StatBar, TradeTable, type HeatmapHandle } from "./index";
 
 afterEach(() => {
   cleanup();
@@ -125,6 +126,42 @@ describe("canvas views reserve their height before they draw", () => {
     const [heatmap, ladder] = [...container.querySelectorAll("canvas")];
     expect(heatmap!.style.blockSize).toBe("180px");
     expect(ladder!.style.blockSize).toBe("calc(var(--stoa-density-row-height, 28px) * 24)");
+  });
+});
+
+describe("a canvas whose box changes size with nothing new to draw", () => {
+  it("is redrawn when only its height changes", () => {
+    // jsdom has no layout and no ResizeObserver: the box's size is set by
+    // hand, and the observer is called when the test says the box changed.
+    let boxChanged = () => {};
+    class Observer {
+      constructor(callback: () => void) {
+        boxChanged = callback;
+      }
+      observe() {}
+      disconnect() {}
+    }
+    Object.defineProperty(window, "ResizeObserver", { value: Observer, configurable: true });
+    const context = new Proxy({ measureText: () => ({ width: 0 }) } as Record<string, unknown>, {
+      get: (target, key) => (key in target ? target[key as string] : () => {}),
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const ref = createRef<HeatmapHandle>();
+    const { container, rerender } = render(<Heatmap label="Liquidity" height={240} ref={ref} />);
+    const canvas = container.querySelector("canvas")!;
+    let height = 240;
+    Object.defineProperty(canvas, "clientWidth", { get: () => 400 });
+    Object.defineProperty(canvas, "clientHeight", { get: () => height });
+    // Drawn once through the handle, as a paused replay draws it.
+    act(() => ref.current!.draw({ cells: new Float32Array([1, -1]), columns: 1, rows: 2, top: 100, tick: 0.5 }));
+    expect([canvas.width, canvas.height]).toEqual([400, 240]);
+    // A new height, the same width, and no new data.
+    rerender(<Heatmap label="Liquidity" height={160} ref={ref} />);
+    height = 160;
+    act(() => boxChanged());
+    expect([canvas.width, canvas.height]).toEqual([400, 160]);
+    Reflect.deleteProperty(window, "ResizeObserver");
   });
 });
 

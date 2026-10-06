@@ -118,7 +118,8 @@ again at the top of the page. Stoa's components do it themselves:
 - Dialog, Sheet and AlertDialog return the focus to their trigger. One
   opened without a trigger returns it to whatever had it when it opened,
   or, when that control is gone, to the tab stop that stands where it
-  was.
+  was: for a grid editor that closed as the dialog opened, the edited
+  cell.
 - A dismissed Callout leaves the focus on the tab stop that stands where
   it was.
 - ReorderableList (React Aria's GridList) moves the focus to the

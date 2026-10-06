@@ -62,6 +62,73 @@ describe("keepFocusInPlace", () => {
   });
 });
 
+describe("keepFocusInPlace inside a tab stop", () => {
+  it("moves the focus to the tab stop that held the removed element, not to the next one after it", async () => {
+    // A grid's active cell (one tab stop) with an editor in it, and a
+    // button after the grid.
+    function Cell() {
+      const [editing, setEditing] = useState(true);
+      return (
+        <div>
+          <div role="grid" aria-label="Orders">
+            <div role="row">
+              <div role="gridcell" tabIndex={0}>
+                {editing ? (
+                  <input
+                    aria-label="Note"
+                    onKeyDown={(e) => {
+                      keepFocusInPlace(e.currentTarget);
+                      setEditing(false);
+                    }}
+                  />
+                ) : (
+                  "Saved"
+                )}
+              </div>
+            </div>
+          </div>
+          <button type="button">Export</button>
+        </div>
+      );
+    }
+    render(<Cell />);
+    const input = screen.getByRole("textbox", { name: "Note" });
+    act(() => input.focus());
+    fireEvent.keyDown(input, { key: "Enter" });
+    await waitFor(() => expect(document.activeElement?.getAttribute("role")).toBe("gridcell"));
+  });
+
+  it("still moves it to the next tab stop inside that one, when there is one", async () => {
+    function Region() {
+      const [shown, setShown] = useState(true);
+      return (
+        <div>
+          <div tabIndex={0} aria-label="Notes" role="region">
+            {shown && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  keepFocusInPlace(e.currentTarget);
+                  setShown(false);
+                }}
+              >
+                Apply
+              </button>
+            )}
+            <button type="button">Inside</button>
+          </div>
+          <button type="button">After</button>
+        </div>
+      );
+    }
+    render(<Region />);
+    const apply = screen.getByRole("button", { name: "Apply" });
+    act(() => apply.focus());
+    fireEvent.click(apply);
+    await waitFor(() => expect(document.activeElement?.textContent).toBe("Inside"));
+  });
+});
+
 describe("Callout", () => {
   it("leaves the focus on the tab stop that takes its place once dismissed", async () => {
     function Note() {

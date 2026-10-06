@@ -101,7 +101,11 @@ export function Ladder({
   const canvas = useRef<HTMLCanvasElement>(null);
   const tokens = useRef<CanvasTokens | null>(null);
   const [summary, setSummary] = useState(locale.messages.bookEmpty);
-  const lastSummary = useRef(0);
+  // When the text alternative was last published, on performance.now()'s
+  // clock: never, at first. A start of 0 would hold the first book's text
+  // back until `announceEvery` after the page's time origin, leaving "The
+  // book is empty." in place for the first seconds after a page load.
+  const lastSummary = useRef(Number.NEGATIVE_INFINITY);
   const latest = useRef<Book>({ bids: [], asks: [] });
   // Holds a reference to the caller's buffer, not a copy: a token-triggered
   // redraw draws whatever `lastFlat.current` points to right now. A caller

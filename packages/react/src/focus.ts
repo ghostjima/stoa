@@ -32,7 +32,10 @@ function isTabStop(el: HTMLElement): boolean {
 /** The tab stop that stands at `place` now: the first one after it in the
  * document, else the last one before it, else the nearest focusable
  * ancestor (a main region with tabindex -1, for example). Inside a dialog,
- * only the dialog's own. Null when there is none. */
+ * only the dialog's own. An ancestor that is itself a tab stop, and holds
+ * no tab stop after the place, is where the element was: a grid's active
+ * cell whose editor closed takes the focus back, rather than the first
+ * tab stop after the grid. Null when there is none. */
 export function tabStopAt(place: FocusPlace): HTMLElement | null {
   for (const { parent, before } of place) {
     if (!parent.isConnected) continue;
@@ -45,6 +48,8 @@ export function tabStopAt(place: FocusPlace): HTMLElement | null {
       return (position & Node.DOCUMENT_POSITION_FOLLOWING) !== 0 && (position & Node.DOCUMENT_POSITION_CONTAINED_BY) === 0;
     };
     const next = stops.find(after);
+    if (next && parent.contains(next)) return next;
+    if (isTabStop(parent as HTMLElement)) return parent as HTMLElement;
     if (next) return next;
     const previous = stops.filter((el) => !after(el)).pop();
     if (previous) return previous;

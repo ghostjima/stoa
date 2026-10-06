@@ -51,6 +51,22 @@ for (const dpr of [1, 2]) {
           .toBe(true);
       });
     }
+
+    test("Heatmap refits its canvas when only its height changes, with nothing new to draw", async ({ page }) => {
+      const selector = ".stoa-heatmap__canvas";
+      const fits = async () => {
+        const f = await fit(page, selector);
+        return f.width === f.wanted && f.height === f.wantedHeight;
+      };
+      await page.goto(story("data-heatmap--height-change"));
+      await expect.poll(fits).toBe(true);
+      const before = await fit(page, selector);
+      // A new height from a prop; the width stays and no data is drawn.
+      await page.getByRole("button", { name: "Shorter" }).click();
+      await expect.poll(async () => (await fit(page, selector)).wantedHeight).toBe(Math.round(200 * dpr));
+      expect((await fit(page, selector)).wanted).toBe(before.wanted);
+      await expect.poll(fits, { timeout: 1000 }).toBe(true);
+    });
   });
 }
 

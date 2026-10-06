@@ -86,3 +86,23 @@ test("Arabic text drawn before IBM Plex Sans Arabic arrives takes the same lines
   const scaled = before[0]!.fonts.some((f) => f.familyName === "Tahoma" || f.familyName === "Geeza Pro");
   if (scaled) expect(await boxes()).toEqual(heights);
 });
+
+test("lines of Arabic-Indic digits keep their height when Noto Sans Arabic, the face that draws them, arrives", async ({ page }) => {
+  let release = () => {};
+  const held = new Promise<void>((resolve) => (release = resolve));
+  await page.route(/noto-sans-arabic.*\.woff2?$/, async (route) => {
+    await held;
+    await route.continue();
+  });
+  await page.goto(story("layout-panel--arabic-digits"));
+  const parts = [".stoa-filter-chip", ".stoa-statbar", ".stoa-record-list__meta", ".stoa-field__input--mono"];
+  await page.locator(parts[0]!).first().waitFor();
+  // IBM Plex Sans Arabic draws the digits until Noto Sans Arabic comes.
+  await expect.poll(async () => (await platformFonts(page, ".stoa-filter-chip__count"))[0]!.fonts.some((f) => f.familyName === "IBM Plex Sans Arabic")).toBe(true);
+  const heights = () =>
+    page.evaluate((selectors) => selectors.map((s) => [...document.querySelectorAll(s)].map((el) => Math.round(el.getBoundingClientRect().height * 10) / 10)), parts);
+  const before = await heights();
+  release();
+  await expect.poll(async () => (await platformFonts(page, ".stoa-filter-chip__count"))[0]!.fonts.some((f) => f.familyName === "Noto Sans Arabic")).toBe(true);
+  expect(await heights()).toEqual(before);
+});

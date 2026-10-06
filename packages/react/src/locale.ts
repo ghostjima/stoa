@@ -152,6 +152,16 @@ export type StoaMessages = {
   gridNoRows: string;
   /** DataGrid: announced while rows load. */
   gridLoading: string;
+  /** DataGridColumnChooser: the button that opens it and its title. */
+  gridColumns: string;
+  /** DataGridColumnChooser: the name of its list, which says what the
+   * order and the check boxes are. */
+  gridColumnsList: string;
+  /** DataGridSelectionBar: its name, and how many rows are selected. */
+  gridSelection: string;
+  gridSelected: (count: string) => string;
+  /** DataGridSelectionBar: the button that unselects every row. */
+  gridClearSelection: string;
 };
 
 const EN: StoaMessages = {
@@ -241,6 +251,11 @@ const EN: StoaMessages = {
   gridCounts: (rows, selected) => `${rows} ${rows === "1" ? "row" : "rows"}${selected ? `, ${selected} selected` : ""}.`,
   gridNoRows: "No rows to show.",
   gridLoading: "Loading rows",
+  gridColumns: "Columns",
+  gridColumnsList: "Columns: shown when checked, in this order",
+  gridSelection: "Selection",
+  gridSelected: (count) => `${count} selected`,
+  gridClearSelection: "Clear selection",
 };
 
 const AR: StoaMessages = {
@@ -330,6 +345,11 @@ const AR: StoaMessages = {
   gridCounts: (rows, selected) => `الصفوف: ${rows}${selected ? `، المحددة: ${selected}` : ""}.`,
   gridNoRows: "لا صفوف لعرضها.",
   gridLoading: "جارٍ تحميل الصفوف",
+  gridColumns: "الأعمدة",
+  gridColumnsList: "الأعمدة: تظهر المحددة منها بهذا الترتيب",
+  gridSelection: "التحديد",
+  gridSelected: (count) => `المحدد: ${count}`,
+  gridClearSelection: "إلغاء التحديد",
 };
 
 const RU: StoaMessages = {
@@ -420,6 +440,11 @@ const RU: StoaMessages = {
   gridCounts: (rows, selected) => `Строк: ${rows}${selected ? `, выбрано: ${selected}` : ""}.`,
   gridNoRows: "Строк для показа нет.",
   gridLoading: "Загрузка строк",
+  gridColumns: "Столбцы",
+  gridColumnsList: "Столбцы: отмеченные показаны в этом порядке",
+  gridSelection: "Выбор",
+  gridSelected: (count) => `Выбрано: ${count}`,
+  gridClearSelection: "Снять выбор",
 };
 
 /** A value set into a sentence, as a first-strong isolate (FSI ... PDI):

@@ -153,6 +153,97 @@ for (const [name, column, editor] of [
   });
 }
 
+test("the column chooser works from the keyboard: hide a column, move one, and the focus returns to its button", async ({ page }) => {
+  const grid = await openGrid(page, "column-chooser", "Orders");
+  const header = (name: string) => grid.getByRole("columnheader", { name, exact: true });
+  /** The focused element's role (or tag) and name. */
+  const focusedControl = () =>
+    page.evaluate(() => {
+      const el = document.activeElement;
+      return `${el?.getAttribute("role") ?? el?.tagName.toLowerCase()}:${el?.getAttribute("aria-label") ?? el?.closest("label")?.textContent ?? ""}`;
+    });
+  await expect(header("Note")).toHaveCount(0);
+  const open = page.getByRole("button", { name: "Columns", exact: true });
+  await open.focus();
+  await page.keyboard.press("Enter");
+  const sheet = page.getByRole("dialog", { name: "Columns" });
+  await expect(sheet).toBeVisible();
+  // The sheet takes the focus as it opens; from there, Tab reaches the
+  // list (after the close button), which is one tab stop.
+  await expect.poll(() => page.evaluate(() => document.activeElement?.closest('[role="dialog"]') != null)).toBe(true);
+  for (let i = 0; i < 4 && (await focusedControl()) !== "row:Order"; i++) await page.keyboard.press("Tab");
+  await expect.poll(focusedControl).toBe("row:Order");
+  // Down to Status, right to its check box, Space hides it.
+  for (let i = 0; i < 4; i++) await page.keyboard.press("ArrowDown");
+  await expect.poll(focusedControl).toBe("row:Status");
+  await page.keyboard.press("ArrowRight");
+  await expect.poll(focusedControl).toBe("input:Status");
+  await page.keyboard.press("Space");
+  await expect(sheet.getByRole("checkbox", { name: "Status" })).not.toBeChecked();
+  // Up to Symbol, right past its check box to Move up, Enter moves it.
+  await page.keyboard.press("ArrowUp");
+  await page.keyboard.press("ArrowUp");
+  await expect.poll(focusedControl).toBe("row:Symbol");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await expect.poll(focusedControl).toBe("button:Move up: Symbol");
+  await page.keyboard.press("Enter");
+  await expect(sheet.getByRole("status")).toHaveText("Symbol moved to position 2 of 30.");
+  await page.keyboard.press("Escape");
+  await expect(sheet).toHaveCount(0);
+  await expect(open).toBeFocused();
+  await expect(header("Status")).toHaveCount(0);
+  // Order is pinned and stays first; Symbol now comes before Account, which is pinned too.
+  const names = await grid.getByRole("columnheader").evaluateAll((els) => els.slice(0, 4).map((el) => el.textContent));
+  expect(names).toEqual(["Order", "Account", "Symbol", "Side"]);
+});
+
+test("the selection bar acts on the selected rows, and when its action ends the selection the focus goes to the grid's active cell", async ({ page }) => {
+  const grid = await openGrid(page, "selection-bar", "Orders");
+  const bar = page.getByRole("toolbar", { name: "Selection" });
+  await expect(bar).toContainText("2 selected");
+  // Export keeps the selection, and the focus on its button.
+  await bar.getByRole("button", { name: "Export" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByText("Exported 1 times.")).toBeVisible();
+  await expect(bar.getByRole("button", { name: "Export" })).toBeFocused();
+  // Mark filled ends it: the bar goes, the focus lands in the grid.
+  await page.keyboard.press("ArrowLeft");
+  await expect(bar.getByRole("button", { name: "Mark filled" })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(bar).toHaveCount(0);
+  await expect(page.locator(":focus")).toHaveAttribute("data-cell", "0:0");
+  // Select again from the keyboard: Space on the active row brings the bar back.
+  await page.keyboard.press("Space");
+  await expect(page.getByRole("toolbar", { name: "Selection" })).toContainText("1 selected");
+});
+
+test("a cell's tone is a symbol in the tone's colour, kept on its own plate in a selected row", async ({ page }) => {
+  const grid = await openGrid(page, "cell-tone", "Orders");
+  const symbols = grid.locator(".stoa-data-grid__tone");
+  await expect(symbols.first()).toBeVisible();
+  const colours = await symbols.evaluateAll((els) =>
+    els.map((el) => ({ tone: el.className.replace(/.*--/, ""), colour: getComputedStyle(el).color, plate: getComputedStyle(el).backgroundColor, cell: getComputedStyle(el.parentElement!).backgroundColor })),
+  );
+  const probe = await page.evaluate(() => {
+    const span = document.createElement("span");
+    document.body.append(span);
+    const read = (name: string) => {
+      span.style.color = `var(${name})`;
+      return getComputedStyle(span).color;
+    };
+    const out = { up: read("--stoa-color-up"), down: read("--stoa-color-down"), warning: read("--stoa-color-warning"), muted: read("--stoa-color-text-muted"), surface: read("--stoa-color-surface") };
+    span.remove();
+    return out;
+  });
+  const expected = { positive: probe.up, negative: probe.down, warning: probe.warning, neutral: probe.muted } as Record<string, string>;
+  for (const c of colours) {
+    expect(c.colour).toBe(expected[c.tone]);
+    expect(c.plate).toBe(probe.surface);
+  }
+  // The selected row's cells take another fill; the symbol's plate does not.
+  expect(colours.some((c) => c.cell !== probe.surface)).toBe(true);
+});
 for (const [how, close] of [
   ["Escape", ["Escape"]],
   ["its safe action", ["Enter"]],

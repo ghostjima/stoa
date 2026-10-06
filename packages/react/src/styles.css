@@ -1188,6 +1188,19 @@
   outline-offset: calc(-1 * var(--stoa-focus-width));
 }
 .stoa-data-grid__text { overflow: hidden; text-overflow: ellipsis; }
+/* A cell's tone: a symbol in the tone's colour before the value, as a
+   StatusBadge draws it; the value keeps the text colour. The symbol sits
+   on a plate of the surface colour, so in a selected row, whose fill is
+   the hover colour, it is still measured against the surface. */
+.stoa-data-grid__tone {
+  flex: none; margin-inline-end: var(--stoa-space-1); padding-inline: var(--stoa-space-0-5);
+  border-radius: var(--stoa-radius-full); background: var(--stoa-color-surface);
+  font-family: var(--stoa-font-family-sans); font-weight: var(--stoa-font-weight-semibold);
+}
+.stoa-data-grid__tone--positive { color: var(--stoa-color-up); }
+.stoa-data-grid__tone--negative { color: var(--stoa-color-down); }
+.stoa-data-grid__tone--warning { color: var(--stoa-color-warning); }
+.stoa-data-grid__tone--neutral { color: var(--stoa-color-text-muted); }
 .stoa-data-grid__row--head .stoa-data-grid__cell {
   gap: var(--stoa-space-1);
   background: var(--stoa-color-surface-sunken);
@@ -1278,6 +1291,15 @@
   from { opacity: 1; }
   to { opacity: 0.5; }
 }
+
+/* DataGridSelectionBar: the count and the actions on the selected rows,
+   just before the grid, in a frame on the surface it sits on, so its
+   buttons keep the boundaries the contrast checks measure there. */
+.stoa-selection-bar {
+  padding: var(--stoa-space-1) var(--stoa-space-2);
+  border: 1px solid var(--stoa-color-border); border-radius: var(--stoa-radius-md);
+}
+.stoa-selection-bar__count { font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); margin-inline-end: var(--stoa-space-2); }
 
 /* FilterBar: the search, the chip groups and a line with the count of
    results and Clear all, then the results or the empty state. On a narrow

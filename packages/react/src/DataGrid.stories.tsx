@@ -4,6 +4,7 @@ import { I18nProvider } from "react-aria-components";
 import { Button } from "./Controls";
 import { AlertDialog } from "./Dialog";
 import { DataGrid, type DataGridColumn, type DataGridEdit, type DataGridSort } from "./DataGrid";
+import { DataGridColumnChooser, DataGridSelectionBar } from "./DataGridTools";
 import { TextField } from "./Form";
 import { Panel } from "./Panel";
 import { useShortcuts } from "./Shortcuts";
@@ -232,6 +233,107 @@ export const SignedValues: StoryObj = {
     return (
       <Panel title={arabic ? "التحركات" : "Moves"}>
         <DataGrid label={arabic ? "التحركات منذ الافتتاح" : "Moves since the open"} rows={MOVES} columns={columns} rowKey={(m) => m.id} />
+      </Panel>
+    );
+  },
+};
+
+const TONE_OF_STATUS = { filled: "positive", rejected: "negative", working: "warning", new: "neutral" } as const;
+
+/** Columns in the locale's words, with the status column's tone: a symbol
+ * in the tone's colour before each status, filled with a tick, rejected
+ * with a cross, working with an exclamation mark, new with a dot; the
+ * status's word still says it. */
+function useToneColumns() {
+  const arabic = useStoaFormat().locale.startsWith("ar");
+  return useMemo(
+    () =>
+      sampleOrderColumns(arabic ? "ar" : "en").map((c) =>
+        c.id === "status" ? { ...c, tone: (v: string | number) => TONE_OF_STATUS[v as keyof typeof TONE_OF_STATUS] ?? null } : c,
+      ),
+    [arabic],
+  );
+}
+
+/** Per-cell tone: the status column marks each status with a symbol in
+ * its colour, never the colour alone. A selected row keeps the symbol on
+ * its own surface plate. */
+export const CellTone: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const rows = useMemo(() => sampleOrders(40, 5), []);
+    const columns = useToneColumns();
+    return (
+      <Panel title={arabic ? "الأوامر" : "Orders"}>
+        <DataGrid label={arabic ? "الأوامر" : "Orders"} rows={rows} columns={columns} rowKey={orderKey} selectionMode="multiple" defaultSelectedKeys={rows.filter((o) => o.status in TONE_OF_STATUS).slice(0, 2).map((o) => o.id)} />
+      </Panel>
+    );
+  },
+};
+
+/** A column chooser: the Columns button opens a sheet where each column
+ * can be hidden with its check box and moved with its buttons; the grid
+ * follows. */
+export const ColumnChooser: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const rows = useMemo(() => sampleOrders(40, 5), []);
+    const columns = useToneColumns();
+    const [order, setOrder] = useState<string[]>(() => columns.map((c) => c.id));
+    const [hidden, setHidden] = useState<string[]>(["note"]);
+    return (
+      <Panel title={arabic ? "الأوامر" : "Orders"}>
+        <div style={{ display: "grid", gap: "var(--stoa-space-3)" }}>
+          <div>
+            <DataGridColumnChooser columns={columns} order={order} hidden={hidden} onOrderChange={setOrder} onHiddenChange={setHidden} />
+          </div>
+          <DataGrid label={arabic ? "الأوامر" : "Orders"} rows={rows} columns={columns} rowKey={orderKey} columnOrder={order} hiddenColumns={hidden} />
+        </div>
+      </Panel>
+    );
+  },
+};
+
+/** A bulk action bar over the selection, just before the grid: Mark
+ * filled changes the selected orders and ends the selection, Export
+ * keeps it, Clear selection ends it. When the bar goes, the focus goes to
+ * the grid's active cell, the tab stop where the bar was. */
+export const SelectionBar: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const [rows, setRows] = useState(() => sampleOrders(40, 5));
+    const columns = useToneColumns();
+    const [selected, setSelected] = useState<Set<string>>(() => new Set([rows[0]!.id, rows[2]!.id]));
+    const [exported, setExported] = useState(0);
+    return (
+      <Panel title={arabic ? "الأوامر" : "Orders"}>
+        <div style={{ display: "grid", gap: "var(--stoa-space-3)" }}>
+          <DataGridSelectionBar
+            count={selected.size}
+            onClear={() => setSelected(new Set())}
+            actions={[
+              {
+                id: "fill",
+                label: arabic ? "تعليم كمنفذ" : "Mark filled",
+                onPress: () => {
+                  setRows((previous) => previous.map((o) => (selected.has(o.id) ? { ...o, status: "filled" } : o)));
+                  setSelected(new Set());
+                },
+              },
+              { id: "export", label: arabic ? "تصدير" : "Export", onPress: () => setExported((n) => n + 1) },
+            ]}
+          />
+          <DataGrid
+            label={arabic ? "الأوامر" : "Orders"}
+            rows={rows}
+            columns={columns}
+            rowKey={orderKey}
+            selectionMode="multiple"
+            selectedKeys={selected}
+            onSelectionChange={setSelected}
+          />
+          <p>{arabic ? `مرات التصدير: ${exported}` : `Exported ${exported} times.`}</p>
+        </div>
       </Panel>
     );
   },

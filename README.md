@@ -36,8 +36,12 @@ follow as the products need them.
     generic Table, LineChart and EventStrip, each with an empty state
     and a text alternative.
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
-    columns, sorting, selection and inline editing
-    ([decision and measurements](docs/components/data-grid.md)).
+    columns, sorting, selection, inline editing and a tone per cell (a
+    symbol in the status colour, never the colour alone)
+    ([decision and measurements](docs/components/data-grid.md));
+    DataGridColumnChooser (show, hide and reorder columns from the
+    keyboard) and DataGridSelectionBar (actions on the selected rows,
+    after which the focus stays in the grid).
   - Controls: Button (default, primary, secondary, ghost, danger),
     ChoiceGroup, Select, NumberField, TextField, TimeSlider, Slider,
     Toggle, Switch, Checkbox and CheckboxGroup, Tag, FilterChip,

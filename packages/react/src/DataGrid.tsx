@@ -13,6 +13,7 @@ import {
 } from "react";
 import { useLocale } from "react-aria-components";
 import { Chevron } from "./Chevron";
+import type { StatusTone } from "./Form";
 import { useStoaFormat, type StoaFormat } from "./locale";
 
 export type DataGridValue = string | number;
@@ -55,6 +56,12 @@ export type DataGridColumn<Row> = {
   mono?: boolean;
   /** Makes the cell editable with Enter, F2 or a double click. */
   editor?: DataGridEditor<Row>;
+  /** A cell's status: a symbol in the tone's colour before the value (a
+   * tick, a cross, an exclamation mark or a dot), so the colour is never
+   * the only sign. The cell's text still says what the status is ("Overdue",
+   * "2 days left"): the symbol is hidden from assistive technology, as a
+   * StatusBadge's is. Null or undefined for none. */
+  tone?: (value: DataGridValue, row: Row) => StatusTone | null | undefined;
 };
 
 export type DataGridSort = { column: string; direction: "ascending" | "descending" };
@@ -107,6 +114,12 @@ export type DataGridProps<Row> = {
    * `rows`. Every editor that opens ends in exactly one `onEdit` or
    * `onEditCancel`. */
   onEditCancel?: (target: DataGridEditTarget<Row>) => void;
+  /** The columns' order, by id (a column chooser's): listed columns
+   * first, in this order, then the rest in the order of `columns`. Pinned
+   * columns still come first. */
+  columnOrder?: readonly string[];
+  /** Ids of columns not to show. */
+  hiddenColumns?: readonly string[];
   /** Text to mark in every cell that contains it, ignoring case. */
   highlight?: string;
   /** Rows are on their way: skeleton lines, and the grid is busy. */
@@ -133,6 +146,8 @@ type Editing<Row> = { key: string; row: number; data: Row; col: number; draft: s
 type Window = { r0: number; r1: number; c0: number; c1: number; page: number };
 
 const SELECT_WIDTH = 40;
+/** A cell tone's symbol, the same as a StatusBadge's. */
+const TONE_SYMBOL: Record<StatusTone, string> = { positive: "✓", negative: "✗", warning: "!", neutral: "·" };
 const OVERSCAN_ROWS = 4;
 /** Rows drawn before the grid has a size (on first render, or in a test
  * environment without layout). */
@@ -236,6 +251,8 @@ export function DataGrid<Row>({
   onEdit,
   onEditStart,
   onEditCancel,
+  columnOrder,
+  hiddenColumns,
   highlight = "",
   loading = false,
   emptyState,
@@ -267,19 +284,30 @@ export function DataGrid<Row>({
   const emptyId = useId();
   const errorId = useId();
 
-  // Columns: the selection column, then pinned columns, then the rest.
+  // Columns: the selection column, then pinned columns, then the rest,
+  // each in the order asked for, without the hidden ones.
+  const shownColumns = useMemo(() => {
+    const hidden = new Set(hiddenColumns ?? []);
+    const rank = new Map((columnOrder ?? []).map((id, i) => [id, i]));
+    const at = (c: DataGridColumn<Row>, i: number) => rank.get(c.id) ?? (columnOrder?.length ?? 0) + i;
+    return columns
+      .map((c, i) => ({ c, key: at(c, i) }))
+      .filter(({ c }) => !hidden.has(c.id))
+      .sort((a, b) => a.key - b.key)
+      .map(({ c }) => c);
+  }, [columns, columnOrder, hiddenColumns]);
   const gridColumns = useMemo(() => {
     const ordered: GridColumn<Row>[] = [];
     if (selectable) ordered.push({ data: null, width: SELECT_WIDTH, pinned: true, offset: 0 });
-    for (const c of columns) if (c.pinned) ordered.push({ data: c, width: c.width, pinned: true, offset: 0 });
-    for (const c of columns) if (!c.pinned) ordered.push({ data: c, width: c.width, pinned: false, offset: 0 });
+    for (const c of shownColumns) if (c.pinned) ordered.push({ data: c, width: c.width, pinned: true, offset: 0 });
+    for (const c of shownColumns) if (!c.pinned) ordered.push({ data: c, width: c.width, pinned: false, offset: 0 });
     let x = 0;
     for (const c of ordered) {
       c.offset = x;
       x += c.width;
     }
     return ordered;
-  }, [columns, selectable]);
+  }, [shownColumns, selectable]);
   const firstCenter = gridColumns.findIndex((c) => !c.pinned);
   const centerFrom = firstCenter < 0 ? gridColumns.length : firstCenter;
   const pinnedWidth = gridColumns.slice(0, centerFrom).reduce((s, c) => s + c.width, 0);
@@ -794,10 +822,18 @@ export function DataGrid<Row>({
           // A number's text takes the direction of its first letter, so
           // "-0.42%" and "16.9 ms" keep their order in a right-to-left grid;
           // the cell still aligns it to the end.
+          const tone = data.tone?.(value, row);
           let content: ReactNode = (
-            <span className="stoa-data-grid__text" dir={numeric ? "auto" : undefined}>
-              {marked(text, highlight)}
-            </span>
+            <>
+              {tone && (
+                <span className={`stoa-data-grid__tone stoa-data-grid__tone--${tone}`} aria-hidden="true">
+                  {TONE_SYMBOL[tone]}
+                </span>
+              )}
+              <span className="stoa-data-grid__text" dir={numeric ? "auto" : undefined}>
+                {marked(text, highlight)}
+              </span>
+            </>
           );
           if (isEditing && editing && data.editor) {
             content =

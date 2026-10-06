@@ -1350,3 +1350,21 @@
   .stoa-filter-bar__groups { display: none; }
   .stoa-filter-bar__sheet { display: block; }
 }
+
+/* SourceNote: where a widget's figures come from, at its top, before its
+   content. One paragraph in the muted colour at the small size: the tag at
+   the start of the first line, the sentence after it, and its further
+   lines under the tag. The line height is a token and the tag sits at the
+   line's top, so the note keeps its height when the web fonts replace the
+   fallback (a "normal" line height follows the font's metrics). Links keep
+   the muted colour and are told apart by their underline. Notes in a row
+   sit closer together than the note and the content after them. */
+.stoa-source-note {
+  margin: 0 0 var(--stoa-space-3);
+  color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm);
+  line-height: var(--stoa-font-line-height-normal);
+}
+.stoa-source-note .stoa-tag { vertical-align: top; }
+.stoa-source-note__text { unicode-bidi: isolate; }
+.stoa-source-note a { color: inherit; }
+.stoa-source-note + .stoa-source-note { margin-block-start: calc(-1 * var(--stoa-space-2)); }

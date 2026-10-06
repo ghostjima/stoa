@@ -59,7 +59,9 @@ follow as the products need them.
     text).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
-    VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.
+    VisuallyHidden, Panel, StatBar and Metric, SourceNote (where a
+    panel's figures come from: the source's tag, a sentence and a link),
+    AppHeader, PageShell.
   - Overlays, lists and content: Dialog, Sheet, AlertDialog, Tooltip,
     ReorderableList, RecordList (the list of a master-detail view),
     StepList, DescriptionList, LogView, CodeView, and Ltr, an inline

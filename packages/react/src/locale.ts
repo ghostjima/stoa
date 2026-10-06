@@ -186,6 +186,9 @@ export type StoaMessages = {
   gridSelected: (count: string) => string;
   /** DataGridSelectionBar: the button that unselects every row. */
   gridClearSelection: string;
+  // SourceNote.
+  /** SourceNote: read before the source's tag, not drawn ("Source:"). */
+  sourceNoteLabel: string;
 };
 
 const EN: StoaMessages = {
@@ -290,6 +293,8 @@ const EN: StoaMessages = {
   gridSelection: "Selection",
   gridSelected: (count) => `${count} selected`,
   gridClearSelection: "Clear selection",
+  // SourceNote.
+  sourceNoteLabel: "Source:",
 };
 
 const AR: StoaMessages = {
@@ -394,6 +399,8 @@ const AR: StoaMessages = {
   gridSelection: "التحديد",
   gridSelected: (count) => `المحدد: ${count}`,
   gridClearSelection: "إلغاء التحديد",
+  // SourceNote.
+  sourceNoteLabel: "المصدر:",
 };
 
 /** A Russian unit in the form its count asks for: "1 рабочий день",
@@ -511,6 +518,8 @@ const RU: StoaMessages = {
   gridSelection: "Выбор",
   gridSelected: (count) => `Выбрано: ${count}`,
   gridClearSelection: "Снять выбор",
+  // SourceNote.
+  sourceNoteLabel: "Источник:",
 };
 
 /** A value set into a sentence, as a first-strong isolate (FSI ... PDI):

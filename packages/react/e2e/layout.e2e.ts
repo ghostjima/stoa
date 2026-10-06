@@ -177,3 +177,28 @@ for (const name of ["Details", "Filters"]) {
     await expect.poll(() => scroll.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
   });
 }
+
+for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
+  test(`a table with wrapping headers fits a phone's width: phrases wrap, amounts stay on one line (${globals})`, async ({ page }) => {
+    await page.goto(story("data-table--wrap-headers", globals));
+    const table = page.locator(".stoa-table");
+    await expect(table).toBeVisible();
+    const layout = await table.evaluate((el) => {
+      /** The lines a cell's text takes. */
+      const lines = (cell: Element) => {
+        const range = document.createRange();
+        range.selectNodeContents(cell);
+        return new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+      };
+      const region = el.closest(".stoa-table-region")!;
+      return {
+        overflows: region.scrollWidth > region.clientWidth,
+        rowHeaderLines: [...el.querySelectorAll('th[scope="row"]')].map(lines),
+        amountLines: [...el.querySelectorAll("td.stoa-num")].map(lines),
+      };
+    });
+    expect(layout.overflows).toBe(false);
+    expect(Math.max(...layout.rowHeaderLines)).toBeGreaterThan(1);
+    expect(layout.amountLines.every((n) => n === 1)).toBe(true);
+  });
+}

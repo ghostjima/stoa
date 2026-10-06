@@ -1064,6 +1064,10 @@
   background: var(--stoa-color-surface);
 }
 .stoa-table--sticky-header.stoa-table--sticky-first thead th:first-child { z-index: 2; }
+/* Headers that wrap (`wrapHeaders`): column and row headers take as many
+   lines as they need, number cells stay on one. After the rules above,
+   with as much weight, so it wins over each of them. */
+.stoa-table.stoa-table--wrap-headers th { white-space: normal; }
 
 /* Charts: SVG drawn in CSS pixels at the element's real width. Strokes and
    fills come from the semantic colour tokens, so the theme switches them

@@ -235,6 +235,11 @@
             "line": 879
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1372
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 222
@@ -391,6 +396,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -533,6 +543,18 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 128,
+            "via": "--stoa-color-warning"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1374,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 309,
@@ -617,6 +639,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -720,6 +747,18 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 128,
+            "via": "--stoa-color-warning"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1374,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 309,
@@ -804,6 +843,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -1347,6 +1391,24 @@
             "via": "--stoa-color-focus"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 132,
+            "via": "--stoa-color-focus"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1361,
+            "via": "--stoa-color-focus"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1372,
+            "via": "--stoa-color-accent"
+          },
+          {
             "component": "ScrollArea",
             "file": "packages/react/src/styles.css",
             "line": 25,
@@ -1607,6 +1669,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -1816,6 +1883,18 @@
             "via": "--stoa-color-focus"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 132,
+            "via": "--stoa-color-focus"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1361,
+            "via": "--stoa-color-focus"
+          },
+          {
             "component": "ScrollArea",
             "file": "packages/react/src/styles.css",
             "line": 25,
@@ -1967,6 +2046,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -2275,6 +2359,12 @@
             "via": "--stoa-color-accent"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1372,
+            "via": "--stoa-color-accent"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 222,
@@ -2447,6 +2537,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -2767,6 +2862,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -2963,6 +3063,12 @@
             "line": 394
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 133,
+            "via": "readScatterTokens"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 83
@@ -3101,6 +3207,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -3269,6 +3380,17 @@
             "line": 1122
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 130,
+            "via": "readScatterTokens"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1376
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 307
@@ -3376,6 +3498,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -3623,6 +3750,17 @@
             "line": 888
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 132,
+            "via": "readScatterTokens"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1361
+          },
+          {
             "component": "ScrollArea",
             "file": "packages/react/src/styles.css",
             "line": 25
@@ -3760,6 +3898,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -4176,6 +4319,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -4601,6 +4749,12 @@
             "via": "--stoa-color-surface-sunken"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1130,
+            "via": "--stoa-color-text"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 86,
@@ -4825,6 +4979,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -5490,6 +5649,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -5904,6 +6068,24 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1107,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1367,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1373,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 201,
@@ -6080,6 +6262,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -6337,6 +6524,12 @@
             "via": "--stoa-color-text-subtle"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 133,
+            "via": "--stoa-color-border-strong"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 83,
@@ -6517,6 +6710,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -6823,6 +7021,12 @@
             "via": "--stoa-color-text-subtle"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 133,
+            "via": "--stoa-color-border-strong"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 83,
@@ -7003,6 +7207,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -7374,6 +7583,24 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1107,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1367,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1373,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 201,
@@ -7550,6 +7777,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -7954,6 +8186,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -8719,6 +8956,12 @@
             "via": "--stoa-color-surface"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1130,
+            "via": "--stoa-color-text"
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 85,
@@ -9009,6 +9252,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -9214,6 +9462,18 @@
             "via": "--stoa-color-down"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 130,
+            "via": "--stoa-color-down"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1376,
+            "via": "--stoa-color-down"
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 307,
@@ -9332,6 +9592,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -9533,6 +9798,18 @@
             "via": "--stoa-color-down"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 130,
+            "via": "--stoa-color-down"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1376,
+            "via": "--stoa-color-down"
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 307,
@@ -9651,6 +9928,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -10162,6 +10444,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -10770,6 +11057,18 @@
             "via": "--stoa-color-up"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 129,
+            "via": "--stoa-color-up"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1375,
+            "via": "--stoa-color-up"
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 306,
@@ -10872,6 +11171,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -10987,6 +11291,18 @@
             "via": "--stoa-color-up"
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 129,
+            "via": "--stoa-color-up"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1375,
+            "via": "--stoa-color-up"
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 306,
@@ -11089,6 +11405,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -11430,6 +11751,11 @@
             "line": 389
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1130
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 86
@@ -11611,6 +11937,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -11952,6 +12283,21 @@
             "line": 899
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1107
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1367
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1373
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 201
@@ -12112,6 +12458,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -12466,6 +12817,17 @@
             "line": 1121
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 129,
+            "via": "readScatterTokens"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1375
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 306
@@ -12554,6 +12916,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -12718,6 +13085,17 @@
             "line": 1120
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 128,
+            "via": "readScatterTokens"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1374
+          },
+          {
             "component": "StatusBadge",
             "file": "packages/react/src/styles.css",
             "line": 309
@@ -12798,6 +13176,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -12871,6 +13254,12 @@
             "line": 1233
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 136,
+            "via": "readScatterTokens"
+          },
+          {
             "component": "Table",
             "file": "packages/react/src/styles.css",
             "line": 72
@@ -12897,6 +13286,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -12990,6 +13384,12 @@
             "line": 999
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/ScatterChart.tsx",
+            "line": 135,
+            "via": "readScatterTokens"
+          },
+          {
             "component": "Table",
             "file": "packages/react/src/styles.css",
             "line": 66
@@ -13033,6 +13433,11 @@
           "Data/Ladder > Live",
           "Data/Ladder > Static",
           "Data/Ladder > TwoThemes",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -13318,6 +13723,11 @@
             "line": 863
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1362
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 123
@@ -13426,6 +13836,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -13657,6 +14072,11 @@
             "line": 889
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1361
+          },
+          {
             "component": "ScrollArea",
             "file": "packages/react/src/styles.css",
             "line": 25
@@ -13804,6 +14224,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -14824,6 +15249,16 @@
             "line": 1109
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1107
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1367
+          },
+          {
             "component": "Slider",
             "file": "packages/react/src/styles.css",
             "line": 301
@@ -14917,6 +15352,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -15533,6 +15973,11 @@
             "line": 1017
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1130
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 157
@@ -15679,6 +16124,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -15919,6 +16369,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -17326,6 +17781,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -17578,6 +18038,11 @@
             "line": 884
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1359
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 84
@@ -17717,6 +18182,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -18203,6 +18673,26 @@
             "line": 892
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1106
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1128
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1132
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1366
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 82
@@ -18409,6 +18899,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",
@@ -18840,6 +19335,16 @@
             "line": 899
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1129
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1135
+          },
+          {
             "component": "Select",
             "file": "packages/react/src/styles.css",
             "line": 82
@@ -18996,6 +19501,11 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -19321,6 +19831,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Data/Table > Basic",
           "Data/Table > Compact",
           "Data/Table > Empty",
@@ -19510,6 +20025,11 @@
             "line": 531
           },
           {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1128
+          },
+          {
             "component": "ShortcutList",
             "file": "packages/react/src/styles.css",
             "line": 844
@@ -19617,6 +20137,11 @@
           "Data/DataGrid > RightToLeft",
           "Data/DataGrid > SelectionBar",
           "Data/DataGrid > SignedValues",
+          "Data/ScatterChart > Empty",
+          "Data/ScatterChart > ManyPoints",
+          "Data/ScatterChart > NumericValues",
+          "Data/ScatterChart > PeerMap",
+          "Data/ScatterChart > XDirection",
           "Feedback/Feedback and layout > CalloutDismissible",
           "Feedback/Feedback and layout > CalloutInfo",
           "Feedback/Feedback and layout > CalloutNegativeWithRetry",

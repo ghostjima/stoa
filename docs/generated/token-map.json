@@ -1,6 +1,52 @@
 {
   "tokens": [
     {
+      "name": "--stoa-breakpoint-narrow",
+      "group": "breakpoint",
+      "kind": "primitive",
+      "value": "40rem",
+      "resolvedValue": "40rem",
+      "aliasOf": null,
+      "readBy": {
+        "components": [],
+        "stories": []
+      },
+      "reachedByTheme": {
+        "light": {
+          "direct": true,
+          "via": []
+        },
+        "dark": {
+          "direct": true,
+          "via": []
+        }
+      },
+      "unused": false
+    },
+    {
+      "name": "--stoa-breakpoint-wide",
+      "group": "breakpoint",
+      "kind": "primitive",
+      "value": "64rem",
+      "resolvedValue": "64rem",
+      "aliasOf": null,
+      "readBy": {
+        "components": [],
+        "stories": []
+      },
+      "reachedByTheme": {
+        "light": {
+          "direct": true,
+          "via": []
+        },
+        "dark": {
+          "direct": true,
+          "via": []
+        }
+      },
+      "unused": false
+    },
+    {
       "name": "--stoa-color-accent",
       "group": "color",
       "kind": "semantic",
@@ -2623,7 +2669,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -3930,7 +3977,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -5181,7 +5229,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -5727,7 +5776,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -7106,7 +7156,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -7482,7 +7533,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -8488,7 +8540,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -9557,7 +9610,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -11369,7 +11423,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -12162,7 +12217,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -13129,7 +13185,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -13521,7 +13578,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -14585,7 +14643,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -14800,7 +14859,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -16081,7 +16141,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -17084,7 +17145,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -17618,7 +17680,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -17913,7 +17976,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -18157,7 +18221,8 @@
           "Report > StepsReorderable",
           "Report > TooltipClosed",
           "Report > TooltipOpen",
-          "Report > TooltipPlacements"
+          "Report > TooltipPlacements",
+          "التنسيقات > Formatters"
         ]
       },
       "reachedByTheme": {
@@ -18518,7 +18583,7 @@
     }
   ],
   "summary": {
-    "tokenCount": 88,
+    "tokenCount": 90,
     "unusedCount": 6,
     "hardcodedLiteralCount": 0,
     "undefinedCount": 1

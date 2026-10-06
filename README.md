@@ -36,12 +36,18 @@ follow as the products need them.
     generic Table, LineChart and EventStrip, each with an empty state
     and a text alternative.
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
-    columns, sorting, selection and inline editing
-    ([decision and measurements](docs/components/data-grid.md)).
+    columns, sorting, selection, inline editing and a tone per cell (a
+    symbol in the status colour, never the colour alone)
+    ([decision and measurements](docs/components/data-grid.md));
+    DataGridColumnChooser (show, hide and reorder columns from the
+    keyboard) and DataGridSelectionBar (actions on the selected rows,
+    after which the focus stays in the grid).
   - Controls: Button (default, primary, secondary, ghost, danger),
     ChoiceGroup, Select, NumberField, TextField, TimeSlider, Slider,
     Toggle, Switch, Checkbox and CheckboxGroup, Tag, FilterChip,
-    Toolbar and ButtonGroup, Tabs, Disclosure. A labelled control shows
+    FilterBar (search, chip groups with counts, Clear all and the empty
+    state, folded into a sheet on a phone), Toolbar and ButtonGroup, Tabs,
+    Disclosure. A labelled control shows
     its label by default; `hideLabel` keeps it for assistive technology
     only, where the options name themselves or a heading names the
     control (ThemeSwitch and LanguageSwitch always hide theirs).
@@ -66,6 +72,11 @@ follow as the products need them.
     ShortcutsDialog, and Button's `shortcut`, which draws the keys in
     the button and sets `aria-keyshortcuts`; ThemeSwitch (System, Light, Dark) and
     LanguageSwitch with the preference hooks behind them.
+  - Application helpers: the first paint (`firstPaintScript`,
+    `useAppPreferences`, `preloadFonts`), formatters for money,
+    percents, signed values, dates, times, durations and lists
+    (`useFormatters`), and the viewport's width class (`useBreakpoint`,
+    `useMediaQuery`). See [Application helpers](#application-helpers).
 
   Words and digits follow the locale set with React Aria's
   `I18nProvider` (`useStoaFormat`); it and React Aria's
@@ -113,6 +124,8 @@ follow as the products need them.
   digits, and Plex Sans Arabic after it (all SIL OFL 1.1). See
   [Fonts](#fonts) for what an application loads.
 - Space on a 4 px grid; radii from 0 to 8 px.
+- Breakpoints: narrow up to 40rem (a phone), wide from 64rem (panes side
+  by side); `useBreakpoint` reads them.
 - Motion: fast 80 ms, base 160 ms, slow 240 ms, value flash 600 ms.
 
 ## Focus after an action
@@ -124,7 +137,8 @@ again at the top of the page. Stoa's components do it themselves:
 - Dialog, Sheet and AlertDialog return the focus to their trigger. One
   opened without a trigger returns it to whatever had it when it opened,
   or, when that control is gone, to the tab stop that stands where it
-  was.
+  was: for a grid editor that closed as the dialog opened, the edited
+  cell.
 - A dismissed Callout leaves the focus on the tab stop that stands where
   it was.
 - ReorderableList (React Aria's GridList) moves the focus to the
@@ -205,17 +219,103 @@ when the page is in Arabic, since a preload that is not used costs the
 download:
 
 ```ts
+import { preloadFonts } from "@ghostjima/stoa-react";
 import plexArabic from "@fontsource/ibm-plex-sans-arabic/files/ibm-plex-sans-arabic-arabic-400-normal.woff2?url";
 
-if (document.documentElement.lang === "ar") {
-  const link = Object.assign(document.createElement("link"), { rel: "preload", as: "font", type: "font/woff2", href: plexArabic, crossOrigin: "anonymous" });
-  document.head.append(link);
-}
+// At the top of the entry module: only for the language the page is in.
+preloadFonts({ ar: [plexArabic] });
 ```
 
-Set `lang` and `dir` on the root element before the first paint (an inline
-script that reads the stored language), so the first layout is already
-the Arabic one.
+Set `lang` and `dir` on the root element before the first paint, so the
+first layout is already the Arabic one: `firstPaintScript` below does it.
+
+## Application helpers
+
+### Before the first paint
+
+An application describes its language and theme choices once and uses
+that description twice: inlined into index.html, where it sets `lang`,
+`dir` and `data-theme` before anything is drawn, and in the running
+application, which reads and changes the same choices. Both read a
+choice the same way: the URL parameter first (`?lang=`, `?theme=`), then
+the stored value, then the default.
+
+```ts
+// src/preferences.ts: no React here, so the build can import it too.
+import type { FirstPaintConfig } from "@ghostjima/stoa-react/first-paint";
+
+export const PREFERENCES: FirstPaintConfig = {
+  languages: ["ru", "en"],
+  language: { storageKey: "tyche.lang" },
+  theme: { storageKey: "tyche.theme" },
+  // Optional: fonts to preload for a language, as URLs the page can reach
+  // as written (a file in the public folder, for example).
+  fonts: { ru: ["/fonts/ibm-plex-sans-cyrillic-400-normal.woff2"] },
+};
+```
+
+```ts
+// vite.config.ts: the script goes first in the head.
+import { firstPaintScript } from "@ghostjima/stoa-react/first-paint";
+import { PREFERENCES } from "./src/preferences";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    {
+      name: "first-paint",
+      transformIndexHtml: () => [{ tag: "script", children: firstPaintScript(PREFERENCES), injectTo: "head-prepend" }],
+    },
+  ],
+});
+```
+
+```tsx
+// In the application: the same choices, kept where the script reads them.
+const { language, theme } = useAppPreferences(PREFERENCES);
+<LanguageSwitch languages={PREFERENCES.languages} value={language.language} onChange={language.setLanguage} />
+<ThemeSwitch value={theme.choice} onChange={theme.setChoice} />
+```
+
+The script is plain ES5 with no dependencies, works with storage blocked,
+and sets no `data-theme` for "System", so tokens.css follows the system.
+`theme: false` leaves the theme alone, for an application without a theme
+switch. Fonts that only the bundler can name (`?url` imports) are
+preloaded with `preloadFonts` from the entry module instead, as in
+[Fonts](#fonts).
+
+### Formatters
+
+`useFormatters()` gives an application's own values in the locale of the
+`I18nProvider` above it (`stoaFormatters(locale)` outside React), through
+Intl, with two rules on top of it in every locale: a negative number has
+the minus sign (U+2212), not a hyphen, and a value never breaks across
+lines (its spaces are non-breaking). Pass `{ timeZone: "Europe/Moscow" }`
+for dates and times in a given zone.
+
+| Call | Russian | English |
+|---|---|---|
+| `money(1234567.5)` | 1 234 567,50 ₽ | ₽1,234,567.50 |
+| `money(12.5, { signed: true })` | +12,50 ₽ | +₽12.50 |
+| `percent(0.0752)` | 7,52 % | 7.52% |
+| `signedPercent(-0.0042)` | −0,42 % | −0.42% |
+| `signed(1.25)` | +1,25 | +1.25 |
+| `date(at)`, `date(at, "long")`, `date(at, "numeric")` | 4 сент. 2026 г., 4 сентября 2026 г., 04.09.2026 | Sep 4, 2026, September 4, 2026, 09/04/2026 |
+| `time(at)`, `dateTime(at)` | 14:05, 4 сент. 2026 г., 14:05 | 2:05 PM, Sep 4, 2026, 2:05 PM |
+| `duration(ms)` for 2 days 5 h 30 min | 2 дн. 5 ч 30 мин | 2 days, 5 hr, 30 min |
+| `list(["купон", "оферта", "погашение"])` | купон, оферта и погашение | coupon, offer, and maturity |
+
+The digits follow the locale. Values still need their own direction in a
+right-to-left page: set them in `Ltr` or `bdi`.
+
+### Breakpoints
+
+`useBreakpoint()` is the viewport's width class, "narrow", "medium" or
+"wide", from the breakpoint tokens (`--stoa-breakpoint-narrow`, 40rem,
+and `--stoa-breakpoint-wide`, 64rem), kept current as the window is
+resized; `useMediaQuery(query)` answers any media query the same way. A
+media query in CSS cannot read a variable, so a stylesheet writes the
+values out (`@media (max-width: 40rem)`), as Stoa's own does.
 
 ## Measured quality
 

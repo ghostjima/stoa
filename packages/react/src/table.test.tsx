@@ -96,6 +96,13 @@ describe("Table", () => {
     expect(region.style.maxBlockSize).toBe("160px");
   });
 
+  it("keeps headers on one line by default, and lets them wrap with wrapHeaders", () => {
+    const { container, rerender } = renderTable({ rowHeader: "date" });
+    expect(container.querySelector("table")!.classList.contains("stoa-table--wrap-headers")).toBe(false);
+    rerender(<Table columns={COLUMNS} rows={PAYMENTS} rowKey={(p) => p.date} caption="Payments" emptyText="No payments." rowHeader="date" wrapHeaders />);
+    expect(container.querySelector("table")!.classList.contains("stoa-table--wrap-headers")).toBe(true);
+  });
+
   it("takes its maximum height as a CSS length too, so it can be set in tokens", () => {
     const { container } = renderTable({ maxHeight: "calc(var(--stoa-space-12) * 6)" });
     expect(container.querySelector<HTMLElement>(".stoa-table-region")!.style.maxBlockSize).toBe("calc(var(--stoa-space-12) * 6)");

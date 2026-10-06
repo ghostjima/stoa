@@ -47,6 +47,12 @@ export type TableProps<Row> = {
   /** Every cell in the numeric face (Plex Mono, tabular figures), as a
    * trades tape is. */
   mono?: boolean;
+  /** Let column headers and row headers wrap onto more lines. Off by
+   * default: a header stays on one line and a table too wide for its box
+   * scrolls inside its region. Turn it on where the headers are phrases
+   * ("Broker's commission, 0.05% of each trade") and the table must fit a
+   * phone's width; number cells still stay on one line. */
+  wrapHeaders?: boolean;
   /** Whether a table too large for its box scrolls inside its own region.
    * Turn it off when an ancestor scrolls instead, or when the table sits
    * in a visually hidden container, where a scroll region would be an
@@ -74,6 +80,7 @@ export function Table<Row>({
   maxHeight,
   density,
   mono = false,
+  wrapHeaders = false,
   scrollable = true,
 }: TableProps<Row>) {
   const locale = useStoaFormat();
@@ -124,7 +131,8 @@ export function Table<Row>({
         "stoa-table" +
         (mono ? " stoa-table--numeric" : "") +
         (stickyHeader ? " stoa-table--sticky-header" : "") +
-        (stickyFirstColumn ? " stoa-table--sticky-first" : "")
+        (stickyFirstColumn ? " stoa-table--sticky-first" : "") +
+        (wrapHeaders ? " stoa-table--wrap-headers" : "")
       }
       data-density={scrollable ? undefined : density}
     >

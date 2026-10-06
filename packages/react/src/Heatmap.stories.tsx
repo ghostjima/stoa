@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Heatmap } from "./Heatmap";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "./Controls";
+import { Heatmap, type HeatmapHandle } from "./Heatmap";
 import { sampleHeatmap } from "./fixtures";
+import { useStoaFormat } from "./locale";
 
 const meta: Meta<typeof Heatmap> = {
   title: "Data/Heatmap",
@@ -32,5 +35,26 @@ export const TimeDirection: StoryObj<typeof Heatmap> = {
       for (let c = columns - 6; c < columns; c++) for (let r = 0; r < rows; r++) cells[c * rows + r] = r < rows / 2 ? -500 : 500;
       return { cells, columns, rows, top: 101.0, tick: 0.05 };
     })(),
+  },
+};
+
+/** Drawn once through the handle, as a paused replay is; the button
+ * changes its height. The canvas is refitted to its new box with nothing
+ * new to draw, so the cells and price labels are not stretched or
+ * squeezed. */
+export const HeightChange: StoryObj<typeof Heatmap> = {
+  render: (args) => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const ref = useRef<HeatmapHandle>(null);
+    const [tall, setTall] = useState(true);
+    useEffect(() => ref.current?.draw(sampleHeatmap()), []);
+    return (
+      <div style={{ display: "grid", gap: "var(--stoa-space-3)" }}>
+        <div>
+          <Button onPress={() => setTall((t) => !t)}>{tall ? (arabic ? "أقصر" : "Shorter") : arabic ? "أطول" : "Taller"}</Button>
+        </div>
+        <Heatmap label={args.label} description={args.description} height={tall ? 320 : 200} ref={ref} />
+      </div>
+    );
   },
 };

@@ -212,6 +212,16 @@
       "$value": "9999px"
     }
   },
+  "breakpoint": {
+    "$type": "dimension",
+    "$description": "Viewport widths where a layout changes: up to narrow is a phone, from wide a desktop with panes side by side. Media queries cannot read variables, so useBreakpoint reads these and CSS repeats the values.",
+    "narrow": {
+      "$value": "40rem"
+    },
+    "wide": {
+      "$value": "64rem"
+    }
+  },
   "motion": {
     "duration": {
       "$type": "duration",

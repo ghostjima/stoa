@@ -118,6 +118,49 @@ export const StickyFirstColumn: StoryObj = {
   },
 };
 
+const FEES = {
+  en: {
+    caption: "What a purchase costs",
+    item: "Item",
+    amount: "Amount, RUB",
+    rows: ["Price of 10 bonds at 98.40% of face value", "Accrued interest paid to the seller", "Broker's commission, 0.05% of each trade"],
+  },
+  ar: {
+    caption: "تكلفة الشراء",
+    item: "البند",
+    amount: "المبلغ، روبل",
+    rows: ["سعر ١٠ سندات بنسبة ٩٨٫٤٠٪ من القيمة الاسمية", "الفائدة المتراكمة المدفوعة للبائع", "عمولة الوسيط، ٠٫٠٥٪ من قيمة كل صفقة شراء أو بيع"],
+  },
+};
+
+/** Row headers that are phrases, in a box as narrow as a phone's: with
+ * `wrapHeaders` they wrap onto more lines, the amounts stay on one, and
+ * the table fits without scrolling sideways. Without it, headers stay on
+ * one line and the table scrolls inside its region. */
+export const WrapHeaders: StoryObj = {
+  render: () => {
+    const locale = useStoaFormat();
+    const w = FEES[locale.locale.startsWith("ar") ? "ar" : "en"];
+    const amounts = [9840, 120.5, 4.98];
+    return (
+      <div style={{ maxInlineSize: 280 }}>
+        <Table<number>
+          caption={w.caption}
+          rowKey={(i) => i}
+          emptyText=""
+          rowHeader="item"
+          wrapHeaders
+          rows={[0, 1, 2]}
+          columns={[
+            { id: "item", header: w.item, cell: (i) => w.rows[i] },
+            { id: "amount", header: w.amount, numeric: true, cell: (i) => locale.decimal(amounts[i]!, 2) },
+          ]}
+        />
+      </div>
+    );
+  },
+};
+
 /** Compact density for this table alone, whatever the page's. */
 export const Compact: StoryObj = { render: () => <Payments rows={payments(16)} density="compact" rowHeader="date" /> };
 

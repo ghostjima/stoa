@@ -116,3 +116,20 @@ test("closing the last toast from the keyboard returns focus to where it was bef
   await expect(undo).toHaveCount(0);
   await expect.poll(() => focused(page)).toBe("BUTTON:Cancel order 1042");
 });
+
+for (const how of ["a click", "the keyboard"] as const) {
+  test(`a record picked with ${how} that replaces its list leaves focus on what takes its place, not on the body`, async ({ page }) => {
+    await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));
+    const list = page.getByRole("listbox", { name: "Bonds" });
+    if (how === "a click") {
+      await list.getByRole("option", { name: /RU000A1002/ }).click();
+    } else {
+      await list.getByRole("option", { name: /RU000A1001/ }).focus();
+      await page.keyboard.press("ArrowDown");
+      await page.keyboard.press("Enter");
+    }
+    await expect(list).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "RU000A1002" })).toBeVisible();
+    await expect.poll(() => focused(page)).toBe("BUTTON:Back");
+  });
+}

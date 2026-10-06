@@ -152,3 +152,26 @@ for (const [name, column, editor] of [
     await expect(cell(3)).toBeFocused();
   });
 }
+
+for (const [how, close] of [
+  ["Escape", ["Escape"]],
+  ["its safe action", ["Enter"]],
+  ["its primary action, which saves the change", ["Tab", "Enter"]],
+] as const) {
+  test(`after a confirmation opened from an editor closes with ${how}, the focus is back on the edited cell`, async ({ page }) => {
+    await page.goto("/iframe.html?id=data-datagrid--edit-with-confirmation&viewMode=story");
+    const grid = page.getByRole("grid", { name: "Orders, editable" });
+    // The status cell of the first row: its column is the fifth.
+    await grid.locator('[data-cell="0:4"]').click();
+    await page.keyboard.press("Enter");
+    await expect(grid.getByRole("listbox")).toBeFocused();
+    await page.keyboard.press("ArrowDown");
+    await page.keyboard.press("Enter");
+    const dialog = page.getByRole("alertdialog", { name: "Change the status?" });
+    await expect(dialog).toBeVisible();
+    // The safe action has the focus when the confirmation opens.
+    for (const key of close) await page.keyboard.press(key);
+    await expect(dialog).toHaveCount(0);
+    await expect(page.locator(":focus")).toHaveAttribute("data-cell", "0:4");
+  });
+}

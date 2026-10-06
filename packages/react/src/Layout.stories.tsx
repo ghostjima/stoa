@@ -3,11 +3,13 @@ import { useState } from "react";
 import { I18nProvider } from "react-aria-components";
 import { AppHeader } from "./AppHeader";
 import { Callout } from "./Callout";
+import { FilterChipGroup } from "./Chips";
 import { ChoiceGroup } from "./Controls";
 import { DescriptionList } from "./DescriptionList";
 import { Disclosure } from "./Disclosure";
-import { StatusBadge } from "./Form";
+import { StatusBadge, TextField } from "./Form";
 import { Panel, StatBar } from "./Panel";
+import { RecordList } from "./RecordList";
 import { ScrollArea } from "./ScrollArea";
 
 const meta: Meta = { title: "Layout/Panel" };
@@ -166,4 +168,49 @@ export const ArabicPage: StoryObj = {
       </I18nProvider>
     </div>
   ),
+};
+
+/** Arabic-Indic digits in the numeric face, right to left whatever the
+ * toolbar says: chip counts, StatBar values, RecordList values and a
+ * monospace field. Their lines keep the height they had before Noto Sans
+ * Arabic, the face that draws these digits, arrived (e2e/fonts.e2e.ts
+ * holds it back to check). */
+export const ArabicDigits: StoryObj = {
+  render: () => {
+    const [chips, setChips] = useState<string[]>(["fixed"]);
+    const [picked, setPicked] = useState<string | null>("a");
+    const [amount, setAmount] = useState("١٬٢٥٠٫٧٥");
+    return (
+      <div dir="rtl" lang="ar" style={{ display: "grid", gap: "var(--stoa-space-4)", maxInlineSize: "calc(var(--stoa-space-12) * 10)" }}>
+        <I18nProvider locale="ar-u-nu-arab">
+          <FilterChipGroup
+            label="نوع القسيمة"
+            value={chips}
+            onChange={setChips}
+            chips={[
+              { id: "fixed", label: "ثابتة", count: 42 },
+              { id: "floater", label: "متغيرة", count: 7 },
+            ]}
+          />
+          <StatBar
+            label="المؤشرات"
+            items={[
+              { label: "الإصدارات", value: "٦٠" },
+              { label: "متوسط العائد", value: "٧٫٥٢٪" },
+            ]}
+          />
+          <RecordList
+            label="السندات"
+            value={picked}
+            onChange={setPicked}
+            items={[
+              { id: "a", label: "RU000A1001", meta: "٧٫٥٢٪" },
+              { id: "b", label: "RU000A1002", meta: "٨٫١٠٪" },
+            ]}
+          />
+          <TextField label="المبلغ" value={amount} onChange={setAmount} mono />
+        </I18nProvider>
+      </div>
+    );
+  },
 };

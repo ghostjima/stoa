@@ -156,8 +156,11 @@ export function useInvalidateOnTokensVersion(tokensVersion: number | undefined, 
 
 /**
  * Calls `redraw` when a canvas's box no longer matches its bitmap: the box
- * changed size (a window resized, a panel opened beside it) or the device
- * pixel ratio changed (a window moved to another screen, the page zoomed).
+ * changed size (a window resized, a panel opened beside it, a new height
+ * from a prop) or the device pixel ratio changed (a window moved to
+ * another screen, the page zoomed). Either side counts: a height that
+ * changed while the width stayed leaves the bitmap stretched or squeezed
+ * as much as a new width does.
  * A canvas is only drawn when its data changes, so without this a paused
  * view keeps its old bitmap, stretched or squeezed to the new box.
  * `redraw` is read through a ref; it is the component's to skip while it
@@ -170,7 +173,10 @@ export function useCanvasRefit(canvas: RefObject<HTMLCanvasElement | null>, redr
     const el = canvas.current;
     const View = el?.ownerDocument.defaultView;
     if (!el || !View || typeof View.ResizeObserver !== "function") return;
-    const stale = () => el.width !== Math.round(el.clientWidth * (View.devicePixelRatio || 1));
+    const stale = () => {
+      const dpr = View.devicePixelRatio || 1;
+      return el.width !== Math.round(el.clientWidth * dpr) || el.height !== Math.round(el.clientHeight * dpr);
+    };
     const observer = new View.ResizeObserver(() => {
       if (stale()) redrawRef.current();
     });

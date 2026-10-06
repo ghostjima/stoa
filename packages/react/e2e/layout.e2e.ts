@@ -177,3 +177,62 @@ for (const name of ["Details", "Filters"]) {
     await expect.poll(() => scroll.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
   });
 }
+
+for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
+  test(`a table with wrapping headers fits a phone's width: phrases wrap, amounts stay on one line (${globals})`, async ({ page }) => {
+    await page.goto(story("data-table--wrap-headers", globals));
+    const table = page.locator(".stoa-table");
+    await expect(table).toBeVisible();
+    const layout = await table.evaluate((el) => {
+      /** The lines a cell's text takes. */
+      const lines = (cell: Element) => {
+        const range = document.createRange();
+        range.selectNodeContents(cell);
+        return new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+      };
+      const region = el.closest(".stoa-table-region")!;
+      return {
+        overflows: region.scrollWidth > region.clientWidth,
+        rowHeaderLines: [...el.querySelectorAll('th[scope="row"]')].map(lines),
+        amountLines: [...el.querySelectorAll("td.stoa-num")].map(lines),
+      };
+    });
+    expect(layout.overflows).toBe(false);
+    expect(Math.max(...layout.rowHeaderLines)).toBeGreaterThan(1);
+    expect(layout.amountLines.every((n) => n === 1)).toBe(true);
+  });
+}
+
+test("a record list draws its rows in the first frame it is in, never a frame of its empty state, on first load and when it comes back", async ({ page }) => {
+  // Before any script of the page: the first animation frame in which the
+  // list is in the document says how many rows it draws, and whether it
+  // says it is empty.
+  await page.addInitScript(() => {
+    const w = window as unknown as { firstFrameRows: number | null; watchList: () => void };
+    w.watchList = () => {
+      w.firstFrameRows = null;
+      const tick = () => {
+        const list = document.querySelector('[role="listbox"]');
+        if (list) w.firstFrameRows = list.querySelector(".stoa-record-list__empty") ? -1 : list.querySelectorAll(".stoa-record-list__row").length;
+        else requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    w.watchList();
+  });
+  const firstFrameRows = () => page.evaluate(() => (window as unknown as { firstFrameRows: number | null }).firstFrameRows);
+  // Whether the first frame comes before the rows depends on timing; five
+  // loads make a late frame all but certain to show.
+  for (let load = 0; load < 5; load++) {
+    await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));
+    await expect.poll(firstFrameRows).not.toBeNull();
+    expect(await firstFrameRows(), `load ${load + 1}`).toBe(4);
+  }
+  await page.getByRole("option", { name: /RU000A1001/ }).focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await page.evaluate(() => (window as unknown as { watchList: () => void }).watchList());
+  await page.getByRole("button", { name: "Back" }).click();
+  await expect.poll(firstFrameRows).not.toBeNull();
+  expect(await firstFrameRows()).toBe(4);
+});

@@ -255,7 +255,7 @@ export const PREFERENCES: FirstPaintConfig = {
 ```
 
 ```ts
-// vite.config.ts: the script goes first in the head.
+// vite.config.ts: the script goes at the end of the head.
 import { firstPaintScript } from "@ghostjima/stoa-react/first-paint";
 import { PREFERENCES } from "./src/preferences";
 
@@ -264,11 +264,19 @@ export default defineConfig({
     react(),
     {
       name: "first-paint",
-      transformIndexHtml: () => [{ tag: "script", children: firstPaintScript(PREFERENCES), injectTo: "head-prepend" }],
+      transformIndexHtml: () => [{ tag: "script", children: firstPaintScript(PREFERENCES), injectTo: "head" }],
     },
   ],
 });
 ```
+
+`injectTo: "head"` puts the script at the end of the head, not at its
+start. The script is about 1,660 bytes with the preferences above, and
+the browser looks for `<meta charset>` only in a document's first 1,024
+bytes: prepended, the script pushes the charset past them, so a page
+served without a charset in its `Content-Type` header has its encoding
+guessed. At the end of the head the script still runs before the body
+is drawn, and before the application's module script, which is deferred.
 
 ```tsx
 // In the application: the same choices, kept where the script reads them.

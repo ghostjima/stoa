@@ -54,7 +54,11 @@ follow as the products need them.
     Toggle, Switch, Checkbox and CheckboxGroup, Tag, FilterChip,
     FilterBar (search, chip groups with counts, Clear all and the empty
     state, folded into a sheet on a phone), Toolbar and ButtonGroup, Tabs,
-    Disclosure. A labelled control shows
+    Disclosure, TextArea (multi-line text that grows with its lines up
+    to a set number, then scrolls, with a count of the characters used
+    when it has a limit, the few left announced politely) and RadioGroup
+    (one of several options, each with an optional description, stacked
+    or in a row). A labelled control shows
     its label by default; `hideLabel` keeps it for assistive technology
     only, where the options name themselves or a heading names the
     control (ThemeSwitch and LanguageSwitch always hide theirs).

@@ -506,9 +506,14 @@
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: var(--stoa-focus-offset);
 }
+/* A toast's width includes its padding and borders (border-box), so the
+   region's width holds the whole toast on a phone. On a wider screen it
+   is drawn as wide as before: 384 px of content, the padding on both
+   sides, the tone bar at the start and the border at the end. */
 .stoa-toast {
   display: flex; align-items: center; gap: var(--stoa-space-2);
-  inline-size: calc(var(--stoa-space-12) * 8); max-inline-size: 100%;
+  box-sizing: border-box;
+  inline-size: calc(var(--stoa-space-12) * 8 + 2 * var(--stoa-space-3) + var(--stoa-space-1) + 1px); max-inline-size: 100%;
   padding: var(--stoa-space-2) var(--stoa-space-3);
   background: var(--stoa-color-surface); color: var(--stoa-color-text);
   border: 1px solid var(--stoa-color-border-strong); border-inline-start-width: var(--stoa-space-1);
@@ -740,6 +745,62 @@
 .stoa-checkbox__button[data-disabled] .stoa-checkbox__box { color: var(--stoa-color-text-subtle); }
 .stoa-checkbox-group { display: grid; gap: var(--stoa-space-1); }
 .stoa-checkbox-group__items { display: grid; gap: var(--stoa-space-1); }
+
+/* TextArea: the field's input as a textarea. Its height is set from a
+   script, between its rows and its most rows, so the lines are a set
+   height and the box is not resized by hand. The description and the
+   count share the line under it, the count at the end, in the numeric
+   face; a full field's count is in the text colour. */
+.stoa-textarea__input {
+  display: block; inline-size: 100%; box-sizing: border-box;
+  line-height: var(--stoa-font-line-height-normal); resize: none; overflow-y: hidden;
+}
+.stoa-textarea__foot { display: flex; align-items: baseline; gap: var(--stoa-space-2); min-inline-size: 0; }
+.stoa-textarea__foot > .stoa-field__description { flex: 1 1 auto; min-inline-size: 0; }
+.stoa-textarea__count {
+  flex: none; margin-inline-start: auto;
+  font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-2xs); font-variant-numeric: tabular-nums;
+  color: var(--stoa-color-text-muted);
+}
+.stoa-textarea__count[data-full] { color: var(--stoa-color-text); font-weight: var(--stoa-font-weight-medium); }
+.stoa-textarea__input[data-disabled] {
+  background: var(--stoa-color-surface-sunken); border-color: var(--stoa-color-border); color: var(--stoa-color-text-subtle);
+}
+
+/* RadioGroup: a circle in the control border, filled with the accent and
+   a dot of the surface colour when chosen (as a checkbox's mark); an
+   invalid group draws its circles in the falling colour. The options
+   stack, or wrap in a row; each description lines up with its label. */
+.stoa-radio-group { display: grid; gap: var(--stoa-space-1); min-inline-size: 0; }
+.stoa-radio-group__items { display: grid; gap: var(--stoa-space-1); }
+.stoa-radio-group--horizontal .stoa-radio-group__items { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-4); }
+.stoa-radio { display: grid; gap: 0; min-inline-size: 0; }
+.stoa-radio__button {
+  display: inline-flex; align-items: center; gap: var(--stoa-space-2);
+  min-block-size: var(--stoa-space-6); cursor: pointer; color: var(--stoa-color-text);
+}
+.stoa-radio__circle {
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: var(--stoa-space-4); block-size: var(--stoa-space-4); box-sizing: border-box;
+  border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-full);
+  background: var(--stoa-color-surface);
+}
+.stoa-radio__circle::after {
+  content: ""; inline-size: var(--stoa-space-1); block-size: var(--stoa-space-1);
+  border-radius: var(--stoa-radius-full); background: transparent;
+}
+.stoa-radio__button[data-hovered] .stoa-radio__circle { background: var(--stoa-color-surface-hover); }
+.stoa-radio__button[data-selected] .stoa-radio__circle { background: var(--stoa-color-accent); border-color: var(--stoa-color-accent); }
+.stoa-radio__button[data-selected] .stoa-radio__circle::after { background: var(--stoa-color-surface); }
+.stoa-radio__button[data-invalid] .stoa-radio__circle { border-color: var(--stoa-color-down); border-width: 2px; }
+.stoa-radio__button[data-focus-visible] .stoa-radio__circle {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-radio__button[data-disabled] { color: var(--stoa-color-text-subtle); cursor: not-allowed; }
+.stoa-radio__button[data-disabled] .stoa-radio__circle { background: var(--stoa-color-surface-sunken); border-color: var(--stoa-color-border); }
+.stoa-radio__button[data-disabled][data-selected] .stoa-radio__circle::after { background: var(--stoa-color-text-subtle); }
+.stoa-radio__note { padding-inline-start: calc(var(--stoa-space-4) + var(--stoa-space-2)); }
 
 /* Slider: the label and the value on one line, the track under them, a
    hint under the track. It shares TimeSlider's rail and thumb, on a track

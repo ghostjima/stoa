@@ -20,7 +20,8 @@ works right to left.
   map without hard-coded literals.
 - **Components** for dense financial screens, each with a story, keyboard
   and screen-reader behaviour, tests, and light and dark: layout and
-  shell, controls and forms, overlays, feedback and empty states, tables,
+  shell, controls and forms (multi-line text and radio groups among
+  them), overlays, feedback and empty states, tables,
   the data grid, charts and market views, code and maths display, the
   agent's step list and log. The README lists them.
 - **Evidence**: unit and browser tests, an axe sweep over every story in

@@ -44,6 +44,9 @@ export { I18nProvider } from "react-aria-components";
 // application needs no React Aria of its own.
 export { UNSAFE_PortalProvider, type PortalProviderProps } from "react-aria/PortalProvider";
 export { TextField, StatusBadge, Tabs, type TextFieldProps, type StatusTone, type TabItem } from "./Form";
+// Multi-line text and one of several options with descriptions.
+export { TextArea, type TextAreaProps } from "./TextArea";
+export { RadioGroup, type RadioGroupProps, type RadioOption } from "./RadioGroup";
 // Feedback and layout: callouts, empty states, loading, toasts, live
 // regions and the page shell.
 export { LiveRegion, VisuallyHidden, type LiveRegionProps, type VisuallyHiddenProps } from "./LiveRegion";

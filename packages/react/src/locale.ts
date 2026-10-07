@@ -201,6 +201,13 @@ export type StoaMessages = {
   /** DetailHeader: the button that goes back to where the record was
    * opened from, unless the caller names it. */
   back: string;
+  // TextArea.
+  /** TextArea: the count of characters used, read as part of the field's
+   * description; both counts in the locale's digits. */
+  textCount: (used: string, max: string) => string;
+  /** TextArea: the characters left, announced once they are few; `count`
+   * in the locale's digits and `plural` its plural category. */
+  textLeft: (count: string, plural: PluralCategory) => string;
   // Letter.
   /** Letter: the line above the grounds the letter cites. */
   letterGrounds: string;
@@ -368,6 +375,9 @@ const EN: StoaMessages = {
   timelineEmphasis: "Important:",
   // DetailHeader.
   back: "Back",
+  // TextArea.
+  textCount: (used, max) => `Characters: ${used} of ${max}`,
+  textLeft: (count, plural) => `${count} ${plural === "one" ? "character" : "characters"} left`,
   // Letter.
   letterGrounds: "Grounds cited",
   // FindingsList.
@@ -507,6 +517,9 @@ const AR: StoaMessages = {
   timelineEmphasis: "مهم:",
   // DetailHeader.
   back: "رجوع",
+  // TextArea.
+  textCount: (used, max) => `الأحرف: ${used} من ${max}`,
+  textLeft: (count, _plural) => `الأحرف المتبقية: ${count}`,
   // Letter.
   letterGrounds: "الأسس المستند إليها",
   // FindingsList.
@@ -661,6 +674,10 @@ const RU: StoaMessages = {
   timelineEmphasis: "Важно:",
   // DetailHeader.
   back: "Назад",
+  // TextArea.
+  textCount: (used, max) => `Символов: ${used} из ${max}`,
+  textLeft: (count, plural) =>
+    `${plural === "one" ? "Остался" : "Осталось"} ${count} ${{ one: "символ", few: "символа", many: "символов", other: "символа" }[plural === "one" || plural === "few" || plural === "many" ? plural : "other"]}`,
   // Letter.
   letterGrounds: "Приведённые основания",
   // FindingsList.

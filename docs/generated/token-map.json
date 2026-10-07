@@ -63,6 +63,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating",
+            "file": "packages/react/src/styles.css",
+            "line": 1591
+          },
+          {
             "component": "(css) .stoa-step__fill",
             "file": "packages/react/src/styles.css",
             "line": 949
@@ -141,6 +146,11 @@
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
             "line": 1326
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1576
           },
           {
             "component": "EventStrip",
@@ -479,6 +489,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -518,6 +532,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--offer",
+            "file": "packages/react/src/styles.css",
+            "line": 1592,
+            "via": "--stoa-color-warning"
+          },
           {
             "component": "(css) .stoa-step__status--awaiting .stoa-step__symbol",
             "file": "packages/react/src/styles.css",
@@ -735,6 +755,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--offer",
+            "file": "packages/react/src/styles.css",
+            "line": 1592,
+            "via": "--stoa-color-warning"
+          },
           {
             "component": "(css) .stoa-step__status--awaiting .stoa-step__symbol",
             "file": "packages/react/src/styles.css",
@@ -1136,6 +1162,12 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating",
+            "file": "packages/react/src/styles.css",
+            "line": 1591,
+            "via": "--stoa-color-accent"
+          },
+          {
             "component": "(css) .stoa-code__scroll:focus-visible",
             "file": "packages/react/src/styles.css",
             "line": 987,
@@ -1284,6 +1316,18 @@
             "file": "packages/react/src/styles.css",
             "line": 240,
             "via": "--stoa-color-focus"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1571,
+            "via": "--stoa-color-focus"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1576,
+            "via": "--stoa-color-accent"
           },
           {
             "component": "EventStrip",
@@ -1828,6 +1872,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -1925,6 +1973,12 @@
             "via": "--stoa-color-focus"
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1571,
+            "via": "--stoa-color-focus"
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 122,
@@ -2224,6 +2278,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -2261,6 +2319,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating",
+            "file": "packages/react/src/styles.css",
+            "line": 1591,
+            "via": "--stoa-color-accent"
+          },
           {
             "component": "(css) .stoa-step__fill",
             "file": "packages/react/src/styles.css",
@@ -2355,6 +2419,12 @@
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
             "line": 1326,
+            "via": "--stoa-color-accent"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1576,
             "via": "--stoa-color-accent"
           },
           {
@@ -2730,6 +2800,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -2837,6 +2911,11 @@
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
             "line": 1409
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565
           },
           {
             "component": "FilterChip",
@@ -3097,6 +3176,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -3493,6 +3576,11 @@
       },
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--default",
+            "file": "packages/react/src/styles.css",
+            "line": 1594
+          },
           {
             "component": "(css) .stoa-field__error",
             "file": "packages/react/src/styles.css",
@@ -3911,6 +3999,11 @@
             "line": 240
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1571
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 122
@@ -4185,6 +4278,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -4220,6 +4317,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1587,
+            "via": "--stoa-color-surface"
+          },
           {
             "component": "(css) .stoa-modal",
             "file": "packages/react/src/styles.css",
@@ -4308,6 +4411,12 @@
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1275,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565,
             "via": "--stoa-color-surface"
           },
           {
@@ -4635,6 +4744,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -4682,6 +4795,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--maturity",
+            "file": "packages/react/src/styles.css",
+            "line": 1593,
+            "via": "--stoa-color-text"
+          },
           {
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
@@ -4854,6 +4973,24 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 460,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1575,
+            "via": "--stoa-color-surface-sunken"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1606,
             "via": "--stoa-color-text"
           },
           {
@@ -5331,6 +5468,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -5770,6 +5911,12 @@
             "via": "--stoa-color-border"
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565,
+            "via": "--stoa-color-border"
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 115,
@@ -6045,6 +6192,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -6124,6 +6275,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--coupon",
+            "file": "packages/react/src/styles.css",
+            "line": 1590,
+            "via": "--stoa-color-text-muted"
+          },
           {
             "component": "(css) .stoa-code__label",
             "file": "packages/react/src/styles.css",
@@ -6272,6 +6429,36 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 461,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1560,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1596,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1599,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1602,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1612,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6737,6 +6924,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -7745,6 +7936,12 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol--coupon",
+            "file": "packages/react/src/styles.css",
+            "line": 1590,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "(css) .stoa-code__label",
             "file": "packages/react/src/styles.css",
             "line": 964,
@@ -7892,6 +8089,36 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 461,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1560,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1596,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1599,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1602,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1612,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8357,6 +8584,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -8529,6 +8760,12 @@
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
             "line": 1409,
+            "via": "--stoa-color-border"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565,
             "via": "--stoa-color-border"
           },
           {
@@ -8807,6 +9044,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -9110,6 +9351,18 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1587,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "(css) .stoa-calendar__symbol--maturity",
+            "file": "packages/react/src/styles.css",
+            "line": 1593,
+            "via": "--stoa-color-text"
+          },
+          {
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
             "line": 979,
@@ -9335,6 +9588,24 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 460,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1606,
             "via": "--stoa-color-text"
           },
           {
@@ -9932,6 +10203,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -9981,6 +10256,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--default",
+            "file": "packages/react/src/styles.css",
+            "line": 1594,
+            "via": "--stoa-color-down"
+          },
           {
             "component": "(css) .stoa-field__error",
             "file": "packages/react/src/styles.css",
@@ -10330,6 +10611,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--default",
+            "file": "packages/react/src/styles.css",
+            "line": 1594,
+            "via": "--stoa-color-down"
+          },
           {
             "component": "(css) .stoa-field__error",
             "file": "packages/react/src/styles.css",
@@ -10815,6 +11102,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1587
+          },
+          {
             "component": "(css) .stoa-modal",
             "file": "packages/react/src/styles.css",
             "line": 787
@@ -10888,6 +11180,11 @@
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1275
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565
           },
           {
             "component": "FilterChip",
@@ -11189,6 +11486,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -11514,6 +11815,11 @@
             "line": 1216
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1575
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 114
@@ -11667,6 +11973,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -12246,6 +12556,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol--maturity",
+            "file": "packages/react/src/styles.css",
+            "line": 1593
+          },
+          {
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
             "line": 979
@@ -12359,6 +12674,16 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 460
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1565
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1606
           },
           {
             "component": "EventStrip",
@@ -12740,6 +13065,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -12787,6 +13116,11 @@
       },
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--coupon",
+            "file": "packages/react/src/styles.css",
+            "line": 1590
+          },
           {
             "component": "(css) .stoa-code__label",
             "file": "packages/react/src/styles.css",
@@ -12911,6 +13245,31 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 461
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1560
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1596
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1599
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1602
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1612
           },
           {
             "component": "EventStrip",
@@ -13327,6 +13686,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -13863,6 +14226,11 @@
       },
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--offer",
+            "file": "packages/react/src/styles.css",
+            "line": 1592
+          },
           {
             "component": "(css) .stoa-step__status--awaiting .stoa-step__symbol",
             "file": "packages/react/src/styles.css",
@@ -14860,6 +15228,11 @@
             "line": 240
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1571
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 122
@@ -15162,6 +15535,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -15466,6 +15843,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1588
+          },
+          {
             "component": "(css) .stoa-modal",
             "file": "packages/react/src/styles.css",
             "line": 791
@@ -15728,6 +16110,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1588
+          },
+          {
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
             "line": 974
@@ -15941,6 +16328,11 @@
             "line": 434
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1579
+          },
+          {
             "component": "RecordList",
             "file": "packages/react/src/styles.css",
             "line": 1029
@@ -16041,6 +16433,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -16432,6 +16828,16 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 460
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1555
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1556
           }
         ],
         "stories": [
@@ -16496,6 +16902,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -16575,6 +16985,21 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 461
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1595
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1602
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1612
           },
           {
             "component": "FindingsList",
@@ -16718,6 +17143,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -16791,6 +17220,11 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1588
+          },
           {
             "component": "(css) .stoa-code__label",
             "file": "packages/react/src/styles.css",
@@ -16875,6 +17309,11 @@
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 233
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1559
           },
           {
             "component": "EventStrip",
@@ -17189,6 +17628,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -17278,6 +17721,21 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 460
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1553
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1602
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1611
           },
           {
             "component": "FindingsList",
@@ -17492,6 +17950,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -17537,6 +17999,11 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1559
+          },
           {
             "component": "StepList",
             "file": "packages/react/src/styles.css",
@@ -17600,7 +18067,11 @@
           "Data/Table > StickyFirstColumn",
           "Data/Table > StickyHeader",
           "Data/Table > Trades",
-          "Data/Table > WrapHeaders"
+          "Data/Table > WrapHeaders",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month"
         ]
       },
       "reachedByTheme": {
@@ -17624,6 +18095,11 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol--default",
+            "file": "packages/react/src/styles.css",
+            "line": 1594
+          },
           {
             "component": "AlertDialog",
             "file": "packages/react/src/styles.css",
@@ -17668,6 +18144,26 @@
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
             "line": 1412
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1555
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1578
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1581
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1606
           },
           {
             "component": "FindingsList",
@@ -17802,6 +18298,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -18585,6 +19085,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1587
+          },
+          {
             "component": "(css) .stoa-step__number",
             "file": "packages/react/src/styles.css",
             "line": 920
@@ -18976,6 +19481,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -19444,6 +19953,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1587
+          },
+          {
             "component": "(css) .stoa-diff__mark--inserted",
             "file": "packages/react/src/styles.css",
             "line": 1479
@@ -19467,6 +19981,21 @@
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
             "line": 1411
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1582
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1584
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1609
           },
           {
             "component": "FindingsList",
@@ -19552,6 +20081,10 @@
           "Data/Countdown > Live",
           "Data/Countdown > States",
           "Data/Countdown > Units",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
           "الشكاوى > DrawnCells",
@@ -19723,6 +20256,41 @@
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 250
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1559
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1563
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1576
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1595
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1597
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1598
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1605
           },
           {
             "component": "EventStrip",
@@ -20207,6 +20775,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -20531,6 +21103,26 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 462
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1554
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1600
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1607
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1608
           },
           {
             "component": "EventStrip",
@@ -20925,6 +21517,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -21024,6 +21620,26 @@
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
             "line": 1409
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1552
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1595
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1597
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1604
           },
           {
             "component": "FilterBar",
@@ -21308,6 +21924,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -21353,6 +21973,11 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-calendar__symbol",
+            "file": "packages/react/src/styles.css",
+            "line": 1586
+          },
           {
             "component": "(css) .stoa-shortcuts__list",
             "file": "packages/react/src/styles.css",
@@ -21407,6 +22032,11 @@
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 457
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1563
           },
           {
             "component": "EventStrip",
@@ -21652,6 +22282,10 @@
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
           "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month",
           "التنسيقات > Formatters",
           "الشكاوى > CellTone",
           "الشكاوى > ColumnChooser",
@@ -21983,6 +22617,16 @@
             "line": 457
           },
           {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1556
+          },
+          {
+            "component": "EventCalendar",
+            "file": "packages/react/src/styles.css",
+            "line": 1563
+          },
+          {
             "component": "Switch",
             "file": "packages/react/src/styles.css",
             "line": 650
@@ -22082,7 +22726,11 @@
           "إرسال الرد؟ > ToastUnderAlertDialog",
           "إرسال الرد؟ > ToastWithCountdown",
           "إرسال الرد؟ > ToastWithUndo",
-          "إرسال الرد؟ > VisuallyHiddenText"
+          "إرسال الرد؟ > VisuallyHiddenText",
+          "إلغاء عرض الشراء > AllKinds",
+          "إلغاء عرض الشراء > EmptyMonth",
+          "إلغاء عرض الشراء > List",
+          "إلغاء عرض الشراء > Month"
         ]
       },
       "reachedByTheme": {

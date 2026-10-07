@@ -20,7 +20,8 @@ works right to left.
   map without hard-coded literals.
 - **Components** for dense financial screens, each with a story, keyboard
   and screen-reader behaviour, tests, and light and dark: layout and
-  shell, controls and forms, overlays, feedback and empty states, tables,
+  shell, controls and forms (multi-line text and radio groups among
+  them), overlays, feedback and empty states, tables,
   the data grid, charts and market views, code and maths display, the
   agent's step list and log. The README lists them.
 - **Evidence**: unit and browser tests, an axe sweep over every story in
@@ -42,8 +43,7 @@ contrast coverage.
    diff between a draft and the signed version; a "not run" state in the
    step list.
 3. **For Tyche Bonds.** A derivation table that shows how a figure was
-   worked out, step by step, with its source; order-ticket inputs with
-   price and yield linked; a countdown for offer dates.
+   worked out, step by step, with its source; a countdown for offer dates.
 4. **Known defects.** A canvas does not refit when only its height
    changes; the order book announces an empty book before its first frame;
    focus after a dialog opened from a grid editor lands after the grid;

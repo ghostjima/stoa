@@ -17,6 +17,17 @@ export {
   type TimeSliderProps,
   type ToggleProps,
 } from "./Controls";
+// A bond order ticket's inputs: price and yield linked through the
+// caller's engine, and the quantity in lots.
+export {
+  PriceYieldField,
+  type PriceYieldFieldProps,
+  type PriceYieldResult,
+  type PriceYieldSide,
+  type PriceYieldStatus,
+  type PriceYieldValue,
+} from "./PriceYieldField";
+export { QuantityStepper, type QuantityStepperProps } from "./QuantityStepper";
 export { Panel, StatBar, type PanelProps } from "./Panel";
 export { AppHeader, type AppHeaderProps } from "./AppHeader";
 export { Chevron } from "./Chevron";
@@ -33,6 +44,9 @@ export { I18nProvider } from "react-aria-components";
 // application needs no React Aria of its own.
 export { UNSAFE_PortalProvider, type PortalProviderProps } from "react-aria/PortalProvider";
 export { TextField, StatusBadge, Tabs, type TextFieldProps, type StatusTone, type TabItem } from "./Form";
+// Multi-line text and one of several options with descriptions.
+export { TextArea, type TextAreaProps } from "./TextArea";
+export { RadioGroup, type RadioGroupProps, type RadioOption } from "./RadioGroup";
 // Feedback and layout: callouts, empty states, loading, toasts, live
 // regions and the page shell.
 export { LiveRegion, VisuallyHidden, type LiveRegionProps, type VisuallyHiddenProps } from "./LiveRegion";

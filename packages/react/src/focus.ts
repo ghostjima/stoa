@@ -3,7 +3,7 @@
 // the next Tab starts again at the top of the page.
 
 /** What takes focus from the keyboard, before checking its tabindex. */
-const FOCUSABLE =
+export const FOCUSABLE =
   'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), iframe, summary, audio[controls], video[controls], [contenteditable]:not([contenteditable="false"]), [tabindex]';
 
 /** How long keepFocusInPlace waits for the element to go before it stops

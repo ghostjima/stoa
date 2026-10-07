@@ -36,8 +36,10 @@ follow as the products need them.
     generic Table, LineChart and EventStrip, each with an empty state
     and a text alternative.
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
-    columns, sorting, selection, inline editing and a tone per cell (a
-    symbol in the status colour, never the colour alone)
+    columns, sorting, selection, inline editing, a tone per cell (a
+    symbol in the status colour, never the colour alone) and cells drawn
+    as React nodes (a DeadlineCell, a link), each with its text stated for
+    assistive technology and copy
     ([decision and measurements](docs/components/data-grid.md));
     DataGridColumnChooser (show, hide and reorder columns from the
     keyboard) and DataGridSelectionBar (actions on the selected rows,
@@ -59,7 +61,9 @@ follow as the products need them.
     narrow screen, a label beside each value; copied as plain text).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
-    VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.
+    VisuallyHidden, Panel, StatBar and Metric, SourceNote (where a
+    panel's figures come from: the source's tag, a sentence and a link),
+    AppHeader, PageShell.
   - Overlays, lists and content: Dialog, Sheet, AlertDialog, Tooltip,
     ReorderableList, RecordList (the list of a master-detail view, whose
     `focusRecord(id)` puts the focus on a record, even right after the

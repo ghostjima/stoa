@@ -125,6 +125,7 @@ export { BREAKPOINTS, breakpointQueries, useBreakpoint, useMediaQuery, type Brea
 export { Dialog, Sheet, AlertDialog, type DialogProps, type SheetProps, type AlertDialogProps, type OverlayOpenProps } from "./Dialog";
 export { ReorderableList, type ReorderableItem, type ReorderableListProps } from "./ReorderableList";
 export { StepList, type Step, type StepStatus, type StepListProps } from "./StepList";
+export { SourceNote, type SourceNoteKind, type SourceNoteProps } from "./SourceNote";
 export { LogView, CodeView, type LogLine, type LogViewProps, type CodeViewProps } from "./Code";
 export { Metric, type MetricProps, type MetricThreshold } from "./Metric";
 export { Ltr, type LtrProps } from "./Ltr";
@@ -143,6 +144,7 @@ export { niceTicks, formatDate, type Ticks } from "./chartScale";
 // DataGrid
 export {
   DataGrid,
+  dataGridCellText,
   type DataGridCell,
   type DataGridColumn,
   type DataGridEdit,

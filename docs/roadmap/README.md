@@ -43,8 +43,7 @@ contrast coverage.
    step list.
 3. **For Tyche Bonds.** A derivation table that shows how a figure was
    worked out, step by step, with its source; order-ticket inputs with
-   price and yield linked; a coupon and events calendar; a countdown for
-   offer dates.
+   price and yield linked; a countdown for offer dates.
 4. **Known defects.** A canvas does not refit when only its height
    changes; the order book announces an empty book before its first frame;
    focus after a dialog opened from a grid editor lands after the grid;

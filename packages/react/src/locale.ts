@@ -22,6 +22,11 @@ export type PluralCategory = "zero" | "one" | "two" | "few" | "many" | "other";
  * warning for a person to weigh, a note. */
 export type FindingSeverity = "error" | "warning" | "info";
 
+/** What happens to a bond on a day of EventCalendar: a coupon, a part of
+ * the face paid back, an offer to redeem, maturity, a change of rating, a
+ * default. */
+export type CalendarEventKind = "coupon" | "amortisation" | "offer" | "maturity" | "rating" | "default";
+
 export type StoaMessages = {
   time: string;
   side: string;
@@ -215,6 +220,26 @@ export type StoaMessages = {
   /** FindingsList: what an empty list says, unless the caller gives its
    * own words. */
   findingsNone: string;
+  // EventCalendar.
+  /** EventCalendar: each kind of event as a word, beside its symbol. */
+  calendarKind: Record<CalendarEventKind, string>;
+  /** EventCalendar: the buttons that change the month, before the month
+   * they go to. */
+  calendarPrevious: string;
+  calendarNext: string;
+  /** EventCalendar: said after today's date in the list. */
+  calendarToday: string;
+  /** EventCalendar: a day of the grid as read: its long date, whether it
+   * is today, and the kinds of its events as words. */
+  calendarCell: (date: string, isToday: boolean, kinds: string[]) => string;
+  /** EventCalendar: the label of the key to the symbols. */
+  calendarKey: string;
+  /** EventCalendar: a month without events, with the month's name. */
+  calendarMonthEmpty: (month: string) => string;
+  /** EventCalendar: the chosen day has no events. */
+  calendarDayEmpty: string;
+  /** EventCalendar: under the grid while no day is chosen. */
+  calendarChoose: string;
   // TextDiff.
   /** TextDiff: read at the start and at the end of an insertion and of a
    * deletion, which are drawn underlined and struck through. */
@@ -375,6 +400,16 @@ const EN: StoaMessages = {
   findingGroup: (severity, count) => `${{ error: "Errors", warning: "Warnings", info: "Notes" }[severity]}: ${count}`,
   findingSource: "Source",
   findingsNone: "No findings.",
+  // EventCalendar.
+  calendarKind: { coupon: "Coupon", amortisation: "Amortisation", offer: "Offer", maturity: "Maturity", rating: "Rating change", default: "Default" },
+  calendarPrevious: "Previous month",
+  calendarNext: "Next month",
+  calendarToday: "today",
+  calendarCell: (date, isToday, kinds) => `${isToday ? "Today, " : ""}${date}${kinds.length > 0 ? `: ${kinds.join(", ")}` : ""}`,
+  calendarKey: "Key",
+  calendarMonthEmpty: (month) => `${month}: no events.`,
+  calendarDayEmpty: "No events on this day.",
+  calendarChoose: "Choose a day to see its events.",
   // TextDiff.
   diffInserted: "inserted:",
   diffInsertedEnd: "end of insertion",
@@ -514,6 +549,16 @@ const AR: StoaMessages = {
   findingGroup: (severity, count) => `${{ error: "الأخطاء", warning: "التحذيرات", info: "الملاحظات" }[severity]}: ${count}`,
   findingSource: "المصدر",
   findingsNone: "لا توجد ملاحظات.",
+  // EventCalendar.
+  calendarKind: { coupon: "كوبون", amortisation: "إطفاء جزئي", offer: "عرض إعادة الشراء", maturity: "الاستحقاق", rating: "تغيّر التصنيف", default: "تعثّر عن السداد" },
+  calendarPrevious: "الشهر السابق",
+  calendarNext: "الشهر التالي",
+  calendarToday: "اليوم",
+  calendarCell: (date, isToday, kinds) => `${isToday ? "اليوم، " : ""}${date}${kinds.length > 0 ? `: ${kinds.join("، ")}` : ""}`,
+  calendarKey: "دليل الرموز",
+  calendarMonthEmpty: (month) => `${month}: لا أحداث.`,
+  calendarDayEmpty: "لا أحداث في هذا اليوم.",
+  calendarChoose: "اختر يومًا لعرض أحداثه.",
   // TextDiff.
   diffInserted: "مضاف:",
   diffInsertedEnd: "نهاية الإضافة",
@@ -668,6 +713,16 @@ const RU: StoaMessages = {
   findingGroup: (severity, count) => `${{ error: "Ошибки", warning: "Предупреждения", info: "Примечания" }[severity]}: ${count}`,
   findingSource: "Источник",
   findingsNone: "Замечаний нет.",
+  // EventCalendar.
+  calendarKind: { coupon: "Купон", amortisation: "Амортизация", offer: "Оферта", maturity: "Погашение", rating: "Изменение рейтинга", default: "Дефолт" },
+  calendarPrevious: "Предыдущий месяц",
+  calendarNext: "Следующий месяц",
+  calendarToday: "сегодня",
+  calendarCell: (date, isToday, kinds) => `${isToday ? "Сегодня, " : ""}${date}${kinds.length > 0 ? `: ${kinds.join(", ")}` : ""}`,
+  calendarKey: "Обозначения",
+  calendarMonthEmpty: (month) => `${month}: событий нет.`,
+  calendarDayEmpty: "В этот день событий нет.",
+  calendarChoose: "Выберите день, чтобы увидеть его события.",
   // TextDiff.
   diffInserted: "вставлено:",
   diffInsertedEnd: "конец вставки",

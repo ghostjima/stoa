@@ -468,8 +468,11 @@ function typedDigits(locale: string): ((text: string) => string) | null {
  * Latin are written in the locale's as they are typed: in the browser
  * before the input changes (React Aria refuses the Latin text in its own
  * beforeinput listener, which this one runs ahead of), and on a change
- * that arrives without a beforeinput event (a test, an autofill). */
-function NumberInput({ unit }: { unit?: string }) {
+ * that arrives without a beforeinput event (a test, an autofill).
+ * `start` and `end` go in the group before and after the input (a
+ * stepper's buttons); for Stoa's own number fields, inside a React Aria
+ * NumberField. */
+export function NumberInput({ unit, start, end }: { unit?: string; start?: ReactNode; end?: ReactNode }) {
   const { locale } = useLocale();
   const state = useContext(NumberFieldStateContext);
   const toLocal = useMemo(() => typedDigits(locale), [locale]);
@@ -510,12 +513,14 @@ function NumberInput({ unit }: { unit?: string }) {
 
   return (
     <Group ref={group} className="stoa-number__group">
+      {start}
       <Input className="stoa-field__input stoa-field__input--mono stoa-number__input" onChange={onChange} />
       {unit && (
         <span className="stoa-number__unit" aria-hidden="true">
           {unit}
         </span>
       )}
+      {end}
     </Group>
   );
 }

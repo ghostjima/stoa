@@ -198,6 +198,11 @@
             "line": 108
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1457
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 40,
@@ -237,7 +242,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1389
+            "line": 1507
           },
           {
             "component": "Select",
@@ -278,6 +283,16 @@
             "component": "Tag",
             "file": "packages/react/src/styles.css",
             "line": 607
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1389
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1395
           },
           {
             "component": "TimeSlider",
@@ -359,6 +374,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -473,7 +492,9 @@
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -534,6 +555,12 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1456,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1125,
@@ -554,7 +581,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1391,
+            "line": 1509,
             "via": "--stoa-color-warning"
           },
           {
@@ -583,6 +610,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -678,7 +707,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -741,6 +772,12 @@
             "via": "--stoa-color-warning"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1456,
+            "via": "--stoa-color-warning"
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1125,
@@ -761,7 +798,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1391,
+            "line": 1509,
             "via": "--stoa-color-warning"
           },
           {
@@ -790,6 +827,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -885,7 +924,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -1223,7 +1264,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1421,
+            "line": 1539,
             "via": "--stoa-color-focus"
           },
           {
@@ -1231,6 +1272,12 @@
             "file": "packages/react/src/styles.css",
             "line": 1326,
             "via": "--stoa-color-accent"
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1414,
+            "via": "--stoa-color-focus"
           },
           {
             "component": "Disclosure",
@@ -1315,6 +1362,12 @@
             "file": "packages/react/src/styles.css",
             "line": 122,
             "via": "--stoa-color-focus"
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1457,
+            "via": "--stoa-color-accent"
           },
           {
             "component": "Heatmap",
@@ -1415,13 +1468,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1378,
+            "line": 1496,
             "via": "--stoa-color-focus"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1389,
+            "line": 1507,
             "via": "--stoa-color-accent"
           },
           {
@@ -1525,6 +1578,18 @@
             "file": "packages/react/src/styles.css",
             "line": 300,
             "via": "--stoa-color-focus"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1389,
+            "via": "--stoa-color-accent"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1395,
+            "via": "--stoa-color-accent"
           },
           {
             "component": "TimeSlider",
@@ -1644,6 +1709,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -1772,7 +1841,9 @@
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -1838,7 +1909,13 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1421,
+            "line": 1539,
+            "via": "--stoa-color-focus"
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1414,
             "via": "--stoa-color-focus"
           },
           {
@@ -1916,7 +1993,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1378,
+            "line": 1496,
             "via": "--stoa-color-focus"
           },
           {
@@ -2043,6 +2120,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -2345,6 +2424,12 @@
             "via": "--stoa-color-accent"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1457,
+            "via": "--stoa-color-accent"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 40,
@@ -2389,7 +2474,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1389,
+            "line": 1507,
             "via": "--stoa-color-accent"
           },
           {
@@ -2438,6 +2523,18 @@
             "component": "Tag",
             "file": "packages/react/src/styles.css",
             "line": 607,
+            "via": "--stoa-color-accent"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1389,
+            "via": "--stoa-color-accent"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1395,
             "via": "--stoa-color-accent"
           },
           {
@@ -2528,6 +2625,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -2642,7 +2743,9 @@
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -2731,6 +2834,11 @@
             "line": 1332
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1409
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 115
@@ -2813,6 +2921,16 @@
             "line": 321
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1473
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1382
+          },
+          {
             "component": "Toggle",
             "file": "packages/react/src/styles.css",
             "line": 115
@@ -2857,6 +2975,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -2988,8 +3110,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -3089,6 +3218,11 @@
             "component": "Kbd",
             "file": "packages/react/src/styles.css",
             "line": 760
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1433
           },
           {
             "component": "LineChart",
@@ -3221,6 +3355,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -3324,7 +3460,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply"
         ]
       },
       "reachedByTheme": {
@@ -3421,6 +3559,11 @@
             "line": 1277
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1455
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1127
@@ -3439,7 +3582,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1393
+            "line": 1511
           },
           {
             "component": "StatusBadge",
@@ -3511,6 +3654,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -3629,7 +3774,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -3660,6 +3807,11 @@
       },
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-diff__mark--deleted",
+            "file": "packages/react/src/styles.css",
+            "line": 1478
+          },
           {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
@@ -3746,7 +3898,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1421
+            "line": 1539
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1414
           },
           {
             "component": "Disclosure",
@@ -3812,7 +3969,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1378
+            "line": 1496
           },
           {
             "component": "ScrollArea",
@@ -3924,6 +4081,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -4176,6 +4335,12 @@
             "via": "--stoa-color-surface"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1452,
+            "via": "--stoa-color-surface"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 32,
@@ -4260,6 +4425,18 @@
             "via": "--stoa-color-surface"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1474,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1485,
+            "via": "--stoa-color-surface"
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 295,
@@ -4335,6 +4512,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -4467,8 +4648,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -4504,6 +4692,12 @@
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
             "line": 979,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "(css) .stoa-diff__mark",
+            "file": "packages/react/src/styles.css",
+            "line": 1477,
             "via": "--stoa-color-text"
           },
           {
@@ -4783,6 +4977,18 @@
             "via": "--stoa-color-text"
           },
           {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1434,
+            "via": "--stoa-color-surface-sunken"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1434,
+            "via": "--stoa-color-text"
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1140,
@@ -4903,6 +5109,12 @@
             "via": "--stoa-color-text"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1474,
+            "via": "--stoa-color-text"
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 295,
@@ -5002,6 +5214,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -5128,7 +5342,12 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply"
         ]
       },
       "reachedByTheme": {
@@ -5371,6 +5590,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -5543,6 +5764,12 @@
             "via": "--stoa-color-border"
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1409,
+            "via": "--stoa-color-border"
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 115,
@@ -5639,6 +5866,18 @@
             "via": "--stoa-color-border"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1473,
+            "via": "--stoa-color-border"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1382,
+            "via": "--stoa-color-border"
+          },
+          {
             "component": "Toggle",
             "file": "packages/react/src/styles.css",
             "line": 115,
@@ -5684,6 +5923,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -5815,8 +6058,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -6007,6 +6257,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1417,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 245,
@@ -6043,6 +6299,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1461,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 34,
@@ -6058,6 +6320,18 @@
             "component": "Ladder",
             "file": "packages/react/src/Ladder.tsx",
             "line": 34,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1428,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1439,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6159,13 +6433,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1384,
+            "line": 1502,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1390,
+            "line": 1508,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6195,7 +6469,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1405,
+            "line": 1523,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6247,6 +6521,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1470,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 287,
@@ -6256,6 +6536,30 @@
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 301,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1383,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1390,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1394,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1398,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6310,6 +6614,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -6442,8 +6750,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -6593,6 +6908,12 @@
             "component": "Kbd",
             "file": "packages/react/src/styles.css",
             "line": 760,
+            "via": "--stoa-color-border-strong"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1433,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -6773,6 +7094,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -6880,7 +7203,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply"
         ]
       },
       "reachedByTheme": {
@@ -7097,6 +7422,12 @@
             "via": "--stoa-color-border-strong"
           },
           {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1433,
+            "via": "--stoa-color-border-strong"
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1121,
@@ -7274,6 +7605,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -7381,7 +7714,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply"
         ]
       },
       "reachedByTheme": {
@@ -7542,6 +7877,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1417,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 245,
@@ -7578,6 +7919,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1461,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 34,
@@ -7593,6 +7940,18 @@
             "component": "Ladder",
             "file": "packages/react/src/Ladder.tsx",
             "line": 34,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1428,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1439,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7694,13 +8053,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1384,
+            "line": 1502,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1390,
+            "line": 1508,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7730,7 +8089,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1405,
+            "line": 1523,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7782,6 +8141,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1470,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 287,
@@ -7791,6 +8156,30 @@
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 301,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1383,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1390,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1394,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1398,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7845,6 +8234,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -7977,8 +8370,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -8126,6 +8526,12 @@
             "via": "--stoa-color-border"
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1409,
+            "via": "--stoa-color-border"
+          },
+          {
             "component": "FilterChip",
             "file": "packages/react/src/styles.css",
             "line": 115,
@@ -8222,6 +8628,18 @@
             "via": "--stoa-color-border"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1473,
+            "via": "--stoa-color-border"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1382,
+            "via": "--stoa-color-border"
+          },
+          {
             "component": "Toggle",
             "file": "packages/react/src/styles.css",
             "line": 115,
@@ -8267,6 +8685,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -8398,8 +8820,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -8573,6 +9002,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -8682,6 +9113,12 @@
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
             "line": 979,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "(css) .stoa-diff__mark",
+            "file": "packages/react/src/styles.css",
+            "line": 1477,
             "via": "--stoa-color-text"
           },
           {
@@ -9009,6 +9446,12 @@
             "via": "--stoa-color-text"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1452,
+            "via": "--stoa-color-surface"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 32,
@@ -9036,6 +9479,12 @@
             "component": "Ladder",
             "file": "packages/react/src/Ladder.tsx",
             "line": 33,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1434,
             "via": "--stoa-color-text"
           },
           {
@@ -9213,6 +9662,24 @@
             "via": "--stoa-color-surface"
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1474,
+            "via": "--stoa-color-surface"
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1474,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1485,
+            "via": "--stoa-color-surface"
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 295,
@@ -9342,6 +9809,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -9474,8 +9945,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -9582,6 +10060,12 @@
             "via": "--stoa-color-down"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1455,
+            "via": "--stoa-color-down"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 37,
@@ -9614,7 +10098,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1393,
+            "line": 1511,
             "via": "--stoa-color-down"
           },
           {
@@ -9693,6 +10177,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -9815,7 +10301,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -9921,6 +10409,12 @@
             "via": "--stoa-color-down"
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1455,
+            "via": "--stoa-color-down"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 37,
@@ -9953,7 +10447,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1393,
+            "line": 1511,
             "via": "--stoa-color-down"
           },
           {
@@ -10032,6 +10526,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -10154,7 +10650,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -10181,6 +10679,12 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-diff__mark--deleted",
+            "file": "packages/react/src/styles.css",
+            "line": 1478,
+            "via": "--stoa-color-down-wash"
+          },
           {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
@@ -10406,6 +10910,11 @@
             "line": 100
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1452
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 32,
@@ -10478,6 +10987,16 @@
             "line": 607
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1474
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1485
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 295
@@ -10547,6 +11066,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -10679,8 +11202,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -10841,6 +11371,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -10997,6 +11529,11 @@
             "line": 761
           },
           {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1434
+          },
+          {
             "component": "RecordList",
             "file": "packages/react/src/styles.css",
             "line": 1020
@@ -11056,6 +11593,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -11139,7 +11678,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply"
         ]
       },
       "reachedByTheme": {
@@ -11220,7 +11761,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1392,
+            "line": 1510,
             "via": "--stoa-color-up"
           },
           {
@@ -11255,6 +11796,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -11457,7 +12000,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1392,
+            "line": 1510,
             "via": "--stoa-color-up"
           },
           {
@@ -11492,6 +12035,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -11638,6 +12183,12 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-diff__mark--inserted",
+            "file": "packages/react/src/styles.css",
+            "line": 1479,
+            "via": "--stoa-color-up-wash"
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 38,
@@ -11698,6 +12249,11 @@
             "component": "(css) .stoa-code__scroll",
             "file": "packages/react/src/styles.css",
             "line": 979
+          },
+          {
+            "component": "(css) .stoa-diff__mark",
+            "file": "packages/react/src/styles.css",
+            "line": 1477
           },
           {
             "component": "(css) .stoa-modal",
@@ -11892,6 +12448,11 @@
             "via": "readCanvasTokens"
           },
           {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1434
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1140
@@ -11975,6 +12536,11 @@
             "component": "Tag",
             "file": "packages/react/src/styles.css",
             "line": 605
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1474
           },
           {
             "component": "TextField",
@@ -12061,6 +12627,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -12183,7 +12751,12 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply"
         ]
       },
       "reachedByTheme": {
@@ -12325,6 +12898,11 @@
             "line": 1046
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1417
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 245
@@ -12355,6 +12933,11 @@
             "line": 1365
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1461
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 34,
@@ -12370,6 +12953,16 @@
             "file": "packages/react/src/Ladder.tsx",
             "line": 34,
             "via": "readCanvasTokens"
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1428
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1439
           },
           {
             "component": "LineChart",
@@ -12454,12 +13047,12 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1384
+            "line": 1502
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1390
+            "line": 1508
           },
           {
             "component": "Select",
@@ -12484,7 +13077,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1405
+            "line": 1523
           },
           {
             "component": "StatBar",
@@ -12527,6 +13120,11 @@
             "line": 600
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1470
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 287
@@ -12535,6 +13133,26 @@
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 301
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1383
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1390
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1394
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1398
           },
           {
             "component": "TimeSlider",
@@ -12586,6 +13204,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -12718,8 +13340,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -12850,6 +13479,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -13003,7 +13634,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1392
+            "line": 1510
           },
           {
             "component": "StatusBadge",
@@ -13032,6 +13663,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -13173,6 +13806,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-diff__mark--inserted",
+            "file": "packages/react/src/styles.css",
+            "line": 1479
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 38,
@@ -13256,6 +13894,11 @@
             "line": 1150
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1456
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1125
@@ -13274,7 +13917,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1391
+            "line": 1509
           },
           {
             "component": "StatusBadge",
@@ -13298,6 +13941,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -13393,7 +14038,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -13879,6 +14526,11 @@
             "line": 678
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1414
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 241
@@ -13916,7 +14568,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1379
+            "line": 1497
           },
           {
             "component": "Select",
@@ -14003,6 +14655,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -14188,12 +14842,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1421
+            "line": 1539
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1422
+            "line": 1540
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1414
           },
           {
             "component": "Disclosure",
@@ -14278,7 +14937,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1378
+            "line": 1496
           },
           {
             "component": "ScrollArea",
@@ -14400,6 +15059,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -14835,6 +15496,11 @@
             "line": 1278
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1453
+          },
+          {
             "component": "Heatmap",
             "file": "packages/react/src/Heatmap.tsx",
             "line": 44,
@@ -14926,6 +15592,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -15033,7 +15701,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -15095,7 +15765,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1406
+            "line": 1524
           },
           {
             "component": "Tag",
@@ -15152,6 +15822,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -15485,7 +16157,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1384
+            "line": 1502
           },
           {
             "component": "Slider",
@@ -15557,6 +16229,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -15660,9 +16334,16 @@
             "component": "AppHeader",
             "file": "packages/react/src/styles.css",
             "line": 56
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1412
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -15886,9 +16567,29 @@
             "line": 1330
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1415
+          },
+          {
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 461
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1447
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1461
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1439
           },
           {
             "component": "PageShell",
@@ -15903,12 +16604,27 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1405
+            "line": 1523
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
             "line": 1083
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1470
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1383
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1390
           },
           {
             "component": "ToastRegion",
@@ -15917,6 +16633,10 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -16010,8 +16730,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -16180,6 +16907,11 @@
             "line": 634
           },
           {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1428
+          },
+          {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
             "line": 1140
@@ -16339,6 +17071,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -16466,8 +17202,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -16537,9 +17280,19 @@
             "line": 460
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1460
+          },
+          {
             "component": "Kbd",
             "file": "packages/react/src/styles.css",
             "line": 762
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1426
           },
           {
             "component": "Panel",
@@ -16565,6 +17318,26 @@
             "component": "Tag",
             "file": "packages/react/src/styles.css",
             "line": 598
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1469
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1486
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1383
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1393
           }
         ],
         "stories": [
@@ -16606,6 +17379,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -16728,8 +17505,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -16881,9 +17665,29 @@
             "line": 1235
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1412
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1447
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1453
+          },
+          {
             "component": "RecordList",
             "file": "packages/react/src/styles.css",
             "line": 1022
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1397
           },
           {
             "component": "ToastRegion",
@@ -16930,6 +17734,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -17005,7 +17813,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -17182,6 +17992,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -17667,6 +18479,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -17801,6 +18615,11 @@
             "line": 623
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1452
+          },
+          {
             "component": "ProgressBar",
             "file": "packages/react/src/styles.css",
             "line": 402
@@ -17842,6 +18661,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -17920,7 +18741,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -18019,6 +18842,11 @@
             "line": 881
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1473
+          },
+          {
             "component": "ToastRegion",
             "file": "packages/react/src/styles.css",
             "line": 487
@@ -18063,6 +18891,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -18159,8 +18989,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -18207,6 +19044,11 @@
       "aliasOf": null,
       "readBy": {
         "components": [
+          {
+            "component": "(css) .stoa-diff__mark",
+            "file": "packages/react/src/styles.css",
+            "line": 1477
+          },
           {
             "component": "Button",
             "file": "packages/react/src/styles.css",
@@ -18335,7 +19177,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1376
+            "line": 1494
           },
           {
             "component": "Select",
@@ -18457,6 +19299,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -18600,6 +19444,11 @@
       "readBy": {
         "components": [
           {
+            "component": "(css) .stoa-diff__mark--inserted",
+            "file": "packages/react/src/styles.css",
+            "line": 1479
+          },
+          {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
             "line": 1313
@@ -18613,6 +19462,21 @@
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
             "line": 1237
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1411
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1452
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1458
           },
           {
             "component": "Kbd",
@@ -18656,6 +19520,8 @@
           }
         ],
         "stories": [
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -18697,7 +19563,9 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -18740,6 +19608,11 @@
             "component": "(css) /* A group of buttons with a visible label above it and a description\n   under it. */\n.stoa-group-field",
             "file": "packages/react/src/styles.css",
             "line": 150
+          },
+          {
+            "component": "(css) /* A replacement: a gap between the struck words and the new ones, so\n   joined scripts (Arabic) do not run the two together. */\n.stoa-diff__mark--deleted + .stoa-diff__mark--inserted",
+            "file": "packages/react/src/styles.css",
+            "line": 1483
           },
           {
             "component": "(css) /* LogView and CodeView: a label, the Copy button and its status, and a\n   scroll area as tall as `--code-lines` lines (set by the component). The\n   area is always left to right; its start is the left edge. */\n.stoa-code",
@@ -18832,6 +19705,16 @@
             "line": 1045
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1415
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1416
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 232
@@ -18897,9 +19780,34 @@
             "line": 636
           },
           {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1446
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1461
+          },
+          {
             "component": "Kbd",
             "file": "packages/react/src/styles.css",
             "line": 759
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1431
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1433
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1438
           },
           {
             "component": "LineChart",
@@ -18994,7 +19902,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1383
+            "line": 1501
           },
           {
             "component": "Select",
@@ -19092,9 +20000,34 @@
             "line": 596
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1485
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 286
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1382
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1387
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1391
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1395
           },
           {
             "component": "ToastRegion",
@@ -19166,6 +20099,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -19283,8 +20220,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -19444,6 +20388,11 @@
             "line": 974
           },
           {
+            "component": "(css) .stoa-diff__mark--blank",
+            "file": "packages/react/src/styles.css",
+            "line": 1480
+          },
+          {
             "component": "(css) .stoa-shortcuts__list",
             "file": "packages/react/src/styles.css",
             "line": 862
@@ -19554,6 +20503,21 @@
             "line": 1044
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1408
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1419
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1420
+          },
+          {
             "component": "Disclosure",
             "file": "packages/react/src/styles.css",
             "line": 231
@@ -19602,6 +20566,26 @@
             "component": "FilterChipGroup",
             "file": "packages/react/src/styles.css",
             "line": 636
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1448
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1449
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1425
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1427
           },
           {
             "component": "LineChart",
@@ -19676,7 +20660,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1411
+            "line": 1529
           },
           {
             "component": "StepList",
@@ -19714,9 +20698,44 @@
             "line": 324
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1468
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1484
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1485
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1486
+          },
+          {
             "component": "TextField",
             "file": "packages/react/src/styles.css",
             "line": 294
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1379
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1380
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1387
           },
           {
             "component": "ToastRegion",
@@ -19788,6 +20807,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -19915,8 +20938,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -19991,6 +21021,11 @@
             "line": 1291
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1409
+          },
+          {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
             "line": 1353
@@ -20009,6 +21044,21 @@
             "component": "FilterChipGroup",
             "file": "packages/react/src/styles.css",
             "line": 624
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1445
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1461
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1432
           },
           {
             "component": "PageShell",
@@ -20053,7 +21103,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1404
+            "line": 1522
           },
           {
             "component": "StepList",
@@ -20079,6 +21129,16 @@
             "component": "Tabs",
             "file": "packages/react/src/styles.css",
             "line": 324
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1472
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1386
           },
           {
             "component": "TimeSlider",
@@ -20135,6 +21195,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -20257,8 +21321,15 @@
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
           "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
           "طريقة الحساب > CouponAfterTax",
-          "طريقة الحساب > Plain"
+          "طريقة الحساب > Plain",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -20323,6 +21394,16 @@
             "line": 1042
           },
           {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1408
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1415
+          },
+          {
             "component": "EmptyState",
             "file": "packages/react/src/styles.css",
             "line": 457
@@ -20351,6 +21432,16 @@
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
             "line": 1362
+          },
+          {
+            "component": "FindingsList",
+            "file": "packages/react/src/styles.css",
+            "line": 1451
+          },
+          {
+            "component": "Letter",
+            "file": "packages/react/src/styles.css",
+            "line": 1432
           },
           {
             "component": "LineChart",
@@ -20396,6 +21487,16 @@
             "component": "Tabs",
             "file": "packages/react/src/styles.css",
             "line": 353
+          },
+          {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1472
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1378
           },
           {
             "component": "ToastRegion",
@@ -20452,6 +21553,10 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
+          "Case/Timeline > CaseHistory",
+          "Case/Timeline > Empty",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -20559,7 +21664,14 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges",
+          "مسودة الرد > InItsOwnLanguage",
+          "مسودة الرد > Reply",
+          "ملاحظات المعايير > BySeverity",
+          "ملاحظات المعايير > Empty"
         ]
       },
       "reachedByTheme": {
@@ -20689,6 +21801,11 @@
             "line": 697
           },
           {
+            "component": "TextDiff",
+            "file": "packages/react/src/styles.css",
+            "line": 1484
+          },
+          {
             "component": "ToastRegion",
             "file": "packages/react/src/styles.css",
             "line": 433
@@ -20738,6 +21855,8 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Case/DetailHeader > BackToTheRow",
+          "Case/DetailHeader > OpenCase",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -20831,7 +21950,10 @@
           "الشكاوى > Loading",
           "الشكاوى > RightToLeft",
           "الشكاوى > SelectionBar",
-          "الشكاوى > SignedValues"
+          "الشكاوى > SignedValues",
+          "المسودة والرد الموقع > DraftAndSigned",
+          "المسودة والرد الموقع > ListOpen",
+          "المسودة والرد الموقع > NoChanges"
         ]
       },
       "reachedByTheme": {

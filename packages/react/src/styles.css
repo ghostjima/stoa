@@ -1368,6 +1368,124 @@
   .stoa-filter-bar__sheet { display: block; }
 }
 
+/* Timeline: an ordered list of days, each with its date as a heading over
+   its own list of entries; each entry's own date or time in a column at
+   the start, then its kind, its actor and what happened. An emphasised
+   entry has an accent bar at its start edge, the info symbol and the
+   heavier weight, so it is never told by colour alone. On a narrow screen
+   the time goes above the entry. */
+.stoa-timeline, .stoa-timeline__entries { list-style: none; margin: 0; padding: 0; display: grid; }
+.stoa-timeline { gap: var(--stoa-space-4); min-inline-size: 0; }
+.stoa-timeline__entries { gap: var(--stoa-space-2); }
+.stoa-timeline__day { display: grid; gap: var(--stoa-space-2); }
+.stoa-timeline__date {
+  margin: 0; padding-block-end: var(--stoa-space-1); border-block-end: 1px solid var(--stoa-color-border);
+  color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium);
+}
+.stoa-timeline__entry {
+  display: grid; grid-template-columns: minmax(4rem, auto) minmax(0, 1fr); gap: var(--stoa-space-3); align-items: baseline;
+  padding-inline-start: var(--stoa-space-2); border-inline-start: var(--stoa-space-1) solid transparent;
+}
+.stoa-timeline__entry--emphasis { border-inline-start-color: var(--stoa-color-accent); }
+.stoa-timeline__when { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.stoa-timeline__what { display: grid; gap: var(--stoa-space-1); min-inline-size: 0; overflow-wrap: anywhere; }
+.stoa-timeline__head { margin: 0; }
+.stoa-timeline__kind { font-weight: var(--stoa-font-weight-medium); }
+.stoa-timeline__dot, .stoa-timeline__actor { color: var(--stoa-color-text-muted); }
+.stoa-timeline__symbol { color: var(--stoa-color-accent); margin-inline-end: var(--stoa-space-1); }
+.stoa-timeline__entry--emphasis .stoa-timeline__kind,
+.stoa-timeline__entry--emphasis .stoa-timeline__text { font-weight: var(--stoa-font-weight-semibold); }
+.stoa-timeline__empty { margin: 0; color: var(--stoa-color-text-muted); }
+@media (max-width: 40rem) {
+  .stoa-timeline__entry { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+
+/* DetailHeader: Back, the title with the identifiers under it, the status
+   and the actions in one bar that wraps; a rule under it. The title can
+   take the focus from a script, and shows its ring only when the focus
+   came from the keyboard. */
+.stoa-detail-header {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2) var(--stoa-space-4);
+  padding-block-end: var(--stoa-space-3); border-block-end: 1px solid var(--stoa-color-border); min-inline-size: 0;
+}
+.stoa-detail-header__title { display: grid; gap: var(--stoa-space-0-5); min-inline-size: 0; }
+.stoa-detail-header__heading { margin: 0; font-size: var(--stoa-font-size-lg); font-weight: var(--stoa-font-weight-semibold); overflow-wrap: anywhere; }
+.stoa-detail-header__heading:focus { outline: none; }
+.stoa-detail-header__heading:focus-visible { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: var(--stoa-focus-offset); }
+.stoa-detail-header__ids { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-4); margin: 0; font-size: var(--stoa-font-size-sm); }
+.stoa-detail-header__id { display: flex; gap: var(--stoa-space-1); align-items: baseline; }
+.stoa-detail-header__id dt { color: var(--stoa-color-text-muted); }
+.stoa-detail-header__id dd { margin: 0; }
+.stoa-detail-header__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2); flex: 1 1 auto; }
+.stoa-detail-header__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2); margin-inline-start: auto; }
+
+/* Letter: the label and Copy on one line, the letter as a quotation in a
+   sunken well with a bar at its start edge, a sentence a line, then the
+   grounds it cites. */
+.stoa-letter { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--stoa-space-2); margin: 0; min-inline-size: 0; }
+.stoa-letter__label { align-self: center; font-weight: var(--stoa-font-weight-medium); }
+.stoa-letter__bar { display: flex; align-items: center; justify-content: flex-end; gap: var(--stoa-space-2); grid-column: 2; grid-row: 1; }
+.stoa-letter__status { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-letter__text, .stoa-letter__grounds { grid-column: 1 / -1; }
+.stoa-letter__text {
+  display: grid; gap: var(--stoa-space-1); margin: 0;
+  padding: var(--stoa-space-3) var(--stoa-space-4);
+  border-inline-start: var(--stoa-space-1) solid var(--stoa-color-border-strong);
+  background: var(--stoa-color-surface-sunken); color: var(--stoa-color-text);
+  overflow-wrap: anywhere;
+}
+.stoa-letter__text p { margin: 0; }
+.stoa-letter__grounds { display: grid; gap: var(--stoa-space-1); }
+.stoa-letter__grounds-label { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
+
+/* FindingsList: a group per severity, its heading with the symbol and the
+   count, then its findings, each with the symbol (in the severity's
+   colour, on a plate of the surface colour, as a Countdown's), the
+   severity word, the text, and the code and source in a muted line. */
+.stoa-findings { display: grid; gap: var(--stoa-space-3); min-inline-size: 0; }
+.stoa-findings__group { display: grid; gap: var(--stoa-space-1); }
+.stoa-findings__heading { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-findings__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--stoa-space-2); }
+.stoa-finding { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--stoa-space-2); align-items: baseline; }
+.stoa-findings__symbol {
+  display: inline-block; min-inline-size: var(--stoa-space-4); text-align: center;
+  padding-inline: var(--stoa-space-0-5); border-radius: var(--stoa-radius-full); background: var(--stoa-color-surface);
+  font-family: var(--stoa-font-family-sans); font-weight: var(--stoa-font-weight-semibold);
+}
+.stoa-findings__group--error .stoa-findings__symbol { color: var(--stoa-color-down); }
+.stoa-findings__group--warning .stoa-findings__symbol { color: var(--stoa-color-warning); }
+.stoa-findings__group--info .stoa-findings__symbol { color: var(--stoa-color-accent); }
+.stoa-finding__body { display: grid; gap: var(--stoa-space-0-5); min-inline-size: 0; overflow-wrap: anywhere; }
+.stoa-finding__text { margin: 0; }
+.stoa-finding__severity { font-weight: var(--stoa-font-weight-medium); }
+.stoa-finding__meta { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-3); margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
+
+/* TextDiff: the summary, then the second text on the surface colour with
+   each deletion struck through and each insertion underlined, on the
+   falling and rising washes (body text on each wash over the surface is a
+   checked pair), then the list of changes. Spaces and line breaks are
+   kept as written; a change of whitespace alone keeps a visible width. */
+.stoa-diff { display: grid; gap: var(--stoa-space-2); margin: 0; min-inline-size: 0; }
+.stoa-diff__label { font-weight: var(--stoa-font-weight-medium); }
+.stoa-diff__summary { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
+.stoa-diff__text {
+  padding: var(--stoa-space-3) var(--stoa-space-4);
+  border: 1px solid var(--stoa-color-border); border-radius: var(--stoa-radius-md);
+  background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.stoa-diff__mark { color: var(--stoa-color-text); text-decoration-thickness: 2px; text-decoration-skip-ink: none; border-radius: var(--stoa-radius-sm); }
+.stoa-diff__mark--deleted { background: var(--stoa-color-down-wash); text-decoration-line: line-through; }
+.stoa-diff__mark--inserted { background: var(--stoa-color-up-wash); text-decoration-line: underline; text-underline-offset: var(--stoa-space-0-5); }
+.stoa-diff__mark--blank { display: inline-block; min-inline-size: var(--stoa-space-2); }
+/* A replacement: a gap between the struck words and the new ones, so
+   joined scripts (Arabic) do not run the two together. */
+.stoa-diff__mark--deleted + .stoa-diff__mark--inserted { margin-inline-start: var(--stoa-space-1); }
+.stoa-diff__list { margin: 0; padding-inline-start: var(--stoa-space-6); display: grid; gap: var(--stoa-space-2); }
+.stoa-diff__change { padding: var(--stoa-space-1) var(--stoa-space-2); background: var(--stoa-color-surface); }
+.stoa-diff__kind { font-weight: var(--stoa-font-weight-medium); margin-inline-end: var(--stoa-space-2); }
+.stoa-diff__pair { white-space: pre-wrap; overflow-wrap: anywhere; }
+
 /* ScatterChart: points on a canvas (ScatterChart.tsx draws them from the
    tokens), with the axis names, the legend and the data table in HTML.
    The legend and the axis label reuse the line chart's classes. The plot

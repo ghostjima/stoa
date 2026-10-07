@@ -478,9 +478,14 @@
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: var(--stoa-focus-offset);
 }
+/* A toast's width includes its padding and borders (border-box), so the
+   region's width holds the whole toast on a phone. On a wider screen it
+   is drawn as wide as before: 384 px of content, the padding on both
+   sides, the tone bar at the start and the border at the end. */
 .stoa-toast {
   display: flex; align-items: center; gap: var(--stoa-space-2);
-  inline-size: calc(var(--stoa-space-12) * 8); max-inline-size: 100%;
+  box-sizing: border-box;
+  inline-size: calc(var(--stoa-space-12) * 8 + 2 * var(--stoa-space-3) + var(--stoa-space-1) + 1px); max-inline-size: 100%;
   padding: var(--stoa-space-2) var(--stoa-space-3);
   background: var(--stoa-color-surface); color: var(--stoa-color-text);
   border: 1px solid var(--stoa-color-border-strong); border-inline-start-width: var(--stoa-space-1);

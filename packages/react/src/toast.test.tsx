@@ -229,4 +229,64 @@ describe("ToastRegion", () => {
     expect(document.getElementById(toast.getAttribute("aria-describedby")!)?.textContent).toBe("يمكن التراجع خلال ٣٠ ثانية");
     expect(screen.getByRole("region", { name: "الإشعارات" }).getAttribute("dir")).toBe("rtl");
   });
+
+  describe("while a modal overlay is open", () => {
+    /** A page with toasts and a confirmation the test opens and closes. */
+    function Page({ queue }: { queue: ToastQueue }) {
+      const [open, setOpen] = useState(false);
+      return (
+        <>
+          <button type="button" onClick={() => setOpen(true)}>
+            Send the reply
+          </button>
+          <AlertDialog isOpen={open} onOpenChange={setOpen} title="Send the reply?" confirmLabel="Send" onConfirm={() => {}}>
+            <p>The reply cannot be recalled.</p>
+          </AlertDialog>
+          <ToastRegion queue={queue} />
+        </>
+      );
+    }
+    const region = () => document.querySelector<HTMLElement>(".stoa-toast-region");
+
+    it("makes the region inert, keeps its toasts' time still, and gives both back when it closes", () => {
+      const queue = new ToastQueue();
+      const onExpire = vi.fn();
+      render(<Page queue={queue} />);
+      add(queue, { text: "Facts requested.", timeout: 4000, onExpire });
+      advance(1000);
+      expect(region()?.hasAttribute("inert")).toBe(false);
+      fireEvent.click(screen.getByRole("button", { name: "Send the reply" }));
+      expect(screen.getByRole("alertdialog", { name: "Send the reply?" })).toBeTruthy();
+      expect(region()?.hasAttribute("inert")).toBe(true);
+      // Far past its time, the toast is still there.
+      advance(60_000);
+      expect(onExpire).not.toHaveBeenCalled();
+      expect(within(region()!).getByRole("alertdialog", { hidden: true })).toBeTruthy();
+      fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+      advance(0);
+      expect(screen.queryByRole("alertdialog", { name: "Send the reply?" })).toBeNull();
+      expect(region()?.hasAttribute("inert")).toBe(false);
+      // Its time goes on from where it stopped: 3 seconds were left.
+      advance(2900);
+      expect(onExpire).not.toHaveBeenCalled();
+      advance(200);
+      expect(onExpire).toHaveBeenCalledOnce();
+      expect(region()).toBeNull();
+    });
+
+    it("stops the time of a toast that arrives while the overlay is open", () => {
+      const queue = new ToastQueue();
+      const onExpire = vi.fn();
+      render(<Page queue={queue} />);
+      fireEvent.click(screen.getByRole("button", { name: "Send the reply" }));
+      add(queue, { text: "Reconnected.", timeout: 2000, onExpire });
+      expect(region()?.hasAttribute("inert")).toBe(true);
+      advance(30_000);
+      expect(onExpire).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+      advance(0);
+      advance(2100);
+      expect(onExpire).toHaveBeenCalledOnce();
+    });
+  });
 });

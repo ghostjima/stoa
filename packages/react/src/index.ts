@@ -132,7 +132,7 @@ export { Ltr, type LtrProps } from "./Ltr";
 export { keepFocusInPlace } from "./focus";
 export { Tooltip, type TooltipProps } from "./Tooltip";
 export { DescriptionList, type DescriptionItem, type DescriptionListProps } from "./DescriptionList";
-export { RecordList, type RecordListItem, type RecordListProps } from "./RecordList";
+export { RecordList, type RecordListHandle, type RecordListItem, type RecordListProps } from "./RecordList";
 export { type StatBarItem } from "./Panel";
 // Table and charts.
 export { Table, type TableColumn, type TableProps } from "./Table";

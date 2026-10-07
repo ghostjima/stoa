@@ -266,3 +266,52 @@ for (const [how, close] of [
     await expect(page.locator(":focus")).toHaveAttribute("data-cell", "0:4");
   });
 }
+
+test("drawn cells: the arrows go cell to cell, Enter reaches a case's link and follows it, Escape returns, and Tab leaves without visiting the links", async ({ page }) => {
+  const grid = await openGrid(page, "drawn-cells", "Complaints");
+  const focused = page.locator(":focus");
+  // The selection column, the case (pinned), the client, the time left.
+  await grid.locator('[data-cell="0:2"]').click();
+  await page.keyboard.press("ArrowLeft");
+  await expect(focused).toHaveAttribute("data-cell", "0:1");
+  await expect(focused).toHaveAccessibleName("CMP-1001");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await expect(focused).toHaveAttribute("data-cell", "0:3");
+  await expect(focused).toHaveAccessibleName("3 working days overdue");
+  await expect(focused.locator(".stoa-countdown")).toHaveAttribute("data-state", "overdue");
+  await page.keyboard.press("ArrowLeft");
+  await page.keyboard.press("ArrowLeft");
+  await page.keyboard.press("Enter");
+  await expect(grid.getByRole("link", { name: "CMP-1001" })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByText("Opened CMP-1001.")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(focused).toHaveAttribute("data-cell", "0:1");
+  await page.keyboard.press("ArrowDown");
+  await expect(focused).toHaveAttribute("data-cell", "1:1");
+  // One tab stop: Tab goes past every link in the grid.
+  await page.keyboard.press("Tab");
+  expect(await page.evaluate(() => document.activeElement?.closest('[role="grid"]') ?? null)).toBeNull();
+});
+
+test("right to left, a drawn cell is named by its text in Arabic and the arrows still mirror", async ({ page }) => {
+  await page.goto(`${story("drawn-cells")}&globals=dir:rtl;lang:ar`);
+  const grid = page.getByRole("grid", { name: "الشكاوى" });
+  await expect(grid.getByRole("columnheader").first()).toBeVisible();
+  const names = await grid.locator('[data-cell$=":3"]:not([data-cell^="-1"])').evaluateAll((cells) =>
+    cells.map((c) => [c.getAttribute("aria-label"), c.querySelector(".stoa-countdown__text")?.textContent]),
+  );
+  expect(names.length).toBeGreaterThan(5);
+  for (const [label, text] of names) expect(label).toBe(text);
+  // The client's cell; the case's centre is its link, which a click would focus.
+  await grid.locator('[data-cell="0:2"]').click();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator(":focus")).toHaveAttribute("data-cell", "0:1");
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(":focus")).toHaveAttribute("data-cell", "0:2");
+  // The case column, pinned, stays at the right edge, after the selection column.
+  const box = (await grid.boundingBox())!;
+  const pinned = (await grid.locator('[data-cell="0:1"]').boundingBox())!;
+  expect(Math.round(box.x + box.width - (pinned.x + pinned.width))).toBe(40);
+});

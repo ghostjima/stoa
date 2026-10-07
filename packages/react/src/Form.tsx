@@ -54,15 +54,16 @@ export type TextFieldProps = {
   isInvalid?: boolean;
   /** What is wrong and how to put it right ("A view needs a name."),
    * shown while `isInvalid` and read as part of the input's description,
-   * after `description`. The words carry the meaning; the colour repeats
-   * it. */
+   * after `description`; announced politely when it appears. The words
+   * carry the meaning; the colour repeats it. */
   errorMessage?: string;
 };
 
 /** A labelled text input, in the sans face (`mono` for numbers, code and
  * maths). Enter can submit without a surrounding form. Validation is the
  * caller's: it decides when the value is invalid and says why in
- * `errorMessage` (React Aria's FieldError). */
+ * `errorMessage` (React Aria's FieldError), which a polite live region
+ * announces when it appears. */
 export function TextField({
   ref,
   label,
@@ -111,8 +112,22 @@ export function TextField({
           {description}
         </Text>
       )}
-      <FieldError className="stoa-field__error">{errorMessage}</FieldError>
+      <FieldErrorMessage>{errorMessage}</FieldErrorMessage>
     </AriaTextField>
+  );
+}
+
+/** A field's error message (React Aria's FieldError, read as part of the
+ * input's description while the field is invalid), inside a polite live
+ * region that stays in the document while the message comes and goes, so
+ * the message is announced when it appears without interrupting. The
+ * region takes no room while it is empty. For a field component's own use
+ * inside its React Aria field. */
+export function FieldErrorMessage({ children }: { children?: ReactNode }) {
+  return (
+    <div className="stoa-field__error-region" aria-live="polite">
+      <FieldError className="stoa-field__error">{children}</FieldError>
+    </div>
   );
 }
 

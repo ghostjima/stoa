@@ -5,7 +5,18 @@
 // view and 4 of overscan, and every column.
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { DataGrid, I18nProvider, type DataGridColumn, type DataGridProps } from "./index";
+import {
+  DataGrid,
+  DeadlineCell,
+  I18nProvider,
+  dataGridCellText,
+  deadlineText,
+  stoaFormat,
+  type DataGridColumn,
+  type DataGridProps,
+  type DataGridValue,
+  type StoaFormat,
+} from "./index";
 import { sampleOrderColumns, sampleOrders, type SampleOrder } from "./gridFixtures";
 
 afterEach(cleanup);
@@ -515,5 +526,166 @@ describe("DataGrid when rows change under it", () => {
       </>,
     );
     expect(document.activeElement).toBe(elsewhere);
+  });
+});
+
+describe("DataGrid cells drawn as React nodes", () => {
+  type Case = { id: string; client: string; left: number; status: string };
+  const CASES: Case[] = [
+    { id: "C-3", client: "Ladoga", left: 5, status: "open" },
+    { id: "C-1", client: "Volkhov", left: -2, status: "done" },
+    { id: "C-2", client: "Svir", left: 3, status: "open" },
+  ];
+  const left = (v: DataGridValue, _row: Case, locale: StoaFormat) => deadlineText(locale, Number(v), "workingDays");
+  const CASE_COLUMNS: DataGridColumn<Case>[] = [
+    {
+      id: "id",
+      header: "Case",
+      accessor: (c) => c.id,
+      width: 120,
+      pinned: true,
+      sortable: true,
+      render: (v) => <a href={`#case-${v}`}>{v}</a>,
+      cellText: (v) => `Case ${v}`,
+    },
+    { id: "client", header: "Client", accessor: (c) => c.client, width: 160 },
+    {
+      id: "left",
+      header: "Time left",
+      accessor: (c) => c.left,
+      width: 220,
+      sortable: true,
+      mono: false,
+      render: (v) => <DeadlineCell left={Number(v)} unit="workingDays" warnAt={3} />,
+      cellText: left,
+    },
+  ];
+  const drawnGrid = (props: Partial<DataGridProps<Case>> = {}, columns = CASE_COLUMNS) => {
+    render(<DataGrid label="Cases" rows={CASES} columns={columns} rowKey={(c) => c.id} {...props} />);
+    return screen.getByRole("grid", { name: "Cases" });
+  };
+
+  it("draws the node, and names the cell by its cellText; a text cell keeps its own text as its name", () => {
+    const grid = drawnGrid({ selectionMode: "multiple" });
+    const deadline = within(grid).getByRole("gridcell", { name: "2 working days overdue" });
+    expect(deadline.getAttribute("aria-label")).toBe("2 working days overdue");
+    expect(deadline.querySelector(".stoa-countdown")!.getAttribute("data-state")).toBe("overdue");
+    const header = within(grid).getAllByRole("rowheader")[0]!;
+    expect(header.getAttribute("aria-label")).toBe("Case C-3");
+    expect(within(header).getByRole("link", { name: "C-3" }).getAttribute("href")).toBe("#case-C-3");
+    // The row's checkbox is named by the first column's cellText.
+    expect(within(grid).getByRole("checkbox", { name: "Select row Case C-1" })).toBeTruthy();
+    const client = within(grid).getByRole("gridcell", { name: "Ladoga" });
+    expect(client.hasAttribute("aria-label")).toBe(false);
+  });
+
+  it("keeps the grid one tab stop: links in drawn cells leave the tab order", () => {
+    const grid = drawnGrid();
+    expect(grid.querySelectorAll('[tabindex="0"]')).toHaveLength(1);
+    const links = within(grid).getAllByRole("link");
+    expect(links).toHaveLength(3);
+    for (const link of links) expect(link.getAttribute("tabindex")).toBe("-1");
+  });
+
+  it("moves cell to cell with the arrows through drawn cells, reaches the link with Enter or F2, and returns with Escape", () => {
+    const grid = drawnGrid();
+    fireEvent.click(cell(grid, 0, 1));
+    expect(position()).toBe("0:1");
+    key("ArrowLeft");
+    // The drawn cell takes the focus, not the link in it.
+    expect(position()).toBe("0:0");
+    expect(focused().getAttribute("role")).toBe("rowheader");
+    key("ArrowRight");
+    key("ArrowRight");
+    expect(position()).toBe("0:2");
+    // A drawn cell with nothing focusable keeps the focus on Enter.
+    key("Enter");
+    expect(position()).toBe("0:2");
+    key("Home");
+    key("Enter");
+    expect(focused()).toBe(within(cell(grid, 0, 0)).getByRole("link", { name: "C-3" }));
+    // The arrows are the link's while it has the focus.
+    key("ArrowDown");
+    expect(focused().tagName).toBe("A");
+    key("Escape");
+    expect(position()).toBe("0:0");
+    key("ArrowDown");
+    expect(position()).toBe("1:0");
+    key("F2");
+    expect(focused()).toBe(within(cell(grid, 1, 0)).getByRole("link", { name: "C-1" }));
+    key("Escape");
+    expect(position()).toBe("1:0");
+  });
+
+  it("moves between the links of one cell with Tab and Shift+Tab, and leaves the last one to the browser", () => {
+    const two: DataGridColumn<Case> = {
+      id: "links",
+      header: "Links",
+      accessor: (c) => c.id,
+      width: 200,
+      render: (v) => (
+        <>
+          <a href={`#open-${v}`}>Open</a> <a href={`#history-${v}`}>History</a>
+        </>
+      ),
+      cellText: (v) => `Open or show the history of ${v}`,
+    };
+    // The case column is pinned, so it comes first and the links second.
+    const grid = drawnGrid({}, [two, ...CASE_COLUMNS]);
+    fireEvent.click(cell(grid, 0, 1));
+    key("Enter");
+    expect(focused().textContent).toBe("Open");
+    key("Tab");
+    expect(focused().textContent).toBe("History");
+    // From the last one, Tab is the browser's: out of the grid.
+    expect(fireEvent.keyDown(focused(), { key: "Tab" })).toBe(true);
+    key("Tab", { shiftKey: true });
+    expect(focused().textContent).toBe("Open");
+  });
+
+  it("makes a cell active when a link in it is clicked, and leaves the focus on the link", () => {
+    const grid = drawnGrid();
+    const link = within(cell(grid, 2, 0)).getByRole("link", { name: "C-2" });
+    fireEvent.click(link);
+    expect(cell(grid, 2, 0).getAttribute("tabindex")).toBe("0");
+    expect(focused()).toBe(link);
+    key("Escape");
+    expect(position()).toBe("2:0");
+  });
+
+  it("sorts a drawn column by its accessor", () => {
+    const grid = drawnGrid({ defaultSort: { column: "left", direction: "ascending" } });
+    const names = within(grid)
+      .getAllByRole("row")
+      .slice(1)
+      .map((r) => r.querySelector('[aria-colindex="3"]')!.getAttribute("aria-label"));
+    expect(names).toEqual(["2 working days overdue", "3 working days left", "5 working days left"]);
+  });
+
+  it("draws a tone's symbol before the node, hidden from assistive technology", () => {
+    const toned = CASE_COLUMNS.map((c) => (c.id === "left" ? { ...c, tone: (v: DataGridValue) => (Number(v) < 0 ? ("negative" as const) : null) } : c));
+    const grid = drawnGrid({}, toned);
+    const overdue = within(grid).getByRole("gridcell", { name: "2 working days overdue" });
+    const symbol = overdue.firstElementChild!;
+    expect([symbol.className.includes("stoa-data-grid__tone--negative"), symbol.getAttribute("aria-hidden")]).toEqual([true, "true"]);
+    expect(symbol.nextElementSibling!.hasAttribute("data-grid-content")).toBe(true);
+  });
+
+  it("opens the editor of an editable drawn column on Enter, rather than entering the cell", () => {
+    const editable = CASE_COLUMNS.map((c) =>
+      c.id === "client" ? { ...c, render: (v: DataGridValue) => <strong>{v}</strong>, cellText: (v: DataGridValue) => String(v), editor: { kind: "text" as const } } : c,
+    );
+    const grid = drawnGrid({}, editable);
+    fireEvent.click(cell(grid, 0, 1));
+    key("Enter");
+    expect(focused()).toBe(screen.getByRole("textbox", { name: "Client" }));
+    expect((focused() as HTMLInputElement).value).toBe("Ladoga");
+  });
+
+  it("gives an application the text the grid states, for copy or export", () => {
+    const format = stoaFormat("en-US");
+    expect(dataGridCellText(CASE_COLUMNS[2]!, CASES[1]!, format)).toBe("2 working days overdue");
+    expect(dataGridCellText(CASE_COLUMNS[1]!, CASES[1]!, format)).toBe("Volkhov");
+    expect(dataGridCellText({ id: "n", header: "N", accessor: () => 12345, width: 80 }, CASES[0]!, format)).toBe("12,345");
   });
 });

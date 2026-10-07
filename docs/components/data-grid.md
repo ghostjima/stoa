@@ -158,6 +158,55 @@ when the key at the old position has changed.
 - `loading` draws skeleton lines and marks the grid busy; `emptyState`
   replaces the locale's "No rows to show."; `highlight` marks matching
   text.
+- `render(value, row)` draws a column's cells as React nodes (a
+  `DeadlineCell`, a link) and `cellText(value, row, locale)`, required
+  with it, says the same in words. See [Drawn cells](#drawn-cells).
+- `dataGridCellText(column, row, locale)` is the text the grid states for
+  a cell (`cellText`, else `format`, else the value in the locale), for an
+  application's own copy or export of rows.
+
+### Drawn cells
+
+```tsx
+{
+  id: "left", header: "Time left", accessor: (c) => c.left, width: 264, sortable: true, mono: false,
+  render: (v) => <DeadlineCell left={Number(v)} unit="workingDays" warnAt={3} />,
+  cellText: (v, _row, locale) => deadlineText(locale, Number(v), "workingDays"),
+}
+```
+
+- Text: `cellText` is the cell's accessible name (`aria-label` on the
+  cell, read when the cell takes the focus), the name of the row's
+  checkbox when the column is the row's first, and what
+  `dataGridCellText` returns. It replaces `format`, which a drawn column
+  does not use. A column without `render` takes the same path as before,
+  with no `aria-label`: its text is its name.
+- Focus, as in the ARIA grid pattern: the cell takes the focus, never the
+  link in it, so the arrows move from cell to cell through drawn cells as
+  through any other. Enter or F2 moves the focus to the cell's first link
+  or control; while it is there the keys are that element's (Enter
+  follows the link), Tab and Shift+Tab move between the cell's links and
+  controls (Tab after the last leaves the grid, Shift+Tab before the first
+  returns to the cell), and Escape returns the focus to the cell. A click on a link makes its cell active
+  and leaves the focus on the link. Links and controls in drawn cells are
+  taken out of the tab order (`tabindex="-1"`, set by the grid after each
+  render, only in a grid that has a drawn column), so the grid stays one
+  tab stop.
+- Why the cell, not a lone link, takes the focus: the cell's name is its
+  whole text ("3 working days overdue", a case number), one rule holds for
+  every cell, and Enter and F2 already mean "into the cell" for an editor.
+- With `tone`: the tone's symbol is drawn before the node. A node that
+  draws its own state (a DeadlineCell) needs no tone.
+- With `editor`: Enter, F2 and a double click open the editor, which
+  starts from the accessor's value; the node is drawn again once the edit
+  ends. Draw nothing focusable in an editable column, as Enter cannot
+  reach it there.
+- Sorting is by `accessor`, never by the node or `cellText`: a time left
+  sorts by its number of days, not by its words.
+- Pinned columns, the virtual window and the active row and column work
+  as for text cells: a drawn cell is placed by its column, and the active
+  cell, which may hold the focus inside its content, is always rendered.
+- `highlight` marks text cells only; a drawn cell is not marked.
 - Built-in words (select all, a row's checkbox, sort announcements,
   counts, loading, empty) are in `locale.ts`, in English and Arabic.
   Numbers use the locale's digits.
@@ -178,7 +227,16 @@ when the key at the old position has changed.
 - axe-core 4.13.0 over the five stories in light and dark, left to
   right and right to left, English and Arabic, and over selected,
   sorted, editing-with-error and search states: no serious or critical
-  violation. The moderate ones are the story frame's (no main landmark,
+  violation.
+- Drawn cells (`DrawnCells` story): unit tests check that a drawn cell's
+  accessible name and its row checkbox's name come from `cellText`, that
+  links in drawn cells are out of the tab order, the arrows, Enter, F2,
+  Tab and Escape around a link, a click on a link, sorting by the
+  accessor, a tone before the node, and an editor taking Enter. Browser
+  tests walk the story from the keyboard (arrows through drawn cells,
+  Enter to the link and Enter to follow it, Escape back, Tab out of the
+  grid without visiting a link), and right to left check that each
+  deadline cell's name equals its Arabic words. The moderate ones are the story frame's (no main landmark,
   no first-level heading).
 - Colours are pairs that `packages/tokens/src/pairs.mjs` already checks:
   body text on the surface and on the hover fill (selected rows), muted
@@ -190,4 +248,6 @@ when the key at the old position has changed.
 
 Column resizing and reordering, variable row heights, Shift+click
 ranges, typeahead in the list editor, and the demo's edit-conflict
-panel (an application concern, built on `onEdit`).
+panel (an application concern, built on `onEdit`). No copy of cells from
+the keyboard: an application that copies or exports rows takes each
+cell's text from `dataGridCellText`.

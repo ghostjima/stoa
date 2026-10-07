@@ -119,7 +119,7 @@ export type StoaMessages = {
   showResults: (count: string) => string;
   /** The word for each step status, shown beside its symbol (StepList's
    * `StepStatus` is this record's keys). */
-  stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "undone" | "error", string>;
+  stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "notRun" | "undone" | "error", string>;
   // Table and charts.
   /** A line chart with nothing to draw. */
   noChartData: string;
@@ -235,6 +235,29 @@ export type StoaMessages = {
   /** TextDiff: a change of spaces or line breaks only, which has no
    * letters to show. */
   diffWhitespace: string;
+  // ScatterChart.
+  /** ScatterChart's text alternative: how many points it draws, then one
+   * part per category (`scatterCount`). */
+  scatterSummary: (total: string, parts: string[]) => string;
+  /** A category of points with its count. */
+  scatterCount: (category: string, count: string) => string;
+  /** The range an axis spans, from its lowest to its highest value, or
+   * from its first category to its last. */
+  scatterRange: (axis: string, from: string, to: string) => string;
+  /** Which way values grow along a scatter chart's horizontal axis. */
+  scatterXLeftToRight: string;
+  scatterXRightToLeft: string;
+  /** How the keyboard moves between the points, read with the chart. */
+  scatterKeys: string;
+  /** Read when a point is focused or hovered: the caller's label for it,
+   * its category, and its place in the order the arrow keys walk. */
+  scatterActive: (label: string, category: string, position: string, total: string) => string;
+  /** Headers of a scatter chart's data table: the point and its category. */
+  scatterPoint: string;
+  scatterCategory: string;
+  // SourceNote.
+  /** SourceNote: read before the source's tag, not drawn ("Source:"). */
+  sourceNoteLabel: string;
 };
 
 const EN: StoaMessages = {
@@ -296,6 +319,7 @@ const EN: StoaMessages = {
     done: "Done",
     awaiting: "Awaiting decision",
     skipped: "Skipped",
+    notRun: "Not run",
     undone: "Undone",
     error: "Error",
   },
@@ -362,6 +386,17 @@ const EN: StoaMessages = {
   diffChanges: (count) => `Changes: ${count}`,
   diffKind: { replaced: "Replaced", deleted: "Deleted", inserted: "Inserted" },
   diffWhitespace: "spaces or line breaks",
+  scatterSummary: (total, parts) => `Points: ${total}; ${parts.join("; ")}.`,
+  scatterCount: (category, count) => `${category}: ${count}`,
+  scatterRange: (axis, from, to) => `${axis}: from ${from} to ${to}.`,
+  scatterXLeftToRight: "Values on the horizontal axis grow from left to right.",
+  scatterXRightToLeft: "Values on the horizontal axis grow from right to left.",
+  scatterKeys: "Arrow keys move from point to point, Home and End go to the first and the last, Escape clears.",
+  scatterActive: (label, category, position, total) => `${label} (${category}), point ${position} of ${total}`,
+  scatterPoint: "Point",
+  scatterCategory: "Category",
+  // SourceNote.
+  sourceNoteLabel: "Source:",
 };
 
 const AR: StoaMessages = {
@@ -423,6 +458,7 @@ const AR: StoaMessages = {
     done: "تم",
     awaiting: "بانتظار قرار",
     skipped: "تم التخطي",
+    notRun: "لم يُنفَّذ",
     undone: "تم التراجع",
     error: "خطأ",
   },
@@ -491,6 +527,17 @@ const AR: StoaMessages = {
   diffChanges: (count) => `التغييرات: ${count}`,
   diffKind: { replaced: "استبدال", deleted: "حذف", inserted: "إضافة" },
   diffWhitespace: "مسافات أو فواصل أسطر",
+  scatterSummary: (total, parts) => `النقاط: ${total}؛ ${parts.join("؛ ")}.`,
+  scatterCount: (category, count) => `${category}: ${count}`,
+  scatterRange: (axis, from, to) => `${axis}: من ${from} إلى ${to}.`,
+  scatterXLeftToRight: "تزداد القيم على المحور الأفقي من اليسار إلى اليمين.",
+  scatterXRightToLeft: "تزداد القيم على المحور الأفقي من اليمين إلى اليسار.",
+  scatterKeys: "تنتقل مفاتيح الأسهم من نقطة إلى أخرى، وينتقل Home وEnd إلى الأولى والأخيرة، ويلغي Escape التحديد.",
+  scatterActive: (label, category, position, total) => `${label} (${category})، النقطة ${position} من ${total}`,
+  scatterPoint: "النقطة",
+  scatterCategory: "الفئة",
+  // SourceNote.
+  sourceNoteLabel: "المصدر:",
 };
 
 /** A Russian unit in the form its count asks for: "1 рабочий день",
@@ -567,6 +614,7 @@ const RU: StoaMessages = {
     done: "Готово",
     awaiting: "Ждёт решения",
     skipped: "Пропущено",
+    notRun: "Не запускалось",
     undone: "Отменено",
     error: "Ошибка",
   },
@@ -631,6 +679,17 @@ const RU: StoaMessages = {
   diffChanges: (count) => `Изменения: ${count}`,
   diffKind: { replaced: "Заменено", deleted: "Удалено", inserted: "Вставлено" },
   diffWhitespace: "пробелы или переносы строк",
+  scatterSummary: (total, parts) => `Точек: ${total}; ${parts.join("; ")}.`,
+  scatterCount: (category, count) => `${category}: ${count}`,
+  scatterRange: (axis, from, to) => `${axis}: от ${from} до ${to}.`,
+  scatterXLeftToRight: "Значения по горизонтальной оси растут слева направо.",
+  scatterXRightToLeft: "Значения по горизонтальной оси растут справа налево.",
+  scatterKeys: "Стрелки переводят от точки к точке, Home и End к первой и последней, Escape снимает выбор.",
+  scatterActive: (label, category, position, total) => `${label} (${category}), точка ${position} из ${total}`,
+  scatterPoint: "Точка",
+  scatterCategory: "Категория",
+  // SourceNote.
+  sourceNoteLabel: "Источник:",
 };
 
 /** A value set into a sentence, as a first-strong isolate (FSI ... PDI):

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState } from "react";
 import { I18nProvider } from "react-aria-components";
 import { Button } from "./Controls";
+import { DeadlineCell, deadlineText } from "./Countdown";
 import { AlertDialog } from "./Dialog";
 import { DataGrid, type DataGridColumn, type DataGridEdit, type DataGridSort } from "./DataGrid";
 import { DataGridColumnChooser, DataGridSelectionBar } from "./DataGridTools";
@@ -333,6 +334,95 @@ export const SelectionBar: StoryObj = {
             onSelectionChange={setSelected}
           />
           <p>{arabic ? `مرات التصدير: ${exported}` : `Exported ${exported} times.`}</p>
+        </div>
+      </Panel>
+    );
+  },
+};
+
+type Complaint = { id: string; client: number; left: number };
+
+const COMPLAINT_WORDS = {
+  en: {
+    title: "Complaints",
+    id: "Case",
+    client: "Client",
+    left: "Time left",
+    clients: ["Ladoga Generation", "Volkhov Leasing", "Svir Logistics", "Onega Foods", "Neva Retail"],
+    none: "No case opened yet.",
+    opened: (id: string) => `Opened ${id}.`,
+  },
+  ar: {
+    title: "الشكاوى",
+    id: "القضية",
+    client: "العميل",
+    left: "الوقت المتبقي",
+    clients: ["لادوغا للتوليد", "فولخوف للتأجير", "سفير للخدمات اللوجستية", "أونيغا للأغذية", "نيفا للتجزئة"],
+    none: "لم تُفتح أي قضية بعد.",
+    opened: (id: string) => `فُتحت القضية ${id}.`,
+  },
+};
+
+const COMPLAINTS: Complaint[] = Array.from({ length: 40 }, (_, i) => ({
+  id: `CMP-${1001 + i}`,
+  client: (i * 3) % 5,
+  left: ((i * 7) % 13) - 3,
+}));
+
+/** Cells drawn as React nodes: each case is a link, and the time left is a
+ * DeadlineCell (its words, and a symbol in its colour when close or
+ * passed). Each drawn cell states its text, which is its accessible name
+ * and the name of its row's checkbox. The arrows move from cell to cell;
+ * Enter or F2 on a case moves the focus to its link, Enter follows it (the
+ * line under the grid says which case opened), and Escape returns to the
+ * cell. Time left sorts by the number of working days, not by the words. */
+export const DrawnCells: StoryObj = {
+  render: () => {
+    const arabic = useStoaFormat().locale.startsWith("ar");
+    const w = COMPLAINT_WORDS[arabic ? "ar" : "en"];
+    const [opened, setOpened] = useState<string | null>(null);
+    const columns = useMemo<DataGridColumn<Complaint>[]>(
+      () => [
+        {
+          id: "id",
+          header: w.id,
+          accessor: (c) => c.id,
+          width: 128,
+          pinned: true,
+          sortable: true,
+          render: (v) => (
+            <a
+              href={`#case-${v}`}
+              dir="ltr"
+              onClick={(e) => {
+                e.preventDefault();
+                setOpened(String(v));
+              }}
+            >
+              {v}
+            </a>
+          ),
+          cellText: (v) => String(v),
+        },
+        { id: "client", header: w.client, accessor: (c) => w.clients[c.client]!, width: 224, sortable: true },
+        {
+          id: "left",
+          header: w.left,
+          accessor: (c) => c.left,
+          width: 264,
+          sortable: true,
+          mono: false,
+          render: (v) => <DeadlineCell left={Number(v)} unit="workingDays" warnAt={3} />,
+          cellText: (v, _, locale) => deadlineText(locale, Number(v), "workingDays"),
+        },
+      ],
+      [w],
+    );
+    return (
+      <Panel title={w.title}>
+        <div style={{ display: "grid", gap: "var(--stoa-space-3)" }}>
+          <DataGrid label={w.title} rows={COMPLAINTS} columns={columns} rowKey={(c) => c.id} selectionMode="multiple" />
+          <p>{opened ? w.opened(opened) : w.none}</p>
         </div>
       </Panel>
     );

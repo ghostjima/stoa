@@ -14,6 +14,7 @@ import {
 import { useLocale } from "react-aria-components";
 import { Chevron } from "./Chevron";
 import type { StatusTone } from "./Form";
+import { FOCUSABLE } from "./focus";
 import { useStoaFormat, type StoaFormat } from "./locale";
 
 export type DataGridValue = string | number;
@@ -30,13 +31,39 @@ export type DataGridEditor<Row> =
   /** Free text, checked by `validate` before it is saved. */
   | { kind: "text"; validate?: DataGridValidate<Row> };
 
-export type DataGridColumn<Row> = {
+export type DataGridColumn<Row> = DataGridColumnBase<Row> & (DataGridTextCells | DataGridDrawnCells<Row>);
+
+/** Cells drawn as text: `format`'s, or the value's. */
+type DataGridTextCells = { render?: undefined; cellText?: undefined };
+
+/** Cells drawn as React nodes (a DeadlineCell, a link), with their text
+ * stated alongside. */
+type DataGridDrawnCells<Row> = {
+  /** Draws the cell from its value and row. The node replaces the cell's
+   * text; a tone's symbol, when the column has one, still comes before it.
+   * Focusable elements in it (a link, a button) are taken out of the tab
+   * order, so the grid stays one tab stop: Enter or F2 on the cell moves
+   * the focus to the first of them, Tab and Shift+Tab move between them,
+   * and Escape returns it to the cell. In a column with an `editor`, Enter
+   * and F2 open the editor instead, so draw nothing focusable there. */
+  render: (value: DataGridValue, row: Row) => ReactNode;
+  /** The cell's text, said for the drawn node: the cell's accessible name
+   * (read when the cell takes the focus), the name of the row's checkbox
+   * when this is the row's first column, and `dataGridCellText`'s result,
+   * for an application's copy or export. Say what the node shows ("3
+   * working days left"), not how it is drawn. It takes the place of
+   * `format`, which a drawn column does not use. */
+  cellText: (value: DataGridValue, row: Row, locale: StoaFormat) => string;
+};
+
+type DataGridColumnBase<Row> = {
   /** Stable id, reported in sort and edit events. */
   id: string;
   /** The column's name: drawn in the header, and the accessible name of
    * its editor. */
   header: string;
-  /** The raw value, used to sort and, unless `format` is given, to show. */
+  /** The raw value, used to sort (also when `render` draws the cell) and,
+   * unless `format` or `render` is given, to show. */
   accessor: (row: Row) => DataGridValue;
   /** Width in CSS pixels. Columns are not resized by the grid, so it can
    * place any column without measuring the ones before it. */
@@ -169,10 +196,18 @@ function useControllable<T>(value: T | undefined, initial: () => T, onChange?: (
 }
 
 function defaultText<Row>(column: DataGridColumn<Row>, value: DataGridValue, row: Row, locale: StoaFormat): string {
+  if (column.render) return column.cellText(value, row, locale);
   if (column.format) return column.format(value, row, locale);
   if (typeof value === "number") return Number.isInteger(value) ? locale.integer(value) : locale.decimal(value, 2);
   if (column.editor?.kind === "enum") return column.editor.options.find((o) => o.id === value)?.label ?? value;
   return value;
+}
+
+/** A cell's text as the grid states it: a drawn cell's `cellText`,
+ * otherwise `format`'s or the value's in the locale. For an application's
+ * own copy or export of rows, so it says what the grid says. */
+export function dataGridCellText<Row>(column: DataGridColumn<Row>, row: Row, locale: StoaFormat): string {
+  return defaultText(column, column.accessor(row), row, locale);
 }
 
 /** Text with every case-insensitive occurrence of `query` marked. */
@@ -227,11 +262,15 @@ function applyRange(selection: ReadonlySet<string>, anchor: number, from: number
  * and End to the first and last cell of the grid, PageUp and PageDown by
  * a page of visible rows. Enter on a header sorts by its column (or, on
  * the selection column, selects every row); Enter or F2 on an editable
- * cell opens its editor, Enter saves and Escape cancels. With selection,
- * Space toggles the active row, Shift with ArrowUp or ArrowDown extends
- * a range, and Ctrl or Cmd with A selects every row. The row count and
- * the selected count are announced politely when they change, and so is
- * a new sort. */
+ * cell opens its editor, Enter saves and Escape cancels. On a cell drawn
+ * by its column's `render`, Enter or F2 moves the focus to the first link
+ * or control in it, Tab and Shift+Tab move between them, and Escape
+ * returns the focus to the cell; the arrows move from cell to cell as
+ * usual, and the cell's accessible name is its column's `cellText`.
+ * With selection, Space toggles the active row, Shift with ArrowUp or
+ * ArrowDown extends a range, and Ctrl or Cmd with A selects every row.
+ * The row count and the selected count are announced politely when they
+ * change, and so is a new sort. */
 export function DataGrid<Row>({
   label,
   rows,
@@ -339,6 +378,7 @@ export function DataGrid<Row>({
   const showRows = !loading && rows.length > 0;
   const empty = !loading && rows.length === 0;
   const editable = columns.some((c) => c.editor);
+  const drawn = columns.some((c) => c.render);
   const rowCount = showRows ? rows.length : 0;
   const rowAt = useCallback((r: number) => rows[order[r]!]!, [rows, order]);
   const keyAt = useCallback((r: number) => rowKey(rows[order[r]!]!), [rows, order, rowKey]);
@@ -481,6 +521,19 @@ export function DataGrid<Row>({
     pendingFocus.current = false;
     el?.querySelector<HTMLElement>(`[data-cell="${active.row}:${active.column}"]`)?.focus({ preventScroll: true });
   });
+
+  // Links and controls in drawn cells leave the tab order, so the active
+  // cell stays the grid's one tab stop; Enter or F2 reaches them. Only
+  // grids with a drawn column look for them.
+  useLayoutEffect(() => {
+    if (!drawn) return;
+    for (const el of scroller.current?.querySelectorAll<HTMLElement>(`[data-grid-content] :is(${FOCUSABLE})`) ?? []) {
+      if (el.getAttribute("tabindex") !== "-1") el.setAttribute("tabindex", "-1");
+    }
+  });
+
+  /** The links and controls in a drawn cell's content, in order. */
+  const widgetsIn = (content: Element | null | undefined) => [...(content?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? [])];
 
   // Counts, announced when they change (not on first render).
   const counted = useRef(false);
@@ -633,6 +686,23 @@ export function DataGrid<Row>({
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (editing || (e.target as HTMLElement).closest("[data-grid-editor]")) return;
+    // In a drawn cell's content, the keys are the link's or the control's,
+    // but Escape (back to the cell) and Tab (to the next one in the cell).
+    const content = (e.target as HTMLElement).closest("[data-grid-content]");
+    if (content) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        move(active);
+      } else if (e.key === "Tab") {
+        const widgets = widgetsIn(content);
+        const next = widgets[widgets.indexOf(e.target as HTMLElement) + (e.shiftKey ? -1 : 1)];
+        if (next) {
+          e.preventDefault();
+          next.focus();
+        }
+      }
+      return;
+    }
     const { row, column } = active;
     const ctrl = e.ctrlKey || e.metaKey;
     const rtl = isRtl();
@@ -687,8 +757,12 @@ export function DataGrid<Row>({
         if (e.key !== "Enter") return;
         if (column0?.data) toggleSort(column0.data);
         else if (column0) toggleAll();
-      } else {
+      } else if (column0?.data?.editor) {
         startEdit(active);
+      } else {
+        // A drawn cell's first link or control, if it has one.
+        const cellEl = scroller.current?.querySelector(`[data-cell="${row}:${column}"]`);
+        widgetsIn(cellEl?.querySelector("[data-grid-content]"))[0]?.focus();
       }
     } else if (ctrl && e.key.toLowerCase() === "a" && selectable) {
       e.preventDefault();
@@ -830,9 +904,15 @@ export function DataGrid<Row>({
                   {TONE_SYMBOL[tone]}
                 </span>
               )}
-              <span className="stoa-data-grid__text" dir={numeric ? "auto" : undefined}>
-                {marked(text, highlight)}
-              </span>
+              {data.render ? (
+                <span className="stoa-data-grid__content" data-grid-content="">
+                  {data.render(value, row)}
+                </span>
+              ) : (
+                <span className="stoa-data-grid__text" dir={numeric ? "auto" : undefined}>
+                  {marked(text, highlight)}
+                </span>
+              )}
             </>
           );
           if (isEditing && editing && data.editor) {
@@ -868,11 +948,17 @@ export function DataGrid<Row>({
               key={cellKey}
               {...common}
               role={c === rowHeaderCol ? "rowheader" : "gridcell"}
+              aria-label={data.render ? text : undefined}
               aria-readonly={data.editor || !editable ? undefined : true}
               data-editing={isEditing || undefined}
               className={cellClass(col, c, numeric ? `stoa-data-grid__cell--num${data.mono === false ? "" : " stoa-data-grid__cell--mono"}` : data.mono ? "stoa-data-grid__cell--mono" : "")}
-              onClick={() => {
-                if (!isEditing) move({ row: r, column: c });
+              onClick={(e) => {
+                if (isEditing) return;
+                // A click on a link or control in a drawn cell makes the cell
+                // active and leaves the focus on what was clicked.
+                const widget = data.render ? (e.target as Element).closest<HTMLElement>(`[data-grid-content] :is(${FOCUSABLE})`) : null;
+                move({ row: r, column: c }, widget === null);
+                widget?.focus({ preventScroll: true });
               }}
               onDoubleClick={() => startEdit({ row: r, column: c })}
             >

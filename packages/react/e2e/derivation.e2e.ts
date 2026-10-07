@@ -82,3 +82,43 @@ test("a deadline's state is a symbol in its colour on a surface plate, and its w
     expect(r.lines).toBe(1);
   }
 });
+
+for (const mode of [
+  { name: "left to right", globals: "", caption: "Coupon income after tax, one bond" },
+  { name: "right to left", globals: "dir:rtl;lang:ar", caption: "دخل القسيمة بعد الضريبة، سند واحد" },
+]) {
+  test(`at 375 px the steps are stacked, a label beside each value, with nothing wider than the screen (${mode.name})`, async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.goto(story("data-derivationtable--coupon-after-tax", mode.globals));
+    const list = page.getByRole("list", { name: mode.caption });
+    await expect(list).toBeVisible();
+    await expect(page.getByRole("table")).toHaveCount(0);
+    await expect(list.getByRole("listitem")).toHaveCount(5);
+    const layout = await list.evaluate((el) => {
+      const rtl = getComputedStyle(el).direction === "rtl";
+      const rows = [...el.querySelectorAll("li")[0]!.querySelectorAll("dt")].map((dt) => {
+        const dd = dt.nextElementSibling!;
+        const [t, d] = [dt.getBoundingClientRect(), dd.getBoundingClientRect()];
+        // The value sits beside its label, on its inline-end side.
+        return { sameRow: Math.abs(t.top - d.top) < 2, after: rtl ? d.right <= t.left : d.left >= t.right };
+      });
+      return { rows, overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth };
+    });
+    expect(layout.rows).toHaveLength(3);
+    for (const row of layout.rows) expect(row).toEqual({ sameRow: true, after: true });
+    expect(layout.overflow).toBe(0);
+  });
+}
+
+test("at 375 px Copy puts the same plain text on the clipboard as the table does", async ({ page, context }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto(story("data-derivationtable--coupon-after-tax"));
+  await page.getByRole("button", { name: "Copy" }).click();
+  await expect(page.getByRole("status")).toHaveText("Copied");
+  const wide = await page.evaluate(() => navigator.clipboard.readText());
+  await page.setViewportSize({ width: 375, height: 800 });
+  await expect(page.getByRole("table")).toHaveCount(0);
+  await page.getByRole("button", { name: "Copy" }).click();
+  await expect(page.getByRole("status")).toHaveText("Copied");
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(wide);
+});

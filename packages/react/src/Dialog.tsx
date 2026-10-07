@@ -3,6 +3,7 @@ import { Dialog as AriaDialog, DialogTrigger, Heading, Modal, ModalOverlay } fro
 import { Button } from "./Controls";
 import { focusLost, placeOf, tabStopAt, type FocusPlace } from "./focus";
 import { useStoaFormat } from "./locale";
+import { ModalLayerMark } from "./modalLayer";
 import { PageScrollLock } from "./PageShell";
 
 /** How an overlay opens: from a trigger it wraps, or from the caller's own
@@ -52,7 +53,8 @@ function LockPageScroll() {
  * traps focus inside, locks the document's scroll, closes on Escape and
  * hides the rest of the page from assistive technology while it is open;
  * inside a PageShell, whose region scrolls instead of the document, the
- * region is locked too. */
+ * region is locked too, and a ToastRegion steps under the overlay (see
+ * ToastRegion). */
 function Overlay({
   trigger,
   isOpen,
@@ -74,6 +76,7 @@ function Overlay({
       >
         <Modal className={modalClassName}>
           <LockPageScroll />
+          <ModalLayerMark />
           {children}
         </Modal>
       </ModalOverlay>
@@ -85,6 +88,7 @@ function Overlay({
       <ModalOverlay className={overlayClassName} isDismissable={isDismissable}>
         <Modal className={modalClassName}>
           <LockPageScroll />
+          <ModalLayerMark />
           {children}
         </Modal>
       </ModalOverlay>

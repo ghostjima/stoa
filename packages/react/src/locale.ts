@@ -115,7 +115,7 @@ export type StoaMessages = {
   showResults: (count: string) => string;
   /** The word for each step status, shown beside its symbol (StepList's
    * `StepStatus` is this record's keys). */
-  stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "undone" | "error", string>;
+  stepStatus: Record<"waiting" | "running" | "done" | "awaiting" | "skipped" | "notRun" | "undone" | "error", string>;
   // Table and charts.
   /** A line chart with nothing to draw. */
   noChartData: string;
@@ -206,6 +206,9 @@ export type StoaMessages = {
   /** Headers of a scatter chart's data table: the point and its category. */
   scatterPoint: string;
   scatterCategory: string;
+  // SourceNote.
+  /** SourceNote: read before the source's tag, not drawn ("Source:"). */
+  sourceNoteLabel: string;
 };
 
 const EN: StoaMessages = {
@@ -267,6 +270,7 @@ const EN: StoaMessages = {
     done: "Done",
     awaiting: "Awaiting decision",
     skipped: "Skipped",
+    notRun: "Not run",
     undone: "Undone",
     error: "Error",
   },
@@ -319,6 +323,8 @@ const EN: StoaMessages = {
   scatterActive: (label, category, position, total) => `${label} (${category}), point ${position} of ${total}`,
   scatterPoint: "Point",
   scatterCategory: "Category",
+  // SourceNote.
+  sourceNoteLabel: "Source:",
 };
 
 const AR: StoaMessages = {
@@ -380,6 +386,7 @@ const AR: StoaMessages = {
     done: "تم",
     awaiting: "بانتظار قرار",
     skipped: "تم التخطي",
+    notRun: "لم يُنفَّذ",
     undone: "تم التراجع",
     error: "خطأ",
   },
@@ -432,6 +439,8 @@ const AR: StoaMessages = {
   scatterActive: (label, category, position, total) => `${label} (${category})، النقطة ${position} من ${total}`,
   scatterPoint: "النقطة",
   scatterCategory: "الفئة",
+  // SourceNote.
+  sourceNoteLabel: "المصدر:",
 };
 
 /** A Russian unit in the form its count asks for: "1 рабочий день",
@@ -508,6 +517,7 @@ const RU: StoaMessages = {
     done: "Готово",
     awaiting: "Ждёт решения",
     skipped: "Пропущено",
+    notRun: "Не запускалось",
     undone: "Отменено",
     error: "Ошибка",
   },
@@ -558,6 +568,8 @@ const RU: StoaMessages = {
   scatterActive: (label, category, position, total) => `${label} (${category}), точка ${position} из ${total}`,
   scatterPoint: "Точка",
   scatterCategory: "Категория",
+  // SourceNote.
+  sourceNoteLabel: "Источник:",
 };
 
 /** A value set into a sentence, as a first-strong isolate (FSI ... PDI):

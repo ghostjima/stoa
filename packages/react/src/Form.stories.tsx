@@ -127,6 +127,30 @@ export const NumberFieldSteps: StoryObj = {
   },
 };
 
+/** A number the caller finds out of bounds: the input is marked invalid
+ * and the message under it, which wraps under the field rather than
+ * widening it, is announced politely when it appears. It goes once the
+ * amount is 1,000 or less. */
+export const NumberFieldInvalid: StoryObj = {
+  render: () => {
+    const ar = useStoaFormat().locale.startsWith("ar");
+    const [bonds, setBonds] = useState(1200);
+    return (
+      <div style={{ display: "grid", gap: "var(--stoa-space-3)", maxInlineSize: 320 }}>
+        <NumberField
+          label={ar ? "السندات" : "Bonds"}
+          value={bonds}
+          onChange={setBonds}
+          minValue={0}
+          step={10}
+          isInvalid={bonds > 1000}
+          errorMessage={ar ? "حتى 1000 سند لكل أمر." : "Up to 1,000 bonds in one order."}
+        />
+      </div>
+    );
+  },
+};
+
 /** Every tone carries a symbol and a word, never colour alone. */
 export const Badges: StoryObj = {
   render: () => (

@@ -198,6 +198,7 @@ const STEPS: Step[] = [
   { id: "5", title: "Hedge", status: "skipped" },
   { id: "6", title: "Rebalance", status: "undone" },
   { id: "7", title: "Report", status: "error", explanation: "The report service did not answer." },
+  { id: "8", title: "Archive", status: "notRun" },
 ];
 
 describe("StepList", () => {
@@ -206,8 +207,8 @@ describe("StepList", () => {
     const list = screen.getByRole("list", { name: "Order steps" });
     expect(list.tagName).toBe("OL");
     const items = within(list).getAllByRole("listitem");
-    expect(items).toHaveLength(7);
-    expect(items.map((item) => item.querySelector(".stoa-step__number")?.textContent)).toEqual(["1", "2", "3", "4", "5", "6", "7"]);
+    expect(items).toHaveLength(8);
+    expect(items.map((item) => item.querySelector(".stoa-step__number")?.textContent)).toEqual(["1", "2", "3", "4", "5", "6", "7", "8"]);
   });
 
   it("shows every status as a symbol, hidden from assistive technology, and a word", () => {
@@ -221,6 +222,7 @@ describe("StepList", () => {
       "↷ Skipped",
       "↺ Undone",
       "✗ Error",
+      "– Not run",
     ]);
     for (const s of statuses) expect(s.querySelector(".stoa-step__symbol")?.getAttribute("aria-hidden")).toBe("true");
     expect(screen.getAllByRole("listitem").map((item) => item.className)).toEqual(STEPS.map((step) => `stoa-step stoa-step--${step.status}`));
@@ -245,10 +247,19 @@ describe("StepList", () => {
       </I18nProvider>,
     );
     const statuses = [...document.querySelectorAll(".stoa-step__status")].map((s) => s.textContent?.slice(2));
-    expect(statuses).toEqual(["تم", "قيد التنفيذ", "بانتظار قرار", "في الانتظار", "تم التخطي", "تم التراجع", "خطأ"]);
+    expect(statuses).toEqual(["تم", "قيد التنفيذ", "بانتظار قرار", "في الانتظار", "تم التخطي", "تم التراجع", "خطأ", "لم يُنفَّذ"]);
     expect(screen.getAllByRole("listitem")[6]!.querySelector(".stoa-step__number")?.textContent).toBe("٧");
     // ICU puts an Arabic letter mark after the percent sign.
     expect(screen.getByRole("progressbar").textContent?.replace("\u061c", "")).toBe("٥٠٪");
+  });
+
+  it("tells a step the run never reached from a skipped one, in symbol and words, in Russian too", () => {
+    render(
+      <I18nProvider locale="ru-RU">
+        <StepList label="Шаги" steps={STEPS.filter((step) => step.status === "skipped" || step.status === "notRun")} />
+      </I18nProvider>,
+    );
+    expect([...document.querySelectorAll(".stoa-step__status")].map((s) => s.textContent)).toEqual(["↷ Пропущено", "– Не запускалось"]);
   });
 
   it("becomes a ReorderableList with `reorderable`, reporting steps in their new order", () => {

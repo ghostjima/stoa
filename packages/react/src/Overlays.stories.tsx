@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CodeView, LogView } from "./Code";
 import { Button } from "./Controls";
 import { AlertDialog, Dialog, Sheet } from "./Dialog";
@@ -9,7 +9,7 @@ import { Metric } from "./Metric";
 import { Panel, StatBar } from "./Panel";
 import { ReorderableList, type ReorderableItem } from "./ReorderableList";
 import { ShortcutList, ShortcutsDialog, type ShortcutGroup } from "./Shortcuts";
-import { RecordList, type RecordListItem } from "./RecordList";
+import { RecordList, type RecordListHandle, type RecordListItem } from "./RecordList";
 import { StepList, type Step } from "./StepList";
 import { Tooltip } from "./Tooltip";
 import { useStoaFormat } from "./locale";
@@ -298,10 +298,13 @@ const STEPS: Step[] = [
   { id: "5", title: "Hedge", status: "skipped", explanation: "No position to hedge." },
   { id: "6", title: "Rebalance", status: "undone" },
   { id: "7", title: "Report", status: "error", explanation: "The report service did not answer.", actions: <Button>Retry</Button> },
+  { id: "8", title: "Archive the run", status: "notRun", explanation: "The run stopped before this step." },
 ];
 
 /** Every status, each a symbol and a word; the running step pulses unless
- * motion is reduced, and shows its progress. */
+ * motion is reduced, and shows its progress. A skipped step was passed
+ * over while the run went on; a step not run was never reached, because
+ * the run stopped before it. */
 export const StepsAllStatuses: StoryObj = {
   render: () => (
     <Panel title="Order">
@@ -626,11 +629,18 @@ export const RecordListWithDetail: StoryObj = {
 /** On a narrow screen the detail replaces the list: picking a record, by
  * a click or from the keyboard, removes the list, and the focus goes to
  * the Back button that takes its place, not to the page's body. Back
- * shows the list again. */
+ * shows the list again, with the focus on the record it was opened from
+ * (`focusRecord` on the list's ref, called as the list mounts). */
 export const RecordListReplacedByDetail: StoryObj = {
   render: () => {
     const arabic = useStoaFormat().locale.startsWith("ar");
     const [picked, setPicked] = useState<string | null>(null);
+    const list = useRef<RecordListHandle>(null);
+    const openedFrom = useRef<string | null>(null);
+    useEffect(() => {
+      if (picked === null && openedFrom.current !== null) list.current?.focusRecord(openedFrom.current);
+      else openedFrom.current = picked;
+    }, [picked]);
     const record = RECORDS.find((item) => item.id === picked);
     return (
       <div style={{ maxInlineSize: "calc(var(--stoa-space-12) * 6)" }}>
@@ -643,7 +653,7 @@ export const RecordListReplacedByDetail: StoryObj = {
           </Panel>
         ) : (
           <Panel title={arabic ? "السندات" : "Bonds"}>
-            <RecordList label={arabic ? "السندات" : "Bonds"} items={RECORDS} value={picked} onChange={setPicked} />
+            <RecordList ref={list} label={arabic ? "السندات" : "Bonds"} items={RECORDS} value={picked} onChange={setPicked} />
           </Panel>
         )}
       </div>

@@ -301,6 +301,13 @@
 .stoa-field__description { font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted); }
 .stoa-field__input[data-invalid] { border-color: var(--stoa-color-down); }
 .stoa-field__error { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-down); }
+/* The polite live region around a field's error stays in the document;
+   while it holds nothing it is taken out of the field's grid, so it adds
+   no gap under the input. */
+.stoa-field__error-region:empty { position: absolute; }
+/* A number field is as wide as its input: the error wraps under it
+   rather than widening the field. */
+.stoa-number > .stoa-field__error-region { inline-size: 0; min-inline-size: 100%; }
 
 .stoa-badge { display: inline-flex; gap: var(--stoa-space-1); align-items: baseline; font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium); }
 .stoa-badge--positive { color: var(--stoa-color-up); }
@@ -464,6 +471,9 @@
   font-family: var(--stoa-font-family-sans);
   outline: none;
 }
+/* While a modal overlay is open the region is inert and waits under the
+   overlay's scrim (z-index 10), covering none of its controls. */
+.stoa-toast-region[inert] { z-index: 9; }
 .stoa-toast-region[data-focus-visible] {
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: var(--stoa-focus-offset);
@@ -914,7 +924,7 @@
 .stoa-step__main { flex: 1; min-inline-size: 0; display: grid; gap: var(--stoa-space-1); }
 .stoa-step__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-2); min-block-size: var(--stoa-space-6); }
 .stoa-step__title { font-weight: var(--stoa-font-weight-medium); }
-.stoa-step--skipped .stoa-step__title, .stoa-step--undone .stoa-step__title { color: var(--stoa-color-text-muted); font-weight: var(--stoa-font-weight-regular); }
+.stoa-step--skipped .stoa-step__title, .stoa-step--notRun .stoa-step__title, .stoa-step--undone .stoa-step__title { color: var(--stoa-color-text-muted); font-weight: var(--stoa-font-weight-regular); }
 .stoa-step__status { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 .stoa-step__symbol { display: inline-block; }
 .stoa-step__status--running .stoa-step__symbol { color: var(--stoa-color-accent); }
@@ -1315,6 +1325,13 @@
 .stoa-derivation__source { display: grid; }
 .stoa-derivation__source a { color: var(--stoa-color-accent); }
 .stoa-derivation__revision { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+/* Stacked on a narrow screen: the caption as the table's, then each step's
+   name over its fields, a rule between steps. */
+.stoa-derivation__caption { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); }
+.stoa-derivation__steps { display: grid; margin: 0; padding: 0; list-style: none; }
+.stoa-derivation__step { display: grid; gap: var(--stoa-space-1); padding-block: var(--stoa-space-2); border-block-start: 1px solid var(--stoa-color-border); }
+.stoa-derivation__step:first-child { border-block-start: 0; padding-block-start: 0; }
+.stoa-derivation__label { font-weight: var(--stoa-font-weight-medium); }
 
 /* DataGridSelectionBar: the count and the actions on the selected rows,
    just before the grid, in a frame on the surface it sits on, so its
@@ -1374,3 +1391,33 @@
 .stoa-scatter__mark--warning { color: var(--stoa-color-warning); }
 .stoa-scatter__mark--up { color: var(--stoa-color-up); }
 .stoa-scatter__mark--down { color: var(--stoa-color-down); }
+
+/* SourceNote: where a widget's figures come from, at its top, before its
+   content. One paragraph in the muted colour at the small size: the tag at
+   the start of the first line, the sentence after it, and its further
+   lines under the tag. The line height is a token and the tag sits at the
+   line's top, so the note keeps its height when the web fonts replace the
+   fallback (a "normal" line height follows the font's metrics). Links keep
+   the muted colour and are told apart by their underline. Notes in a row
+   sit closer together than the note and the content after them. */
+.stoa-source-note {
+  margin: 0 0 var(--stoa-space-3);
+  color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm);
+  line-height: var(--stoa-font-line-height-normal);
+}
+.stoa-source-note .stoa-tag { vertical-align: top; }
+.stoa-source-note__text { unicode-bidi: isolate; }
+.stoa-source-note a { color: inherit; }
+.stoa-source-note + .stoa-source-note { margin-block-start: calc(-1 * var(--stoa-space-2)); }
+
+/* DataGrid's drawn cells: the node a column's render returns, cut at the
+   cell's end like text. Links in it keep the cell's text colour (body text
+   on the surface, and on a selected row's fill) and are told apart by
+   their underline. A focused link or control draws its ring inside its own
+   box, where the cell, which clips its content, does not cut it off. */
+.stoa-data-grid__content { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; }
+.stoa-data-grid__content a { color: inherit; }
+.stoa-data-grid__content :focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: calc(-1 * var(--stoa-focus-width));
+}

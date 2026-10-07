@@ -125,13 +125,14 @@ export { BREAKPOINTS, breakpointQueries, useBreakpoint, useMediaQuery, type Brea
 export { Dialog, Sheet, AlertDialog, type DialogProps, type SheetProps, type AlertDialogProps, type OverlayOpenProps } from "./Dialog";
 export { ReorderableList, type ReorderableItem, type ReorderableListProps } from "./ReorderableList";
 export { StepList, type Step, type StepStatus, type StepListProps } from "./StepList";
+export { SourceNote, type SourceNoteKind, type SourceNoteProps } from "./SourceNote";
 export { LogView, CodeView, type LogLine, type LogViewProps, type CodeViewProps } from "./Code";
 export { Metric, type MetricProps, type MetricThreshold } from "./Metric";
 export { Ltr, type LtrProps } from "./Ltr";
 export { keepFocusInPlace } from "./focus";
 export { Tooltip, type TooltipProps } from "./Tooltip";
 export { DescriptionList, type DescriptionItem, type DescriptionListProps } from "./DescriptionList";
-export { RecordList, type RecordListItem, type RecordListProps } from "./RecordList";
+export { RecordList, type RecordListHandle, type RecordListItem, type RecordListProps } from "./RecordList";
 export { type StatBarItem } from "./Panel";
 // Table and charts.
 export { Table, type TableColumn, type TableProps } from "./Table";
@@ -144,6 +145,7 @@ export { niceTicks, formatDate, type Ticks } from "./chartScale";
 // DataGrid
 export {
   DataGrid,
+  dataGridCellText,
   type DataGridCell,
   type DataGridColumn,
   type DataGridEdit,

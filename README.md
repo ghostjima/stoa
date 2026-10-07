@@ -41,8 +41,10 @@ follow as the products need them.
     right by x, up and down from the top) and read each one through a
     live region, and its data table is the way to read every value.
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
-    columns, sorting, selection, inline editing and a tone per cell (a
-    symbol in the status colour, never the colour alone)
+    columns, sorting, selection, inline editing, a tone per cell (a
+    symbol in the status colour, never the colour alone) and cells drawn
+    as React nodes (a DeadlineCell, a link), each with its text stated for
+    assistive technology and copy
     ([decision and measurements](docs/components/data-grid.md));
     DataGridColumnChooser (show, hide and reorder columns from the
     keyboard) and DataGridSelectionBar (actions on the selected rows,
@@ -60,13 +62,17 @@ follow as the products need them.
     working days, days or hours counted by the application, a warning
     and an overdue state in words and a symbol, read out only when the
     state changes) and DerivationTable (how a figure was worked out:
-    step, formula, value, and source with its revision; copied as plain
-    text).
+    step, formula, value, and source with its revision; stacked on a
+    narrow screen, a label beside each value; copied as plain text).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
-    VisuallyHidden, Panel, StatBar and Metric, AppHeader, PageShell.
+    VisuallyHidden, Panel, StatBar and Metric, SourceNote (where a
+    panel's figures come from: the source's tag, a sentence and a link),
+    AppHeader, PageShell.
   - Overlays, lists and content: Dialog, Sheet, AlertDialog, Tooltip,
-    ReorderableList, RecordList (the list of a master-detail view),
+    ReorderableList, RecordList (the list of a master-detail view, whose
+    `focusRecord(id)` puts the focus on a record, even right after the
+    list mounts),
     StepList, DescriptionList, LogView, CodeView, and Ltr, an inline
     left-to-right isolate for code, tickers and formulas in a sentence.
     The values Stoa draws (StatBar and Metric values, number cells in
@@ -260,7 +266,7 @@ export const PREFERENCES: FirstPaintConfig = {
 ```
 
 ```ts
-// vite.config.ts: the script goes first in the head.
+// vite.config.ts: the script goes at the end of the head.
 import { firstPaintScript } from "@ghostjima/stoa-react/first-paint";
 import { PREFERENCES } from "./src/preferences";
 
@@ -269,11 +275,19 @@ export default defineConfig({
     react(),
     {
       name: "first-paint",
-      transformIndexHtml: () => [{ tag: "script", children: firstPaintScript(PREFERENCES), injectTo: "head-prepend" }],
+      transformIndexHtml: () => [{ tag: "script", children: firstPaintScript(PREFERENCES), injectTo: "head" }],
     },
   ],
 });
 ```
+
+`injectTo: "head"` puts the script at the end of the head, not at its
+start. The script is about 1,660 bytes with the preferences above, and
+the browser looks for `<meta charset>` only in a document's first 1,024
+bytes: prepended, the script pushes the charset past them, so a page
+served without a charset in its `Content-Type` header has its encoding
+guessed. At the end of the head the script still runs before the body
+is drawn, and before the application's module script, which is deferred.
 
 ```tsx
 // In the application: the same choices, kept where the script reads them.

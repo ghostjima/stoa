@@ -1628,3 +1628,74 @@
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: calc(-1 * var(--stoa-focus-width));
 }
+
+/* EventCalendar: the label, then Previous, the month and Next on one
+   line; the month as a grid of seven equal columns, each day a cell with
+   its number and the symbols of its events, each symbol in its kind's
+   colour on a plate of the surface colour (so a chosen day's sunken fill
+   never sits behind it); the key to the symbols, then the chosen day's
+   events. The chosen day has the sunken fill, a bar along its foot in the
+   accent and its number in the heavier weight; today's number is
+   underlined; neither is told by colour alone. On a narrow screen the
+   month is a list of days with events instead. */
+.stoa-calendar { display: grid; gap: var(--stoa-space-3); min-inline-size: 0; }
+.stoa-calendar__label { font-weight: var(--stoa-font-weight-medium); }
+.stoa-calendar__head { display: flex; align-items: center; gap: var(--stoa-space-2); }
+.stoa-calendar__month { flex: 1; margin: 0; text-align: center; font-size: var(--stoa-font-size-md); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-calendar__nav { min-inline-size: var(--stoa-space-8); font-size: var(--stoa-font-size-md); }
+.stoa-calendar__grid { inline-size: 100%; table-layout: fixed; border-collapse: collapse; }
+.stoa-calendar__weekday {
+  padding-block: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-regular);
+  color: var(--stoa-color-text-muted); text-align: center;
+}
+.stoa-calendar__cell {
+  block-size: calc(var(--stoa-space-8) + var(--stoa-space-4)); padding: var(--stoa-space-1);
+  vertical-align: top; text-align: center;
+  border: 1px solid var(--stoa-color-border); background: var(--stoa-color-surface); color: var(--stoa-color-text);
+  cursor: pointer;
+}
+.stoa-calendar__cell--blank { background: transparent; cursor: default; }
+.stoa-calendar__cell:focus { outline: none; }
+.stoa-calendar__cell:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: 0;
+  position: relative; z-index: 1;
+}
+.stoa-calendar__cell[aria-selected="true"] {
+  background: var(--stoa-color-surface-sunken);
+  box-shadow: inset 0 calc(-1 * var(--stoa-space-1)) 0 var(--stoa-color-accent);
+}
+.stoa-calendar__cell[aria-selected="true"] .stoa-calendar__number { font-weight: var(--stoa-font-weight-semibold); }
+.stoa-calendar__number { display: block; font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
+.stoa-calendar__cell[data-today] .stoa-calendar__number {
+  font-weight: var(--stoa-font-weight-semibold);
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: var(--stoa-space-0-5);
+}
+.stoa-calendar__marks { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--stoa-space-0-5); margin-block-start: var(--stoa-space-0-5); }
+.stoa-calendar__symbol {
+  display: inline-block; min-inline-size: var(--stoa-space-4); text-align: center;
+  padding-inline: var(--stoa-space-0-5); border-radius: var(--stoa-radius-full); background: var(--stoa-color-surface);
+  font-family: var(--stoa-font-family-sans); font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-normal);
+}
+.stoa-calendar__symbol--coupon { color: var(--stoa-color-text-muted); }
+.stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating { color: var(--stoa-color-accent); }
+.stoa-calendar__symbol--offer { color: var(--stoa-color-warning); }
+.stoa-calendar__symbol--maturity { color: var(--stoa-color-text); }
+.stoa-calendar__symbol--default { color: var(--stoa-color-down); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-calendar__key { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-1) var(--stoa-space-3); font-size: var(--stoa-font-size-sm); }
+.stoa-calendar__key-label { color: var(--stoa-color-text-muted); }
+.stoa-calendar__key-list { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-3); margin: 0; padding: 0; list-style: none; }
+.stoa-calendar__key-item { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); }
+.stoa-calendar__empty, .stoa-calendar__none { margin: 0; color: var(--stoa-color-text-muted); }
+.stoa-calendar__chosen { display: grid; gap: var(--stoa-space-2); }
+.stoa-calendar__date {
+  margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); color: var(--stoa-color-text-muted);
+}
+.stoa-calendar__days { display: grid; gap: var(--stoa-space-3); margin: 0; padding: 0; list-style: none; }
+.stoa-calendar__day-group { display: grid; gap: var(--stoa-space-1); }
+.stoa-calendar__day-group[data-today] .stoa-calendar__date { color: var(--stoa-color-text); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-calendar__events { display: grid; gap: var(--stoa-space-2); margin: 0; padding: 0; list-style: none; }
+.stoa-calendar__event { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--stoa-space-2); align-items: baseline; }
+.stoa-calendar__event-body { display: grid; gap: var(--stoa-space-0-5); min-inline-size: 0; overflow-wrap: anywhere; }
+.stoa-calendar__event-head { margin: 0; }
+.stoa-calendar__kind { font-weight: var(--stoa-font-weight-medium); }
+.stoa-calendar__detail { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }

@@ -90,6 +90,13 @@ follow as the products need them.
     words, as a list of changes too, and the share of changed
     characters: deleted plus inserted characters over the characters of
     both texts, in Unicode code points with spaces included).
+  - Events: EventCalendar (a bond's coupons, offers, amortisations,
+    maturity, rating changes and a default on a month grid, each kind a
+    symbol and a word, never a colour alone; an ARIA date grid with one
+    tab stop, the arrow keys, Home and End, Page Up and Page Down, the
+    chosen day's events listed under it; the week and the month's name
+    from the locale; a list of the month's days with events on a narrow
+    screen, and a month without events says so).
   - Feedback and layout: Callout, EmptyState, Skeleton, ProgressBar,
     toasts (ToastQueue, ToastRegion), StatusBadge, LiveRegion,
     VisuallyHidden, Panel, StatBar and Metric, SourceNote (where a

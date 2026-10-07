@@ -195,3 +195,13 @@ export {
 } from "./FindingsList";
 export { TextDiff, changedPercent, diffChanges, diffSummary, type DiffChange, type TextDiffProps } from "./TextDiff";
 export { DIFF_MAX_CELLS, characterCount, diffStats, diffTokens, diffWords, type DiffPart, type DiffStats } from "./diff";
+// A bond's dated events on a month grid, or a list on a narrow screen.
+export {
+  CALENDAR_EVENT_KINDS,
+  CALENDAR_EVENT_SYMBOL,
+  EventCalendar,
+  weekStartOf,
+  type CalendarEvent,
+  type CalendarEventKind,
+  type EventCalendarProps,
+} from "./EventCalendar";

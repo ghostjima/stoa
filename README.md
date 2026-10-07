@@ -68,6 +68,14 @@ follow as the products need them.
     state changes) and DerivationTable (how a figure was worked out:
     step, formula, value, and source with its revision; stacked on a
     narrow screen, a label beside each value; copied as plain text).
+  - Order ticket: PriceYieldField (a bond order's price, in percent of
+    face value, and its yield, linked: typing one works out the other
+    through the application's own engine, which may answer later; the
+    field typed in says it was entered and the other what it was worked
+    out from, or that it is being worked out, and a reason the engine
+    gives for having no answer is shown in words under the typed field)
+    and QuantityStepper (an order's size in lots between a minus and a
+    plus button, the lot's size and the order's size in bonds in words).
   - Records and letters: Timeline (what happened to a record, oldest
     first, grouped by day under a heading per day, an emphasised entry
     told by a bar, a symbol and a word), DetailHeader (Back, the title

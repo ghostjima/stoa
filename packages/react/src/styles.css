@@ -276,6 +276,34 @@
   padding: calc(var(--stoa-space-1) / 2) calc(var(--stoa-space-1) * 1.5);
 }
 
+/* PriceYieldField: the pair's name over two number fields side by side,
+   which wrap one under the other when there is no room. The line under
+   each field says where its value came from: under the field typed in it
+   is in the text colour and the heavier weight, under the worked-out one
+   muted; while the engine works, the worked-out value is muted too. */
+.stoa-price-yield { display: grid; gap: var(--stoa-space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+.stoa-price-yield__label { padding: 0; margin-block-end: var(--stoa-space-2); font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); color: var(--stoa-color-text); }
+.stoa-price-yield__fields { display: flex; flex-wrap: wrap; align-items: start; gap: var(--stoa-space-3) var(--stoa-space-4); }
+.stoa-price-yield__field .stoa-number__input { inline-size: 9ch; }
+.stoa-price-yield__field--source .stoa-price-yield__note { color: var(--stoa-color-text); font-weight: var(--stoa-font-weight-medium); }
+.stoa-price-yield__field--pending .stoa-number__input { color: var(--stoa-color-text-muted); }
+.stoa-price-yield__description { margin: 0; }
+
+/* QuantityStepper: the number between a minus and a plus button as tall
+   as the input, the lot's words under it, wrapping within the field's
+   container rather than widening it. */
+.stoa-stepper { max-inline-size: 100%; }
+.stoa-stepper .stoa-number__group { align-items: stretch; gap: 0; }
+.stoa-stepper .stoa-number__input { inline-size: 7ch; text-align: center; border-radius: 0; }
+.stoa-stepper__button {
+  display: inline-grid; place-items: center; min-inline-size: var(--stoa-space-8); padding: 0;
+  font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-md);
+}
+.stoa-stepper__button[slot="decrement"] { border-start-end-radius: 0; border-end-end-radius: 0; margin-inline-end: -1px; }
+.stoa-stepper__button[slot="increment"] { border-start-start-radius: 0; border-end-start-radius: 0; margin-inline-start: -1px; }
+.stoa-stepper__button[data-focus-visible] { position: relative; z-index: 1; }
+.stoa-stepper__note { overflow-wrap: anywhere; }
+
 .stoa-statbar { display: flex; flex-wrap: wrap; gap: var(--stoa-space-4); margin: 0; font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-2xs); }
 .stoa-statbar__item { display: flex; gap: var(--stoa-space-1); }
 /* The labels are words, in the sans face; the values stay in the numeric

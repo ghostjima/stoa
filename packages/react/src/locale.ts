@@ -13,6 +13,10 @@ import { useLocale } from "react-aria-components";
  * caller's own calendar), calendar days or hours. */
 export type DeadlineUnit = "workingDays" | "days" | "hours";
 
+/** The two linked fields of a bond order: the price, in percent of face
+ * value, and the yield, in percent. */
+export type PriceYieldSide = "price" | "yield";
+
 /** A count's plural category in the locale (Intl.PluralRules), which
  * picks the word's form: "1 рабочий день", "2 рабочих дня", "5 рабочих
  * дней". */
@@ -211,6 +215,31 @@ export type StoaMessages = {
   // Letter.
   /** Letter: the line above the grounds the letter cites. */
   letterGrounds: string;
+  // PriceYieldField.
+  /** PriceYieldField: the price field's label, unless the caller names it. */
+  priceYieldPrice: string;
+  /** PriceYieldField: the yield field's label, unless the caller names it. */
+  priceYieldYield: string;
+  /** PriceYieldField: said under the field that was typed in. */
+  priceYieldEntered: string;
+  /** PriceYieldField: said under the other field, worked out from the one
+   * typed in (`from`). */
+  priceYieldFrom: (from: PriceYieldSide) => string;
+  /** PriceYieldField: said under the field being worked out. */
+  priceYieldPending: (field: PriceYieldSide) => string;
+  /** PriceYieldField: said under the field that could not be worked out. */
+  priceYieldNone: string;
+  /** PriceYieldField: the error under the typed field when the caller's
+   * engine failed without saying why. */
+  priceYieldFailed: (field: PriceYieldSide) => string;
+  // QuantityStepper.
+  /** QuantityStepper: how many bonds a lot holds; `size` in the locale's
+   * digits and `plural` its plural category. */
+  lotSize: (size: string, plural: PluralCategory) => string;
+  /** QuantityStepper: the order's size in lots and in bonds. */
+  lotTotal: (lots: string, lotsPlural: PluralCategory, bonds: string, bondsPlural: PluralCategory) => string;
+  /** QuantityStepper: the range of lots an order may have. */
+  lotRange: (min: string, max: string) => string;
   // FindingsList.
   /** FindingsList: a finding's severity as a word, beside its symbol. */
   findingSeverity: Record<FindingSeverity, string>;
@@ -380,6 +409,19 @@ const EN: StoaMessages = {
   textLeft: (count, plural) => `${count} ${plural === "one" ? "character" : "characters"} left`,
   // Letter.
   letterGrounds: "Grounds cited",
+  // PriceYieldField.
+  priceYieldPrice: "Price, % of face value",
+  priceYieldYield: "Yield, %",
+  priceYieldEntered: "Entered",
+  priceYieldFrom: (from) => `Calculated from the ${from}`,
+  priceYieldPending: (field) => `Calculating the ${field}…`,
+  priceYieldNone: "Not calculated",
+  priceYieldFailed: (field) => `The ${field} could not be calculated.`,
+  // QuantityStepper.
+  lotSize: (size, plural) => `A lot is ${size} ${plural === "one" ? "bond" : "bonds"}.`,
+  lotTotal: (lots, lotsPlural, bonds, bondsPlural) =>
+    `${lots} ${lotsPlural === "one" ? "lot" : "lots"}, ${bonds} ${bondsPlural === "one" ? "bond" : "bonds"}`,
+  lotRange: (min, max) => `From ${min} to ${max} lots.`,
   // FindingsList.
   findingSeverity: { error: "Error", warning: "Warning", info: "Note" },
   findingGroup: (severity, count) => `${{ error: "Errors", warning: "Warnings", info: "Notes" }[severity]}: ${count}`,
@@ -522,6 +564,18 @@ const AR: StoaMessages = {
   textLeft: (count, _plural) => `الأحرف المتبقية: ${count}`,
   // Letter.
   letterGrounds: "الأسس المستند إليها",
+  // PriceYieldField.
+  priceYieldPrice: "السعر، ٪ من القيمة الاسمية",
+  priceYieldYield: "العائد، ٪",
+  priceYieldEntered: "مُدخل",
+  priceYieldFrom: (from) => (from === "price" ? "محسوب من السعر" : "محسوب من العائد"),
+  priceYieldPending: (field) => (field === "price" ? "جارٍ حساب السعر…" : "جارٍ حساب العائد…"),
+  priceYieldNone: "غير محسوب",
+  priceYieldFailed: (field) => (field === "price" ? "تعذّر حساب السعر." : "تعذّر حساب العائد."),
+  // QuantityStepper: labels and colons, as for deadlines.
+  lotSize: (size, _plural) => `السندات في اللوت: ${size}.`,
+  lotTotal: (lots, _lotsPlural, bonds, _bondsPlural) => `اللوتات: ${lots}؛ السندات: ${bonds}`,
+  lotRange: (min, max) => `اللوتات: من ${min} إلى ${max}.`,
   // FindingsList.
   findingSeverity: { error: "خطأ", warning: "تحذير", info: "ملاحظة" },
   findingGroup: (severity, count) => `${{ error: "الأخطاء", warning: "التحذيرات", info: "الملاحظات" }[severity]}: ${count}`,
@@ -566,6 +620,15 @@ function ruUnit(unit: DeadlineUnit, plural: PluralCategory): string {
   const form = plural === "one" || plural === "few" || plural === "many" ? plural : "other";
   return forms[unit][form];
 }
+
+type RuForms = Record<"one" | "few" | "many" | "other", string>;
+/** A Russian noun in the form its count asks for; a fraction takes the
+ * genitive singular, which Intl reports as "other". */
+function ruForm(plural: PluralCategory, forms: RuForms): string {
+  return forms[plural === "one" || plural === "few" || plural === "many" ? plural : "other"];
+}
+const BOND_FORMS: RuForms = { one: "облигация", few: "облигации", many: "облигаций", other: "облигации" };
+const LOT_FORMS: RuForms = { one: "лот", few: "лота", many: "лотов", other: "лота" };
 
 const RU: StoaMessages = {
   time: "Время",
@@ -680,6 +743,18 @@ const RU: StoaMessages = {
     `${plural === "one" ? "Остался" : "Осталось"} ${count} ${{ one: "символ", few: "символа", many: "символов", other: "символа" }[plural === "one" || plural === "few" || plural === "many" ? plural : "other"]}`,
   // Letter.
   letterGrounds: "Приведённые основания",
+  // PriceYieldField.
+  priceYieldPrice: "Цена, % от номинала",
+  priceYieldYield: "Доходность, %",
+  priceYieldEntered: "Введено",
+  priceYieldFrom: (from) => (from === "price" ? "Рассчитана по цене" : "Рассчитана по доходности"),
+  priceYieldPending: (field) => (field === "price" ? "Расчёт цены…" : "Расчёт доходности…"),
+  priceYieldNone: "Не рассчитана",
+  priceYieldFailed: (field) => (field === "price" ? "Не удалось рассчитать цену." : "Не удалось рассчитать доходность."),
+  // QuantityStepper.
+  lotSize: (size, plural) => `В лоте ${size} ${ruForm(plural, BOND_FORMS)}.`,
+  lotTotal: (lots, lotsPlural, bonds, bondsPlural) => `${lots} ${ruForm(lotsPlural, LOT_FORMS)}, ${bonds} ${ruForm(bondsPlural, BOND_FORMS)}`,
+  lotRange: (min, max) => `Лотов: от ${min} до ${max}.`,
   // FindingsList.
   findingSeverity: { error: "Ошибка", warning: "Предупреждение", info: "Примечание" },
   findingGroup: (severity, count) => `${{ error: "Ошибки", warning: "Предупреждения", info: "Примечания" }[severity]}: ${count}`,

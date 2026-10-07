@@ -117,6 +117,19 @@ test("closing the last toast from the keyboard returns focus to where it was bef
   await expect.poll(() => focused(page)).toBe("BUTTON:Cancel order 1042");
 });
 
+test("Back brings the list back with the focus on the record it was opened from, asked for as the list mounts", async ({ page }) => {
+  await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));
+  await page.getByRole("listbox", { name: "Bonds" }).getByRole("option", { name: /XS0000004/ }).click();
+  await expect(page.getByRole("heading", { name: "XS0000004" })).toBeVisible();
+  await page.getByRole("button", { name: "Back" }).click();
+  const list = page.getByRole("listbox", { name: "Bonds" });
+  await expect(list).toBeVisible();
+  await expect(list.getByRole("option", { name: /XS0000004/ })).toBeFocused();
+  // From there the keyboard goes on from that record.
+  await page.keyboard.press("ArrowUp");
+  await expect(list.getByRole("option", { name: /RU000A1002/ })).toBeFocused();
+});
+
 for (const how of ["a click", "the keyboard"] as const) {
   test(`a record picked with ${how} that replaces its list leaves focus on what takes its place, not on the body`, async ({ page }) => {
     await page.goto(story("overlays-lists-and-content--record-list-replaced-by-detail"));

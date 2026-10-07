@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
 // RecordList: a listbox of records with one picked, the keyboard, a
 // disabled record, the empty list, and the locale.
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
-import { I18nProvider, RecordList, type RecordListItem } from "./index";
+import { I18nProvider, RecordList, type RecordListHandle, type RecordListItem } from "./index";
 
 afterEach(cleanup);
 
@@ -130,3 +130,56 @@ describe("RecordList", () => {
     expect(onChange).toHaveBeenLastCalledWith("2");
   });
 });
+
+describe("RecordList: focusRecord", () => {
+  /** An application that focuses a record as soon as the list mounts, as
+   * one does when a detail closes on a narrow screen and the list comes
+   * back. `seen` records how many options existed when it asked. */
+  function FocusOnMount({ id, seen }: { id: string; seen: number[] }) {
+    const list = useRef<RecordListHandle>(null);
+    useEffect(() => {
+      seen.push(document.querySelectorAll('[role="option"][data-key]').length);
+      list.current?.focusRecord(id);
+    }, [id, seen]);
+    return <RecordList ref={list} label="Bonds" items={BONDS} value="a" onChange={() => {}} />;
+  }
+
+  it("focuses a record asked for right after mount, once React Aria's options exist", async () => {
+    const seen: number[] = [];
+    await act(async () => {
+      render(<FocusOnMount id="d" seen={seen} />);
+    });
+    // Asked before the options existed: only the rows drawn in their place.
+    expect(seen).toEqual([0]);
+    expect(document.activeElement).toBe(option("XS0000004"));
+    // The focus moved; the pick did not.
+    expect(option("XS0000004").getAttribute("aria-selected")).toBe("false");
+    expect(option("RU000A1001").getAttribute("aria-selected")).toBe("true");
+    // From there the arrow keys go on from the focused record.
+    press("ArrowUp");
+    expect(document.activeElement).toBe(option("RU000A1002"));
+  });
+
+  it("focuses a record at once when the options already exist", async () => {
+    const list = { current: null as RecordListHandle | null };
+    await act(async () => {
+      render(<RecordList ref={(handle) => void (list.current = handle)} label="Bonds" items={BONDS} value="a" onChange={() => {}} />);
+    });
+    act(() => list.current?.focusRecord("b"));
+    expect(document.activeElement).toBe(option("RU000A1002"));
+  });
+
+  it("does nothing for a record the list does not hold, and does not wait for it", async () => {
+    const list = { current: null as RecordListHandle | null };
+    const { rerender } = render(<RecordList ref={(handle) => void (list.current = handle)} label="Bonds" items={BONDS} value="a" onChange={() => {}} />);
+    await act(async () => {});
+    act(() => list.current?.focusRecord("zz"));
+    expect(document.activeElement).toBe(document.body);
+    // Not focused later either, when such a record arrives.
+    await act(async () => {
+      rerender(<RecordList ref={(handle) => void (list.current = handle)} label="Bonds" items={[...BONDS, { id: "zz", label: "RU000A1099" }]} value="a" onChange={() => {}} />);
+    });
+    expect(document.activeElement).toBe(document.body);
+  });
+});
+

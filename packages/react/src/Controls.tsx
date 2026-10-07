@@ -1,6 +1,7 @@
 import { useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, type ChangeEvent, type KeyboardEvent, type ReactElement, type ReactNode, type Ref } from "react";
 import { mergeProps, useFocusRing, useHover, usePress } from "react-aria";
 import { Chevron } from "./Chevron";
+import { FieldErrorMessage } from "./Form";
 import { ariaKeyShortcuts, isApplePlatform, Kbd, shortcutKeys, type Shortcut } from "./Shortcuts";
 import { useStoaFormat } from "./locale";
 import {
@@ -434,6 +435,15 @@ export type NumberFieldProps = {
   unit?: string;
   size?: ControlSize;
   "aria-describedby"?: string;
+  /** The value cannot be used as it is (above a limit the caller knows,
+   * for example): the input is marked invalid (aria-invalid) and drawn in
+   * the falling colour, and `errorMessage` is shown under it. Validation
+   * is the caller's, as in TextField. */
+  isInvalid?: boolean;
+  /** What is wrong and how to put it right ("Up to 1,000 bonds."), shown
+   * while `isInvalid`, read as part of the input's description and
+   * announced politely when it appears. */
+  errorMessage?: string;
 };
 
 const LATIN_DIGIT = /[0-9.]/;
@@ -526,6 +536,8 @@ export function NumberField({
   unit,
   size = "regular",
   "aria-describedby": describedBy,
+  isInvalid,
+  errorMessage,
 }: NumberFieldProps) {
   const clamp = (next: number) => Math.min(maxValue ?? Infinity, Math.max(minValue ?? -Infinity, next));
   return (
@@ -541,11 +553,14 @@ export function NumberField({
       aria-describedby={describedBy}
       // React Aria's "validate" keeps the typed value and would report a
       // value off the step as invalid; here the step is only the arrow
-      // keys' stride, and the range is applied by clamping above.
-      {...(keepTypedValue ? { commitBehavior: "validate", validationBehavior: "aria", isInvalid: false } : {})}
+      // keys' stride, and the range is applied by clamping above. The
+      // invalid state is the caller's alone.
+      {...(keepTypedValue ? { commitBehavior: "validate" } : {})}
+      {...(keepTypedValue || isInvalid !== undefined ? { validationBehavior: "aria", isInvalid: isInvalid ?? false } : {})}
     >
       <Label className={hideLabel ? "stoa-visually-hidden" : "stoa-field__label"}>{label}</Label>
       <NumberInput unit={unit} />
+      <FieldErrorMessage>{errorMessage}</FieldErrorMessage>
     </AriaNumberField>
   );
 }

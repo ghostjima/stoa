@@ -75,3 +75,57 @@ describe("DerivationTable", () => {
     );
   });
 });
+
+describe("DerivationTable on a narrow screen", () => {
+  /** A phone: the narrow breakpoint's query matches, the wide one's not. */
+  function narrowScreen() {
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      writable: true,
+      value: (query: string) =>
+        ({
+          matches: query.includes("max-width"),
+          media: query,
+          addEventListener: () => {},
+          removeEventListener: () => {},
+        }) as unknown as MediaQueryList,
+    });
+  }
+  afterEach(() => {
+    delete (window as { matchMedia?: unknown }).matchMedia;
+  });
+
+  it("stacks the steps: a list named by the caption, each step's name over its fields, a label beside each value", () => {
+    narrowScreen();
+    render(<DerivationTable caption="Coupon after tax" steps={STEPS} />);
+    expect(screen.queryByRole("table")).toBeNull();
+    const list = screen.getByRole("list", { name: "Coupon after tax" });
+    const items = within(list).getAllByRole("listitem");
+    expect(items).toHaveLength(3);
+    expect(items.map((item) => item.querySelector(".stoa-derivation__label")?.textContent)).toEqual(["Coupon", "Tax at 13%", "Coupon after tax"]);
+    const pairs = (item: HTMLElement) => [...item.querySelectorAll("dt")].map((dt) => [dt.textContent, dt.nextElementSibling?.textContent]);
+    expect(pairs(items[0]!)).toEqual([
+      ["Formula", "1000 × 7.5% × 182 / 365"],
+      ["Value", "37.40 RUB"],
+      ["Source", "Offering terms, clause 9.3revision 2025-03-14"],
+    ]);
+    // Only the fields a step has.
+    expect(pairs(items[2]!)).toEqual([["Value", "32.54 RUB"]]);
+    const formula = screen.getByText("1000 × 7.5% × 182 / 365");
+    expect([formula.tagName, formula.getAttribute("dir")]).toEqual(["BDI", "ltr"]);
+    expect(screen.getByRole("link", { name: "Offering terms, clause 9.3" }).getAttribute("href")).toBe("https://example.org/terms");
+  });
+
+  it("keeps a hidden caption for assistive technology only, and copies the same text as the table", async () => {
+    narrowScreen();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, "clipboard", { value: { writeText }, configurable: true });
+    render(<DerivationTable caption="Coupon after tax" hideCaption steps={STEPS} />);
+    const list = screen.getByRole("list", { name: "Coupon after tax" });
+    expect(document.getElementById(list.getAttribute("aria-labelledby")!)?.className).toBe("stoa-visually-hidden");
+    fireEvent.click(screen.getByRole("button", { name: "Copy" }));
+    await waitFor(() => expect(writeText).toHaveBeenCalledOnce());
+    expect(writeText).toHaveBeenCalledWith(derivationText("Coupon after tax", STEPS, messagesFor("en-US")));
+  });
+});
+

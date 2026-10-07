@@ -4,7 +4,10 @@ import { ReorderableList } from "./ReorderableList";
 import { useStoaFormat, type StoaMessages } from "./locale";
 
 /** Where a step stands. "awaiting" waits for the person to decide;
- * "undone" is a step whose effect was reverted. */
+ * "skipped" was passed over by a decision (the person's, or the run's
+ * after an error), while the run went on; "notRun" was never reached,
+ * because the run stopped before it; "undone" is a step whose effect was
+ * reverted. */
 export type StepStatus = keyof StoaMessages["stepStatus"];
 
 export type Step = {
@@ -43,6 +46,7 @@ const SYMBOL: Record<StepStatus, string> = {
   done: "✓",
   awaiting: "?",
   skipped: "↷",
+  notRun: "–",
   undone: "↺",
   error: "✗",
 };

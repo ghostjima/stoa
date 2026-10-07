@@ -1368,6 +1368,30 @@
   .stoa-filter-bar__sheet { display: block; }
 }
 
+/* ScatterChart: points on a canvas (ScatterChart.tsx draws them from the
+   tokens), with the axis names, the legend and the data table in HTML.
+   The legend and the axis label reuse the line chart's classes. The plot
+   is the chart's one tab stop; the active point's ring is drawn on the
+   canvas, the outline here shows the chart itself has the focus. */
+.stoa-scatter__plot { border-radius: var(--stoa-radius-sm); }
+.stoa-scatter__plot:focus-visible {
+  outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
+  outline-offset: var(--stoa-focus-offset);
+}
+.stoa-scatter__canvas { display: block; inline-size: 100%; }
+.stoa-scatter__x-label {
+  margin: var(--stoa-space-1) 0 0; text-align: end;
+  font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted);
+}
+.stoa-scatter__swatch { flex: none; }
+.stoa-scatter__mark { fill: currentColor; }
+.stoa-scatter__mark--open { fill: none; stroke: currentColor; stroke-width: 2; }
+.stoa-scatter__mark--accent { color: var(--stoa-color-accent); }
+.stoa-scatter__mark--neutral { color: var(--stoa-color-text-muted); }
+.stoa-scatter__mark--warning { color: var(--stoa-color-warning); }
+.stoa-scatter__mark--up { color: var(--stoa-color-up); }
+.stoa-scatter__mark--down { color: var(--stoa-color-down); }
+
 /* SourceNote: where a widget's figures come from, at its top, before its
    content. One paragraph in the muted colour at the small size: the tag at
    the start of the first line, the sentence after it, and its further

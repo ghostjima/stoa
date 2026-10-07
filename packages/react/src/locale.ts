@@ -186,6 +186,26 @@ export type StoaMessages = {
   gridSelected: (count: string) => string;
   /** DataGridSelectionBar: the button that unselects every row. */
   gridClearSelection: string;
+  // ScatterChart.
+  /** ScatterChart's text alternative: how many points it draws, then one
+   * part per category (`scatterCount`). */
+  scatterSummary: (total: string, parts: string[]) => string;
+  /** A category of points with its count. */
+  scatterCount: (category: string, count: string) => string;
+  /** The range an axis spans, from its lowest to its highest value, or
+   * from its first category to its last. */
+  scatterRange: (axis: string, from: string, to: string) => string;
+  /** Which way values grow along a scatter chart's horizontal axis. */
+  scatterXLeftToRight: string;
+  scatterXRightToLeft: string;
+  /** How the keyboard moves between the points, read with the chart. */
+  scatterKeys: string;
+  /** Read when a point is focused or hovered: the caller's label for it,
+   * its category, and its place in the order the arrow keys walk. */
+  scatterActive: (label: string, category: string, position: string, total: string) => string;
+  /** Headers of a scatter chart's data table: the point and its category. */
+  scatterPoint: string;
+  scatterCategory: string;
   // SourceNote.
   /** SourceNote: read before the source's tag, not drawn ("Source:"). */
   sourceNoteLabel: string;
@@ -294,6 +314,15 @@ const EN: StoaMessages = {
   gridSelection: "Selection",
   gridSelected: (count) => `${count} selected`,
   gridClearSelection: "Clear selection",
+  scatterSummary: (total, parts) => `Points: ${total}; ${parts.join("; ")}.`,
+  scatterCount: (category, count) => `${category}: ${count}`,
+  scatterRange: (axis, from, to) => `${axis}: from ${from} to ${to}.`,
+  scatterXLeftToRight: "Values on the horizontal axis grow from left to right.",
+  scatterXRightToLeft: "Values on the horizontal axis grow from right to left.",
+  scatterKeys: "Arrow keys move from point to point, Home and End go to the first and the last, Escape clears.",
+  scatterActive: (label, category, position, total) => `${label} (${category}), point ${position} of ${total}`,
+  scatterPoint: "Point",
+  scatterCategory: "Category",
   // SourceNote.
   sourceNoteLabel: "Source:",
 };
@@ -401,6 +430,15 @@ const AR: StoaMessages = {
   gridSelection: "التحديد",
   gridSelected: (count) => `المحدد: ${count}`,
   gridClearSelection: "إلغاء التحديد",
+  scatterSummary: (total, parts) => `النقاط: ${total}؛ ${parts.join("؛ ")}.`,
+  scatterCount: (category, count) => `${category}: ${count}`,
+  scatterRange: (axis, from, to) => `${axis}: من ${from} إلى ${to}.`,
+  scatterXLeftToRight: "تزداد القيم على المحور الأفقي من اليسار إلى اليمين.",
+  scatterXRightToLeft: "تزداد القيم على المحور الأفقي من اليمين إلى اليسار.",
+  scatterKeys: "تنتقل مفاتيح الأسهم من نقطة إلى أخرى، وينتقل Home وEnd إلى الأولى والأخيرة، ويلغي Escape التحديد.",
+  scatterActive: (label, category, position, total) => `${label} (${category})، النقطة ${position} من ${total}`,
+  scatterPoint: "النقطة",
+  scatterCategory: "الفئة",
   // SourceNote.
   sourceNoteLabel: "المصدر:",
 };
@@ -521,6 +559,15 @@ const RU: StoaMessages = {
   gridSelection: "Выбор",
   gridSelected: (count) => `Выбрано: ${count}`,
   gridClearSelection: "Снять выбор",
+  scatterSummary: (total, parts) => `Точек: ${total}; ${parts.join("; ")}.`,
+  scatterCount: (category, count) => `${category}: ${count}`,
+  scatterRange: (axis, from, to) => `${axis}: от ${from} до ${to}.`,
+  scatterXLeftToRight: "Значения по горизонтальной оси растут слева направо.",
+  scatterXRightToLeft: "Значения по горизонтальной оси растут справа налево.",
+  scatterKeys: "Стрелки переводят от точки к точке, Home и End к первой и последней, Escape снимает выбор.",
+  scatterActive: (label, category, position, total) => `${label} (${category}), точка ${position} из ${total}`,
+  scatterPoint: "Точка",
+  scatterCategory: "Категория",
   // SourceNote.
   sourceNoteLabel: "Источник:",
 };

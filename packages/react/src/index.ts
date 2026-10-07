@@ -140,6 +140,7 @@ export { Countdown, DeadlineCell, deadlineState, deadlineText, type CountdownPro
 export { DerivationTable, derivationText, type DerivationSource, type DerivationStep, type DerivationTableProps } from "./DerivationTable";
 export { LineChart, type ChartPoint, type ChartTone, type LineChartProps, type LineSeries } from "./LineChart";
 export { EventStrip, type EventKind, type EventStripProps, type StripEvent } from "./EventStrip";
+export { ScatterChart, type ScatterCategory, type ScatterChartProps, type ScatterPoint, type ScatterShape } from "./ScatterChart";
 export { niceTicks, formatDate, type Ticks } from "./chartScale";
 // DataGrid
 export {

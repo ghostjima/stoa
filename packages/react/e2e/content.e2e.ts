@@ -152,3 +152,54 @@ test("a record list picks with the keyboard and shows the pick in the detail", a
   });
   expect(parseFloat(bar.right)).toBeGreaterThan(parseFloat(bar.left));
 });
+
+// A plan's step rows on a phone and a tablet: long titles in Russian and
+// Arabic, a line of facts, a switch with its reason, and each row's drag
+// handle, move and remove buttons. Every row is as wide as its list at
+// most, everything drawn in a row stays inside the row, no box clips its
+// own content, the page does not scroll sideways, and no word of a title
+// is broken across lines: where the title would be too narrow for its
+// words, the row's buttons go under it.
+for (const [lang, dir] of [
+  ["ru", "ltr"],
+  ["ar", "rtl"],
+] as const)
+  for (const width of [320, 375, 768])
+    test(`a step row with long words fits its list at ${width} px, in ${lang}`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto(story("steps-reorderable-long-text", `dir:${dir};lang:${lang}`));
+      const list = page.getByRole("grid");
+      await expect(list.getByRole("row")).toHaveCount(3);
+      await page.evaluate(() => document.fonts.ready);
+      const misfits = await list.evaluate((grid) => {
+        const out: string[] = [];
+        const name = (el: Element) => `${el.tagName.toLowerCase()}.${String(el.className).split(" ")[0]} "${(el.textContent ?? "").trim().slice(0, 24)}"`;
+        const g = grid.getBoundingClientRect();
+        for (const row of grid.querySelectorAll(".stoa-reorder__item")) {
+          const r = row.getBoundingClientRect();
+          if (r.left < g.left - 0.5 || r.right > g.right + 0.5) out.push(`${name(row)} ${Math.round(r.left)}..${Math.round(r.right)} in the list ${Math.round(g.left)}..${Math.round(g.right)}`);
+          for (const el of [row, ...row.querySelectorAll("*")]) {
+            const b = el.getBoundingClientRect();
+            // Boxes without a size (display: contents, the switch's
+            // visually hidden input) draw nothing.
+            if (b.width === 0 || b.height === 0 || el.closest("[style*='clip']") || getComputedStyle(el).position === "absolute") continue;
+            if (b.left < r.left - 0.5 || b.right > r.right + 0.5) out.push(`${name(el)} ${Math.round(b.left)}..${Math.round(b.right)} outside its row ${Math.round(r.left)}..${Math.round(r.right)}`);
+            if (el.scrollWidth > el.clientWidth + 0.5 && getComputedStyle(el).overflowX !== "visible") out.push(`${name(el)} clips its content`);
+          }
+          const title = row.querySelector(".stoa-step__title")!;
+          const walker = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            for (const word of (node.textContent ?? "").matchAll(/\p{L}+/gu)) {
+              const range = document.createRange();
+              range.setStart(node, word.index);
+              range.setEnd(node, word.index + word[0].length);
+              const lines = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
+              if (lines.size > 1) out.push(`"${word[0]}" is broken across ${lines.size} lines`);
+            }
+          }
+        }
+        return out;
+      });
+      expect(misfits).toEqual([]);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+    });

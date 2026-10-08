@@ -109,6 +109,10 @@ export type StoaMessages = {
   removed: (item: string) => string;
   /** A reorderable list with no items. */
   listEmpty: string;
+  /** CancellableRequest: the button that cancels a recorded request, and
+   * what it says once requests can no longer be made or cancelled. */
+  requestCancel: string;
+  requestClosed: string;
   /** FilterBar: the word for the filters, on the button that opens them
    * on a narrow screen and as the sheet's title. */
   filters: string;
@@ -367,6 +371,8 @@ const EN: StoaMessages = {
   moved: (item, position, total) => `${item} moved to position ${position} of ${total}.`,
   removed: (item) => `${item} removed.`,
   listEmpty: "No items.",
+  requestCancel: "Cancel request",
+  requestClosed: "Requests are closed.",
   filters: "Filters",
   filtersOn: (count) => `, ${count} on`,
   clearAll: "Clear all",
@@ -532,6 +538,8 @@ const AR: StoaMessages = {
   moved: (item, position, total) => `نُقل ${item} إلى الموضع ${position} من ${total}.`,
   removed: (item) => `أزيل ${item}.`,
   listEmpty: "لا عناصر.",
+  requestCancel: "إلغاء الطلب",
+  requestClosed: "انتهت فترة تقديم الطلبات.",
   filters: "عوامل التصفية",
   filtersOn: (count) => `، المفعّلة: ${count}`,
   clearAll: "مسح الكل",
@@ -722,6 +730,8 @@ const RU: StoaMessages = {
   moved: (item, position, total) => `${item}: позиция ${position} из ${total}.`,
   removed: (item) => `${item}: удалено.`,
   listEmpty: "Элементов нет.",
+  requestCancel: "Отменить заявку",
+  requestClosed: "Приём заявок закрыт.",
   filters: "Фильтры",
   filtersOn: (count) => `, включено: ${count}`,
   clearAll: "Сбросить все",

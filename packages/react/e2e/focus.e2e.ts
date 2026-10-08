@@ -64,6 +64,36 @@ for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
   });
 }
 
+// A table's row action (a cell drawn as a Button) that removes its own row:
+// with keepFocusInPlace the focus goes to the next row's button, to the
+// previous row's when the last row goes, and to the control before the
+// table once it is empty; never to the page's body.
+for (const [globals, names] of [
+  ["lang:en", { remove: "Remove", restore: "Restore holdings" }],
+  ["dir:rtl;lang:ar", { remove: "إزالة", restore: "استعادة المحفظة" }],
+] as const) {
+  test(`a table row removed from its own button leaves focus on the next row's button, then the previous, then before the table (${globals})`, async ({ page }) => {
+    await page.goto(story("data-table--row-action", globals));
+    const rows = page.locator(".stoa-table tbody tr");
+    await expect(rows).toHaveCount(3);
+    const remove = (id: string) => page.getByRole("button", { name: `${names.remove} ${id}` });
+    // The middle row: its Remove goes, the next row's takes the focus.
+    await remove("RU000A0ZZ").focus();
+    await page.keyboard.press("Enter");
+    await expect(rows).toHaveCount(2);
+    await expect(remove("SU26238")).toBeFocused();
+    // The last row: the previous row's Remove.
+    await page.keyboard.press("Space");
+    await expect(rows).toHaveCount(1);
+    await expect(remove("RU000A1F3")).toBeFocused();
+    // The only row, with a click: the table is empty, and the control
+    // before it takes the focus.
+    await remove("RU000A1F3").click();
+    await expect(page.getByRole("button", { name: new RegExp(names.remove) })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: names.restore })).toBeFocused();
+  });
+}
+
 test("a confirmation opened without a trigger leaves focus where its opener was, once the opener is gone", async ({ page }) => {
   await page.goto(story("overlays-lists-and-content--alert-without-trigger"));
   await page.getByRole("button", { name: "Run step 3" }).click();

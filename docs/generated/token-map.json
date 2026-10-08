@@ -65,7 +65,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating",
             "file": "packages/react/src/styles.css",
-            "line": 1685
+            "line": 1696
           },
           {
             "component": "(css) .stoa-step__fill",
@@ -120,42 +120,42 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1316
+            "line": 1327
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1323
+            "line": 1334
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1325
+            "line": 1336
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1330
+            "line": 1341
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1364
+            "line": 1375
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1420
+            "line": 1431
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1670
+            "line": 1681
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1243
+            "line": 1254
           },
           {
             "component": "FilterChip",
@@ -210,7 +210,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1551
+            "line": 1562
           },
           {
             "component": "Heatmap",
@@ -227,12 +227,12 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1217
+            "line": 1228
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1222
+            "line": 1233
           },
           {
             "component": "ProgressBar",
@@ -257,7 +257,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1601
+            "line": 1612
           },
           {
             "component": "Select",
@@ -302,12 +302,12 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1483
+            "line": 1494
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1489
+            "line": 1500
           },
           {
             "component": "TimeSlider",
@@ -473,6 +473,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Foundations/Colour > SemanticColours",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
@@ -550,7 +561,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--offer",
             "file": "packages/react/src/styles.css",
-            "line": 1686,
+            "line": 1697,
             "via": "--stoa-color-warning"
           },
           {
@@ -574,49 +585,49 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1410,
+            "line": 1421,
             "via": "--stoa-color-warning"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1306,
+            "line": 1317,
             "via": "--stoa-color-warning"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1244,
+            "line": 1255,
             "via": "--stoa-color-warning"
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1550,
+            "line": 1561,
             "via": "--stoa-color-warning"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1219,
+            "line": 1230,
             "via": "--stoa-color-warning"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1224,
+            "line": 1235,
             "via": "--stoa-color-warning"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 128,
+            "line": 130,
             "via": "--stoa-color-warning"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1603,
+            "line": 1614,
             "via": "--stoa-color-warning"
           },
           {
@@ -686,6 +697,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -812,7 +826,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--offer",
             "file": "packages/react/src/styles.css",
-            "line": 1686,
+            "line": 1697,
             "via": "--stoa-color-warning"
           },
           {
@@ -836,49 +850,49 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1410,
+            "line": 1421,
             "via": "--stoa-color-warning"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1306,
+            "line": 1317,
             "via": "--stoa-color-warning"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1244,
+            "line": 1255,
             "via": "--stoa-color-warning"
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1550,
+            "line": 1561,
             "via": "--stoa-color-warning"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1219,
+            "line": 1230,
             "via": "--stoa-color-warning"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1224,
+            "line": 1235,
             "via": "--stoa-color-warning"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 128,
+            "line": 130,
             "via": "--stoa-color-warning"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1603,
+            "line": 1614,
             "via": "--stoa-color-warning"
           },
           {
@@ -948,6 +962,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -1257,7 +1274,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating",
             "file": "packages/react/src/styles.css",
-            "line": 1685,
+            "line": 1696,
             "via": "--stoa-color-accent"
           },
           {
@@ -1341,67 +1358,67 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1291,
+            "line": 1302,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1316,
+            "line": 1327,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1323,
+            "line": 1334,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1325,
+            "line": 1336,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1330,
+            "line": 1341,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1340,
+            "line": 1351,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1355,
+            "line": 1366,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1364,
+            "line": 1375,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1633,
+            "line": 1644,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1420,
+            "line": 1431,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1508,
+            "line": 1519,
             "via": "--stoa-color-focus"
           },
           {
@@ -1413,19 +1430,19 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1665,
+            "line": 1676,
             "via": "--stoa-color-focus"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1670,
+            "line": 1681,
             "via": "--stoa-color-accent"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1243,
+            "line": 1254,
             "via": "--stoa-color-accent"
           },
           {
@@ -1503,7 +1520,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1551,
+            "line": 1562,
             "via": "--stoa-color-accent"
           },
           {
@@ -1521,13 +1538,13 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1217,
+            "line": 1228,
             "via": "--stoa-color-accent"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1222,
+            "line": 1233,
             "via": "--stoa-color-accent"
           },
           {
@@ -1617,19 +1634,19 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 132,
-            "via": "--stoa-color-focus"
-          },
-          {
-            "component": "ScatterChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1590,
+            "line": 134,
             "via": "--stoa-color-focus"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
             "line": 1601,
+            "via": "--stoa-color-focus"
+          },
+          {
+            "component": "ScatterChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1612,
             "via": "--stoa-color-accent"
           },
           {
@@ -1695,7 +1712,7 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1171,
+            "line": 1182,
             "via": "--stoa-color-focus"
           },
           {
@@ -1743,13 +1760,13 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1483,
+            "line": 1494,
             "via": "--stoa-color-accent"
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1489,
+            "line": 1500,
             "via": "--stoa-color-accent"
           },
           {
@@ -1968,6 +1985,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -2072,31 +2090,31 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1291,
+            "line": 1302,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1340,
+            "line": 1351,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1355,
+            "line": 1366,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1633,
+            "line": 1644,
             "via": "--stoa-color-focus"
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1508,
+            "line": 1519,
             "via": "--stoa-color-focus"
           },
           {
@@ -2108,7 +2126,7 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1665,
+            "line": 1676,
             "via": "--stoa-color-focus"
           },
           {
@@ -2186,13 +2204,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 132,
+            "line": 134,
             "via": "--stoa-color-focus"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1590,
+            "line": 1601,
             "via": "--stoa-color-focus"
           },
           {
@@ -2228,7 +2246,7 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1171,
+            "line": 1182,
             "via": "--stoa-color-focus"
           },
           {
@@ -2408,6 +2426,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -2489,7 +2508,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating",
             "file": "packages/react/src/styles.css",
-            "line": 1685,
+            "line": 1696,
             "via": "--stoa-color-accent"
           },
           {
@@ -2555,49 +2574,49 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1316,
+            "line": 1327,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1323,
+            "line": 1334,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1325,
+            "line": 1336,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1330,
+            "line": 1341,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1364,
+            "line": 1375,
             "via": "--stoa-color-accent"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1420,
+            "line": 1431,
             "via": "--stoa-color-accent"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1670,
+            "line": 1681,
             "via": "--stoa-color-accent"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1243,
+            "line": 1254,
             "via": "--stoa-color-accent"
           },
           {
@@ -2663,7 +2682,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1551,
+            "line": 1562,
             "via": "--stoa-color-accent"
           },
           {
@@ -2681,13 +2700,13 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1217,
+            "line": 1228,
             "via": "--stoa-color-accent"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1222,
+            "line": 1233,
             "via": "--stoa-color-accent"
           },
           {
@@ -2717,7 +2736,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1601,
+            "line": 1612,
             "via": "--stoa-color-accent"
           },
           {
@@ -2771,13 +2790,13 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1483,
+            "line": 1494,
             "via": "--stoa-color-accent"
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1489,
+            "line": 1500,
             "via": "--stoa-color-accent"
           },
           {
@@ -2952,6 +2971,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Foundations/Colour > SemanticColours",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
@@ -3068,37 +3098,37 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1257
+            "line": 1268
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1278
+            "line": 1289
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1370
+            "line": 1381
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1435
+            "line": 1446
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1426
+            "line": 1437
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1503
+            "line": 1514
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659
+            "line": 1670
           },
           {
             "component": "FilterChip",
@@ -3125,7 +3155,7 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1214
+            "line": 1225
           },
           {
             "component": "PageShell",
@@ -3200,12 +3230,12 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1567
+            "line": 1578
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1476
+            "line": 1487
           },
           {
             "component": "Toggle",
@@ -3257,6 +3287,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -3354,6 +3387,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -3474,32 +3508,32 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1284
+            "line": 1295
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1313
+            "line": 1324
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1338
+            "line": 1349
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1348
+            "line": 1359
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1378
+            "line": 1389
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1215
+            "line": 1226
           },
           {
             "component": "FilterChip",
@@ -3519,12 +3553,12 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1527
+            "line": 1538
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1215
+            "line": 1226
           },
           {
             "component": "PageShell",
@@ -3549,7 +3583,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 133,
+            "line": 135,
             "via": "readScatterTokens"
           },
           {
@@ -3747,6 +3781,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -3824,7 +3869,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--default",
             "file": "packages/react/src/styles.css",
-            "line": 1688
+            "line": 1699
           },
           {
             "component": "(css) .stoa-field__error",
@@ -3874,37 +3919,37 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1411
+            "line": 1422
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1305
+            "line": 1316
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1343
+            "line": 1354
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1371
+            "line": 1382
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1549
+            "line": 1560
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1221
+            "line": 1232
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1226
+            "line": 1237
           },
           {
             "component": "RadioGroup",
@@ -3914,13 +3959,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 130,
+            "line": 132,
             "via": "readScatterTokens"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1605
+            "line": 1616
           },
           {
             "component": "StatusBadge",
@@ -4000,6 +4045,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -4085,6 +4133,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -4169,7 +4218,7 @@
           {
             "component": "(css) .stoa-diff__mark--deleted",
             "file": "packages/react/src/styles.css",
-            "line": 1572
+            "line": 1583
           },
           {
             "component": "Heatmap",
@@ -4242,27 +4291,27 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1291
+            "line": 1302
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1340
+            "line": 1351
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1355
+            "line": 1366
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1633
+            "line": 1644
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1508
+            "line": 1519
           },
           {
             "component": "Disclosure",
@@ -4272,7 +4321,7 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1665
+            "line": 1676
           },
           {
             "component": "FilterChip",
@@ -4337,13 +4386,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 132,
+            "line": 134,
             "via": "readScatterTokens"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1590
+            "line": 1601
           },
           {
             "component": "ScrollArea",
@@ -4373,7 +4422,7 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1171
+            "line": 1182
           },
           {
             "component": "Tabs",
@@ -4543,6 +4592,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -4622,7 +4672,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1681,
+            "line": 1692,
             "via": "--stoa-color-surface"
           },
           {
@@ -4676,49 +4726,49 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1407,
+            "line": 1418,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1260,
+            "line": 1271,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1279,
+            "line": 1290,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1301,
+            "line": 1312,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1339,
+            "line": 1350,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1347,
+            "line": 1358,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1369,
+            "line": 1380,
             "via": "--stoa-color-surface"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659,
+            "line": 1670,
             "via": "--stoa-color-surface"
           },
           {
@@ -4748,7 +4798,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1546,
+            "line": 1557,
             "via": "--stoa-color-surface"
           },
           {
@@ -4838,13 +4888,13 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1190,
+            "line": 1201,
             "via": "--stoa-color-surface"
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1194,
+            "line": 1205,
             "via": "--stoa-color-surface"
           },
           {
@@ -4862,13 +4912,13 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1568,
+            "line": 1579,
             "via": "--stoa-color-surface"
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1579,
+            "line": 1590,
             "via": "--stoa-color-surface"
           },
           {
@@ -4952,6 +5002,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -5049,6 +5102,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -5140,7 +5194,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--maturity",
             "file": "packages/react/src/styles.css",
-            "line": 1687,
+            "line": 1698,
             "via": "--stoa-color-text"
           },
           {
@@ -5158,7 +5212,7 @@
           {
             "component": "(css) .stoa-diff__mark",
             "file": "packages/react/src/styles.css",
-            "line": 1571,
+            "line": 1582,
             "via": "--stoa-color-text"
           },
           {
@@ -5290,19 +5344,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1261,
+            "line": 1272,
             "via": "--stoa-color-text"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1310,
+            "line": 1321,
             "via": "--stoa-color-surface-sunken"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1339,
+            "line": 1350,
             "via": "--stoa-color-text"
           },
           {
@@ -5326,31 +5380,31 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659,
+            "line": 1670,
             "via": "--stoa-color-text"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1669,
+            "line": 1680,
             "via": "--stoa-color-surface-sunken"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1700,
-            "via": "--stoa-color-text"
-          },
-          {
-            "component": "EventStrip",
-            "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1711,
             "via": "--stoa-color-text"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1245,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "EventStrip",
+            "file": "packages/react/src/styles.css",
+            "line": 1256,
             "via": "--stoa-color-text"
           },
           {
@@ -5464,19 +5518,19 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1528,
+            "line": 1539,
             "via": "--stoa-color-surface-sunken"
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1528,
+            "line": 1539,
             "via": "--stoa-color-text"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1245,
             "via": "--stoa-color-text"
           },
           {
@@ -5542,7 +5596,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1245,
             "via": "--stoa-color-text"
           },
           {
@@ -5602,13 +5656,13 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1178,
+            "line": 1189,
             "via": "--stoa-color-text"
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1182,
+            "line": 1193,
             "via": "--stoa-color-text"
           },
           {
@@ -5650,7 +5704,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1568,
+            "line": 1579,
             "via": "--stoa-color-text"
           },
           {
@@ -5849,6 +5903,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -6034,19 +6089,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1321,
+            "line": 1332,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1363,
+            "line": 1374,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1391,
+            "line": 1402,
             "via": "--stoa-color-surface-hover"
           },
           {
@@ -6217,6 +6272,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -6323,43 +6389,43 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1257,
+            "line": 1268,
             "via": "--stoa-color-border"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1278,
+            "line": 1289,
             "via": "--stoa-color-border"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1370,
+            "line": 1381,
             "via": "--stoa-color-border"
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1435,
+            "line": 1446,
             "via": "--stoa-color-border"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1426,
+            "line": 1437,
             "via": "--stoa-color-border"
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1503,
+            "line": 1514,
             "via": "--stoa-color-border"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659,
+            "line": 1670,
             "via": "--stoa-color-border"
           },
           {
@@ -6389,7 +6455,7 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1214,
+            "line": 1225,
             "via": "--stoa-color-border"
           },
           {
@@ -6479,13 +6545,13 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1567,
+            "line": 1578,
             "via": "--stoa-color-border"
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1476,
+            "line": 1487,
             "via": "--stoa-color-border"
           },
           {
@@ -6539,6 +6605,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -6636,6 +6705,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -6758,7 +6828,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--coupon",
             "file": "packages/react/src/styles.css",
-            "line": 1684,
+            "line": 1695,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6840,6 +6910,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "CancellableRequest",
+            "file": "packages/react/src/styles.css",
+            "line": 1174,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Checkbox",
             "file": "packages/react/src/styles.css",
             "line": 329,
@@ -6866,31 +6942,31 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1307,
+            "line": 1318,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1311,
+            "line": 1322,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1387,
+            "line": 1398,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1418,
+            "line": 1429,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1421,
+            "line": 1432,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6902,7 +6978,7 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1511,
+            "line": 1522,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6920,61 +6996,61 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1654,
+            "line": 1665,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1690,
+            "line": 1701,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1693,
+            "line": 1704,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1696,
+            "line": 1707,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1706,
+            "line": 1717,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1213,
+            "line": 1224,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1229,
+            "line": 1240,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1242,
+            "line": 1253,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1459,
+            "line": 1470,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1555,
+            "line": 1566,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -6998,37 +7074,25 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1522,
+            "line": 1533,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1533,
+            "line": 1544,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211,
+            "line": 1222,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1213,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "LineChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1218,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "LineChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1223,
+            "line": 1224,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7040,7 +7104,19 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1238,
+            "line": 1234,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "LineChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1240,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "LineChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1249,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7130,19 +7206,19 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211,
+            "line": 1222,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1596,
+            "line": 1607,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1602,
+            "line": 1613,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7172,7 +7248,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1617,
+            "line": 1628,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7244,7 +7320,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1564,
+            "line": 1575,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7262,25 +7338,25 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1477,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "Timeline",
-            "file": "packages/react/src/styles.css",
-            "line": 1484,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "Timeline",
-            "file": "packages/react/src/styles.css",
             "line": 1488,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1492,
+            "line": 1495,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1499,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1503,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -7340,6 +7416,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -7437,6 +7516,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -7588,37 +7668,37 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1284,
+            "line": 1295,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1313,
+            "line": 1324,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1338,
+            "line": 1349,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1348,
+            "line": 1359,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1378,
+            "line": 1389,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1215,
+            "line": 1226,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -7654,13 +7734,13 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1527,
+            "line": 1538,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1215,
+            "line": 1226,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -7714,7 +7794,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 133,
+            "line": 135,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -7961,6 +8041,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -8157,37 +8248,37 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1284,
+            "line": 1295,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1313,
+            "line": 1324,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1338,
+            "line": 1349,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1348,
+            "line": 1359,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1378,
+            "line": 1389,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1215,
+            "line": 1226,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -8223,13 +8314,13 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1527,
+            "line": 1538,
             "via": "--stoa-color-border-strong"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1215,
+            "line": 1226,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -8283,7 +8374,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 133,
+            "line": 135,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -8530,6 +8621,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -8604,7 +8706,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--coupon",
             "file": "packages/react/src/styles.css",
-            "line": 1684,
+            "line": 1695,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8686,6 +8788,12 @@
             "via": "--stoa-color-text-muted"
           },
           {
+            "component": "CancellableRequest",
+            "file": "packages/react/src/styles.css",
+            "line": 1174,
+            "via": "--stoa-color-text-muted"
+          },
+          {
             "component": "Checkbox",
             "file": "packages/react/src/styles.css",
             "line": 329,
@@ -8712,31 +8820,31 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1307,
+            "line": 1318,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1311,
+            "line": 1322,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1387,
+            "line": 1398,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1418,
+            "line": 1429,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1421,
+            "line": 1432,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8748,7 +8856,7 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1511,
+            "line": 1522,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8766,61 +8874,61 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1654,
+            "line": 1665,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1690,
+            "line": 1701,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1693,
+            "line": 1704,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1696,
+            "line": 1707,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1706,
+            "line": 1717,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1213,
+            "line": 1224,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1229,
+            "line": 1240,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1242,
+            "line": 1253,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1459,
+            "line": 1470,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1555,
+            "line": 1566,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8844,37 +8952,25 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1522,
+            "line": 1533,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1533,
+            "line": 1544,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211,
+            "line": 1222,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1213,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "LineChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1218,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "LineChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1223,
+            "line": 1224,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8886,7 +8982,19 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1238,
+            "line": 1234,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "LineChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1240,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "LineChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1249,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -8976,19 +9084,19 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211,
+            "line": 1222,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1596,
+            "line": 1607,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1602,
+            "line": 1613,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -9018,7 +9126,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1617,
+            "line": 1628,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -9090,7 +9198,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1564,
+            "line": 1575,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -9108,25 +9216,25 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1477,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "Timeline",
-            "file": "packages/react/src/styles.css",
-            "line": 1484,
-            "via": "--stoa-color-text-muted"
-          },
-          {
-            "component": "Timeline",
-            "file": "packages/react/src/styles.css",
             "line": 1488,
             "via": "--stoa-color-text-muted"
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1492,
+            "line": 1495,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1499,
+            "via": "--stoa-color-text-muted"
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1503,
             "via": "--stoa-color-text-muted"
           },
           {
@@ -9186,6 +9294,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -9283,6 +9394,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -9465,43 +9577,43 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1257,
+            "line": 1268,
             "via": "--stoa-color-border"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1278,
+            "line": 1289,
             "via": "--stoa-color-border"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1370,
+            "line": 1381,
             "via": "--stoa-color-border"
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1435,
+            "line": 1446,
             "via": "--stoa-color-border"
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1426,
+            "line": 1437,
             "via": "--stoa-color-border"
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1503,
+            "line": 1514,
             "via": "--stoa-color-border"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659,
+            "line": 1670,
             "via": "--stoa-color-border"
           },
           {
@@ -9531,7 +9643,7 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1214,
+            "line": 1225,
             "via": "--stoa-color-border"
           },
           {
@@ -9621,13 +9733,13 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1567,
+            "line": 1578,
             "via": "--stoa-color-border"
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1476,
+            "line": 1487,
             "via": "--stoa-color-border"
           },
           {
@@ -9681,6 +9793,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -9778,6 +9893,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -9898,19 +10014,19 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1321,
+            "line": 1332,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1363,
+            "line": 1374,
             "via": "--stoa-color-surface-hover"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1391,
+            "line": 1402,
             "via": "--stoa-color-surface-hover"
           },
           {
@@ -10081,6 +10197,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -10151,13 +10278,13 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1681,
+            "line": 1692,
             "via": "--stoa-color-surface"
           },
           {
             "component": "(css) .stoa-calendar__symbol--maturity",
             "file": "packages/react/src/styles.css",
-            "line": 1687,
+            "line": 1698,
             "via": "--stoa-color-text"
           },
           {
@@ -10169,7 +10296,7 @@
           {
             "component": "(css) .stoa-diff__mark",
             "file": "packages/react/src/styles.css",
-            "line": 1571,
+            "line": 1582,
             "via": "--stoa-color-text"
           },
           {
@@ -10325,55 +10452,55 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1407,
+            "line": 1418,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1260,
+            "line": 1271,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1261,
+            "line": 1272,
             "via": "--stoa-color-text"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1279,
+            "line": 1290,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1301,
+            "line": 1312,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1339,
+            "line": 1350,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1339,
+            "line": 1350,
             "via": "--stoa-color-text"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1347,
+            "line": 1358,
             "via": "--stoa-color-surface"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1369,
+            "line": 1380,
             "via": "--stoa-color-surface"
           },
           {
@@ -10397,31 +10524,31 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659,
+            "line": 1670,
             "via": "--stoa-color-surface"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659,
+            "line": 1670,
             "via": "--stoa-color-text"
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1700,
-            "via": "--stoa-color-text"
-          },
-          {
-            "component": "EventStrip",
-            "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1711,
             "via": "--stoa-color-text"
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1245,
+            "via": "--stoa-color-text"
+          },
+          {
+            "component": "EventStrip",
+            "file": "packages/react/src/styles.css",
+            "line": 1256,
             "via": "--stoa-color-text"
           },
           {
@@ -10523,7 +10650,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1546,
+            "line": 1557,
             "via": "--stoa-color-surface"
           },
           {
@@ -10559,13 +10686,13 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1528,
+            "line": 1539,
             "via": "--stoa-color-text"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1245,
             "via": "--stoa-color-text"
           },
           {
@@ -10655,7 +10782,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234,
+            "line": 1245,
             "via": "--stoa-color-text"
           },
           {
@@ -10733,25 +10860,25 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1178,
+            "line": 1189,
             "via": "--stoa-color-text"
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1182,
+            "line": 1193,
             "via": "--stoa-color-text"
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1190,
+            "line": 1201,
             "via": "--stoa-color-surface"
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1194,
+            "line": 1205,
             "via": "--stoa-color-surface"
           },
           {
@@ -10799,19 +10926,19 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1568,
+            "line": 1579,
             "via": "--stoa-color-surface"
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1568,
+            "line": 1579,
             "via": "--stoa-color-text"
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1579,
+            "line": 1590,
             "via": "--stoa-color-surface"
           },
           {
@@ -10949,6 +11076,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -11046,6 +11176,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -11139,7 +11270,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--default",
             "file": "packages/react/src/styles.css",
-            "line": 1688,
+            "line": 1699,
             "via": "--stoa-color-down"
           },
           {
@@ -11199,31 +11330,31 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1411,
+            "line": 1422,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1305,
+            "line": 1316,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1343,
+            "line": 1354,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1371,
+            "line": 1382,
             "via": "--stoa-color-down"
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1549,
+            "line": 1560,
             "via": "--stoa-color-down"
           },
           {
@@ -11241,13 +11372,13 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1221,
+            "line": 1232,
             "via": "--stoa-color-down"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1226,
+            "line": 1237,
             "via": "--stoa-color-down"
           },
           {
@@ -11259,13 +11390,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 130,
+            "line": 132,
             "via": "--stoa-color-down"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1605,
+            "line": 1616,
             "via": "--stoa-color-down"
           },
           {
@@ -11353,6 +11484,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -11442,6 +11576,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -11522,7 +11657,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--default",
             "file": "packages/react/src/styles.css",
-            "line": 1688,
+            "line": 1699,
             "via": "--stoa-color-down"
           },
           {
@@ -11582,31 +11717,31 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1411,
+            "line": 1422,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1305,
+            "line": 1316,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1343,
+            "line": 1354,
             "via": "--stoa-color-down"
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1371,
+            "line": 1382,
             "via": "--stoa-color-down"
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1549,
+            "line": 1560,
             "via": "--stoa-color-down"
           },
           {
@@ -11624,13 +11759,13 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1221,
+            "line": 1232,
             "via": "--stoa-color-down"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1226,
+            "line": 1237,
             "via": "--stoa-color-down"
           },
           {
@@ -11642,13 +11777,13 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 130,
+            "line": 132,
             "via": "--stoa-color-down"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1605,
+            "line": 1616,
             "via": "--stoa-color-down"
           },
           {
@@ -11736,6 +11871,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -11825,6 +11963,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -11905,7 +12044,7 @@
           {
             "component": "(css) .stoa-diff__mark--deleted",
             "file": "packages/react/src/styles.css",
-            "line": 1572,
+            "line": 1583,
             "via": "--stoa-color-down-wash"
           },
           {
@@ -12040,7 +12179,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1681
+            "line": 1692
           },
           {
             "component": "(css) .stoa-modal",
@@ -12085,42 +12224,42 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1407
+            "line": 1418
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1260
+            "line": 1271
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1279
+            "line": 1290
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1301
+            "line": 1312
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1339
+            "line": 1350
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1347
+            "line": 1358
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1369
+            "line": 1380
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659
+            "line": 1670
           },
           {
             "component": "FilterChip",
@@ -12145,7 +12284,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1546
+            "line": 1557
           },
           {
             "component": "Heatmap",
@@ -12222,12 +12361,12 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1190
+            "line": 1201
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1194
+            "line": 1205
           },
           {
             "component": "Tag",
@@ -12242,12 +12381,12 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1568
+            "line": 1579
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1579
+            "line": 1590
           },
           {
             "component": "TextField",
@@ -12324,6 +12463,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -12421,6 +12563,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -12542,17 +12685,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1321
+            "line": 1332
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1363
+            "line": 1374
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1391
+            "line": 1402
           },
           {
             "component": "FilterChip",
@@ -12709,6 +12852,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -12809,12 +12963,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1310
+            "line": 1321
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1669
+            "line": 1680
           },
           {
             "component": "FilterChip",
@@ -12834,7 +12988,7 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1528
+            "line": 1539
           },
           {
             "component": "QuantityStepper",
@@ -12971,6 +13125,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -13063,7 +13228,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1304,
+            "line": 1315,
             "via": "--stoa-color-up"
           },
           {
@@ -13081,25 +13246,25 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1220,
+            "line": 1231,
             "via": "--stoa-color-up"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1225,
+            "line": 1236,
             "via": "--stoa-color-up"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 129,
+            "line": 131,
             "via": "--stoa-color-up"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1604,
+            "line": 1615,
             "via": "--stoa-color-up"
           },
           {
@@ -13245,6 +13410,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -13341,7 +13507,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1304,
+            "line": 1315,
             "via": "--stoa-color-up"
           },
           {
@@ -13359,25 +13525,25 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1220,
+            "line": 1231,
             "via": "--stoa-color-up"
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1225,
+            "line": 1236,
             "via": "--stoa-color-up"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 129,
+            "line": 131,
             "via": "--stoa-color-up"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1604,
+            "line": 1615,
             "via": "--stoa-color-up"
           },
           {
@@ -13523,6 +13689,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -13601,7 +13768,7 @@
           {
             "component": "(css) .stoa-diff__mark--inserted",
             "file": "packages/react/src/styles.css",
-            "line": 1573,
+            "line": 1584,
             "via": "--stoa-color-up-wash"
           },
           {
@@ -13664,7 +13831,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--maturity",
             "file": "packages/react/src/styles.css",
-            "line": 1687
+            "line": 1698
           },
           {
             "component": "(css) .stoa-code__scroll",
@@ -13674,7 +13841,7 @@
           {
             "component": "(css) .stoa-diff__mark",
             "file": "packages/react/src/styles.css",
-            "line": 1571
+            "line": 1582
           },
           {
             "component": "(css) .stoa-modal",
@@ -13764,12 +13931,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1261
+            "line": 1272
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1339
+            "line": 1350
           },
           {
             "component": "Disclosure",
@@ -13789,22 +13956,22 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1659
+            "line": 1670
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1700
-          },
-          {
-            "component": "EventStrip",
-            "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1711
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
             "line": 1245
+          },
+          {
+            "component": "EventStrip",
+            "file": "packages/react/src/styles.css",
+            "line": 1256
           },
           {
             "component": "FilterChip",
@@ -13886,12 +14053,12 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1528
+            "line": 1539
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1245
           },
           {
             "component": "PageShell",
@@ -13931,7 +14098,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1245
           },
           {
             "component": "Select",
@@ -13971,12 +14138,12 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1178
+            "line": 1189
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1182
+            "line": 1193
           },
           {
             "component": "Tabs",
@@ -14006,7 +14173,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1568
+            "line": 1579
           },
           {
             "component": "TextField",
@@ -14185,6 +14352,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -14276,7 +14444,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--coupon",
             "file": "packages/react/src/styles.css",
-            "line": 1684
+            "line": 1695
           },
           {
             "component": "(css) .stoa-code__label",
@@ -14344,6 +14512,11 @@
             "line": 58
           },
           {
+            "component": "CancellableRequest",
+            "file": "packages/react/src/styles.css",
+            "line": 1174
+          },
+          {
             "component": "Checkbox",
             "file": "packages/react/src/styles.css",
             "line": 329
@@ -14366,27 +14539,27 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1307
+            "line": 1318
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1311
+            "line": 1322
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1387
+            "line": 1398
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1418
+            "line": 1429
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1421
+            "line": 1432
           },
           {
             "component": "DescriptionList",
@@ -14396,7 +14569,7 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1511
+            "line": 1522
           },
           {
             "component": "Disclosure",
@@ -14411,52 +14584,52 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1654
+            "line": 1665
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1690
+            "line": 1701
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1693
+            "line": 1704
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1696
+            "line": 1707
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1706
+            "line": 1717
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1213
+            "line": 1224
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1229
+            "line": 1240
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1242
+            "line": 1253
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1459
+            "line": 1470
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1555
+            "line": 1566
           },
           {
             "component": "Heatmap",
@@ -14478,32 +14651,22 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1522
+            "line": 1533
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1533
+            "line": 1544
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211
+            "line": 1222
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1213
-          },
-          {
-            "component": "LineChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1218
-          },
-          {
-            "component": "LineChart",
-            "file": "packages/react/src/styles.css",
-            "line": 1223
+            "line": 1224
           },
           {
             "component": "LineChart",
@@ -14513,7 +14676,17 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1238
+            "line": 1234
+          },
+          {
+            "component": "LineChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1240
+          },
+          {
+            "component": "LineChart",
+            "file": "packages/react/src/styles.css",
+            "line": 1249
           },
           {
             "component": "LogView",
@@ -14588,17 +14761,17 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211
+            "line": 1222
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1596
+            "line": 1607
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1602
+            "line": 1613
           },
           {
             "component": "Select",
@@ -14623,7 +14796,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1617
+            "line": 1628
           },
           {
             "component": "StatBar",
@@ -14683,7 +14856,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1564
+            "line": 1575
           },
           {
             "component": "TextField",
@@ -14698,22 +14871,22 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1477
-          },
-          {
-            "component": "Timeline",
-            "file": "packages/react/src/styles.css",
-            "line": 1484
-          },
-          {
-            "component": "Timeline",
-            "file": "packages/react/src/styles.css",
             "line": 1488
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1492
+            "line": 1495
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1499
+          },
+          {
+            "component": "Timeline",
+            "file": "packages/react/src/styles.css",
+            "line": 1503
           },
           {
             "component": "TimeSlider",
@@ -14770,6 +14943,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -14867,6 +15043,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -15140,6 +15317,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -15230,28 +15418,28 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1304
+            "line": 1315
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1220
+            "line": 1231
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1225
+            "line": 1236
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 129,
+            "line": 131,
             "via": "readScatterTokens"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1604
+            "line": 1615
           },
           {
             "component": "StatusBadge",
@@ -15382,6 +15570,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -15464,7 +15653,7 @@
           {
             "component": "(css) .stoa-diff__mark--inserted",
             "file": "packages/react/src/styles.css",
-            "line": 1573
+            "line": 1584
           },
           {
             "component": "Heatmap",
@@ -15522,7 +15711,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--offer",
             "file": "packages/react/src/styles.css",
-            "line": 1686
+            "line": 1697
           },
           {
             "component": "(css) .stoa-step__status--awaiting .stoa-step__symbol",
@@ -15542,43 +15731,43 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1410
+            "line": 1421
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1306
+            "line": 1317
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1244
+            "line": 1255
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1550
+            "line": 1561
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1219
+            "line": 1230
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1224
+            "line": 1235
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 128,
+            "line": 130,
             "via": "readScatterTokens"
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1603
+            "line": 1614
           },
           {
             "component": "StatusBadge",
@@ -15643,6 +15832,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -15772,22 +15964,22 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1276
+            "line": 1287
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1334
+            "line": 1345
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1337
+            "line": 1348
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 136,
+            "line": 138,
             "via": "readScatterTokens"
           },
           {
@@ -15798,7 +15990,7 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1176
+            "line": 1187
           }
         ],
         "stories": [
@@ -15815,6 +16007,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -15869,7 +16062,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1262
+            "line": 1273
           },
           {
             "component": "DescriptionList",
@@ -15879,7 +16072,7 @@
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1229
+            "line": 1240
           },
           {
             "component": "Heatmap",
@@ -15908,7 +16101,7 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1229
+            "line": 1240
           },
           {
             "component": "RecordList",
@@ -15918,7 +16111,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 135,
+            "line": 137,
             "via": "readScatterTokens"
           },
           {
@@ -16006,6 +16199,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -16063,22 +16257,22 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1256
+            "line": 1267
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1269
+            "line": 1280
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1383
+            "line": 1394
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1389
+            "line": 1400
           },
           {
             "component": "Heatmap",
@@ -16164,6 +16358,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -16230,7 +16425,7 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1508
+            "line": 1519
           },
           {
             "component": "Disclosure",
@@ -16280,7 +16475,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1591
+            "line": 1602
           },
           {
             "component": "Select",
@@ -16436,6 +16631,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -16519,27 +16725,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1291
+            "line": 1302
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1292
+            "line": 1303
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1323
-          },
-          {
-            "component": "DataGrid",
-            "file": "packages/react/src/styles.css",
-            "line": 1330
-          },
-          {
-            "component": "DataGrid",
-            "file": "packages/react/src/styles.css",
-            "line": 1340
+            "line": 1334
           },
           {
             "component": "DataGrid",
@@ -16549,32 +16745,42 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1355
+            "line": 1351
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1356
+            "line": 1352
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1360
+            "line": 1366
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1633
+            "line": 1367
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1634
+            "line": 1371
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1644
+          },
+          {
+            "component": "DataGrid",
+            "file": "packages/react/src/styles.css",
+            "line": 1645
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1508
+            "line": 1519
           },
           {
             "component": "Disclosure",
@@ -16584,7 +16790,7 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1665
+            "line": 1676
           },
           {
             "component": "FilterChip",
@@ -16674,7 +16880,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1590
+            "line": 1601
           },
           {
             "component": "ScrollArea",
@@ -16709,12 +16915,12 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1171
+            "line": 1182
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1172
+            "line": 1183
           },
           {
             "component": "Tabs",
@@ -16884,6 +17090,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -16992,7 +17199,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1287
+            "line": 1298
           },
           {
             "component": "DescriptionList",
@@ -17002,7 +17209,7 @@
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1213
+            "line": 1224
           },
           {
             "component": "Heatmap",
@@ -17024,7 +17231,7 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1213
+            "line": 1224
           },
           {
             "component": "Ltr",
@@ -17112,6 +17319,9 @@
           "Archive the run > TooltipClosed",
           "Archive the run > TooltipOpen",
           "Archive the run > TooltipPlacements",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -17200,6 +17410,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -17252,7 +17463,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1682
+            "line": 1693
           },
           {
             "component": "(css) .stoa-modal",
@@ -17267,27 +17478,27 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1408
+            "line": 1419
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1302
+            "line": 1313
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1350
+            "line": 1361
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1372
+            "line": 1383
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1547
+            "line": 1558
           },
           {
             "component": "Heatmap",
@@ -17389,6 +17600,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Form > Badges",
           "Controls/Form > Fields",
           "Controls/Form > NumberFieldInvalid",
@@ -17455,6 +17669,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -17531,7 +17746,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1682
+            "line": 1693
           },
           {
             "component": "(css) .stoa-code__scroll",
@@ -17571,7 +17786,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1618
+            "line": 1629
           },
           {
             "component": "Tag",
@@ -17761,7 +17976,7 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1673
+            "line": 1684
           },
           {
             "component": "RecordList",
@@ -17945,12 +18160,12 @@
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1207
+            "line": 1218
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1213
+            "line": 1224
           },
           {
             "component": "Kbd",
@@ -17965,17 +18180,17 @@
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1207
+            "line": 1218
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211
+            "line": 1222
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1213
+            "line": 1224
           },
           {
             "component": "PriceYieldField",
@@ -17995,12 +18210,12 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1211
+            "line": 1222
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1596
+            "line": 1607
           },
           {
             "component": "Slider",
@@ -18207,7 +18422,7 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1506
+            "line": 1517
           }
         ],
         "stories": [
@@ -18305,12 +18520,12 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1649
+            "line": 1660
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1650
+            "line": 1661
           },
           {
             "component": "QuantityStepper",
@@ -18453,17 +18668,17 @@
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1437
+            "line": 1448
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1424
+            "line": 1435
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1509
+            "line": 1520
           },
           {
             "component": "EmptyState",
@@ -18473,32 +18688,32 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1689
+            "line": 1700
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1696
+            "line": 1707
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1706
+            "line": 1717
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1541
+            "line": 1552
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1555
+            "line": 1566
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1533
+            "line": 1544
           },
           {
             "component": "PageShell",
@@ -18518,27 +18733,27 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1617
+            "line": 1628
           },
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1177
+            "line": 1188
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1564
+            "line": 1575
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1477
+            "line": 1488
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1484
+            "line": 1495
           },
           {
             "component": "ToastRegion",
@@ -18601,6 +18816,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -18717,7 +18933,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1682
+            "line": 1693
           },
           {
             "component": "(css) .stoa-code__label",
@@ -18787,17 +19003,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1373
+            "line": 1384
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1418
+            "line": 1429
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1421
+            "line": 1432
           },
           {
             "component": "Disclosure",
@@ -18807,17 +19023,17 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1653
+            "line": 1664
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1245
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1459
+            "line": 1470
           },
           {
             "component": "FilterChip",
@@ -18842,17 +19058,17 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1522
+            "line": 1533
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1245
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1238
+            "line": 1249
           },
           {
             "component": "LogView",
@@ -18907,7 +19123,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1234
+            "line": 1245
           },
           {
             "component": "Select",
@@ -19024,6 +19240,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -19117,6 +19336,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -19220,27 +19440,27 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1312
+            "line": 1323
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1365
+            "line": 1376
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1437
+            "line": 1448
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1424
+            "line": 1435
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1428
+            "line": 1439
           },
           {
             "component": "Disclosure",
@@ -19255,22 +19475,22 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1647
+            "line": 1658
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1696
+            "line": 1707
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1705
+            "line": 1716
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1554
+            "line": 1565
           },
           {
             "component": "Kbd",
@@ -19280,7 +19500,7 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1520
+            "line": 1531
           },
           {
             "component": "Panel",
@@ -19305,7 +19525,7 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1177
+            "line": 1188
           },
           {
             "component": "Tag",
@@ -19320,22 +19540,22 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1563
+            "line": 1574
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1580
+            "line": 1591
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1477
+            "line": 1488
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1487
+            "line": 1498
           }
         ],
         "stories": [
@@ -19382,6 +19602,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -19470,6 +19693,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -19558,7 +19782,7 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1653
+            "line": 1664
           },
           {
             "component": "StepList",
@@ -19619,6 +19843,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -19655,7 +19880,7 @@
           {
             "component": "(css) .stoa-calendar__symbol--default",
             "file": "packages/react/src/styles.css",
-            "line": 1688
+            "line": 1699
           },
           {
             "component": "AlertDialog",
@@ -19680,57 +19905,57 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1408
+            "line": 1419
           },
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1412
+            "line": 1423
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1302
+            "line": 1313
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1329
+            "line": 1340
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1506
+            "line": 1517
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1649
+            "line": 1660
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1672
+            "line": 1683
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1675
+            "line": 1686
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1700
+            "line": 1711
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1541
+            "line": 1552
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1547
+            "line": 1558
           },
           {
             "component": "RecordList",
@@ -19740,7 +19965,7 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1491
+            "line": 1502
           },
           {
             "component": "ToastRegion",
@@ -19792,6 +20017,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -20101,6 +20329,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -20265,7 +20504,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1392
+            "line": 1403
           }
         ],
         "stories": [
@@ -20452,7 +20691,7 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1392
+            "line": 1403
           },
           {
             "component": "Disclosure",
@@ -20600,6 +20839,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -20668,7 +20918,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1681
+            "line": 1692
           },
           {
             "component": "(css) .stoa-step__number",
@@ -20683,12 +20933,12 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1407
+            "line": 1418
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1301
+            "line": 1312
           },
           {
             "component": "FilterChip",
@@ -20703,7 +20953,7 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1546
+            "line": 1557
           },
           {
             "component": "ProgressBar",
@@ -20798,6 +21048,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -20958,12 +21211,12 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1258
+            "line": 1269
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1435
+            "line": 1446
           },
           {
             "component": "Panel",
@@ -20983,7 +21236,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1567
+            "line": 1578
           },
           {
             "component": "ToastRegion",
@@ -21033,6 +21286,9 @@
           "Archive the run > TooltipPlacements",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -21095,6 +21351,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -21206,7 +21463,7 @@
           {
             "component": "(css) .stoa-diff__mark",
             "file": "packages/react/src/styles.css",
-            "line": 1571
+            "line": 1582
           },
           {
             "component": "Button",
@@ -21251,17 +21508,17 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1349
+            "line": 1360
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1378
+            "line": 1389
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1390
+            "line": 1401
           },
           {
             "component": "Disclosure",
@@ -21351,7 +21608,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1588
+            "line": 1599
           },
           {
             "component": "Select",
@@ -21545,6 +21802,17 @@
           "Data/ScatterChart > NumericValues",
           "Data/ScatterChart > PeerMap",
           "Data/ScatterChart > XDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Foundations/Colour > SemanticColours",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
@@ -21637,57 +21905,57 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1681
+            "line": 1692
           },
           {
             "component": "(css) .stoa-diff__mark--inserted",
             "file": "packages/react/src/styles.css",
-            "line": 1573
+            "line": 1584
           },
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1407
+            "line": 1418
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1300
+            "line": 1311
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1331
+            "line": 1342
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1505
+            "line": 1516
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1676
+            "line": 1687
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1678
+            "line": 1689
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1703
+            "line": 1714
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1546
+            "line": 1557
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1552
+            "line": 1563
           },
           {
             "component": "Kbd",
@@ -21772,6 +22040,9 @@
           "Archive the run > TooltipPlacements",
           "Case/DetailHeader > BackToTheRow",
           "Case/DetailHeader > OpenCase",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/Inputs > ButtonGroupAlone",
           "Controls/Inputs > ButtonShortcuts",
           "Controls/Inputs > ButtonSmall",
@@ -21866,7 +22137,7 @@
           {
             "component": "(css) /* A replacement: a gap between the struck words and the new ones, so\n   joined scripts (Arabic) do not run the two together. */\n.stoa-diff__mark--deleted + .stoa-diff__mark--inserted",
             "file": "packages/react/src/styles.css",
-            "line": 1577
+            "line": 1588
           },
           {
             "component": "(css) /* LogView and CodeView: a label, the Copy button and its status, and a\n   scroll area as tall as `--code-lines` lines (set by the component). The\n   area is always left to right; its start is the left edge. */\n.stoa-code",
@@ -21911,42 +22182,42 @@
           {
             "component": "Countdown",
             "file": "packages/react/src/styles.css",
-            "line": 1405
+            "line": 1416
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1300
+            "line": 1311
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1309
+            "line": 1320
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1353
+            "line": 1364
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1359
+            "line": 1370
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1368
+            "line": 1379
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1434
+            "line": 1445
           },
           {
             "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
-            "line": 1426
+            "line": 1437
           },
           {
             "component": "DescriptionList",
@@ -21961,12 +22232,12 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1509
+            "line": 1520
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1510
+            "line": 1521
           },
           {
             "component": "Disclosure",
@@ -21981,47 +22252,47 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1653
+            "line": 1664
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1657
+            "line": 1668
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1670
+            "line": 1681
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1689
+            "line": 1700
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1691
+            "line": 1702
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1692
+            "line": 1703
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1699
+            "line": 1710
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1232
+            "line": 1243
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1236
+            "line": 1247
           },
           {
             "component": "FilterChip",
@@ -22071,12 +22342,12 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1540
+            "line": 1551
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1555
+            "line": 1566
           },
           {
             "component": "Kbd",
@@ -22086,37 +22357,37 @@
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1525
+            "line": 1536
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1527
+            "line": 1538
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1532
+            "line": 1543
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1210
+            "line": 1221
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1232
+            "line": 1243
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1236
+            "line": 1247
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1238
+            "line": 1249
           },
           {
             "component": "LogView",
@@ -22206,22 +22477,22 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1210
+            "line": 1221
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1232
+            "line": 1243
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1236
+            "line": 1247
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1595
+            "line": 1606
           },
           {
             "component": "Select",
@@ -22326,7 +22597,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1579
+            "line": 1590
           },
           {
             "component": "TextField",
@@ -22336,22 +22607,22 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1476
+            "line": 1487
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1481
+            "line": 1492
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1485
+            "line": 1496
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1489
+            "line": 1500
           },
           {
             "component": "ToastRegion",
@@ -22433,6 +22704,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -22522,6 +22796,17 @@
           "Data/SourceNote > OfficialWithLink",
           "Data/SourceNote > SimWithLink",
           "Data/SourceNote > Stacked",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -22619,7 +22904,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1450
+            "line": 1461
           },
           {
             "component": "ToastRegion",
@@ -22740,7 +23025,7 @@
           {
             "component": "(css) .stoa-diff__mark--blank",
             "file": "packages/react/src/styles.css",
-            "line": 1574
+            "line": 1585
           },
           {
             "component": "(css) .stoa-shortcuts__list",
@@ -22803,6 +23088,16 @@
             "line": 480
           },
           {
+            "component": "CancellableRequest",
+            "file": "packages/react/src/styles.css",
+            "line": 1167
+          },
+          {
+            "component": "CancellableRequest",
+            "file": "packages/react/src/styles.css",
+            "line": 1171
+          },
+          {
             "component": "Checkbox",
             "file": "packages/react/src/styles.css",
             "line": 678
@@ -22815,37 +23110,37 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1368
+            "line": 1379
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1384
+            "line": 1395
           },
           {
             "component": "DataGridSelectionBar",
             "file": "packages/react/src/styles.css",
-            "line": 1434
+            "line": 1445
           },
           {
             "component": "DataGridSelectionBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1448
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1427
+          },
+          {
+            "component": "DerivationTable",
+            "file": "packages/react/src/styles.css",
+            "line": 1428
+          },
+          {
+            "component": "DerivationTable",
             "file": "packages/react/src/styles.css",
             "line": 1437
-          },
-          {
-            "component": "DerivationTable",
-            "file": "packages/react/src/styles.css",
-            "line": 1416
-          },
-          {
-            "component": "DerivationTable",
-            "file": "packages/react/src/styles.css",
-            "line": 1417
-          },
-          {
-            "component": "DerivationTable",
-            "file": "packages/react/src/styles.css",
-            "line": 1426
           },
           {
             "component": "DescriptionList",
@@ -22855,17 +23150,17 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1502
-          },
-          {
-            "component": "DetailHeader",
-            "file": "packages/react/src/styles.css",
             "line": 1513
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1514
+            "line": 1524
+          },
+          {
+            "component": "DetailHeader",
+            "file": "packages/react/src/styles.css",
+            "line": 1525
           },
           {
             "component": "Disclosure",
@@ -22885,37 +23180,37 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1648
+            "line": 1659
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1694
+            "line": 1705
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1701
+            "line": 1712
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1702
+            "line": 1713
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1233
+            "line": 1244
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1454
+            "line": 1465
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1456
+            "line": 1467
           },
           {
             "component": "FilterChip",
@@ -22940,32 +23235,32 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1542
+            "line": 1553
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1543
+            "line": 1554
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1519
+            "line": 1530
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1521
+            "line": 1532
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1233
+            "line": 1244
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1239
+            "line": 1250
           },
           {
             "component": "PageShell",
@@ -23035,12 +23330,12 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1233
+            "line": 1244
           },
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1239
+            "line": 1250
           },
           {
             "component": "Select",
@@ -23055,7 +23350,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1623
+            "line": 1634
           },
           {
             "component": "StepList",
@@ -23085,7 +23380,7 @@
           {
             "component": "Table",
             "file": "packages/react/src/styles.css",
-            "line": 1176
+            "line": 1187
           },
           {
             "component": "Tabs",
@@ -23105,22 +23400,22 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1562
+            "line": 1573
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1578
+            "line": 1589
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1579
+            "line": 1590
           },
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1580
+            "line": 1591
           },
           {
             "component": "TextField",
@@ -23130,17 +23425,17 @@
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1473
+            "line": 1484
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1474
+            "line": 1485
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1481
+            "line": 1492
           },
           {
             "component": "ToastRegion",
@@ -23217,6 +23512,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -23310,6 +23608,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -23431,6 +23730,11 @@
             "line": 470
           },
           {
+            "component": "CancellableRequest",
+            "file": "packages/react/src/styles.css",
+            "line": 1171
+          },
+          {
             "component": "CodeView",
             "file": "packages/react/src/styles.css",
             "line": 1086
@@ -23438,47 +23742,47 @@
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1359
+            "line": 1370
           },
           {
             "component": "DataGrid",
             "file": "packages/react/src/styles.css",
-            "line": 1385
+            "line": 1396
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1503
+            "line": 1514
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1646
+            "line": 1657
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1689
+            "line": 1700
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1691
+            "line": 1702
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1698
+            "line": 1709
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1447
+            "line": 1458
           },
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1451
+            "line": 1462
           },
           {
             "component": "FilterChip",
@@ -23493,17 +23797,17 @@
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1539
+            "line": 1550
           },
           {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1555
+            "line": 1566
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1526
+            "line": 1537
           },
           {
             "component": "PageShell",
@@ -23553,7 +23857,7 @@
           {
             "component": "SourceNote",
             "file": "packages/react/src/styles.css",
-            "line": 1616
+            "line": 1627
           },
           {
             "component": "StepList",
@@ -23583,12 +23887,12 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1566
+            "line": 1577
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1480
+            "line": 1491
           },
           {
             "component": "TimeSlider",
@@ -23655,6 +23959,9 @@
           "Case/DetailHeader > OpenCase",
           "Case/Timeline > CaseHistory",
           "Case/Timeline > Empty",
+          "Controls/CancellableRequest > Closed",
+          "Controls/CancellableRequest > PutOffer",
+          "Controls/CancellableRequest > Recorded",
           "Controls/FilterBar > Active",
           "Controls/FilterBar > ChipsOnly",
           "Controls/FilterBar > Default",
@@ -23743,6 +24050,7 @@
           "Data/Table > Compact",
           "Data/Table > Empty",
           "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
           "Data/Table > RowHeaders",
           "Data/Table > SignedValues",
           "Data/Table > StickyFirstColumn",
@@ -23831,7 +24139,7 @@
           {
             "component": "(css) .stoa-calendar__symbol",
             "file": "packages/react/src/styles.css",
-            "line": 1680
+            "line": 1691
           },
           {
             "component": "(css) .stoa-shortcuts__list",
@@ -23876,12 +24184,12 @@
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1502
+            "line": 1513
           },
           {
             "component": "DetailHeader",
             "file": "packages/react/src/styles.css",
-            "line": 1509
+            "line": 1520
           },
           {
             "component": "EmptyState",
@@ -23891,27 +24199,12 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1657
+            "line": 1668
           },
           {
             "component": "EventStrip",
             "file": "packages/react/src/styles.css",
-            "line": 1232
-          },
-          {
-            "component": "FilterBar",
-            "file": "packages/react/src/styles.css",
-            "line": 1445
-          },
-          {
-            "component": "FilterBar",
-            "file": "packages/react/src/styles.css",
-            "line": 1447
-          },
-          {
-            "component": "FilterBar",
-            "file": "packages/react/src/styles.css",
-            "line": 1452
+            "line": 1243
           },
           {
             "component": "FilterBar",
@@ -23919,19 +24212,34 @@
             "line": 1456
           },
           {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1458
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1463
+          },
+          {
+            "component": "FilterBar",
+            "file": "packages/react/src/styles.css",
+            "line": 1467
+          },
+          {
             "component": "FindingsList",
             "file": "packages/react/src/styles.css",
-            "line": 1545
+            "line": 1556
           },
           {
             "component": "Letter",
             "file": "packages/react/src/styles.css",
-            "line": 1526
+            "line": 1537
           },
           {
             "component": "LineChart",
             "file": "packages/react/src/styles.css",
-            "line": 1232
+            "line": 1243
           },
           {
             "component": "PageShell",
@@ -23966,7 +24274,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/styles.css",
-            "line": 1232
+            "line": 1243
           },
           {
             "component": "ShortcutList",
@@ -23996,12 +24304,12 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1566
+            "line": 1577
           },
           {
             "component": "Timeline",
             "file": "packages/react/src/styles.css",
-            "line": 1472
+            "line": 1483
           },
           {
             "component": "ToastRegion",
@@ -24252,7 +24560,7 @@
           {
             "component": "FilterBar",
             "file": "packages/react/src/styles.css",
-            "line": 1451
+            "line": 1462
           },
           {
             "component": "FilterChip",
@@ -24327,7 +24635,7 @@
           {
             "component": "TextDiff",
             "file": "packages/react/src/styles.css",
-            "line": 1578
+            "line": 1589
           },
           {
             "component": "ToastRegion",
@@ -24443,6 +24751,17 @@
           "Data/Heatmap > Liquidity",
           "Data/Heatmap > Sparse",
           "Data/Heatmap > TimeDirection",
+          "Data/Table > Basic",
+          "Data/Table > Compact",
+          "Data/Table > Empty",
+          "Data/Table > HiddenCaption",
+          "Data/Table > RowAction",
+          "Data/Table > RowHeaders",
+          "Data/Table > SignedValues",
+          "Data/Table > StickyFirstColumn",
+          "Data/Table > StickyHeader",
+          "Data/Table > Trades",
+          "Data/Table > WrapHeaders",
           "Layout/Panel > ArabicDigits",
           "Layout/Panel > ArabicPage",
           "Layout/Panel > Header",
@@ -24519,12 +24838,12 @@
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1650
+            "line": 1661
           },
           {
             "component": "EventCalendar",
             "file": "packages/react/src/styles.css",
-            "line": 1657
+            "line": 1668
           },
           {
             "component": "QuantityStepper",

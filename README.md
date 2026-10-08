@@ -39,7 +39,7 @@ follow as the products need them.
     axis and a numeric or categorical value axis (ratings from AAA
     down); it is one tab stop whose arrow keys walk the points (left and
     right by x, up and down from the top) and read each one through a
-    live region, and its data table is the way to read every value.
+    live region, and its data table is the way to read every value (on a phone its headers take more lines rather than widen it).
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
     columns, sorting, selection, inline editing, a tone per cell (a
     symbol in the status colour, never the colour alone) and cells drawn
@@ -78,6 +78,11 @@ follow as the products need them.
     gives for having no answer is shown in words under the typed field)
     and QuantityStepper (an order's size in lots between a minus and a
     plus button, the lot's size and the order's size in bonds in words).
+  - Requests: CancellableRequest (a request made after a confirmation in
+    an AlertDialog, then shown as recorded beside a Cancel button until
+    its deadline, and a sentence once it has passed; the focus moves to
+    the button that replaces the one pressed, and the deadline line
+    describes both buttons).
   - Records and letters: Timeline (what happened to a record, oldest
     first, grouped by day under a heading per day, an emphasised entry
     told by a bar, a symbol and a word), DetailHeader (Back, the title
@@ -212,7 +217,11 @@ that removes it:
 
 Once the control has left the document, and only if the focus went with
 it, the focus moves to the next tab stop where it was, or the one before.
-Where the action has an obvious next place (the grid's active cell after
+A Table needs nothing more for a row action: a column whose cell is a
+Button that calls it before the row goes moves the focus to the next
+row's button; after the last row, to the next tab stop after the table,
+or to the previous row's button when nothing follows the table (the "Row
+action" story in Data/Table). Where the action has an obvious next place (the grid's active cell after
 a bulk change, the step that follows a skipped one), focus that place
 directly instead.
 

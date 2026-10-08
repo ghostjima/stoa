@@ -137,6 +137,7 @@ export {
 export { BREAKPOINTS, breakpointQueries, useBreakpoint, useMediaQuery, type Breakpoint } from "./media";
 // Overlays, lists and content.
 export { Dialog, Sheet, AlertDialog, type DialogProps, type SheetProps, type AlertDialogProps, type OverlayOpenProps } from "./Dialog";
+export { CancellableRequest, type CancellableRequestProps } from "./CancellableRequest";
 export { ReorderableList, type ReorderableItem, type ReorderableListProps } from "./ReorderableList";
 export { StepList, type Step, type StepStatus, type StepListProps } from "./StepList";
 export { SourceNote, type SourceNoteKind, type SourceNoteProps } from "./SourceNote";

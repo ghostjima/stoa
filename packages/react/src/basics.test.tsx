@@ -3,7 +3,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createRef } from "react";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { AppHeader, Button, Heatmap, I18nProvider, Ladder, Panel, StatBar, TradeTable, type HeatmapHandle } from "./index";
+import { AppHeader, Button, Heatmap, I18nProvider, Ladder, Panel, StatBar, TradeTable, type HeatmapHandle, type LadderHandle } from "./index";
 
 afterEach(() => {
   cleanup();
@@ -202,6 +202,32 @@ describe("the ladder's text alternative", () => {
     const { container } = render(<Ladder label="Book" data={[1, 1, 99, 100, 99.1, 50]} announceEvery={5000} />);
     expect(container.querySelector("figcaption")?.textContent).toContain("best bid 99.00");
     vi.useRealTimers();
+  });
+
+  it("says nothing of the book before its first frame, and that it is empty once an empty book is drawn", () => {
+    const context = new Proxy({ measureText: () => ({ width: 0 }) } as Record<string, unknown>, {
+      get: (target, key) => (key in target ? target[key as string] : () => {}),
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const ladder = createRef<LadderHandle>();
+    const { container } = render(<Ladder label="Book" ref={ladder} />);
+    const caption = container.querySelector("figcaption")!;
+    // Drawn through the handle, the book has not come yet: not empty.
+    expect(caption.textContent).toBe("");
+    expect(caption.getAttribute("aria-live")).toBe("polite");
+    act(() => ladder.current!.draw(null));
+    expect(caption.textContent).toBe("The book is empty.");
+  });
+
+  it("says the book is empty when it is given as empty", () => {
+    const context = new Proxy({ measureText: () => ({ width: 0 }) } as Record<string, unknown>, {
+      get: (target, key) => (key in target ? target[key as string] : () => {}),
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const { container } = render(<Ladder label="Book" data={null} />);
+    expect(container.querySelector("figcaption")?.textContent).toBe("The book is empty.");
   });
 });
 

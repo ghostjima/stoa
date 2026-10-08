@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useState } from "react";
 import { formatDate } from "./chartScale";
+import { Button } from "./Controls";
+import { keepFocusInPlace } from "./focus";
+import { VisuallyHidden } from "./LiveRegion";
+import { Ltr } from "./Ltr";
 import { useStoaFormat } from "./locale";
 import { Panel } from "./Panel";
 import { Table, type TableColumn } from "./Table";
@@ -215,6 +220,97 @@ export const SignedValues: StoryObj = {
           { id: "latency", header: h.latency, numeric: true, cell: (m) => `${locale.decimal(m.latency, 1)} ms` },
         ]}
       />
+    );
+  },
+};
+
+type Holding = { id: string; name: string; bonds: number; face: number };
+
+const HOLDINGS: Holding[] = [
+  { id: "RU000A1F3", name: "Northline Energy 2028", bonds: 40, face: 1000 },
+  { id: "RU000A0ZZ", name: "Volga Rail 2027", bonds: 15, face: 1000 },
+  { id: "SU26238", name: "OFZ 26238", bonds: 120, face: 1000 },
+];
+
+const HOLDING_WORDS = {
+  en: {
+    caption: "Holdings",
+    issue: "Issue",
+    bonds: "Bonds",
+    face: "Face value, RUB",
+    action: "Action",
+    remove: "Remove",
+    restore: "Restore holdings",
+    empty: "No holdings.",
+  },
+  ar: {
+    caption: "المحفظة",
+    issue: "الإصدار",
+    bonds: "السندات",
+    face: "القيمة الاسمية، روبل",
+    action: "الإجراء",
+    remove: "إزالة",
+    restore: "استعادة المحفظة",
+    empty: "لا توجد سندات في المحفظة.",
+  },
+};
+
+/** A row action: each holding has its own Remove button, a cell drawn as
+ * a node, named by the issue it removes. The button calls
+ * `keepFocusInPlace` before the row leaves, so the focus moves to the
+ * next row's Remove; when the last row goes, to the next tab stop after
+ * the table, here none, so to the previous row's Remove; and to Restore
+ * above the table once it is empty: never to the page's body. */
+export const RowAction: StoryObj = {
+  render: () => {
+    const locale = useStoaFormat();
+    const w = HOLDING_WORDS[locale.locale.startsWith("ar") ? "ar" : "en"];
+    const [rows, setRows] = useState(HOLDINGS);
+    return (
+      <Panel title={w.caption}>
+        <div>
+          <Button onPress={() => setRows(HOLDINGS)}>{w.restore}</Button>
+        </div>
+        <Table<Holding>
+          caption={w.caption}
+          hideCaption
+          rowKey={(h) => h.id}
+          emptyText={w.empty}
+          rowHeader="issue"
+          wrapHeaders
+          rows={rows}
+          columns={[
+            {
+              id: "issue",
+              header: w.issue,
+              cell: (h) => (
+                <>
+                  <Ltr>{h.id}</Ltr> {h.name}
+                </>
+              ),
+            },
+            { id: "bonds", header: w.bonds, numeric: true, cell: (h) => locale.integer(h.bonds) },
+            { id: "face", header: w.face, numeric: true, cell: (h) => locale.integer(h.bonds * h.face) },
+            {
+              id: "action",
+              header: <VisuallyHidden>{w.action}</VisuallyHidden>,
+              align: "end",
+              cell: (h) => (
+                <Button
+                  size="small"
+                  variant="ghost"
+                  onPress={(e) => {
+                    keepFocusInPlace(e.target);
+                    setRows((all) => all.filter((other) => other.id !== h.id));
+                  }}
+                >
+                  {w.remove} <VisuallyHidden>{h.id}</VisuallyHidden>
+                </Button>
+              ),
+            },
+          ]}
+        />
+      </Panel>
     );
   },
 };

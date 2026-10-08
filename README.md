@@ -208,7 +208,11 @@ that removes it:
 
 Once the control has left the document, and only if the focus went with
 it, the focus moves to the next tab stop where it was, or the one before.
-Where the action has an obvious next place (the grid's active cell after
+A Table needs nothing more for a row action: a column whose cell is a
+Button that calls it before the row goes moves the focus to the next
+row's button; after the last row, to the next tab stop after the table,
+or to the previous row's button when nothing follows the table (the "Row
+action" story in Data/Table). Where the action has an obvious next place (the grid's active cell after
 a bulk change, the step that follows a skipped one), focus that place
 directly instead.
 

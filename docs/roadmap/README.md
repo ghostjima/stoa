@@ -23,7 +23,8 @@ works right to left.
   shell, controls and forms (multi-line text and radio groups among
   them), overlays, feedback and empty states, tables,
   the data grid, charts and market views, code and maths display, the
-  agent's step list and log. The README lists them.
+  agent's step list and log, a request that can be cancelled until its
+  deadline. The README lists them.
 - **Evidence**: unit and browser tests, an axe sweep over every story in
   four modes (light and dark, left to right and right to left), contrast
   checks, CSS size; the badges on the README show the current numbers.

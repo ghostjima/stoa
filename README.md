@@ -76,6 +76,11 @@ follow as the products need them.
     gives for having no answer is shown in words under the typed field)
     and QuantityStepper (an order's size in lots between a minus and a
     plus button, the lot's size and the order's size in bonds in words).
+  - Requests: CancellableRequest (a request made after a confirmation in
+    an AlertDialog, then shown as recorded beside a Cancel button until
+    its deadline, and a sentence once it has passed; the focus moves to
+    the button that replaces the one pressed, and the deadline line
+    describes both buttons).
   - Records and letters: Timeline (what happened to a record, oldest
     first, grouped by day under a heading per day, an emphasised entry
     told by a bar, a symbol and a word), DetailHeader (Back, the title

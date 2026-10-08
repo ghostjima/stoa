@@ -44,15 +44,9 @@ contrast coverage.
    step list.
 3. **For Tyche Bonds.** A derivation table that shows how a figure was
    worked out, step by step, with its source; a countdown for offer dates.
-4. **Known defects.** A canvas does not refit when only its height
-   changes; focus after a dialog opened from a grid editor lands after the
-   grid; line boxes grow when the Arabic digit face arrives; table headers
-   do not wrap; the record list draws a frame late and loses focus on a pointer
-   pick; tabs do not handle overflow; a text field's description takes text
-   only.
-5. **Tokens.** Token sources to DTCG 2025.10; light and dark times density
+4. **Tokens.** Token sources to DTCG 2025.10; light and dark times density
    in the build; z-index, scrim and dimension tokens.
-6. **Storybook as the public face**, published with the products:
+5. **Storybook as the public face**, published with the products:
    foundations (tokens in light and dark, the live verification report),
    components with usage rules, and how each promise is checked.
 

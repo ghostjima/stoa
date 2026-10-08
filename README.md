@@ -56,7 +56,9 @@ follow as the products need them.
     state, folded into a sheet on a phone), Toolbar and ButtonGroup, Tabs,
     Disclosure, TextArea (multi-line text that grows with its lines up
     to a set number, then scrolls, with a count of the characters used
-    when it has a limit, the few left announced politely) and RadioGroup
+    when it has a limit, the few left announced politely, and with `lang`
+    for text in another language than the page's, set on the textarea
+    with that language's direction) and RadioGroup
     (one of several options, each with an optional description, stacked
     or in a row). A labelled control shows
     its label by default; `hideLabel` keeps it for assistive technology

@@ -31,6 +31,8 @@ const WORDS = {
     reason: "Reason for the extension",
     reasonError: "Say which documents are awaited and from whom.",
     readOnly: "Signed reply",
+    letter: "Text of the letter",
+    letterDescription: "The letter is in Russian, the client's language.",
   },
   ar: {
     panel: "المراجعة",
@@ -53,8 +55,16 @@ const WORDS = {
     reason: "سبب التمديد",
     reasonError: "اذكر المستندات المنتظرة والجهة التي ستقدمها.",
     readOnly: "الرد الموقَّع",
+    letter: "نص الرسالة",
+    letterDescription: "الرسالة بالروسية، لغة العميل.",
   },
 };
+
+const RUSSIAN_LETTER = [
+  "Уважаемый клиент,",
+  "мы рассмотрели ваше обращение. Использование карты приостановлено: сведения о вас есть в базе данных Банка России.",
+  "Вы можете подать заявление об исключении сведений через банк или через интернет-приёмную Банка России.",
+].join("\n");
 
 function useWords() {
   return WORDS[useStoaFormat().locale.startsWith("ar") ? "ar" : "en"];
@@ -72,6 +82,23 @@ export const Default: StoryObj = {
           <TextArea label={w.label} description={w.description} value={text} onChange={setText} maxRows={6} dir="auto" />
         </div>
       </Panel>
+    );
+  },
+};
+
+/** A letter in the client's language, not the page's. The field's text
+ * is marked `lang="ru"`: the browser checks its spelling in Russian and a
+ * screen reader reads it in Russian, while the label and the description
+ * stay in the page's language. On the Arabic page the Russian text still
+ * runs left to right, as its language does. */
+export const OtherLanguage: StoryObj = {
+  render: () => {
+    const w = useWords();
+    const [text, setText] = useState(RUSSIAN_LETTER);
+    return (
+      <div style={column}>
+        <TextArea label={w.letter} description={w.letterDescription} value={text} onChange={setText} lang="ru" rows={6} maxRows={10} />
+      </div>
     );
   },
 };

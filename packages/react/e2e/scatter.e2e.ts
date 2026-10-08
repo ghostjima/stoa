@@ -128,3 +128,35 @@ test("an empty chart says so and is not a tab stop", async ({ page }) => {
   await expect(page.locator(".stoa-scatter figcaption")).toHaveText("No data to show.");
   await expect(page.getByRole("application")).toHaveCount(0);
 });
+
+// The data table on a phone: its column and row headers take more lines
+// rather than widen the table, so at 375 px it fits its box, needs no
+// sideways scroll and is not a scroll region, in both directions.
+for (const [name, globals] of [
+  ["left to right", "lang:en"],
+  ["right to left", "dir:rtl;lang:ar"],
+] as const)
+  test(`the data table fits a 375 px phone without scrolling sideways, ${name}`, async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto(story("peer-map", globals));
+    await page.locator(".stoa-chart__data summary").click();
+    const region = page.locator(".stoa-chart__data .stoa-table-region");
+    await expect(region.locator("tbody tr").first()).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const fit = await region.evaluate((el) => ({ scroll: el.scrollWidth, client: el.clientWidth }));
+    expect(fit.scroll, `table ${fit.scroll} px in a box of ${fit.client} px`).toBeLessThanOrEqual(fit.client);
+    await expect(region).not.toHaveAttribute("role", "region");
+    await expect(region).not.toHaveAttribute("tabindex", "0");
+    // It fits because headers wrap: some header's text takes two lines.
+    const lines = await region.locator("th").evaluateAll((ths) =>
+      Math.max(
+        ...ths.map((th) => {
+          const range = document.createRange();
+          range.selectNodeContents(th);
+          return new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size;
+        }),
+      ),
+    );
+    expect(lines).toBeGreaterThan(1);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+  });

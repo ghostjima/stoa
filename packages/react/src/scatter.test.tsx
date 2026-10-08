@@ -385,6 +385,11 @@ describe("ScatterChart", () => {
     ]);
   });
 
+  it("lets the data table's column and row headers wrap, so it fits a phone", () => {
+    const { container } = render(peers({ dataTable: "toggle" }));
+    expect(container.querySelector("details table")!.classList).toContain("stoa-table--wrap-headers");
+  });
+
   it("takes a numeric value axis: top is the highest value, and the summary goes low to high", () => {
     vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "performance"] });
     render(

@@ -609,7 +609,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 128,
+            "line": 130,
             "via": "--stoa-color-warning"
           },
           {
@@ -832,7 +832,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 128,
+            "line": 130,
             "via": "--stoa-color-warning"
           },
           {
@@ -1538,7 +1538,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 132,
+            "line": 134,
             "via": "--stoa-color-focus"
           },
           {
@@ -2105,7 +2105,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 132,
+            "line": 134,
             "via": "--stoa-color-focus"
           },
           {
@@ -3463,7 +3463,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 133,
+            "line": 135,
             "via": "readScatterTokens"
           },
           {
@@ -3826,7 +3826,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 130,
+            "line": 132,
             "via": "readScatterTokens"
           },
           {
@@ -4247,7 +4247,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 132,
+            "line": 134,
             "via": "readScatterTokens"
           },
           {
@@ -7613,7 +7613,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 133,
+            "line": 135,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -8180,7 +8180,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 133,
+            "line": 135,
             "via": "--stoa-color-border-strong"
           },
           {
@@ -11147,7 +11147,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 130,
+            "line": 132,
             "via": "--stoa-color-down"
           },
           {
@@ -11528,7 +11528,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 130,
+            "line": 132,
             "via": "--stoa-color-down"
           },
           {
@@ -12972,7 +12972,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 129,
+            "line": 131,
             "via": "--stoa-color-up"
           },
           {
@@ -13211,7 +13211,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 129,
+            "line": 131,
             "via": "--stoa-color-up"
           },
           {
@@ -15040,7 +15040,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 129,
+            "line": 131,
             "via": "readScatterTokens"
           },
           {
@@ -15328,7 +15328,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 128,
+            "line": 130,
             "via": "readScatterTokens"
           },
           {
@@ -15504,7 +15504,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 136,
+            "line": 138,
             "via": "readScatterTokens"
           },
           {
@@ -15635,7 +15635,7 @@
           {
             "component": "ScatterChart",
             "file": "packages/react/src/ScatterChart.tsx",
-            "line": 135,
+            "line": 137,
             "via": "readScatterTokens"
           },
           {

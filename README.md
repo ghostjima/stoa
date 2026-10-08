@@ -39,7 +39,7 @@ follow as the products need them.
     axis and a numeric or categorical value axis (ratings from AAA
     down); it is one tab stop whose arrow keys walk the points (left and
     right by x, up and down from the top) and read each one through a
-    live region, and its data table is the way to read every value.
+    live region, and its data table is the way to read every value (on a phone its headers take more lines rather than widen it).
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
     columns, sorting, selection, inline editing, a tone per cell (a
     symbol in the status colour, never the colour alone) and cells drawn

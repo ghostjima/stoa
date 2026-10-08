@@ -73,7 +73,9 @@ export type ScatterChartProps = {
   /** Height of the drawing, in CSS pixels. */
   height?: number;
   /** How the data table is offered: "hidden" (the default) to assistive
-   * technology only, "toggle" behind a disclosure everyone can open. */
+   * technology only, "toggle" behind a disclosure everyone can open. Its
+   * column and row headers wrap (Table's `wrapHeaders`): on a phone they
+   * take more lines rather than widen the table past its box. */
   dataTable?: "hidden" | "toggle";
   /** The ids of the categories whose points the data table lists; every
    * category by default. */
@@ -560,6 +562,7 @@ export function ScatterChart({
       hideCaption
       emptyText={summary}
       scrollable={scrollable}
+      wrapHeaders
     />
   );
 

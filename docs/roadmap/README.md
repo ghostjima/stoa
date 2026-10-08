@@ -23,7 +23,8 @@ works right to left.
   shell, controls and forms (multi-line text and radio groups among
   them), overlays, feedback and empty states, tables,
   the data grid, charts and market views, code and maths display, the
-  agent's step list and log. The README lists them.
+  agent's step list and log, a request that can be cancelled until its
+  deadline. The README lists them.
 - **Evidence**: unit and browser tests, an axe sweep over every story in
   four modes (light and dark, left to right and right to left), contrast
   checks, CSS size; the badges on the README show the current numbers.
@@ -44,16 +45,9 @@ contrast coverage.
    step list.
 3. **For Tyche Bonds.** A derivation table that shows how a figure was
    worked out, step by step, with its source; a countdown for offer dates.
-4. **Known defects.** A canvas does not refit when only its height
-   changes; the order book announces an empty book before its first frame;
-   focus after a dialog opened from a grid editor lands after the grid;
-   line boxes grow when the Arabic digit face arrives; table headers do not
-   wrap; the record list draws a frame late and loses focus on a pointer
-   pick; tabs do not handle overflow; a text field's description takes text
-   only.
-5. **Tokens.** Token sources to DTCG 2025.10; light and dark times density
+4. **Tokens.** Token sources to DTCG 2025.10; light and dark times density
    in the build; z-index, scrim and dimension tokens.
-6. **Storybook as the public face**, published with the products:
+5. **Storybook as the public face**, published with the products:
    foundations (tokens in light and dark, the live verification report),
    components with usage rules, and how each promise is checked.
 

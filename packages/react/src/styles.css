@@ -1157,6 +1157,17 @@
 .stoa-statbar__item--metric .stoa-metric__unit,
 .stoa-statbar__item--metric .stoa-metric__basis,
 .stoa-statbar__item--metric .stoa-badge { font-size: inherit; }
+/* CancellableRequest: the deadline line, then the request button, or what
+   was recorded beside Cancel, or the sentence that requests are closed. */
+.stoa-request { display: grid; gap: var(--stoa-space-2); justify-items: start; min-inline-size: 0; }
+.stoa-request__deadline { margin: 0; }
+.stoa-request__recorded {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--stoa-space-2) var(--stoa-space-3); min-inline-size: 0;
+}
+.stoa-request__text { margin: 0; min-inline-size: 0; overflow-wrap: anywhere; }
+.stoa-request__closed { margin: 0; color: var(--stoa-color-text-muted); }
+
 /* ==== Table and charts ==== */
 
 /* Table: a table larger than its box scrolls inside this region, never

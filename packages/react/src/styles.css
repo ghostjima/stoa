@@ -955,15 +955,20 @@
 .stoa-shortcuts__row[data-disabled] dd { color: var(--stoa-color-text-subtle); }
 
 /* ReorderableList: rows with a drag handle, the content and the move and
-   remove buttons, each at least 24 px square (WCAG 2.5.8). */
-.stoa-reorder__list { display: grid; gap: var(--stoa-space-1); outline: none; }
+   remove buttons, each at least 24 px square (WCAG 2.5.8). A row is never
+   wider than its list: the list's one column is as wide as the list
+   (sized by its content, the widest row's longest word widened it past
+   the list), a word longer than the content's width breaks, and where the
+   content would be narrower than 10rem the buttons go under it, at the
+   row's end. */
+.stoa-reorder__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--stoa-space-1); outline: none; }
 .stoa-reorder__list[data-focus-visible] {
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: var(--stoa-focus-offset);
   border-radius: var(--stoa-radius-md);
 }
 .stoa-reorder__item {
-  display: flex; align-items: center; gap: var(--stoa-space-2);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2);
   padding: var(--stoa-space-1) var(--stoa-space-2);
   background: var(--stoa-color-surface);
   border: 1px solid var(--stoa-color-border);
@@ -987,8 +992,8 @@
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
   outline-offset: calc(-1 * var(--stoa-focus-width));
 }
-.stoa-reorder__content { flex: 1; min-inline-size: 0; }
-.stoa-reorder__controls { flex: none; display: flex; gap: var(--stoa-space-1); }
+.stoa-reorder__content { flex: 1 1 10rem; min-inline-size: 0; overflow-wrap: anywhere; }
+.stoa-reorder__controls { flex: none; display: flex; gap: var(--stoa-space-1); margin-inline-start: auto; }
 .stoa-reorder__move, .stoa-reorder__remove {
   display: inline-grid; place-items: center;
   min-inline-size: var(--stoa-space-6); min-block-size: var(--stoa-space-6); padding: 0;

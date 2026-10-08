@@ -60,6 +60,16 @@ test("a textarea refits when its width changes the wrapping", async ({ page }) =
   await expect.poll(async () => (await metrics(field)).height).toBeGreaterThan(wide.height);
 });
 
+test("a textarea in another language than the page keeps its language and runs in its direction, the label in the page's", async ({ page }) => {
+  await page.goto(story("controls-textarea--other-language", "dir:rtl;lang:ar"));
+  const field = page.getByRole("textbox", { name: "نص الرسالة" });
+  await expect(field).toHaveAttribute("lang", "ru");
+  expect(await field.evaluate((el) => getComputedStyle(el).direction)).toBe("ltr");
+  expect(await page.getByText("نص الرسالة").evaluate((el) => getComputedStyle(el).direction)).toBe("rtl");
+  // The page's language is Arabic; the text's is Russian.
+  expect(await field.evaluate((el) => (el.closest("[lang]:not(textarea)") as HTMLElement | null)?.lang)).toBe("ar");
+});
+
 test("a textarea with a limit takes no more than its limit, and says so", async ({ page }) => {
   await page.goto(story("controls-textarea--character-count"));
   const field = page.getByRole("textbox", { name: "Note to the client" });

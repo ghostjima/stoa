@@ -39,6 +39,24 @@ describe("TextArea", () => {
     expect(screen.getByText("Concerns").className).toBe("stoa-field__label");
   });
 
+  it("marks its text's language on the textarea, not on the label, and runs in that language's direction unless dir says otherwise", () => {
+    const field = (props: { lang?: string; dir?: "ltr" | "rtl" | "auto" }) => {
+      cleanup();
+      render(<TextArea label="Letter" description="In the client's language." value="Уважаемый клиент" onChange={() => {}} {...props} />);
+      return screen.getByRole("textbox", { name: "Letter" });
+    };
+    const russian = field({ lang: "ru" });
+    expect([russian.getAttribute("lang"), russian.getAttribute("dir")]).toEqual(["ru", "ltr"]);
+    expect(screen.getByText("Letter").closest("[lang]")).toBeNull();
+    expect(screen.getByText("In the client's language.").closest("[lang]")).toBeNull();
+    const arabic = field({ lang: "ar-EG" });
+    expect([arabic.getAttribute("lang"), arabic.getAttribute("dir")]).toEqual(["ar-EG", "rtl"]);
+    const chosen = field({ lang: "ar", dir: "auto" });
+    expect(chosen.getAttribute("dir")).toBe("auto");
+    const plain = field({});
+    expect([plain.hasAttribute("lang"), plain.hasAttribute("dir")]).toEqual([false, false]);
+  });
+
   it("keeps its label for assistive technology only with hideLabel", () => {
     render(<TextArea label="Concerns" hideLabel value="" onChange={() => {}} />);
     expect(screen.getByText("Concerns").className).toBe("stoa-visually-hidden");

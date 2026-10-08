@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, type ReactNode, type Ref } from "react";
 import { Label, Text, TextArea as AriaTextArea, TextField as AriaTextField } from "react-aria-components";
+import { directionOf } from "./firstPaint";
 import { FieldErrorMessage } from "./Form";
 import { LiveRegion } from "./LiveRegion";
 import { useStoaFormat, type PluralCategory } from "./locale";
@@ -19,8 +20,15 @@ export type TextAreaProps = {
    * no controls, as TextField's. */
   description?: ReactNode;
   placeholder?: string;
-  /** Direction of the typed text; "auto" follows its first letter. */
+  /** Direction of the typed text; "auto" follows its first letter.
+   * Without it, a field with `lang` runs in its language's direction. */
   dir?: "ltr" | "rtl" | "auto";
+  /** The language of the text, when it is not the page's ("ru" for a
+   * letter in Russian on an English page). Set on the textarea, so the
+   * browser checks the spelling and hyphenates in that language and a
+   * screen reader reads the text in it; the label and the description
+   * stay in the page's language. */
+  lang?: string;
   /** Lines shown while the text is short, 3 by default. */
   rows?: number;
   /** The field grows with its text up to this many lines, 8 by default,
@@ -86,6 +94,7 @@ export function TextArea({
   description,
   placeholder,
   dir,
+  lang,
   rows = 3,
   maxRows = 8,
   maxLength,
@@ -169,7 +178,8 @@ export function TextArea({
         ref={setRef}
         className="stoa-field__input stoa-textarea__input"
         placeholder={placeholder}
-        dir={dir}
+        lang={lang}
+        dir={dir ?? (lang ? directionOf(lang) : undefined)}
         rows={rows}
       />
       {(hasDescription || counted) && (

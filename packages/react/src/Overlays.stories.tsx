@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
 import { CodeView, LogView } from "./Code";
+import { Tag, type TagTone } from "./Chips";
 import { Button } from "./Controls";
 import { AlertDialog, Dialog, Sheet } from "./Dialog";
 import { DescriptionList, type DescriptionItem } from "./DescriptionList";
@@ -11,7 +12,9 @@ import { ReorderableList, type ReorderableItem } from "./ReorderableList";
 import { ShortcutList, ShortcutsDialog, type ShortcutGroup } from "./Shortcuts";
 import { RecordList, type RecordListHandle, type RecordListItem } from "./RecordList";
 import { StepList, type Step } from "./StepList";
+import { Switch } from "./Toggles";
 import { Tooltip } from "./Tooltip";
+import { useFormatters } from "./format";
 import { useStoaFormat } from "./locale";
 
 const meta: Meta = { title: "Overlays, lists and content" };
@@ -325,6 +328,111 @@ export const StepsReorderable: StoryObj = {
           reorderable
           onReorder={setSteps}
           onRemove={(step) => setSteps((all) => all.filter((other) => other.id !== step.id))}
+        />
+      </Panel>
+    );
+  },
+};
+
+type Words = { en: string; ru: string; ar: string };
+
+type LongStep = { id: string; title: Words; code?: string; kind: Words; risk: Words; tone: TagTone; confidence: number; reason?: Words };
+
+const LONG_STEPS: LongStep[] = [
+  {
+    id: "classify",
+    title: { en: "Classify the complaint", ru: "Классифицировать обращение", ar: "تصنيف الشكوى" },
+    kind: { en: "Classification", ru: "Классификация", ar: "التصنيف" },
+    risk: { en: "low risk", ru: "низкий риск", ar: "مخاطر منخفضة" },
+    tone: "neutral",
+    confidence: 0.92,
+  },
+  {
+    id: "reuse",
+    title: { en: "Use the facts of linked case", ru: "Взять факты из связанного дела", ar: "استخدام وقائع القضية المرتبطة" },
+    code: "CMP-2026-000731",
+    kind: { en: "Facts from a linked case", ru: "Факты из связанного дела", ar: "وقائع من قضية مرتبطة" },
+    risk: { en: "medium risk", ru: "средний риск", ar: "مخاطر متوسطة" },
+    tone: "warning",
+    confidence: 0.81,
+  },
+  {
+    id: "review",
+    title: {
+      en: "Hand the draft to legal review",
+      ru: "Передать проект ответа на юридическую проверку",
+      ar: "تسليم مسودة الرد إلى المراجعة القانونية",
+    },
+    kind: { en: "Handover", ru: "Передача на проверку", ar: "التسليم للمراجعة" },
+    risk: { en: "high risk", ru: "высокий риск", ar: "مخاطر عالية" },
+    tone: "negative",
+    confidence: 0.67,
+    reason: {
+      en: "High-risk steps always ask",
+      ru: "Шаги с высоким риском спрашивают всегда",
+      ar: "الخطوات عالية المخاطر تسأل دائمًا",
+    },
+  },
+];
+
+/** A plan's steps with long titles, a line of facts under each and a
+ * switch, in a reorderable list with Remove: each row wraps its words and
+ * stays inside the panel on a phone, in Russian (the longer of the
+ * products' languages) and in Arabic, right to left. */
+export const StepsReorderableLongText: StoryObj = {
+  render: () => {
+    const { locale } = useStoaFormat();
+    const { percent } = useFormatters();
+    const lang = locale.startsWith("ar") ? "ar" : locale.startsWith("ru") ? "ru" : "en";
+    const [ids, setIds] = useState(LONG_STEPS.map((s) => s.id));
+    const [asks, setAsks] = useState<Record<string, boolean>>({ reuse: true });
+    const steps: Step[] = ids.flatMap((id) => {
+      const s = LONG_STEPS.find((other) => other.id === id);
+      if (!s) return [];
+      return [
+        {
+          id: s.id,
+          title: s.code ? (
+            <>
+              {s.title[lang]} <Ltr>{s.code}</Ltr>
+            </>
+          ) : (
+            s.title[lang]
+          ),
+          textValue: s.code ? `${s.title[lang]} ${s.code}` : s.title[lang],
+          status: "waiting",
+          explanation: (
+            <span style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: "var(--stoa-space-1) var(--stoa-space-3)" }}>
+              <Tag size="small" tone={s.tone}>
+                {s.risk[lang]}
+              </Tag>
+              <span>{s.kind[lang]}</span>
+              <span>{percent(s.confidence, 0)}</span>
+            </span>
+          ),
+          actions: (
+            <Switch
+              size="small"
+              isSelected={s.reason ? true : (asks[s.id] ?? false)}
+              onChange={(value) => setAsks((all) => ({ ...all, [s.id]: value }))}
+              isDisabled={s.reason !== undefined}
+              disabledReason={s.reason?.[lang]}
+            >
+              {{ en: "Ask first", ru: "Спросить заранее", ar: "اسأل أولًا" }[lang]}
+            </Switch>
+          ),
+        },
+      ];
+    });
+    const title = { en: "Plan", ru: "План", ar: "الخطة" }[lang];
+    return (
+      <Panel title={title}>
+        <StepList
+          label={title}
+          steps={steps}
+          reorderable
+          onReorder={(next) => setIds(next.map((s) => s.id))}
+          onRemove={(step) => setIds((all) => all.filter((id) => id !== step.id))}
         />
       </Panel>
     );

@@ -39,7 +39,7 @@ follow as the products need them.
     axis and a numeric or categorical value axis (ratings from AAA
     down); it is one tab stop whose arrow keys walk the points (left and
     right by x, up and down from the top) and read each one through a
-    live region, and its data table is the way to read every value.
+    live region, and its data table is the way to read every value (on a phone its headers take more lines rather than widen it).
   - DataGrid: a virtualised ARIA grid for large tables, with pinned
     columns, sorting, selection, inline editing, a tone per cell (a
     symbol in the status colour, never the colour alone) and cells drawn
@@ -108,7 +108,9 @@ follow as the products need them.
     panel's figures come from: the source's tag, a sentence and a link),
     AppHeader, PageShell.
   - Overlays, lists and content: Dialog, Sheet, AlertDialog, Tooltip,
-    ReorderableList, RecordList (the list of a master-detail view, whose
+    ReorderableList (a row is never wider than the list: a word longer
+    than the row breaks, and on a narrow screen the row's buttons go under
+    its content), RecordList (the list of a master-detail view, whose
     `focusRecord(id)` puts the focus on a record, even right after the
     list mounts),
     StepList, DescriptionList, LogView, CodeView, and Ltr, an inline

@@ -85,7 +85,8 @@ function draw(
 
 /** An order-book ladder on a canvas: asks above, bids below, a size bar
  * per level, redrawn when its box changes size. Screen readers get the top of the book as text, updated at
- * most every `announceEvery` milliseconds (five seconds by default). Side markers, digits and the text follow the
+ * most every `announceEvery` milliseconds (five seconds by default), and
+ * nothing before the first book is drawn. Side markers, digits and the text follow the
  * locale (see `locale.ts`); `formatPrice` overrides the price format. */
 export function Ladder({
   depth = 12,
@@ -100,11 +101,14 @@ export function Ladder({
   const formatPrice = priceFormat ?? ((p: number) => locale.decimal(p, 2));
   const canvas = useRef<HTMLCanvasElement>(null);
   const tokens = useRef<CanvasTokens | null>(null);
-  const [summary, setSummary] = useState(locale.messages.bookEmpty);
+  // Nothing is said of the book before its first frame: drawn through the
+  // handle, it has not come yet, which is not the same as empty. The live
+  // region is there from the start, empty, so the first book is read out.
+  const [summary, setSummary] = useState("");
   // When the text alternative was last published, on performance.now()'s
   // clock: never, at first. A start of 0 would hold the first book's text
-  // back until `announceEvery` after the page's time origin, leaving "The
-  // book is empty." in place for the first seconds after a page load.
+  // back until `announceEvery` after the page's time origin, leaving the
+  // caption without the book for the first seconds after a page load.
   const lastSummary = useRef(Number.NEGATIVE_INFINITY);
   const latest = useRef<Book>({ bids: [], asks: [] });
   // Holds a reference to the caller's buffer, not a copy: a token-triggered

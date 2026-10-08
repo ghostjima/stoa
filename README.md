@@ -103,7 +103,9 @@ follow as the products need them.
     panel's figures come from: the source's tag, a sentence and a link),
     AppHeader, PageShell.
   - Overlays, lists and content: Dialog, Sheet, AlertDialog, Tooltip,
-    ReorderableList, RecordList (the list of a master-detail view, whose
+    ReorderableList (a row is never wider than the list: a word longer
+    than the row breaks, and on a narrow screen the row's buttons go under
+    its content), RecordList (the list of a master-detail view, whose
     `focusRecord(id)` puts the focus on a record, even right after the
     list mounts),
     StepList, DescriptionList, LogView, CodeView, and Ltr, an inline

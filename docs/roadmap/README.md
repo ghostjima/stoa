@@ -44,11 +44,9 @@ contrast coverage.
    step list.
 3. **For Tyche Bonds.** A derivation table that shows how a figure was
    worked out, step by step, with its source; a countdown for offer dates.
-4. **Known defects.** The order book announces an empty book before its
-   first frame.
-5. **Tokens.** Token sources to DTCG 2025.10; light and dark times density
+4. **Tokens.** Token sources to DTCG 2025.10; light and dark times density
    in the build; z-index, scrim and dimension tokens.
-6. **Storybook as the public face**, published with the products:
+5. **Storybook as the public face**, published with the products:
    foundations (tokens in light and dark, the live verification report),
    components with usage rules, and how each promise is checked.
 

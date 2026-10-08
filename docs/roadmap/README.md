@@ -45,10 +45,9 @@ contrast coverage.
 3. **For Tyche Bonds.** A derivation table that shows how a figure was
    worked out, step by step, with its source; a countdown for offer dates.
 4. **Known defects.** A canvas does not refit when only its height
-   changes; the order book announces an empty book before its first frame;
-   focus after a dialog opened from a grid editor lands after the grid;
-   line boxes grow when the Arabic digit face arrives; table headers do not
-   wrap; the record list draws a frame late and loses focus on a pointer
+   changes; focus after a dialog opened from a grid editor lands after the
+   grid; line boxes grow when the Arabic digit face arrives; table headers
+   do not wrap; the record list draws a frame late and loses focus on a pointer
    pick; tabs do not handle overflow; a text field's description takes text
    only.
 5. **Tokens.** Token sources to DTCG 2025.10; light and dark times density

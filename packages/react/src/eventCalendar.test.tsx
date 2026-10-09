@@ -181,6 +181,61 @@ describe("EventCalendar: the grid", () => {
   });
 });
 
+describe("EventCalendar: deadlines and marks", () => {
+  const ACT_BY: CalendarEvent[] = [
+    { id: "d", date: "2026-10-09", kind: "deadline", title: "Last day to ask for redemption" },
+    { id: "o", date: "2026-10-15", kind: "offer", title: "Put offer at 100%" },
+    { id: "c", date: "2026-10-21", kind: "coupon", title: "Coupon 7 of 12", mark: "projected" },
+    { id: "c2", date: "2026-10-21", kind: "coupon", title: "Coupon 3 of 6" },
+    { id: "r", date: "2026-10-28", kind: "rating", title: "Rating lowered", mark: "synthetic" },
+  ];
+
+  it("draws a deadline as a kind of its own, on its own day, with its symbol and word in the cell, the key and the list", () => {
+    render(<EventCalendar label="E" events={ACT_BY} today="2026-10-07" defaultSelectedDate="2026-10-09" view="grid" />);
+    expect(cell("2026-10-09").textContent).toContain("Friday, October 9, 2026: Deadline");
+    expect(cell("2026-10-09").querySelector(".stoa-calendar__marks")!.textContent).toBe("⚑");
+    expect(cell("2026-10-15").textContent).toContain("Thursday, October 15, 2026: Offer");
+    expect([...document.querySelectorAll(".stoa-calendar__key-item")].map((i) => i.textContent)).toEqual(["●Coupon", "⚑Deadline", "◆Offer", "↕Rating change"]);
+    expect([...document.querySelectorAll(".stoa-calendar__chosen .stoa-calendar__event")].map((li) => li.textContent)).toEqual(["⚑Deadline · : Last day to ask for redemption"]);
+  });
+
+  it("says an entry's mark beside its kind's word in the day's list, and reads its day with it", () => {
+    render(<EventCalendar label="E" events={ACT_BY} today="2026-10-07" defaultSelectedDate="2026-10-21" view="grid" />);
+    expect(cell("2026-10-21").textContent).toContain("Wednesday, October 21, 2026: Coupon, Coupon (projected)");
+    expect(cell("2026-10-28").textContent).toContain("Wednesday, October 28, 2026: Rating change (synthetic)");
+    // One symbol per kind in the cell, as before.
+    expect(cell("2026-10-21").querySelector(".stoa-calendar__marks")!.textContent).toBe("●");
+    const items = [...document.querySelectorAll(".stoa-calendar__chosen .stoa-calendar__event")];
+    expect(items.map((li) => li.querySelector(".stoa-calendar__event-head")!.textContent)).toEqual(["Coupon (projected) · : Coupon 7 of 12", "Coupon · : Coupon 3 of 6"]);
+    expect(items[0]!.querySelector(".stoa-calendar__mark")!.className).toContain("stoa-calendar__mark--projected");
+  });
+
+  it("says the deadline and the marks in Russian and Arabic", () => {
+    render(
+      <I18nProvider locale="ru-RU">
+        <EventCalendar label="События" events={ACT_BY} today="2026-10-07" view="list" />
+      </I18nProvider>,
+    );
+    const heads = () => [...document.querySelectorAll(".stoa-calendar__event-head")].map((p) => p.textContent);
+    expect(heads()).toEqual([
+      "Крайний срок · : Last day to ask for redemption",
+      "Оферта · : Put offer at 100%",
+      "Купон (прогноз) · : Coupon 7 of 12",
+      "Купон · : Coupon 3 of 6",
+      "Изменение рейтинга (синтетическое) · : Rating lowered",
+    ]);
+    cleanup();
+    render(
+      <I18nProvider locale="ar-u-nu-arab">
+        <EventCalendar label="الأحداث" events={ACT_BY} today="2026-10-07" view="grid" />
+      </I18nProvider>,
+    );
+    expect(cell("2026-10-09").textContent).toContain("آخر موعد");
+    expect(cell("2026-10-21").textContent).toContain("كوبون (متوقَّع)");
+    expect(cell("2026-10-28").textContent).toContain("تغيّر التصنيف (اصطناعي)");
+  });
+});
+
 describe("EventCalendar: the list", () => {
   it("lists the month's days with events, each date a heading, today marked in words", () => {
     render(<EventCalendar label="Bond events" events={EVENTS} today="2026-10-07" view="list" />);

@@ -101,8 +101,10 @@ follow as the products need them.
     characters: deleted plus inserted characters over the characters of
     both texts, in Unicode code points with spaces included).
   - Events: EventCalendar (a bond's coupons, offers, amortisations,
-    maturity, rating changes and a default on a month grid, each kind a
-    symbol and a word, never a colour alone; an ARIA date grid with one
+    maturity, rating changes and a default on a month grid, with the
+    deadlines to act by before them as a kind of their own, each kind a
+    symbol and a word, never a colour alone; an entry marked synthetic or
+    projected says so beside its kind's word; an ARIA date grid with one
     tab stop, the arrow keys, Home and End, Page Up and Page Down, the
     chosen day's events listed under it; the week and the month's name
     from the locale; a list of the month's days with events on a narrow
@@ -275,6 +277,14 @@ monospace face that draws it as separate letters. Without Noto Sans
 Arabic, Arabic-Indic digits come from IBM Plex Sans Arabic, whose digits
 are proportional, so numbers in a column no longer line up digit for
 digit.
+
+Every line has a set height: Stoa's styles.css gives the root element
+`line-height: var(--stoa-font-line-height-normal)` at zero specificity,
+and text inherits it, so a line drawn in a fallback face before the web
+fonts arrive is as tall as it is after them, and the page does not move
+when they do. A native control an application draws itself takes the
+browser's `font`, whose line height is the face's own, unless it is given
+`font: inherit`, as Stoa's own controls are.
 
 ### Arabic without a layout shift
 

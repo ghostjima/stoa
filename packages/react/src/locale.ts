@@ -27,9 +27,16 @@ export type PluralCategory = "zero" | "one" | "two" | "few" | "many" | "other";
 export type FindingSeverity = "error" | "warning" | "info";
 
 /** What happens to a bond on a day of EventCalendar: a coupon, a part of
- * the face paid back, an offer to redeem, maturity, a change of rating, a
- * default. */
-export type CalendarEventKind = "coupon" | "amortisation" | "offer" | "maturity" | "rating" | "default";
+ * the face paid back, a deadline to act by (the last day to ask for an
+ * offer's redemption, the day an issuer gives notice by), an offer to
+ * redeem, maturity, a change of rating, a default. */
+export type CalendarEventKind = "coupon" | "amortisation" | "deadline" | "offer" | "maturity" | "rating" | "default";
+
+/** How an EventCalendar entry stands apart from a known event: made up
+ * for a scenario ("synthetic"), or worked out ahead from today's figures
+ * and liable to change ("projected", a floating coupon at today's
+ * index). */
+export type CalendarEventMark = "synthetic" | "projected";
 
 export type StoaMessages = {
   time: string;
@@ -263,6 +270,9 @@ export type StoaMessages = {
   // EventCalendar.
   /** EventCalendar: each kind of event as a word, beside its symbol. */
   calendarKind: Record<CalendarEventKind, string>;
+  /** EventCalendar: an entry's mark as words, beside its kind's word in
+   * the day's list and after it in a day's cell. */
+  calendarMark: Record<CalendarEventMark, string>;
   /** EventCalendar: the buttons that change the month, before the month
    * they go to. */
   calendarPrevious: string;
@@ -459,7 +469,8 @@ const EN: StoaMessages = {
   findingSource: "Source",
   findingsNone: "No findings.",
   // EventCalendar.
-  calendarKind: { coupon: "Coupon", amortisation: "Amortisation", offer: "Offer", maturity: "Maturity", rating: "Rating change", default: "Default" },
+  calendarKind: { coupon: "Coupon", amortisation: "Amortisation", deadline: "Deadline", offer: "Offer", maturity: "Maturity", rating: "Rating change", default: "Default" },
+  calendarMark: { synthetic: "(synthetic)", projected: "(projected)" },
   calendarPrevious: "Previous month",
   calendarNext: "Next month",
   calendarToday: "today",
@@ -625,7 +636,8 @@ const AR: StoaMessages = {
   findingSource: "المصدر",
   findingsNone: "لا توجد ملاحظات.",
   // EventCalendar.
-  calendarKind: { coupon: "كوبون", amortisation: "إطفاء جزئي", offer: "عرض إعادة الشراء", maturity: "الاستحقاق", rating: "تغيّر التصنيف", default: "تعثّر عن السداد" },
+  calendarKind: { coupon: "كوبون", amortisation: "إطفاء جزئي", deadline: "آخر موعد", offer: "عرض إعادة الشراء", maturity: "الاستحقاق", rating: "تغيّر التصنيف", default: "تعثّر عن السداد" },
+  calendarMark: { synthetic: "(اصطناعي)", projected: "(متوقَّع)" },
   calendarPrevious: "الشهر السابق",
   calendarNext: "الشهر التالي",
   calendarToday: "اليوم",
@@ -816,7 +828,8 @@ const RU: StoaMessages = {
   findingSource: "Источник",
   findingsNone: "Замечаний нет.",
   // EventCalendar.
-  calendarKind: { coupon: "Купон", amortisation: "Амортизация", offer: "Оферта", maturity: "Погашение", rating: "Изменение рейтинга", default: "Дефолт" },
+  calendarKind: { coupon: "Купон", amortisation: "Амортизация", deadline: "Крайний срок", offer: "Оферта", maturity: "Погашение", rating: "Изменение рейтинга", default: "Дефолт" },
+  calendarMark: { synthetic: "(синтетическое)", projected: "(прогноз)" },
   calendarPrevious: "Предыдущий месяц",
   calendarNext: "Следующий месяц",
   calendarToday: "сегодня",

@@ -16,6 +16,15 @@
   scrollbar-width: thin;
 }
 
+/* Every line takes a set height instead of the face's own ascent and
+   descent (line-height: normal), so a line drawn in a fallback face before
+   the web fonts arrive is as tall as it is after them, and nothing on the
+   page moves when they do: an AppHeader's title, a panel's title, a
+   field's label. Set on the root and inherited; :where keeps it at zero
+   specificity, so an application's own line height wins, and a component
+   that sets one keeps it. */
+:where(:root) { line-height: var(--stoa-font-line-height-normal); }
+
 /* ScrollArea: a box that scrolls with its scrollbar in a reserved lane, so
    content does not move when it starts or stops overflowing. Its size
    comes from the parent or a class. */
@@ -331,7 +340,11 @@
 .stoa-field__error { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-down); }
 /* The polite live region around a field's error stays in the document;
    while it holds nothing it is taken out of the field's grid, so it adds
-   no gap under the input. */
+   no gap under the input. Its field is its containing block: out of the
+   flow it is still placed and sized against the field, never against the
+   page, where a number field's region (as wide as its field, below) would
+   be as wide as the page and reach past its edge. */
+.stoa-field, .stoa-number, .stoa-radio-group { position: relative; }
 .stoa-field__error-region:empty { position: absolute; }
 /* A number field is as wide as its input: the error wraps under it
    rather than widening the field. */
@@ -1694,7 +1707,7 @@
 }
 .stoa-calendar__symbol--coupon { color: var(--stoa-color-text-muted); }
 .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating { color: var(--stoa-color-accent); }
-.stoa-calendar__symbol--offer { color: var(--stoa-color-warning); }
+.stoa-calendar__symbol--offer, .stoa-calendar__symbol--deadline { color: var(--stoa-color-warning); }
 .stoa-calendar__symbol--maturity { color: var(--stoa-color-text); }
 .stoa-calendar__symbol--default { color: var(--stoa-color-down); font-weight: var(--stoa-font-weight-semibold); }
 .stoa-calendar__key { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-1) var(--stoa-space-3); font-size: var(--stoa-font-size-sm); }
@@ -1714,4 +1727,6 @@
 .stoa-calendar__event-body { display: grid; gap: var(--stoa-space-0-5); min-inline-size: 0; overflow-wrap: anywhere; }
 .stoa-calendar__event-head { margin: 0; }
 .stoa-calendar__kind { font-weight: var(--stoa-font-weight-medium); }
+/* A synthetic or projected entry's mark: words after the kind's, muted. */
+.stoa-calendar__mark { color: var(--stoa-color-text-muted); }
 .stoa-calendar__detail { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }

@@ -59,6 +59,16 @@ export type PriceYieldFieldProps = {
   /** The arrow keys' stride, 0.01 by default for both. */
   priceStep?: number;
   yieldStep?: number;
+  /** Keep a typed value as typed instead of rounding it to the step, as
+   * NumberField's `keepTypedValue` does: it is rounded only to the
+   * decimals, so the engine can judge a price typed off the issue's step,
+   * and the arrow keys still move by the step, onto the step's grid. The
+   * step is then the keyboard's stride and the decimals the value's
+   * precision: with `priceDecimals={4} priceStep={0.05}`, a typed 101.2345
+   * is kept, and ArrowUp takes it to 101.25. Off by default, when a typed
+   * value is moved to the nearest step, as React Aria's NumberField
+   * does. */
+  keepTypedValue?: boolean;
   isDisabled?: boolean;
   /** Told each time the computation's status changes, so the caller can
    * hold its Submit while one is pending or failed. */
@@ -84,6 +94,7 @@ function SideField({
   value,
   decimals,
   step,
+  keepTypedValue,
   note,
   isSource,
   isPending,
@@ -96,6 +107,7 @@ function SideField({
   value: number | null;
   decimals: number;
   step: number;
+  keepTypedValue: boolean;
   note: string;
   isSource: boolean;
   isPending: boolean;
@@ -110,6 +122,9 @@ function SideField({
       onChange={(next) => onCommit(side, Number.isFinite(next) ? next : null)}
       formatOptions={{ minimumFractionDigits: decimals, maximumFractionDigits: decimals }}
       step={step}
+      // "validate" keeps a typed value off the step; its native step check
+      // never shows, since the field's invalid state is the engine's alone.
+      commitBehavior={keepTypedValue ? "validate" : "snap"}
       isDisabled={isDisabled}
       isInvalid={error !== null}
       validationBehavior="aria"
@@ -151,6 +166,7 @@ export function PriceYieldField({
   yieldDecimals = 2,
   priceStep = 0.01,
   yieldStep = 0.01,
+  keepTypedValue = false,
   isDisabled,
   onStatusChange,
 }: PriceYieldFieldProps) {
@@ -261,6 +277,7 @@ export function PriceYieldField({
             value={value[side]}
             decimals={decimals[side]}
             step={side === "price" ? priceStep : yieldStep}
+            keepTypedValue={keepTypedValue}
             note={notes[side]}
             isSource={side === source && value[side] !== null}
             isPending={side === target && state.status === "pending"}

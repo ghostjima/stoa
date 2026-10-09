@@ -75,9 +75,12 @@ follow as the products need them.
     through the application's own engine, which may answer later; the
     field typed in says it was entered and the other what it was worked
     out from, or that it is being worked out, and a reason the engine
-    gives for having no answer is shown in words under the typed field)
-    and QuantityStepper (an order's size in lots between a minus and a
-    plus button, the lot's size and the order's size in bonds in words).
+    gives for having no answer is shown in words under the typed field;
+    the arrow keys move by a step, and a value typed off it is moved to
+    the nearest step or, with `keepTypedValue`, kept as typed to its
+    decimals, for the engine to judge) and QuantityStepper (an order's
+    size in lots between a minus and a plus button, the lot's size and
+    the order's size in bonds in words).
   - Requests: CancellableRequest (a request made after a confirmation in
     an AlertDialog, then shown as recorded beside a Cancel button until
     its deadline, and a sentence once it has passed; the focus moves to

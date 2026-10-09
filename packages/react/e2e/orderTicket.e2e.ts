@@ -44,6 +44,24 @@ test("a price typed and committed with Tab works out the yield, and the notes sa
   expect(await price.evaluate((el) => getComputedStyle(el).fontVariantNumeric)).toBe("tabular-nums");
 });
 
+test("a price typed off the issue's step is kept as typed, and the arrow keys move by the step", async ({ page }) => {
+  await page.goto(story("controls-order-ticket--price-step"));
+  const price = page.getByRole("textbox", { name: "Price, % of face value" });
+  const yieldField = page.getByRole("textbox", { name: "Yield, %" });
+  await price.fill("101.2345");
+  await price.press("Tab");
+  await expect(price).toHaveValue("101.2345");
+  await expect(yieldField).not.toHaveValue("");
+  await expect(price).not.toHaveAttribute("aria-invalid");
+  await price.press("ArrowUp");
+  await expect(price).toHaveValue("101.2500");
+  await price.press("ArrowUp");
+  await expect(price).toHaveValue("101.3000");
+  await price.press("ArrowDown");
+  await price.press("ArrowDown");
+  await expect(price).toHaveValue("101.2000");
+});
+
 for (const mode of [
   { name: "light, left to right", globals: "", price: "Price, % of face value" },
   { name: "dark, right to left", globals: "theme:dark;dir:rtl;lang:ar", price: "السعر، ٪ من القيمة الاسمية" },

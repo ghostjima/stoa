@@ -36,6 +36,7 @@ const WORDS = {
     submit: "Review the order",
     status: { ready: "Ready", pending: "Waiting for the yield", error: "Fix the price or the yield" } as Record<PriceYieldStatus, string>,
     offer: "Yield to offer, %",
+    step: "The issue's price step is 0.05%. A price typed off it is kept as typed, for the exchange to judge; the arrow keys move by the step.",
   },
   ar: {
     ticket: "أمر شراء",
@@ -49,6 +50,7 @@ const WORDS = {
     submit: "مراجعة الأمر",
     status: { ready: "جاهز", pending: "بانتظار العائد", error: "صحّح السعر أو العائد" } as Record<PriceYieldStatus, string>,
     offer: "العائد حتى عرض إعادة الشراء، ٪",
+    step: "خطوة سعر هذا الإصدار 0.05٪. يُحفظ السعر المكتوب خارج الخطوة كما كُتب لتحكم عليه البورصة، وتتحرك مفاتيح الأسهم بمقدار الخطوة.",
   },
 };
 
@@ -106,6 +108,32 @@ function priceYieldAt(price: number): number {
   }
   return Math.round(((low + high) / 2) * 100) / 100;
 }
+
+/** A price kept to the book's unit, 0.0001% of face, while the arrow
+ * keys move by the issue's price step, 0.05%: a price typed off the step
+ * (101.2345) is kept as typed, and ArrowUp takes it to the next step
+ * (101.2500). */
+export const PriceStep: StoryObj = {
+  render: () => {
+    const w = useWords();
+    const engine = useEngine();
+    const [value, setValue] = useState<PriceYieldValue>({ price: 101.25, yield: priceYieldAt(101.25), source: "price" });
+    return (
+      <div style={column}>
+        <PriceYieldField
+          label={w.label}
+          description={w.step}
+          value={value}
+          onChange={setValue}
+          priceDecimals={4}
+          priceStep={0.05}
+          keepTypedValue
+          {...engine}
+        />
+      </div>
+    );
+  },
+};
 
 /** An engine that answers after a second and a half, as one in a worker
  * might: the other field says it is being worked out, and the caller,

@@ -236,3 +236,63 @@ test("a record list draws its rows in the first frame it is in, never a frame of
   await expect.poll(firstFrameRows).not.toBeNull();
   expect(await firstFrameRows()).toBe(4);
 });
+
+for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
+  // A line at line-height: normal takes the height of the face that draws
+  // it, so it changes height when the web fonts take the fallback's place.
+  // Every story, so that a component added later is checked too.
+  test(`no text in any story takes its line height from the face (${globals})`, async ({ page }) => {
+    test.setTimeout(10 * 60_000);
+    const response = await page.request.get("/index.json");
+    expect(response.ok(), "index.json of the built Storybook").toBe(true);
+    const index = (await response.json()) as { entries: Record<string, { id: string; type: string }> };
+    const ids = Object.values(index.entries)
+      .filter((e) => e.type === "story")
+      .map((e) => e.id);
+    const normal: string[] = [];
+    let checked = 0;
+    for (const id of ids) {
+      await page.goto(story(id, globals));
+      await expect(page.locator("#storybook-root > *").first()).toBeAttached();
+      const found = await page.evaluate(() => {
+        const withText = [...document.querySelectorAll("#storybook-root *")].filter(
+          (el) => [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && n.textContent!.trim() !== "") && el.getBoundingClientRect().height > 0,
+        );
+        return {
+          count: withText.length,
+          normal: withText.filter((el) => getComputedStyle(el).lineHeight === "normal").map((el) => `${el.tagName.toLowerCase()}.${[...el.classList].join(".")}`),
+        };
+      });
+      checked += found.count;
+      for (const name of new Set(found.normal)) normal.push(`${id}: ${name}`);
+    }
+    expect(checked).toBeGreaterThan(0);
+    expect(normal).toEqual([]);
+  });
+}
+
+for (const [width, height] of [
+  [1280, 800],
+  [375, 812],
+] as const) {
+  test(`AppHeader keeps its height when the web fonts arrive (${width} px)`, async ({ page }) => {
+    await page.setViewportSize({ width, height });
+    let release = () => {};
+    const held = new Promise<void>((resolve) => (release = resolve));
+    await page.route(/\.woff2?$/, async (route) => {
+      await held;
+      await route.continue();
+    });
+    await page.goto(story("layout-panel--header"), { waitUntil: "commit" });
+    const header = page.locator(".stoa-app-header");
+    await expect(header).toBeVisible();
+    // Drawn in the fallback face: no web font has arrived.
+    expect(await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded" && !/Fallback/.test(f.family)).length)).toBe(0);
+    const before = await header.evaluate((el) => el.getBoundingClientRect().height);
+    release();
+    await page.waitForFunction(() => [...document.fonts].some((f) => f.family === "IBM Plex Sans" && f.status === "loaded"));
+    await page.evaluate(() => document.fonts.ready);
+    expect(await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loading").length)).toBe(0);
+    expect(await header.evaluate((el) => el.getBoundingClientRect().height)).toBe(before);
+  });
+}

@@ -27,11 +27,24 @@ async function platformFonts(page: Page, selector: string) {
 }
 
 /** Opens a story as an application that loads Stoa's Latin faces and IBM
- * Plex Sans Arabic, but not Noto Sans Arabic. */
-async function withoutNoto(page: Page, id: string, globals: string) {
+ * Plex Sans Arabic, but not Noto Sans Arabic, and waits until the faces
+ * the element that matches `selector` asks for have arrived.
+ * `document.fonts.ready` only waits for faces already requested, and a
+ * face is requested when text that needs it is laid out: awaited before
+ * the story has drawn the element, it resolves at once, and the element is
+ * then read while its face is still on the way. IBM Plex Sans Arabic
+ * answers a second late here, as it can on a busy machine, so a wait in
+ * that order fails every time rather than now and then. */
+async function withoutNoto(page: Page, id: string, globals: string, selector: string) {
   await page.route(/noto-sans-arabic/, (route) => route.abort());
+  await page.route(/ibm-plex-sans-arabic.*\.woff2?$/, async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await route.continue();
+  });
   await page.goto(story(id, globals));
+  await page.locator(selector).first().waitFor();
   await page.evaluate(() => document.fonts.ready);
+  expect(await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loading").map((f) => f.family))).toEqual([]);
 }
 
 const ARABIC = /[؀-ۿ]/;
@@ -42,8 +55,7 @@ for (const [name, id, selector] of [
   ["a NumberField's Arabic-Indic digits", "controls-form--number-field-steps", ".stoa-number__input"],
 ] as const) {
   test(`without Noto Sans Arabic, ${name} in Arabic are drawn in a loaded face, never a system fallback`, async ({ page }) => {
-    await withoutNoto(page, id, "dir:rtl;lang:ar");
-    await page.locator(selector).first().waitFor();
+    await withoutNoto(page, id, "dir:rtl;lang:ar", selector);
     const nodes = (await platformFonts(page, selector)).filter((n) => ARABIC.test(n.text) || n.text === "");
     expect(nodes.length).toBeGreaterThan(0);
     for (const node of nodes) {

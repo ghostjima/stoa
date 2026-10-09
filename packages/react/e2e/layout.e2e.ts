@@ -237,11 +237,59 @@ test("a record list draws its rows in the first frame it is in, never a frame of
   expect(await firstFrameRows()).toBe(4);
 });
 
+// One-line chrome: controls, labels, titles and headings in bars and
+// panels, status marks and counts. Each sets the tight line height itself;
+// text that wraps as prose keeps the normal one from the root, and so does
+// AppHeader's title (styles.css says why).
+const TIGHT_CHROME = [
+  ".stoa-button",
+  ".stoa-tabs__tab",
+  ".stoa-disclosure__summary",
+  ".stoa-skip-link",
+  ".stoa-field__label",
+  ".stoa-price-yield__label",
+  ".stoa-progress__label",
+  ".stoa-progress__value",
+  ".stoa-range__output",
+  ".stoa-code__label",
+  ".stoa-metric__label",
+  ".stoa-statbar dt",
+  ".stoa-app-header__subtitle",
+  ".stoa-app-header__note",
+  ".stoa-detail-header__heading",
+  ".stoa-detail-header__ids",
+  ".stoa-panel__title",
+  ".stoa-shortcuts__title",
+  ".stoa-table__caption",
+  ".stoa-derivation__caption",
+  ".stoa-findings__heading",
+  ".stoa-timeline__date",
+  ".stoa-calendar__label",
+  ".stoa-calendar__month",
+  ".stoa-calendar__weekday",
+  ".stoa-calendar__date",
+  ".stoa-calendar__key",
+  ".stoa-letter__label",
+  ".stoa-letter__grounds-label",
+  ".stoa-diff__label",
+  ".stoa-chart__axis-label",
+  ".stoa-chart__legend",
+  ".stoa-scatter__x-label",
+  ".stoa-badge",
+  ".stoa-countdown",
+  ".stoa-step__status",
+  ".stoa-selection-bar__count",
+  ".stoa-filter-bar__count",
+];
+
 for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
   // A line at line-height: normal takes the height of the face that draws
   // it, so it changes height when the web fonts take the fallback's place.
-  // Every story, so that a component added later is checked too.
-  test(`no text in any story takes its line height from the face (${globals})`, async ({ page }) => {
+  // Every story, so that a component added later is checked too, on a
+  // desktop and on a phone, whose layouts draw some chrome of their own. The
+  // one-line chrome computes the tight line height, and every name in the
+  // list is drawn by some story, so the list cannot go stale unnoticed.
+  test(`no text in any story takes its line height from the face, and one-line chrome is tight (${globals})`, async ({ page }) => {
     test.setTimeout(10 * 60_000);
     const response = await page.request.get("/index.json");
     expect(response.ok(), "index.json of the built Storybook").toBe(true);
@@ -250,24 +298,83 @@ for (const globals of ["lang:en", "dir:rtl;lang:ar"]) {
       .filter((e) => e.type === "story")
       .map((e) => e.id);
     const normal: string[] = [];
+    const notTight: string[] = [];
+    const drawn = new Set<string>();
     let checked = 0;
-    for (const id of ids) {
+    for (const [id, width] of ids.flatMap((id) => [1280, 375].map((width) => [id, width] as const))) {
+      await page.setViewportSize({ width, height: 800 });
       await page.goto(story(id, globals));
       await expect(page.locator("#storybook-root > *").first()).toBeAttached();
-      const found = await page.evaluate(() => {
+      const found = await page.evaluate((chrome) => {
         const withText = [...document.querySelectorAll("#storybook-root *")].filter(
           (el) => [...el.childNodes].some((n) => n.nodeType === Node.TEXT_NODE && n.textContent!.trim() !== "") && el.getBoundingClientRect().height > 0,
         );
+        const tight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--stoa-font-line-height-tight"));
+        const drawn: string[] = [];
+        const notTight: string[] = [];
+        // Overlays are portalled out of the root, so the whole body.
+        for (const selector of chrome) {
+          for (const el of document.body.querySelectorAll(selector)) {
+            if (el.getBoundingClientRect().height === 0) continue;
+            drawn.push(selector);
+            const style = getComputedStyle(el);
+            const ratio = parseFloat(style.lineHeight) / parseFloat(style.fontSize);
+            if (!(Math.abs(ratio - tight) < 0.01)) notTight.push(`${selector} (${style.lineHeight} at ${style.fontSize})`);
+          }
+        }
         return {
           count: withText.length,
           normal: withText.filter((el) => getComputedStyle(el).lineHeight === "normal").map((el) => `${el.tagName.toLowerCase()}.${[...el.classList].join(".")}`),
+          drawn,
+          notTight,
         };
-      });
+      }, TIGHT_CHROME);
       checked += found.count;
-      for (const name of new Set(found.normal)) normal.push(`${id}: ${name}`);
+      for (const name of new Set(found.normal)) normal.push(`${id} (${width} px): ${name}`);
+      for (const name of new Set(found.notTight)) notTight.push(`${id} (${width} px): ${name}`);
+      for (const selector of found.drawn) drawn.add(selector);
     }
     expect(checked).toBeGreaterThan(0);
     expect(normal).toEqual([]);
+    expect(notTight).toEqual([]);
+    expect(TIGHT_CHROME.filter((selector) => !drawn.has(selector))).toEqual([]);
+  });
+}
+
+// Before the base line height on the root, a button's line took the face's
+// own height (line-height: normal), 18 px for IBM Plex Sans at 14 px: a
+// 28 px button, 27 px at 13 px. The base line height made it 30.3 px; at
+// the tight line height it is 27.5 px, no taller than before. The face's
+// own height is measured on the same button, so the comparison holds
+// whatever the face rounds to.
+for (const [density, size, before] of [
+  ["comfortable", 14, 28],
+  ["regular", 13, 27],
+] as const) {
+  test(`a button is no taller than at the face's own line height (${size} px text)`, async ({ page }) => {
+    await page.goto(story("controls-inputs--button-variants", `density:${density}`));
+    await expect(page.locator(".stoa-button").first()).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const heights = await page.locator(".stoa-button").evaluateAll((buttons) =>
+      buttons.map((b) => {
+        const el = b as HTMLElement;
+        const style = getComputedStyle(el);
+        const tight = el.getBoundingClientRect().height;
+        el.style.lineHeight = "normal";
+        const face = el.getBoundingClientRect().height;
+        el.style.lineHeight = "";
+        return { fontSize: parseFloat(style.fontSize), tight, face };
+      }),
+    );
+    expect(heights.length).toBe(5);
+    for (const h of heights) {
+      expect(h.fontSize).toBe(size);
+      expect(h.face).toBe(before);
+      // 4 px of padding and a 1 px border at each end, and a 1.25 line.
+      expect(h.tight).toBeCloseTo(10 + 1.25 * size, 2);
+      expect(h.tight).toBeLessThanOrEqual(h.face);
+      expect(h.face - h.tight).toBeLessThan(1);
+    }
   });
 }
 

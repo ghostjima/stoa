@@ -22,7 +22,13 @@
    page moves when they do: an AppHeader's title, a panel's title, a
    field's label. Set on the root and inherited; :where keeps it at zero
    specificity, so an application's own line height wins, and a component
-   that sets one keeps it. */
+   that sets one keeps it. Text that wraps as prose keeps this one. One-line
+   chrome sets the tight line height in its own rule: buttons and the
+   controls built on them, tabs, a disclosure's summary, field labels,
+   titles and headings in bars and panels (but not AppHeader's title, see
+   there), badges and deadlines, counts in bars, chart and calendar labels.
+   A tight line is still a set height, so it keeps its height when the
+   fonts arrive as well. */
 :where(:root) { line-height: var(--stoa-font-line-height-normal); }
 
 /* ScrollArea: a box that scrolls with its scrollbar in a reserved lane, so
@@ -46,6 +52,7 @@
   margin: 0 0 var(--stoa-space-2);
   font-size: var(--stoa-font-size-xs);
   font-weight: var(--stoa-font-weight-medium);
+  line-height: var(--stoa-font-line-height-tight);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--stoa-color-text-muted);
@@ -54,7 +61,12 @@
 .stoa-panel__title:lang(ar) { letter-spacing: 0; }
 
 /* AppHeader: one bar for every application (title at the large size,
-   subtitle and note at the small one). */
+   subtitle and note at the small one). The subtitle and the note take the
+   tight line height. The title keeps the normal one: on a narrow screen it
+   shares a baseline-aligned row with the subtitle, and at the tight line
+   height the subtitle's line reaches below the title's by a fraction of a
+   pixel in IBM Plex Sans but not in the fallback face, so the header would
+   grow when the fonts arrive. */
 .stoa-app-header {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-3);
   padding: var(--stoa-space-3) var(--stoa-space-4);
@@ -64,7 +76,7 @@
 }
 .stoa-app-header__title { margin: 0; font-size: var(--stoa-font-size-lg); font-weight: var(--stoa-font-weight-semibold); }
 .stoa-app-header__subtitle,
-.stoa-app-header__note { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
+.stoa-app-header__note { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-tight); }
 .stoa-app-header__note a { color: inherit; }
 .stoa-app-header__spacer { flex: 1; }
 .stoa-app-header__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-3); align-self: center; }
@@ -88,6 +100,7 @@
 
 .stoa-button {
   font: inherit;
+  line-height: var(--stoa-font-line-height-tight);
   padding: var(--stoa-space-1) var(--stoa-space-2);
   border: 1px solid var(--stoa-color-border-strong);
   border-radius: var(--stoa-radius-sm);
@@ -240,6 +253,7 @@
   display: flex; align-items: center; gap: var(--stoa-space-2);
   padding-block: var(--stoa-space-1);
   font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium);
+  line-height: var(--stoa-font-line-height-tight);
   color: var(--stoa-color-text);
   list-style: none; cursor: pointer;
 }
@@ -291,7 +305,7 @@
    is in the text colour and the heavier weight, under the worked-out one
    muted; while the engine works, the worked-out value is muted too. */
 .stoa-price-yield { display: grid; gap: var(--stoa-space-2); margin: 0; padding: 0; border: 0; min-inline-size: 0; }
-.stoa-price-yield__label { padding: 0; margin-block-end: var(--stoa-space-2); font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); color: var(--stoa-color-text); }
+.stoa-price-yield__label { padding: 0; margin-block-end: var(--stoa-space-2); font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text); }
 .stoa-price-yield__fields { display: flex; flex-wrap: wrap; align-items: start; gap: var(--stoa-space-3) var(--stoa-space-4); }
 .stoa-price-yield__field .stoa-number__input { inline-size: 9ch; }
 .stoa-price-yield__field--source .stoa-price-yield__note { color: var(--stoa-color-text); font-weight: var(--stoa-font-weight-medium); }
@@ -317,11 +331,11 @@
 .stoa-statbar__item { display: flex; gap: var(--stoa-space-1); }
 /* The labels are words, in the sans face; the values stay in the numeric
    face. */
-.stoa-statbar dt { color: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-sans); }
+.stoa-statbar dt { color: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-sans); line-height: var(--stoa-font-line-height-tight); }
 .stoa-statbar dd { margin: 0; font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); }
 
 .stoa-field { display: grid; gap: var(--stoa-space-1); }
-.stoa-field__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-field__label { font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted); }
 /* An input takes the width of its field and never sets it: without the
    zero minimum, its default 20-character size would hold a narrow column
    open. */
@@ -350,7 +364,7 @@
    rather than widening the field. */
 .stoa-number > .stoa-field__error-region { inline-size: 0; min-inline-size: 100%; }
 
-.stoa-badge { display: inline-flex; gap: var(--stoa-space-1); align-items: baseline; font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium); }
+.stoa-badge { display: inline-flex; gap: var(--stoa-space-1); align-items: baseline; font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); }
 .stoa-badge--positive { color: var(--stoa-color-up); }
 .stoa-badge--negative { color: var(--stoa-color-down); }
 .stoa-badge--warning { color: var(--stoa-color-text); }
@@ -363,6 +377,7 @@
 }
 .stoa-tabs__tab {
   padding: var(--stoa-space-2) var(--stoa-space-3); cursor: pointer; color: var(--stoa-color-text-muted);
+  line-height: var(--stoa-font-line-height-tight);
   border-block-end: 2px solid transparent; outline: none;
 }
 /* On a narrow screen, tabs that do not fit stay on one row, which scrolls
@@ -431,10 +446,10 @@
   display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline;
   gap: var(--stoa-space-1) var(--stoa-space-2);
 }
-.stoa-progress__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-progress__label { font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted); }
 /* The value text is words ("1.8 MB of 4.8 MB"), so it is in the sans face;
    its figures stay tabular. */
-.stoa-progress__value { font-family: var(--stoa-font-family-sans); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums; color: var(--stoa-color-text); }
+.stoa-progress__value { font-family: var(--stoa-font-family-sans); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text); }
 .stoa-progress__track {
   grid-column: 1 / -1; position: relative; display: block; overflow: hidden;
   block-size: var(--stoa-space-2);
@@ -595,7 +610,7 @@
   padding: var(--stoa-space-1) var(--stoa-space-2);
   background: var(--stoa-color-surface); color: var(--stoa-color-text);
   border: 1px solid var(--stoa-color-border-strong); border-radius: var(--stoa-radius-sm);
-  font-size: var(--stoa-font-size-sm);
+  font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-tight);
 }
 .stoa-skip-link:focus-visible {
   outline: var(--stoa-focus-width) solid var(--stoa-color-focus);
@@ -822,7 +837,7 @@
 .stoa-range { display: grid; gap: var(--stoa-space-1); min-inline-size: 0; }
 .stoa-range__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--stoa-space-3); }
 /* With the label hidden, the value still sits at the end of the line. */
-.stoa-range__output { margin-inline-start: auto; font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums; color: var(--stoa-color-text); }
+.stoa-range__output { margin-inline-start: auto; font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xs); font-variant-numeric: tabular-nums; line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text); }
 .stoa-range__track { block-size: var(--stoa-space-6); }
 .stoa-range__fill {
   position: absolute; inset-inline-start: 0; inset-block-start: 50%;
@@ -956,7 +971,7 @@
 .stoa-shortcuts { display: grid; gap: var(--stoa-space-4); }
 .stoa-shortcuts__title {
   margin: 0 0 var(--stoa-space-2);
-  font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium);
+  font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight);
   color: var(--stoa-color-text-muted);
 }
 .stoa-shortcuts__list {
@@ -1032,7 +1047,7 @@
 .stoa-step__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-2); min-block-size: var(--stoa-space-6); }
 .stoa-step__title { font-weight: var(--stoa-font-weight-medium); }
 .stoa-step--skipped .stoa-step__title, .stoa-step--notRun .stoa-step__title, .stoa-step--undone .stoa-step__title { color: var(--stoa-color-text-muted); font-weight: var(--stoa-font-weight-regular); }
-.stoa-step__status { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-step__status { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted); }
 .stoa-step__symbol { display: inline-block; }
 .stoa-step__status--running .stoa-step__symbol { color: var(--stoa-color-accent); }
 .stoa-step__status--done .stoa-step__symbol { color: var(--stoa-color-up); }
@@ -1068,7 +1083,7 @@
    area is always left to right; its start is the left edge. */
 .stoa-code { --code-lines: 20; --code-digits: 2; display: grid; gap: var(--stoa-space-1); min-inline-size: 0; }
 .stoa-code__bar { display: flex; align-items: center; gap: var(--stoa-space-2); }
-.stoa-code__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-code__label { font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted); }
 .stoa-code__status { flex: 1; text-align: end; font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 .stoa-code__copy, .stoa-code__jump {
   font-size: var(--stoa-font-size-xs);
@@ -1166,7 +1181,7 @@
 
 .stoa-metric { display: grid; gap: var(--stoa-space-1); margin: 0; }
 .stoa-metric dd { margin: 0; }
-.stoa-metric__label { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
+.stoa-metric__label { font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted); }
 .stoa-metric__number { font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-xl); font-variant-numeric: tabular-nums; }
 .stoa-metric__unit { font-size: var(--stoa-font-size-sm); color: var(--stoa-color-text-muted); }
 .stoa-metric__basis { font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted); }
@@ -1199,6 +1214,7 @@
   caption-side: top; text-align: start;
   padding-block-end: var(--stoa-space-2); padding-inline: var(--stoa-density-cell-padding-x);
   font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium);
+  line-height: var(--stoa-font-line-height-tight);
   color: var(--stoa-color-text);
 }
 /* A row header names its row, so it stays on one line; a table too wide
@@ -1232,7 +1248,7 @@
 .stoa-chart__svg { display: block; inline-size: 100%; overflow: visible; direction: ltr; }
 .stoa-chart__axis-label {
   margin: 0 0 var(--stoa-space-1);
-  font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted);
+  font-size: var(--stoa-font-size-2xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted);
 }
 .stoa-chart__tick { fill: var(--stoa-color-text-muted); font-family: var(--stoa-font-family-mono); font-size: var(--stoa-font-size-2xs); }
 .stoa-chart__grid { stroke: var(--stoa-color-border); stroke-width: 1; }
@@ -1255,7 +1271,7 @@
 .stoa-chart__legend {
   display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-4);
   margin: var(--stoa-space-2) 0 0; padding: 0; list-style: none;
-  font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text);
+  font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text);
 }
 .stoa-chart__legend-item { display: inline-flex; align-items: center; gap: var(--stoa-space-1); }
 .stoa-chart__swatch, .stoa-event-strip__swatch { flex: none; }
@@ -1426,7 +1442,7 @@
    symbol keeps a measured contrast on any row fill (a hovered list row, a
    selected one). The words keep the text colour, and an overdue deadline
    is set in the heavier weight as well. */
-.stoa-countdown { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); white-space: nowrap; }
+.stoa-countdown { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); white-space: nowrap; line-height: var(--stoa-font-line-height-tight); }
 .stoa-countdown__symbol {
   padding-inline: var(--stoa-space-0-5); border-radius: var(--stoa-radius-full); background: var(--stoa-color-surface);
   font-family: var(--stoa-font-family-sans); font-weight: var(--stoa-font-weight-semibold);
@@ -1445,7 +1461,7 @@
 .stoa-derivation__revision { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 /* Stacked on a narrow screen: the caption as the table's, then each step's
    name over its fields, a rule between steps. */
-.stoa-derivation__caption { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); }
+.stoa-derivation__caption { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); }
 .stoa-derivation__steps { display: grid; margin: 0; padding: 0; list-style: none; }
 .stoa-derivation__step { display: grid; gap: var(--stoa-space-1); padding-block: var(--stoa-space-2); border-block-start: 1px solid var(--stoa-color-border); }
 .stoa-derivation__step:first-child { border-block-start: 0; padding-block-start: 0; }
@@ -1458,7 +1474,7 @@
   padding: var(--stoa-space-1) var(--stoa-space-2);
   border: 1px solid var(--stoa-color-border); border-radius: var(--stoa-radius-md);
 }
-.stoa-selection-bar__count { font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); margin-inline-end: var(--stoa-space-2); }
+.stoa-selection-bar__count { font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); margin-inline-end: var(--stoa-space-2); }
 
 /* FilterBar: the search, the chip groups and a line with the count of
    results and Clear all, then the results or the empty state. On a narrow
@@ -1480,7 +1496,7 @@
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--stoa-space-2) var(--stoa-space-4);
   flex-basis: 100%;
 }
-.stoa-filter-bar__count { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-xs); }
+.stoa-filter-bar__count { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-xs); line-height: var(--stoa-font-line-height-tight); }
 @media (max-width: 40rem) {
   .stoa-filter-bar__groups { display: none; }
   .stoa-filter-bar__sheet { display: block; }
@@ -1499,6 +1515,7 @@
 .stoa-timeline__date {
   margin: 0; padding-block-end: var(--stoa-space-1); border-block-end: 1px solid var(--stoa-color-border);
   color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium);
+  line-height: var(--stoa-font-line-height-tight);
 }
 .stoa-timeline__entry {
   display: grid; grid-template-columns: minmax(4rem, auto) minmax(0, 1fr); gap: var(--stoa-space-3); align-items: baseline;
@@ -1527,10 +1544,10 @@
   padding-block-end: var(--stoa-space-3); border-block-end: 1px solid var(--stoa-color-border); min-inline-size: 0;
 }
 .stoa-detail-header__title { display: grid; gap: var(--stoa-space-0-5); min-inline-size: 0; }
-.stoa-detail-header__heading { margin: 0; font-size: var(--stoa-font-size-lg); font-weight: var(--stoa-font-weight-semibold); overflow-wrap: anywhere; }
+.stoa-detail-header__heading { margin: 0; font-size: var(--stoa-font-size-lg); font-weight: var(--stoa-font-weight-semibold); line-height: var(--stoa-font-line-height-tight); overflow-wrap: anywhere; }
 .stoa-detail-header__heading:focus { outline: none; }
 .stoa-detail-header__heading:focus-visible { outline: var(--stoa-focus-width) solid var(--stoa-color-focus); outline-offset: var(--stoa-focus-offset); }
-.stoa-detail-header__ids { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-4); margin: 0; font-size: var(--stoa-font-size-sm); }
+.stoa-detail-header__ids { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-4); margin: 0; font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-tight); }
 .stoa-detail-header__id { display: flex; gap: var(--stoa-space-1); align-items: baseline; }
 .stoa-detail-header__id dt { color: var(--stoa-color-text-muted); }
 .stoa-detail-header__id dd { margin: 0; }
@@ -1541,7 +1558,7 @@
    sunken well with a bar at its start edge, a sentence a line, then the
    grounds it cites. */
 .stoa-letter { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--stoa-space-2); margin: 0; min-inline-size: 0; }
-.stoa-letter__label { align-self: center; font-weight: var(--stoa-font-weight-medium); }
+.stoa-letter__label { align-self: center; font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); }
 .stoa-letter__bar { display: flex; align-items: center; justify-content: flex-end; gap: var(--stoa-space-2); grid-column: 2; grid-row: 1; }
 .stoa-letter__status { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-text-muted); }
 .stoa-letter__text, .stoa-letter__grounds { grid-column: 1 / -1; }
@@ -1554,7 +1571,7 @@
 }
 .stoa-letter__text p { margin: 0; }
 .stoa-letter__grounds { display: grid; gap: var(--stoa-space-1); }
-.stoa-letter__grounds-label { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
+.stoa-letter__grounds-label { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-tight); }
 
 /* FindingsList: a group per severity, its heading with the symbol and the
    count, then its findings, each with the symbol (in the severity's
@@ -1562,7 +1579,7 @@
    severity word, the text, and the code and source in a muted line. */
 .stoa-findings { display: grid; gap: var(--stoa-space-3); min-inline-size: 0; }
 .stoa-findings__group { display: grid; gap: var(--stoa-space-1); }
-.stoa-findings__heading { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-findings__heading { margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-semibold); line-height: var(--stoa-font-line-height-tight); }
 .stoa-findings__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--stoa-space-2); }
 .stoa-finding { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--stoa-space-2); align-items: baseline; }
 .stoa-findings__symbol {
@@ -1584,7 +1601,7 @@
    checked pair), then the list of changes. Spaces and line breaks are
    kept as written; a change of whitespace alone keeps a visible width. */
 .stoa-diff { display: grid; gap: var(--stoa-space-2); margin: 0; min-inline-size: 0; }
-.stoa-diff__label { font-weight: var(--stoa-font-weight-medium); }
+.stoa-diff__label { font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); }
 .stoa-diff__summary { margin: 0; color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }
 .stoa-diff__text {
   padding: var(--stoa-space-3) var(--stoa-space-4);
@@ -1617,7 +1634,7 @@
 .stoa-scatter__canvas { display: block; inline-size: 100%; }
 .stoa-scatter__x-label {
   margin: var(--stoa-space-1) 0 0; text-align: end;
-  font-size: var(--stoa-font-size-2xs); color: var(--stoa-color-text-muted);
+  font-size: var(--stoa-font-size-2xs); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted);
 }
 .stoa-scatter__swatch { flex: none; }
 .stoa-scatter__mark { fill: currentColor; }
@@ -1668,14 +1685,14 @@
    underlined; neither is told by colour alone. On a narrow screen the
    month is a list of days with events instead. */
 .stoa-calendar { display: grid; gap: var(--stoa-space-3); min-inline-size: 0; }
-.stoa-calendar__label { font-weight: var(--stoa-font-weight-medium); }
+.stoa-calendar__label { font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); }
 .stoa-calendar__head { display: flex; align-items: center; gap: var(--stoa-space-2); }
-.stoa-calendar__month { flex: 1; margin: 0; text-align: center; font-size: var(--stoa-font-size-md); font-weight: var(--stoa-font-weight-semibold); }
+.stoa-calendar__month { flex: 1; margin: 0; text-align: center; font-size: var(--stoa-font-size-md); font-weight: var(--stoa-font-weight-semibold); line-height: var(--stoa-font-line-height-tight); }
 .stoa-calendar__nav { min-inline-size: var(--stoa-space-8); font-size: var(--stoa-font-size-md); }
 .stoa-calendar__grid { inline-size: 100%; table-layout: fixed; border-collapse: collapse; }
 .stoa-calendar__weekday {
   padding-block: var(--stoa-space-1); font-size: var(--stoa-font-size-xs); font-weight: var(--stoa-font-weight-regular);
-  color: var(--stoa-color-text-muted); text-align: center;
+  line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted); text-align: center;
 }
 .stoa-calendar__cell {
   block-size: calc(var(--stoa-space-8) + var(--stoa-space-4)); padding: var(--stoa-space-1);
@@ -1710,14 +1727,14 @@
 .stoa-calendar__symbol--offer, .stoa-calendar__symbol--deadline { color: var(--stoa-color-warning); }
 .stoa-calendar__symbol--maturity { color: var(--stoa-color-text); }
 .stoa-calendar__symbol--default { color: var(--stoa-color-down); font-weight: var(--stoa-font-weight-semibold); }
-.stoa-calendar__key { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-1) var(--stoa-space-3); font-size: var(--stoa-font-size-sm); }
+.stoa-calendar__key { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-1) var(--stoa-space-3); font-size: var(--stoa-font-size-sm); line-height: var(--stoa-font-line-height-tight); }
 .stoa-calendar__key-label { color: var(--stoa-color-text-muted); }
 .stoa-calendar__key-list { display: flex; flex-wrap: wrap; gap: var(--stoa-space-1) var(--stoa-space-3); margin: 0; padding: 0; list-style: none; }
 .stoa-calendar__key-item { display: inline-flex; align-items: baseline; gap: var(--stoa-space-1); }
 .stoa-calendar__empty, .stoa-calendar__none { margin: 0; color: var(--stoa-color-text-muted); }
 .stoa-calendar__chosen { display: grid; gap: var(--stoa-space-2); }
 .stoa-calendar__date {
-  margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); color: var(--stoa-color-text-muted);
+  margin: 0; font-size: var(--stoa-font-size-sm); font-weight: var(--stoa-font-weight-medium); line-height: var(--stoa-font-line-height-tight); color: var(--stoa-color-text-muted);
 }
 .stoa-calendar__days { display: grid; gap: var(--stoa-space-3); margin: 0; padding: 0; list-style: none; }
 .stoa-calendar__day-group { display: grid; gap: var(--stoa-space-1); }

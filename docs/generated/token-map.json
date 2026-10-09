@@ -18474,6 +18474,7 @@
           "Controls/Inputs > ThemeSwitchStates",
           "Controls/Inputs > ToolbarTransport",
           "Controls/Order ticket > PriceAndYield",
+          "Controls/Order ticket > PriceStep",
           "Controls/Order ticket > Quantity",
           "Controls/Order ticket > QuantityLimits",
           "Controls/Order ticket > SlowEngine",

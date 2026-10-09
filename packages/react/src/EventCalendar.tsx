@@ -3,17 +3,18 @@ import { useLocale } from "react-aria-components";
 import { Button } from "./Controls";
 import { VisuallyHidden } from "./LiveRegion";
 import { useBreakpoint } from "./media";
-import { useStoaFormat, type CalendarEventKind } from "./locale";
+import { useStoaFormat, type CalendarEventKind, type CalendarEventMark } from "./locale";
 
-export type { CalendarEventKind } from "./locale";
+export type { CalendarEventKind, CalendarEventMark } from "./locale";
 
 /** The kinds, in the order the key lists them. */
-export const CALENDAR_EVENT_KINDS: readonly CalendarEventKind[] = ["coupon", "amortisation", "offer", "maturity", "rating", "default"];
+export const CALENDAR_EVENT_KINDS: readonly CalendarEventKind[] = ["coupon", "amortisation", "deadline", "offer", "maturity", "rating", "default"];
 
 /** Each kind's symbol: its shape tells it apart, its colour repeats it. */
 export const CALENDAR_EVENT_SYMBOL: Record<CalendarEventKind, string> = {
   coupon: "●",
   amortisation: "◐",
+  deadline: "⚑",
   offer: "◆",
   maturity: "■",
   rating: "↕",
@@ -32,6 +33,11 @@ export type CalendarEvent = {
   /** More about it, under the title in the day's list (a deadline to act
    * by, a link to the offer form). */
   detail?: ReactNode;
+  /** Marks an entry that is not a known event: "synthetic" (made up for a
+   * scenario) or "projected" (worked out ahead, such as a floating
+   * coupon at today's index). Said in words beside the kind's word in
+   * the day's list, and after the kind in the day's cell as read. */
+  mark?: CalendarEventMark;
 };
 
 export type EventCalendarProps = {
@@ -147,11 +153,23 @@ function KindSymbol({ kind }: { kind: CalendarEventKind }) {
 /** The kinds a day holds, each once, in the key's order. */
 const kindsOf = (events: CalendarEvent[]) => CALENDAR_EVENT_KINDS.filter((kind) => events.some((e) => e.kind === kind));
 
+/** The kinds a day holds as read in its cell, in the key's order: each
+ * kind once for its unmarked events and once for each mark its events
+ * carry ("Coupon (projected)"). */
+const kindsAsRead = (events: CalendarEvent[]) =>
+  kindsOf(events).flatMap((kind) => {
+    const marks = events.filter((e) => e.kind === kind).map((e) => e.mark ?? null);
+    return [null, "synthetic" as const, "projected" as const].filter((mark) => marks.includes(mark)).map((mark) => ({ kind, mark }));
+  });
+
 /**
  * Dated events on a calendar: a bond's coupons, offers, amortisations,
- * maturity, rating changes and a default. Each kind is a symbol and a
- * word, never a colour alone: the symbols in the days, a key under the
- * grid that names them, and the word beside each event in a day's list.
+ * maturity, rating changes and a default, and the deadlines to act by
+ * before them (a kind of their own, on their own day). Each kind is a
+ * symbol and a word, never a colour alone: the symbols in the days, a key
+ * under the grid that names them, and the word beside each event in a
+ * day's list. An entry marked synthetic or projected says so in words
+ * beside its kind's word, and its day is read with the mark.
  *
  * The month is an ARIA grid with one tab stop (the selected day, else
  * today, else the month's first day with events, else its first day).
@@ -159,9 +177,9 @@ const kindsOf = (events: CalendarEvent[]) => CALENDAR_EVENT_KINDS.filter((kind) 
  * End go to the start and end of the week, Page Up and Page Down a month,
  * with Shift a year; Enter, Space or a press chooses the day, whose events
  * are listed under the grid. Each day is read with its full date, "today"
- * when it is, and the kinds of its events. The month's name and the week
- * follow the locale, and Previous and Next change the month, which is
- * announced. On a narrow screen the month is a list of its days with
+ * when it is, and the kinds of its events with their marks. The month's
+ * name and the week follow the locale, and Previous and Next change the
+ * month, which is announced. On a narrow screen the month is a list of its days with
  * events instead. A month without events says so.
  */
 export function EventCalendar({
@@ -219,7 +237,8 @@ export function EventCalendar({
   const { y, m } = parse(`${month}-01`);
   const monthName = capital(formats.month.format(utc(`${month}-01`)));
   const longDate = (iso: string) => formats.long.format(utc(iso));
-  const kindWords = (kinds: CalendarEventKind[]) => kinds.map((kind) => messages.calendarKind[kind]);
+  const kindWords = (kinds: { kind: CalendarEventKind; mark: CalendarEventMark | null }[]) =>
+    kinds.map(({ kind, mark }) => (mark ? `${messages.calendarKind[kind]} ${messages.calendarMark[mark]}` : messages.calendarKind[kind]));
 
   const monthDays = Array.from({ length: daysIn(y, m) }, (_, i) => toIso(y, m, i + 1));
   const eventDays = monthDays.filter((day) => byDate.has(day));
@@ -306,6 +325,12 @@ export function EventCalendar({
           <div className="stoa-calendar__event-body">
             <p className="stoa-calendar__event-head">
               <span className="stoa-calendar__kind">{messages.calendarKind[event.kind]}</span>
+              {event.mark && (
+                <>
+                  {" "}
+                  <span className={`stoa-calendar__mark stoa-calendar__mark--${event.mark}`}>{messages.calendarMark[event.mark]}</span>
+                </>
+              )}
               <span aria-hidden="true">{" · "}</span>
               <VisuallyHidden>: </VisuallyHidden>
               <span className="stoa-calendar__title">{event.title}</span>
@@ -449,7 +474,7 @@ export function EventCalendar({
                         ))}
                       </span>
                     )}
-                    <VisuallyHidden>{messages.calendarCell(longDate(day), isToday, kindWords(kinds))}</VisuallyHidden>
+                    <VisuallyHidden>{messages.calendarCell(longDate(day), isToday, kindWords(kindsAsRead(dayEvents)))}</VisuallyHidden>
                   </td>
                 );
               })}

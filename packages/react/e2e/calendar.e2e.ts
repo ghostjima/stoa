@@ -70,7 +70,7 @@ test("right to left, the week runs from the right, starting on Saturday, and the
 test("each kind is its own symbol, in its colour on a surface plate, named in the key", async ({ page }) => {
   await page.goto(story("data-eventcalendar--all-kinds"));
   const key = page.locator(".stoa-calendar__key-item");
-  await expect(key).toHaveText(["●Coupon", "◐Amortisation", "◆Offer", "■Maturity", "↕Rating change", "✗Default"]);
+  await expect(key).toHaveText(["●Coupon", "◐Amortisation", "⚑Deadline", "◆Offer", "■Maturity", "↕Rating change", "✗Default"]);
   const plates = await page.locator(`${day("2026-11-30")} .stoa-calendar__symbol`).evaluateAll((els) =>
     els.map((el) => ({ text: el.textContent, colour: getComputedStyle(el).color, plate: getComputedStyle(el).backgroundColor })),
   );
@@ -91,6 +91,40 @@ test("each kind is its own symbol, in its colour on a surface plate, named in th
   expect(box!.width).toBeGreaterThanOrEqual(24);
   expect(box!.height).toBeGreaterThanOrEqual(24);
 });
+
+for (const mode of [
+  { name: "English", globals: "", deadline: "Deadline", projected: "Coupon (projected)", synthetic: "Rating change (synthetic)" },
+  { name: "Russian", globals: "lang:ru", deadline: "Крайний срок", projected: "Купон (прогноз)", synthetic: "Изменение рейтинга (синтетическое)" },
+  { name: "Arabic, right to left", globals: "dir:rtl;lang:ar", deadline: "آخر موعد", projected: "كوبون (متوقَّع)", synthetic: "تغيّر التصنيف (اصطناعي)" },
+]) {
+  test(`a deadline is its own kind and symbol, and a projected or synthetic entry says so beside its kind (${mode.name})`, async ({ page }) => {
+    await page.goto(story("data-eventcalendar--deadlines-and-marks", mode.globals));
+    const grid = page.locator(".stoa-calendar--grid");
+    // The chosen deadline's day: its symbol in the warning colour on a
+    // surface plate, its word in the list under the grid.
+    const symbol = grid.locator(`${day("2026-10-09")} .stoa-calendar__symbol`);
+    await expect(symbol).toHaveText("⚑");
+    const [colour, plate, warning, surface] = await symbol.evaluate((el) => {
+      const probe = document.createElement("span");
+      document.body.append(probe);
+      probe.style.color = "var(--stoa-color-warning)";
+      probe.style.backgroundColor = "var(--stoa-color-surface)";
+      const out = [getComputedStyle(el).color, getComputedStyle(el).backgroundColor, getComputedStyle(probe).color, getComputedStyle(probe).backgroundColor];
+      probe.remove();
+      return out;
+    });
+    expect([colour, plate]).toEqual([warning, surface]);
+    await expect(grid.locator(".stoa-calendar__chosen .stoa-calendar__kind")).toHaveText([mode.deadline]);
+    // The list: each mark beside its kind's word.
+    const list = page.locator(".stoa-calendar--list");
+    const heads = list.locator(".stoa-calendar__event-head");
+    await expect(heads).toHaveCount(4);
+    expect(await heads.nth(2).evaluate((p) => `${p.querySelector(".stoa-calendar__kind")!.textContent} ${p.querySelector(".stoa-calendar__mark")!.textContent}`)).toBe(mode.projected);
+    expect(await heads.nth(3).evaluate((p) => `${p.querySelector(".stoa-calendar__kind")!.textContent} ${p.querySelector(".stoa-calendar__mark")!.textContent}`)).toBe(mode.synthetic);
+    // The grid's cells read the mark with the kind.
+    await expect(grid.locator(`${day("2026-10-21")} .stoa-visually-hidden`)).toContainText(mode.projected);
+  });
+}
 
 test("Previous and Next change the month and keep the focus on the button", async ({ page }) => {
   await page.goto(story("data-eventcalendar--all-kinds"));

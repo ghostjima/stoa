@@ -204,5 +204,6 @@ export {
   weekStartOf,
   type CalendarEvent,
   type CalendarEventKind,
+  type CalendarEventMark,
   type EventCalendarProps,
 } from "./EventCalendar";

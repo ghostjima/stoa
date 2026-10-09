@@ -1694,7 +1694,7 @@
 }
 .stoa-calendar__symbol--coupon { color: var(--stoa-color-text-muted); }
 .stoa-calendar__symbol--amortisation, .stoa-calendar__symbol--rating { color: var(--stoa-color-accent); }
-.stoa-calendar__symbol--offer { color: var(--stoa-color-warning); }
+.stoa-calendar__symbol--offer, .stoa-calendar__symbol--deadline { color: var(--stoa-color-warning); }
 .stoa-calendar__symbol--maturity { color: var(--stoa-color-text); }
 .stoa-calendar__symbol--default { color: var(--stoa-color-down); font-weight: var(--stoa-font-weight-semibold); }
 .stoa-calendar__key { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--stoa-space-1) var(--stoa-space-3); font-size: var(--stoa-font-size-sm); }
@@ -1714,4 +1714,6 @@
 .stoa-calendar__event-body { display: grid; gap: var(--stoa-space-0-5); min-inline-size: 0; overflow-wrap: anywhere; }
 .stoa-calendar__event-head { margin: 0; }
 .stoa-calendar__kind { font-weight: var(--stoa-font-weight-medium); }
+/* A synthetic or projected entry's mark: words after the kind's, muted. */
+.stoa-calendar__mark { color: var(--stoa-color-text-muted); }
 .stoa-calendar__detail { color: var(--stoa-color-text-muted); font-size: var(--stoa-font-size-sm); }

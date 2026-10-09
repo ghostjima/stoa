@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { I18nProvider, PriceYieldField, QuantityStepper, type PriceYieldResult, type PriceYieldStatus, type PriceYieldValue } from "./index";
+import { I18nProvider, PriceYieldField, QuantityStepper, type PriceYieldFieldProps, type PriceYieldResult, type PriceYieldStatus, type PriceYieldValue } from "./index";
 
 afterEach(() => {
   cleanup();
@@ -31,12 +31,13 @@ function Ticket({
   initial = { price: 98.5, yield: 101.5, source: "price" },
   onChange,
   onStatusChange,
+  ...props
 }: {
   engine?: Engine;
   initial?: PriceYieldValue;
   onChange?: (v: PriceYieldValue) => void;
   onStatusChange?: (s: PriceYieldStatus) => void;
-}) {
+} & Pick<PriceYieldFieldProps, "priceDecimals" | "priceStep" | "keepTypedValue">) {
   const [value, setValue] = useState<PriceYieldValue>(initial);
   return (
     <PriceYieldField
@@ -47,6 +48,7 @@ function Ticket({
         onChange?.(v);
       }}
       onStatusChange={onStatusChange}
+      {...props}
       {...engine}
     />
   );
@@ -100,6 +102,34 @@ describe("PriceYieldField", () => {
     render(<Ticket onChange={onChange} engine={{ yieldFromPrice: () => 14.23456, priceFromYield: () => 1 }} />);
     type(screen.getByRole("textbox", { name: "Price, % of face value" }), "97.123");
     expect(onChange).toHaveBeenLastCalledWith({ price: 97.12, yield: 14.23, source: "price" });
+  });
+
+  it("by default moves a typed price to the nearest step", () => {
+    const onChange = vi.fn();
+    render(<Ticket onChange={onChange} priceDecimals={4} priceStep={0.05} />);
+    const price = screen.getByRole("textbox", { name: "Price, % of face value" }) as HTMLInputElement;
+    type(price, "101.2345");
+    expect(onChange).toHaveBeenLastCalledWith({ price: 101.25, yield: 98.75, source: "price" });
+    expect(price.value).toBe("101.2500");
+  });
+
+  it("with keepTypedValue keeps a price typed off the step, to its decimals, and the arrow keys move by the step onto its grid", () => {
+    const onChange = vi.fn();
+    render(<Ticket onChange={onChange} priceDecimals={4} priceStep={0.05} keepTypedValue />);
+    const price = screen.getByRole("textbox", { name: "Price, % of face value" }) as HTMLInputElement;
+    type(price, "101.23456");
+    expect(onChange).toHaveBeenLastCalledWith({ price: 101.2346, yield: 98.77, source: "price" });
+    expect(price.value).toBe("101.2346");
+    // Off the step is not invalid: only the engine marks the field.
+    expect(price.getAttribute("aria-invalid")).toBeNull();
+    expect(document.querySelector(".stoa-field__error")).toBeNull();
+    fireEvent.keyDown(price, { key: "ArrowUp" });
+    expect(onChange).toHaveBeenLastCalledWith({ price: 101.25, yield: 98.75, source: "price" });
+    fireEvent.keyDown(price, { key: "ArrowUp" });
+    expect(onChange).toHaveBeenLastCalledWith({ price: 101.3, yield: 98.7, source: "price" });
+    fireEvent.keyDown(price, { key: "ArrowDown" });
+    expect(onChange).toHaveBeenLastCalledWith({ price: 101.25, yield: 98.75, source: "price" });
+    expect(price.value).toBe("101.2500");
   });
 
   it("does not treat leaving a worked-out field unchanged as an edit", () => {

@@ -63,3 +63,41 @@ test("TextField is in the sans face, which joins Arabic letters, and in the mono
   expect(widths.loaded).toBe(true);
   expect(widths.joined).toBeLessThan(widths.apart);
 });
+
+for (const dir of ["ltr", "rtl"] as const) {
+  // Every story, so that any field holding the error region is checked:
+  // NumberField, PriceYieldField, QuantityStepper, TextField, TextArea,
+  // RadioGroup.
+  test(`at 375 px every field's error region, empty or not, stays within its field and the screen (${dir})`, async ({ page }) => {
+    test.setTimeout(10 * 60_000);
+    await page.setViewportSize({ width: 375, height: 800 });
+    const response = await page.request.get("/index.json");
+    expect(response.ok(), "index.json of the built Storybook").toBe(true);
+    const index = (await response.json()) as { entries: Record<string, { id: string; type: string }> };
+    const ids = Object.values(index.entries)
+      .filter((e) => e.type === "story")
+      .map((e) => e.id);
+    const outside: string[] = [];
+    let regions = 0;
+    for (const id of ids) {
+      await page.goto(story(id, dir === "rtl" ? "dir:rtl;lang:ar" : ""));
+      await expect(page.locator("#storybook-root > *").first()).toBeAttached();
+      const found = await page.evaluate(() =>
+        [...document.querySelectorAll<HTMLElement>(".stoa-field__error-region")].map((region) => {
+          const own = region.getBoundingClientRect();
+          const field = region.parentElement!.getBoundingClientRect();
+          return {
+            empty: region.childElementCount === 0,
+            inField: own.left >= field.left - 0.5 && own.right <= field.right + 0.5,
+            onScreen: own.left >= -0.5 && own.right <= document.documentElement.clientWidth + 0.5,
+            box: `${Math.round(own.left)}..${Math.round(own.right)} in ${Math.round(field.left)}..${Math.round(field.right)}`,
+          };
+        }),
+      );
+      regions += found.length;
+      for (const r of found) if (!r.inField || !r.onScreen) outside.push(`${id}: ${r.empty ? "empty" : "shown"} region ${r.box}`);
+    }
+    expect(regions).toBeGreaterThan(0);
+    expect(outside).toEqual([]);
+  });
+}

@@ -340,7 +340,11 @@
 .stoa-field__error { font-size: var(--stoa-font-size-xs); color: var(--stoa-color-down); }
 /* The polite live region around a field's error stays in the document;
    while it holds nothing it is taken out of the field's grid, so it adds
-   no gap under the input. */
+   no gap under the input. Its field is its containing block: out of the
+   flow it is still placed and sized against the field, never against the
+   page, where a number field's region (as wide as its field, below) would
+   be as wide as the page and reach past its edge. */
+.stoa-field, .stoa-number, .stoa-radio-group { position: relative; }
 .stoa-field__error-region:empty { position: absolute; }
 /* A number field is as wide as its input: the error wraps under it
    rather than widening the field. */

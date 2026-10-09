@@ -98,8 +98,10 @@ follow as the products need them.
     characters: deleted plus inserted characters over the characters of
     both texts, in Unicode code points with spaces included).
   - Events: EventCalendar (a bond's coupons, offers, amortisations,
-    maturity, rating changes and a default on a month grid, each kind a
-    symbol and a word, never a colour alone; an ARIA date grid with one
+    maturity, rating changes and a default on a month grid, with the
+    deadlines to act by before them as a kind of their own, each kind a
+    symbol and a word, never a colour alone; an entry marked synthetic or
+    projected says so beside its kind's word; an ARIA date grid with one
     tab stop, the arrow keys, Home and End, Page Up and Page Down, the
     chosen day's events listed under it; the week and the month's name
     from the locale; a list of the month's days with events on a narrow

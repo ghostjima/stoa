@@ -283,6 +283,17 @@ when they do. A native control an application draws itself takes the
 browser's `font`, whose line height is the face's own, unless it is given
 `font: inherit`, as Stoa's own controls are.
 
+Text that wraps as prose (descriptions, help, errors, messages, empty
+states) keeps that normal line height. One-line chrome sets the tight
+one, `--stoa-font-line-height-tight`, in its own rules: buttons and the
+controls built on them, tabs, a disclosure's summary, field labels, panel
+and section titles, AppHeader's subtitle and note, DetailHeader's heading
+and identifiers, badges and deadlines, counts in bars, and chart and
+calendar labels. A button with 14 px text is 27.5 px tall, where the
+face's own line height made it 28 px. AppHeader's title keeps the normal
+line height: it shares a baseline-aligned row with the subtitle, and at
+the tight one the header would change height when the fonts arrive.
+
 ### Arabic without a layout shift
 
 Fontsource's faces swap in when they arrive, so text is first drawn in

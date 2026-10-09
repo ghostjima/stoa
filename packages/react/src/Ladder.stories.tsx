@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "./Controls";
 import { Ladder, type LadderHandle } from "./Ladder";
 import { sampleBook } from "./fixtures";
 import { signalTokensChanged } from "./tokens";
@@ -128,12 +129,12 @@ export const TwoThemes: StoryObj<typeof Ladder> = {
       <div style={{ display: "flex", gap: "var(--stoa-space-4)", flexWrap: "wrap" }}>
         <div ref={light} data-theme="light" style={{ maxInlineSize: 320 }}>
           <Ladder {...args} label="Light preview" data={sampleBook(222.6, args.depth, 7)} />
-          <button onClick={() => signal(light.current, setLightCost)}>Signal</button>
+          <Button onPress={() => signal(light.current, setLightCost)}>Signal</Button>
           {lightCost && <p>Redraw cost: {lightCost}.</p>}
         </div>
         <div ref={dark} data-theme="dark" style={{ maxInlineSize: 320 }}>
           <Ladder {...args} label="Dark preview" data={sampleBook(222.6, args.depth, 11)} />
-          <button onClick={() => signal(dark.current, setDarkCost)}>Signal</button>
+          <Button onPress={() => signal(dark.current, setDarkCost)}>Signal</Button>
           {darkCost && <p>Redraw cost: {darkCost}.</p>}
         </div>
       </div>

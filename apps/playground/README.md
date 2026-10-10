@@ -2,7 +2,9 @@
 
 A private tool for tuning Stoa's tokens against dense screens. It is never
 published: `"private": true`, no `files` field, no build output that is
-meant to be served anywhere.
+meant to be served anywhere. (`vite build` checks that the app compiles
+and that it runs under a strict Content Security Policy; see
+[The build's Content Security Policy](#the-builds-content-security-policy).)
 
 ```
 pnpm build                     # the playground reads the built packages
@@ -199,6 +201,64 @@ All four are development only and live in `server/tokenServer.ts`.
 Every endpoint refuses a request whose `Origin` is not this server, and the
 two POST endpoints require `content-type: application/json`, so a page on
 another origin cannot drive the commands they run.
+
+## The build's Content Security Policy
+
+The playground is not published, so `vite build` protects no visitor. Its
+output still states a Content Security Policy, in a meta element that
+`server/csp.ts` writes into `dist/index.html`, for two reasons: it shows
+that Stoa's components and this app run under a strict policy, and the
+build is ready if it is ever served as static files. The dev server's
+page has none, because hot reload needs inline scripts and `eval`.
+
+```
+default-src 'self';
+script-src 'self';
+style-src 'self' 'sha256-(React Aria, usePress)' 'sha256-(React Aria, usePreventScroll)';
+img-src 'self' data:;
+font-src 'self';
+connect-src 'self' https://api.fontsource.org https://cdn.jsdelivr.net;
+worker-src 'self';
+base-uri 'self';
+form-action 'none';
+object-src 'none'
+```
+
+- `script-src 'self'`: the page has no inline script; one added to
+  `index.html` later is allowed by the SHA-256 the build computes from
+  its text. There is no `'wasm-unsafe-eval'`: HarfBuzz and the WOFF2
+  decoder are WebAssembly, but both run in the font worker, and a worker
+  takes its policy from its own script's headers, not from the page.
+- `style-src`: the stylesheet, and the two style elements React Aria adds
+  to the head at run time, each by the hash of its text. No
+  `'unsafe-inline'`: the frames' token values and every other inline
+  style are written through the CSS object model, which a policy does
+  not restrict.
+- `img-src`: `data:` is for the empty icon declared in `index.html`.
+- `font-src 'self'`: the build keeps every font as a file
+  (`assetsInlineLimit` in `vite.config.ts`; by default Vite would write
+  the two smallest subsets into the stylesheet as `data:` URLs). A font
+  dropped on the type panel or fetched from the catalogue is registered
+  from its bytes, which is not a request.
+- `connect-src`: the page's own files and endpoints, and the two hosts a
+  catalogue font comes from, Fontsource's API and the CDN its answers
+  point to.
+- `worker-src 'self'`: the font worker is a file of the build.
+
+A meta element cannot carry `frame-ancestors`, `sandbox` or a report
+endpoint. The page also states `<meta name="referrer"
+content="no-referrer">`.
+
+`tests/csp.spec.ts` checks the policy in Chromium against `vite preview`
+of a fresh build (the `build` project of `playwright.config.ts`, on the
+port after the dev server's; `PLAYGROUND_PREVIEW_PORT` moves it): no
+violation on any screen, in the four views and the three languages, with
+the overlays open and the font engine at work; a catalogue font loads
+from the two hosts named and a request to any other is refused; an
+injected inline script, an inline handler, `eval`, WebAssembly on the
+page, an injected style, a base element, a posted form and a script,
+stylesheet or image from another origin are each refused. The dev
+server's endpoints do not exist in a preview, so the test answers them.
 
 ## Not here yet
 

@@ -1,9 +1,11 @@
 import { defineConfig } from "@playwright/test";
 
-// Browser tests against a built Storybook (`pnpm exec storybook build`
-// at the repository root writes storybook-static/). The build is served
-// as static files; a server already listening on the port is reused, so
-// a build served elsewhere can be pointed at with STORYBOOK_PORT.
+// Browser tests against a built Storybook (`pnpm build-storybook` at the
+// repository root writes storybook-static/, with the Content Security
+// Policy that csp.e2e.ts checks; `storybook build` alone leaves the
+// policy out). The build is served as static files; a server already
+// listening on the port is reused, so a build served elsewhere can be
+// pointed at with STORYBOOK_PORT.
 // The files are named *.e2e.ts so that Vitest does not collect them.
 const PORT = Number(process.env.STORYBOOK_PORT ?? 6105);
 const DIR = process.env.STORYBOOK_DIR ?? "../../storybook-static";

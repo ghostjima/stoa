@@ -465,7 +465,10 @@ pnpm test
 Chromium that `pnpm --filter playground exec playwright install chromium`
 downloads), `node scripts/token-map.mjs --check` fails when the token map
 in `docs/generated/` is stale, and `pnpm storybook` serves the stories.
-`pnpm build-storybook` builds the stories into `storybook-static/`, and
+`pnpm build-storybook` builds the stories into `storybook-static/` and
+writes a Content Security Policy into its two pages
+(`scripts/storybook-csp.mjs`; what it allows is in
+[SECURITY.md](SECURITY.md)), and
 `pnpm --filter @ghostjima/stoa-react test:stories` runs the browser
 tests against that build, the axe sweep over every story among them.
 The playground, the tool the tokens are tuned in, is described in

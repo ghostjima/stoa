@@ -52,7 +52,9 @@ pnpm --filter @ghostjima/stoa-react test:stories
 ```
 
 The browser tests start their own servers: `PLAYGROUND_E2E_PORT` moves the
-playground's, `STORYBOOK_PORT` the one that serves the built Storybook.
+playground's dev server, `PLAYGROUND_PREVIEW_PORT` the preview of its
+build (the port after the dev server's unless set), and `STORYBOOK_PORT`
+the one that serves the built Storybook.
 
 A failed check is not flaky until the exact same command passes on rerun.
 When a check fails and the fix is not obvious, report it rather than route

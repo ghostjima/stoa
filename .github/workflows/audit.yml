@@ -1,0 +1,48 @@
+name: Audit
+
+# Known vulnerabilities in the npm dependencies. On every pull request
+# and push to main, and every Monday: an advisory is published without
+# anything changing here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+
+# Each job asks for what it needs.
+permissions: {}
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # pnpm audit reads pnpm-lock.yaml and asks the registry about the
+  # versions in it: nothing is installed and no package script runs.
+  npm-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      # What an application gets with the packages, and what the
+      # playground bundles: any advisory fails, whatever its severity. The
+      # set is small, so each one can be read.
+      - name: Production dependencies, any severity
+        run: pnpm audit --prod --audit-level=low
+      # The build and test tools (Storybook, Vite, Playwright) run on a
+      # developer's machine and in CI. Their low and moderate advisories
+      # are mostly about dev servers open to a network and are printed,
+      # not failed on; high and critical ones fail.
+      - name: Every dependency, high and critical
+        run: pnpm audit --audit-level=high

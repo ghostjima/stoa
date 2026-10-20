@@ -35,6 +35,6 @@
   },
   "devDependencies": {
     "culori": "^4.0.2",
-    "style-dictionary": "5.5.5"
+    "style-dictionary": "5.7.0"
   }
 }
